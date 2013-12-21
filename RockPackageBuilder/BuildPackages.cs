@@ -12,6 +12,10 @@ using NuGet;
 
 namespace RockPackageBuilder
 {
+    /// <summary>
+    /// The Rock Update package builder.  Read about it here:
+    /// https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
+    /// </summary>
     class BuildPackages
     {
         #region Properties
@@ -57,6 +61,11 @@ namespace RockPackageBuilder
             }
         }
 
+        /// <summary>
+        /// Entry point and check command line parameters.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         static int Main( string[] args )
         {
             Console.BufferHeight = 9999;
@@ -76,34 +85,57 @@ namespace RockPackageBuilder
                 }
                 else
                 {
-                    Run( options );
+                    return Run( options );
                 }
             }
             return 0;
         }
 
-        private static void Run( Options options )
+        /// <summary>
+        /// The main runner.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        private static int Run( Options options )
         {
             List<string> modifiedLibs = new List<string>();
             List<string> modifiedPackageFiles = new List<string>();
             List<string> deletedPackageFiles = new List<string>();
-
             Dictionary<string, bool> modifiedProjects = new Dictionary<string, bool>();
 
-            //TODO -- make sure the Rock.Version project's version number has been updated and commit->pushed
-            //        before you build from master.
+            // Make sure the Rock.Version project's version number has been updated and commit->pushed
+            // before you build from master.
+            Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
+            Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
+            Console.WriteLine( "" );
 
-            GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
+            string packagePath = FullPathOfRockPackageFile( options.PackageFolder, SEMANTIC_VERSION_NUMBER );
+            if ( File.Exists( packagePath ))
+            {
+                Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", packagePath, Environment.NewLine );
+                ConsoleKeyInfo choice = Console.ReadKey(true);
+                Console.Write( "\b" );
+                Console.WriteLine( "" );
+                if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+                {
+                    return 1;
+                }
+            }
+
+            string changeMessages = GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
             // TODO determine how to increment versions -- perhaps get it from the Rock.Version Assembly?
             // TODO determine where to get description from
             var updatePackageName = BuildUpdatePackage( options.RepoPath, options.PackageFolder, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, SEMANTIC_VERSION_NUMBER, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, SEMANTIC_VERSION_NUMBER, "description", "release notes" );
+            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, SEMANTIC_VERSION_NUMBER, "description", changeMessages );
 
-            // TODO -- remove this
-            Console.ReadLine();
+            Console.WriteLine( "" );
+            Console.Write( "Press any key to quit." );
+            Console.ReadKey(true);
+
+            return 0;
         }
 
         /// <summary>
@@ -114,9 +146,10 @@ namespace RockPackageBuilder
         /// <param name="modifiedPackageFiles">a list of files that were modified in the RockWeb project</param>
         /// <param name="deletedPackageFiles">a list of files that were deleted from the RockWeb project</param>
         /// <param name="modifiedProjects">a list of projects that were modified</param>
-        private static void GetRockWebChangedFilesAndProjects( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
+        private static string GetRockWebChangedFilesAndProjects( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
         {
             int webRootPathLength = @"rockweb\".Length;
+            StringBuilder sbChangeLog = new StringBuilder();
 
             // Open the git repo and get the commits for the given branch.
             using ( var repo = new Repository( options.RepoPath ) )
@@ -130,10 +163,13 @@ namespace RockPackageBuilder
                 // need to be included in the package.
 
                 // TODO device resonable mechanism to determine which was the last commit SHA for the last "package" 
-                foreach ( var c in repo.Commits.StartingAfter( LAST_PACKAGE_COMMIT_SHA ) )
+                foreach ( var c in repo.Commits.StartingAfter( LAST_PACKAGE_COMMIT_SHA, sbChangeLog ) )
                 {
-                    Console.WriteLine( string.Format( "id: {0} {1}", c.Id, c.Message ) );
-
+                    if ( options.Verbose )
+                    {
+                        Console.WriteLine( string.Format( "id: {0} {1}", c.Id, c.Message ) );
+                    }
+                    Console.WriteLine( "Comparing... (this could take a few minutes)" );
                     TreeChanges changes = repo.Diff.Compare( c.Tree, branch.Tip.Tree );
 
                     foreach ( var file in changes )
@@ -191,6 +227,7 @@ namespace RockPackageBuilder
                     }
                 }
             }
+            return sbChangeLog.ToString();
         }
 
         /// <summary>
@@ -260,7 +297,6 @@ namespace RockPackageBuilder
                     AddLibToManifest( manifest, Path.Combine("bin", entry.Key + ".dll" ), webRootPath );
                 }
             }
-
 
             // write out all the files to delete in the deletefile.lst ) 
             string deleteFileRelativePath = Path.Combine( "App_Data", "deletefile.lst" );
@@ -383,7 +419,7 @@ namespace RockPackageBuilder
             System.IO.File.WriteAllText( readmeFileFullPath, releaseNotes );
             AddToManifest( manifest, readmeFileRelativePath, webRootPath );
 
-            string packageFileName = Path.Combine( packageFolder, string.Format( "Rock.{0}.nupkg", version ) );
+            string packageFileName = FullPathOfRockPackageFile( packageFolder, version );
 
             PackageBuilder builder = new PackageBuilder();
             builder.PopulateFiles( repoPath, manifest.Files );
@@ -394,23 +430,16 @@ namespace RockPackageBuilder
             }
         }
 
-        //public static void PrintTree( Repository repo, Tree tree )
-        //{
-        //    foreach ( var item in tree )
-        //    {
-        //        if ( item.Name == ".gitignore" )
-        //        {
-        //            var x = item;
-        //        }
-
-        //        Console.WriteLine( string.Format( "\t{0} : {1} : {2}", item.Target, item.Path, item.Name ) );
-        //        var tree2 = repo.Lookup<Tree>( item.Target.Sha );
-        //        if ( tree2 != null )
-        //        {
-        //            PrintTree( repo, tree2 );
-        //        }
-        //    }
-        //}
+        /// <summary>
+        /// Builds the full path to the Rock.x.y.z.nupkg package file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        private static string FullPathOfRockPackageFile( string packageFolder, string version )
+        {
+            return Path.Combine( packageFolder, string.Format( "Rock.{0}.nupkg", version ) );
+        }
 
         #region NuGet Package Helper Methods
         
@@ -478,19 +507,26 @@ namespace RockPackageBuilder
 
     public static class LibGit2Extensions
     {
-
-
-        public static List<Commit> StartingAfter( this IQueryableCommitLog obj, string sha )
+        public static List<Commit> StartingAfter( this IQueryableCommitLog obj, string sha, StringBuilder sb )
         {
+            int i = 0;
             List<Commit> results = new List<Commit>();
             foreach ( var commit in obj )
             {
+                i++;
+                if ( !commit.Message.StartsWith( "Merge branch 'origin/develop'" ) && !commit.Message.StartsWith( "Merge branch 'develop'" ) )
+                {
+                    sb.AppendFormat( "+ {0}", commit.Message );
+                }
+
                 if ( commit.Sha == sha )
                 {
                     results.Add( commit );
+                    Console.WriteLine( "Found about {0} commits.", i );
                     return results;
                 }
             }
+            Console.WriteLine( "WARNING: Could not find sha {0}", results.Count );
             return results;
         }
     }
