@@ -22,9 +22,11 @@ namespace RockPackageBuilder
         /// <summary>
         /// This is the repository commit SHA to compare the head commit with. All changes
         /// between this SHA and the head will be included in the package.
+        /// c71c4b2c954d1ace04ff3d00136e6c6ff1b5900b v0.1.0
+        /// 7f760c8355a1829042628d12ff687aa2fbd9751d v0.1.1
         /// </summary>
-        static string LAST_PACKAGE_COMMIT_SHA = "794515bf0f9995b243beda8385bdb24333e8cac2"; // 794515bf0f9995b243beda8385bdb24333e8cac2 is version 0.0.2
-        static string SEMANTIC_VERSION_NUMBER = "0.0.4";
+        static string LAST_PACKAGE_COMMIT_SHA = "7f760c8355a1829042628d12ff687aa2fbd9751d"; // v 0.1.1
+        static string SEMANTIC_VERSION_NUMBER = "0.1.2";
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
         static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
@@ -301,6 +303,11 @@ namespace RockPackageBuilder
             // write out all the files to delete in the deletefile.lst ) 
             string deleteFileRelativePath = Path.Combine( "App_Data", "deletefile.lst" );
             string deleteFileFullPath = Path.Combine( webRootPath, deleteFileRelativePath );
+            if ( File.Exists( deleteFileFullPath ) )
+            {
+                File.Delete( deleteFileFullPath );
+            }
+
             if ( deletedPackageFiles.Count > 0 )
             {
                 using ( StreamWriter w = File.AppendText( deleteFileFullPath ) )
