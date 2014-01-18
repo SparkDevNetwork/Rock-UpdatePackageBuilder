@@ -24,9 +24,10 @@ namespace RockPackageBuilder
         /// between this SHA and the head will be included in the package.
         /// c71c4b2c954d1ace04ff3d00136e6c6ff1b5900b v0.1.0
         /// 7f760c8355a1829042628d12ff687aa2fbd9751d v0.1.1
+        /// 190c0ac00ed872d0528170d613217b3fc3f3f4f6 v0.1.2
         /// </summary>
-        static string LAST_PACKAGE_COMMIT_SHA = "7f760c8355a1829042628d12ff687aa2fbd9751d"; // v 0.1.1
-        static string SEMANTIC_VERSION_NUMBER = "0.1.2";
+        static string LAST_PACKAGE_COMMIT_SHA = "190c0ac00ed872d0528170d613217b3fc3f3f4f6"; // v 0.1.2
+        static string SEMANTIC_VERSION_NUMBER = "0.1.3";
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
         static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
@@ -521,9 +522,10 @@ namespace RockPackageBuilder
             foreach ( var commit in obj )
             {
                 i++;
-                if ( !commit.Message.StartsWith( "Merge branch 'origin/develop'" ) && !commit.Message.StartsWith( "Merge branch 'develop'" ) )
+                if ( !commit.Message.StartsWith( "Merge branch 'origin/develop'" ) && !commit.Message.StartsWith( "Merge branch 'develop'" ) && !commit.Message.StartsWith("-" ) )
                 {
-                    sb.AppendFormat( "+ {0}", commit.Message );
+                    // append the commit message an prefix with a + if there isn't one already.
+                    sb.AppendFormat( "{0} {1}", commit.Message.StartsWith( "+" ) ? "" : "+", commit.Message );
                 }
 
                 if ( commit.Sha == sha )
