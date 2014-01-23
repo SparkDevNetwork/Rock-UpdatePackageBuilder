@@ -135,7 +135,7 @@ namespace RockPackageBuilder
             var updatePackageName = BuildUpdatePackage( options.RepoPath, options.PackageFolder, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, SEMANTIC_VERSION_NUMBER, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, SEMANTIC_VERSION_NUMBER, "description", changeMessages );
+            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, SEMANTIC_VERSION_NUMBER, "In the future there will be a description and the release notes below will be written for non-developers.", changeMessages );
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to quit." );
