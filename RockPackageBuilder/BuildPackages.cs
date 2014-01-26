@@ -27,9 +27,10 @@ namespace RockPackageBuilder
         /// c71c4b2c954d1ace04ff3d00136e6c6ff1b5900b v0.1.0
         /// 7f760c8355a1829042628d12ff687aa2fbd9751d v0.1.1
         /// fb0596ad0c7ed025bb28b8fda3abb29f8037ba16 v0.1.2
+        /// e37f91d0373ba06c88bd2e9910a186344b9f06f6 v0.1.3
         /// </summary>
-        static string LAST_PACKAGE_COMMIT_SHA = "fb0596ad0c7ed025bb28b8fda3abb29f8037ba16"; // v 0.1.2
-        static string SEMANTIC_VERSION_NUMBER = "0.1.3";
+        static string LAST_PACKAGE_COMMIT_SHA = "e37f91d0373ba06c88bd2e9910a186344b9f06f6"; // v 0.1.3
+        static string SEMANTIC_VERSION_NUMBER = "0.1.4";
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
         static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
