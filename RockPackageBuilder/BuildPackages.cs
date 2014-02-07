@@ -21,16 +21,9 @@ namespace RockPackageBuilder
     class BuildPackages
     {
         #region Properties
-        /// <summary>
-        /// This is the repository commit SHA to compare the head commit with. All changes
-        /// between this SHA and the head will be included in the package.
-        /// c71c4b2c954d1ace04ff3d00136e6c6ff1b5900b v0.1.0
-        /// 7f760c8355a1829042628d12ff687aa2fbd9751d v0.1.1
-        /// fb0596ad0c7ed025bb28b8fda3abb29f8037ba16 v0.1.2
-        /// e37f91d0373ba06c88bd2e9910a186344b9f06f6 v0.1.3
-        /// </summary>
-        static string LAST_PACKAGE_COMMIT_SHA = "e37f91d0373ba06c88bd2e9910a186344b9f06f6"; // v 0.1.3
-        static string SEMANTIC_VERSION_NUMBER = "0.1.4";
+
+        static string LAST_VERSION_TAG = "0.1.4";
+        static string SEMANTIC_VERSION_NUMBER = "0.1.5"; // this is also the current tag name that will be used to find the commits.
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
         static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
@@ -42,8 +35,8 @@ namespace RockPackageBuilder
             /// <summary>
             /// Future use.  Will record the current head SHA so that the next package can be built using it.
             /// </summary>
-            [Option( 's', "saveCurrentCommitSHA", DefaultValue = @"false", HelpText = "Set to true to store the last commit SHA as the starting point for the next run." )]
-            public string SaveCurrentCommitSHA { get; set; }
+            //[Option( 's', "saveCurrentCommitSHA", DefaultValue = @"false", HelpText = "Set to true to store the last commit SHA as the starting point for the next run." )]
+            //public string SaveCurrentCommitSHA { get; set; }
 
             [Option( 'b', "repoBranch", DefaultValue = @"master", HelpText = "The branch to operate against when performing package builds." )]
             public string RepoBranch { get; set; }
@@ -51,7 +44,7 @@ namespace RockPackageBuilder
             [Option( 'r', "repoPath", DefaultValue = @"C:\Misc\Rock-ChMS", HelpText = "The path to your local git repository." )]
             public string RepoPath { get; set; }
 
-            [Option( 'p', "packageFolder", DefaultValue = @"C:\Misc\_NuGetLocal", HelpText = "The folder to put the output package." )]
+            [Option( 'p', "packageFolder", DefaultValue = @"..\..\..\NuGetLocal", HelpText = "The folder to put the output package." )]
             public string PackageFolder { get; set; }
 
             [Option( 'v', "verbose", DefaultValue = false, HelpText = "Set to true to see a more verbose output of what's changed in the repo." )]
@@ -180,7 +173,8 @@ namespace RockPackageBuilder
             using ( var repo = new Repository( options.RepoPath ) )
             {
                 Branch branch = repo.Branches[ options.RepoBranch ];
-
+                Tag tag = repo.Tags[ SEMANTIC_VERSION_NUMBER ]; // current tag
+                
                 var commits = branch.Commits;
 
                 // Now go through each commit since the last pagckage commit and
@@ -188,15 +182,17 @@ namespace RockPackageBuilder
                 // need to be included in the package.
 
                 // TODO device resonable mechanism to determine which was the last commit SHA for the last "package" 
-                foreach ( var c in repo.Commits.StartingAfter( LAST_PACKAGE_COMMIT_SHA, sbChangeLog ) )
+                Tag previousTag = repo.Tags[LAST_VERSION_TAG];
+                foreach ( var c in repo.Commits.StartingAfter( previousTag.Target.Sha, sbChangeLog ) )
                 {
                     if ( options.Verbose )
                     {
                         Console.WriteLine( string.Format( "id: {0} {1}", c.Id, c.Message ) );
                     }
                     Console.WriteLine( "Comparing... (this could take a few minutes)" );
-                    TreeChanges changes = repo.Diff.Compare( c.Tree, branch.Tip.Tree );
-
+                    //TreeChanges changes = repo.Diff.Compare( c.Tree, branch.Tip.Tree );
+                    TreeChanges changes = repo.Diff.Compare( c.Tree, ( (Commit)tag.Target ).Tree );
+                    
                     foreach ( var file in changes )
                     {
                         // skip a bunch of known projects we don't care about...

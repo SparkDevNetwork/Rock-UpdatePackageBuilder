@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+
+  <system.web>
+    <httpRuntime maxRequestLength="10240" xdt:Transform='SetAttributes(maxRequestLength)'/>
+  </system.web>
+  
+  <system.webServer>
+      <security>
+        <requestFiltering>
+          <requestLimits maxAllowedContentLength='10485760' xdt:Transform='SetAttributes(maxAllowedContentLength)'/>
+        </requestFiltering>
+      </security>
+    </system.webServer>
+
+</configuration>
