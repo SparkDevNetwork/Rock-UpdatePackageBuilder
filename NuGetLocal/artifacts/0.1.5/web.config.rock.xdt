@@ -5,12 +5,12 @@
     <httpRuntime maxRequestLength="10240" xdt:Transform='SetAttributes(maxRequestLength)'/>
   </system.web>
   
-  <system.webServer>
-      <security>
-        <requestFiltering>
-          <requestLimits maxAllowedContentLength='10485760' xdt:Transform='SetAttributes(maxAllowedContentLength)'/>
-        </requestFiltering>
-      </security>
-    </system.webServer>
+	<system.webServer>
+	  <security xdt:Transform="InsertBefore(/configuration/system.webServer/modules)">
+	    <requestFiltering xdt:Transform="InsertIfMissing">
+	      <requestLimits maxAllowedContentLength='10485760' xdt:Transform="InsertIfMissing"/>
+	    </requestFiltering>
+	  </security>
+	</system.webServer>
 
 </configuration>
