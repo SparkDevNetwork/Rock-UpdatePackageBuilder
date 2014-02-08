@@ -6,9 +6,9 @@
   </system.web>
   
 	<system.webServer>
-	  <security xdt:Transform="InsertBefore(/configuration/system.webServer/modules)">
+	  <security xdt:Transform="InsertIfMissing">
 	    <requestFiltering xdt:Transform="InsertIfMissing">
-	      <requestLimits maxAllowedContentLength='10485760' xdt:Transform="InsertIfMissing"/>
+	      <requestLimits maxAllowedContentLength="10485760" xdt:Transform="InsertIfMissing"/>
 	    </requestFiltering>
 	  </security>
 	</system.webServer>
