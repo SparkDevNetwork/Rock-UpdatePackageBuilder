@@ -22,8 +22,8 @@ namespace RockPackageBuilder
     {
         #region Properties
 
-        static string LAST_VERSION_TAG = "0.1.4";
-        static string SEMANTIC_VERSION_NUMBER = "0.1.5"; // this is also the current tag name that will be used to find the commits.
+        static string LAST_VERSION_TAG = "0.1.5";
+        static string SEMANTIC_VERSION_NUMBER = "0.1.6"; // this is also the current tag name that will be used to find the commits.
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
         static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
@@ -41,7 +41,7 @@ namespace RockPackageBuilder
             [Option( 'b', "repoBranch", DefaultValue = @"master", HelpText = "The branch to operate against when performing package builds." )]
             public string RepoBranch { get; set; }
 
-            [Option( 'r', "repoPath", DefaultValue = @"C:\Misc\Rock-ChMS", HelpText = "The path to your local git repository." )]
+            [Option( 'r', "repoPath", DefaultValue = @"C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock", HelpText = "The path to your local git repository." )]
             public string RepoPath { get; set; }
 
             [Option( 'p', "packageFolder", DefaultValue = @"..\..\..\NuGetLocal", HelpText = "The folder to put the output package." )]
