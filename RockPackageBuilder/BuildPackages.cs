@@ -21,12 +21,17 @@ namespace RockPackageBuilder
     class BuildPackages
     {
         #region Properties
-
-        static string LAST_VERSION_TAG = "0.1.5";
-        static string SEMANTIC_VERSION_NUMBER = "0.1.6"; // this is also the current tag name that will be used to find the commits.
+        
+        /// <summary>
+        /// Name of the NuGet Package Prefix for the actual update delta packages.
+        /// </summary>
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
+        /// <summary>
+        /// Projects who's DLLs need to be included in the package if they changed since the last package.
+        /// </summary>
         static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
+
         #endregion
 
         // Define a class to receive parsed values
@@ -35,8 +40,12 @@ namespace RockPackageBuilder
             /// <summary>
             /// Future use.  Will record the current head SHA so that the next package can be built using it.
             /// </summary>
-            //[Option( 's', "saveCurrentCommitSHA", DefaultValue = @"false", HelpText = "Set to true to store the last commit SHA as the starting point for the next run." )]
-            //public string SaveCurrentCommitSHA { get; set; }
+
+            [Option( 'l', "lastVersionTag", Required = true, HelpText = "The last tag to compare with the current tag to build the delta for the package. (Ex: 0.1.3)" )]
+            public string LastVersionTag { get; set; }
+
+            [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 0.1.4)" )]
+            public string CurrentVersionTag { get; set; }
 
             [Option( 'b', "repoBranch", DefaultValue = @"master", HelpText = "The branch to operate against when performing package builds." )]
             public string RepoBranch { get; set; }
@@ -75,11 +84,13 @@ namespace RockPackageBuilder
                 if ( !Directory.Exists( options.RepoPath ) )
                 {
                     Console.WriteLine( string.Format( "The given repository folder ({0}) does not exist.", options.RepoPath ) );
+                    Console.WriteLine( options.GetUsage() );
                     Environment.Exit( -2 );
                 }
                 else if ( !Directory.Exists( options.PackageFolder ) )
                 {
                     Console.WriteLine( string.Format( "The given output package folder ({0}) does not exist.", options.PackageFolder ) );
+                    Console.WriteLine( options.GetUsage() );
                     Environment.Exit( -2 );
                 }
                 else
@@ -104,13 +115,13 @@ namespace RockPackageBuilder
 
             // Make sure the Rock.Version project's version number has been updated and commit->pushed
             // before you build from master.
-            VerifyVersionNumbers( options.RepoPath, SEMANTIC_VERSION_NUMBER );
+            VerifyVersionNumbers( options.RepoPath, options.CurrentVersionTag );
             Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
             Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
             Console.WriteLine( "" );
 
-            string packagePath = FullPathOfRockPackageFile( options.PackageFolder, SEMANTIC_VERSION_NUMBER );
-            if ( File.Exists( packagePath ))
+            string packagePath = FullPathOfRockPackageFile( options.PackageFolder, options.CurrentVersionTag );
+            if ( File.Exists( packagePath ) )
             {
                 Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", packagePath, Environment.NewLine );
                 ConsoleKeyInfo choice = Console.ReadKey(true);
@@ -126,10 +137,10 @@ namespace RockPackageBuilder
 
             // TODO determine how to increment versions -- perhaps get it from the Rock.Version Assembly?
             // TODO determine where to get description from
-            var updatePackageName = BuildUpdatePackage( options.RepoPath, options.PackageFolder, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, SEMANTIC_VERSION_NUMBER, "various changes" );
+            var updatePackageName = BuildUpdatePackage( options.RepoPath, options.PackageFolder, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, options.CurrentVersionTag, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, SEMANTIC_VERSION_NUMBER, "In the future there will be a description and the release notes below will be written for non-developers.", changeMessages );
+            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, "In the future there will be a description and the release notes below will be written for non-developers.", changeMessages );
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to quit." );
@@ -173,7 +184,7 @@ namespace RockPackageBuilder
             using ( var repo = new Repository( options.RepoPath ) )
             {
                 Branch branch = repo.Branches[ options.RepoBranch ];
-                Tag tag = repo.Tags[ SEMANTIC_VERSION_NUMBER ]; // current tag
+                Tag tag = repo.Tags[options.CurrentVersionTag]; // current tag
                 
                 var commits = branch.Commits;
 
@@ -182,7 +193,7 @@ namespace RockPackageBuilder
                 // need to be included in the package.
 
                 // TODO device resonable mechanism to determine which was the last commit SHA for the last "package" 
-                Tag previousTag = repo.Tags[LAST_VERSION_TAG];
+                Tag previousTag = repo.Tags[options.LastVersionTag];
                 foreach ( var c in repo.Commits.StartingAfter( previousTag.Target.Sha, sbChangeLog ) )
                 {
                     if ( options.Verbose )
@@ -566,7 +577,9 @@ namespace RockPackageBuilder
                     return results;
                 }
             }
-            Console.WriteLine( "WARNING: Could not find sha {0}", results.Count );
+
+            Console.Error.WriteLine( "ERROR: Could not find sha {0}", sha );
+            System.Environment.Exit( -3 );
             return results;
         }
     }
