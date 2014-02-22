@@ -30,7 +30,7 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package.
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "quartz", "rock.payflowpro", "rock", "rock.migrations", "rock.rest", "rock.version" };
 
         #endregion
 
@@ -135,8 +135,6 @@ namespace RockPackageBuilder
 
             string changeMessages = GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
-            // TODO determine how to increment versions -- perhaps get it from the Rock.Version Assembly?
-            // TODO determine where to get description from
             var updatePackageName = BuildUpdatePackage( options.RepoPath, options.PackageFolder, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, options.CurrentVersionTag, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
@@ -229,8 +227,6 @@ namespace RockPackageBuilder
                         }
                         else if ( file.Path.ToLower().StartsWith( @"rockweb\bin\" ) ) // && x.Path.ToLower().EndsWith( ".dll" ) )
                         {
-                            //modifiedPackageFiles.Add( file.Path );
-
                             if ( ( file.Status == ChangeKind.Added || file.Status == ChangeKind.Modified ) && file.Path.ToLower().EndsWith( ".dll" ) )
                             {
                                 // Modified or newly added assemblies need to be added differently.  They go into a "lib" folder in the NuGet package.
