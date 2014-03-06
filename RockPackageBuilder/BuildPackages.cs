@@ -30,7 +30,7 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package.
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "quartz", "rock.payflowpro", "rock", "rock.migrations", "rock.rest", "rock.version" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
 
         #endregion
 
@@ -209,7 +209,8 @@ namespace RockPackageBuilder
                             file.Path.StartsWith( @"Dev Tools\" ) || file.Path.StartsWith( @"Documentation\" ) ||
                             file.Path.StartsWith( @"RockInstaller\" ) || file.Path.StartsWith( @"Rock Installer\" ) ||
                             file.Path.StartsWith( @"Rock.CodeGeneration\" ) || file.Path.StartsWith( @"libs\" ) || file.Path.StartsWith( @"packages\" ) ||
-                            file.Path.StartsWith( @"RockJobSchedulerService\" ) || file.Path.StartsWith( @"RockJobSchedulerServiceInstaller\" ) )
+                            file.Path.StartsWith( @"RockJobSchedulerService\" ) || file.Path.StartsWith( @"RockJobSchedulerServiceInstaller\" ) ||
+                            file.Path.StartsWith( @"Quartz\" ) || file.Path.StartsWith( @"Rock.PayFlowPro\" ) )
                         {
                             continue;
                         }

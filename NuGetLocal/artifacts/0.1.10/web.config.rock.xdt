@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections>
+    <section name="resizer" type="ImageResizer.ResizerSection,ImageResizer"  requirePermission="false" xdt:Transform="Insert" />
+  </configSections>
+  <resizer xdt:Transform="InsertBefore(/configuration/connectionStrings)" >
+    <sizelimits totalWidth="3600" totalHeight="3600" totalBehavior="throwexception" />
+  </resizer> 
+  <system.webServer>
+    <httpProtocol xdt:Transform="Insert" >
+      <customHeaders>
+        <remove name="X-Powered-By" />
+      </customHeaders>
+    </httpProtocol>    
+  </system.webServer>
+  <system.serviceModel>
+    <client>
+      <endpoint address="http://ws.strikeiron.com/StrikeIron/USAddressVerification5/USAddressVerification"
+		xdt:Transform="Remove"
+		xdt:Locator="Match(address)"/>
+      <endpoint address="http://mmezl.teleatlas.com/axis/services/Geocoding"
+		xdt:Transform="Remove"
+		xdt:Locator="Match(address)"/>
+      <endpoint address="http://mmezl.teleatlas.com/axis/services/Authentication"
+		xdt:Transform="Remove"
+		xdt:Locator="Match(address)"/>
+    </client>
+  </system.serviceModel>
+</configuration>
