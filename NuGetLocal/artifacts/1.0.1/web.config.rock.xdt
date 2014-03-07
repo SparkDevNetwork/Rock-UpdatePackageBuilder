@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <system.web>
+    <httpRuntime requestValidationMode="4.5" xdt:Transform="SetAttributes(requestValidationMode)"/>
+    <httpRuntime requestValidationType="Rock.Web.RequestValidator" xdt:Transform="SetAttributes(requestValidationType)"/>
+  </system.web>
+</configuration>
