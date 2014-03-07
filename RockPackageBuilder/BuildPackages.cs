@@ -135,7 +135,7 @@ namespace RockPackageBuilder
 
             string changeMessages = GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
-            var updatePackageName = BuildUpdatePackage( options.RepoPath, options.PackageFolder, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, options.CurrentVersionTag, "various changes" );
+            var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
             BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, "In the future there will be a description and the release notes below will be written for non-developers.", changeMessages );
@@ -263,19 +263,18 @@ namespace RockPackageBuilder
         /// Builds the RockUpdate-X-Y-Z.x.y.z.nupkg package which has all the modified files and a file that contains
         /// the paths to all the files that are to be deleted.
         /// </summary>
-        /// <param name="repoPath"></param>
-        /// <param name="packageFolder"></param>
+        /// <param name="options">The options object created upon execution.</param>
         /// <param name="packageFiles"></param>
         /// <param name="deletedPackageFiles"></param>
         /// <param name="modifiedProjects"></param>
-        /// <param name="version"></param>
         /// <param name="description"></param>
         /// <returns></returns>
-        public static string BuildUpdatePackage( string repoPath, string packageFolder, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string version, string description )
+        private static string BuildUpdatePackage( Options options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description )
         {
+            string version = options.CurrentVersionTag;
             string dashVersion = version.Replace( '.', '-' );
             string updatePackageId = ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
-            string updatePackageFileName = Path.Combine( packageFolder, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
+            string updatePackageFileName = Path.Combine( options.PackageFolder, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
 
             // Create a manifest for this package...
             Manifest manifest = new Manifest();
@@ -287,10 +286,10 @@ namespace RockPackageBuilder
                 Description = description,
             };
 
-            AddPreviousUpdatePackageAsDependency( packageFolder, manifest, updatePackageFileName );
+            AddPreviousUpdatePackageAsDependency( options, manifest, updatePackageFileName );
 
             manifest.Files = new List<ManifestFile>();
-            string webRootPath = Path.Combine( repoPath, "RockWeb" );
+            string webRootPath = Path.Combine( options.RepoPath, "RockWeb" );
             foreach ( string file in packageFiles )
             {
                 // Skip the root web.config
@@ -298,6 +297,8 @@ namespace RockPackageBuilder
                 {
                     Console.WriteLine( "" );
                     Console.WriteLine( "WARNING: web.config file was changed since last build. Figure out how you're going to handle that." );
+                    Console.WriteLine( "         You'll probably be creating a web.config.rock.xdt file. See the" );
+                    Console.WriteLine( "         Packaging-Rock-Core-Updates wiki page for details on doing that." );
                     continue;
                 }
                 
@@ -337,6 +338,12 @@ namespace RockPackageBuilder
 
             if ( deletedPackageFiles.Count > 0 )
             {
+                Console.WriteLine( "" );
+                Console.WriteLine( "WARNING: Files are designated to be DELETED in this update." );
+                Console.WriteLine( "         Review all the files listed in the App_Data\\deletefile.lst" );
+                Console.WriteLine( "         as a sanity check.  If you see anything odd, ask someone to verify." );
+                Console.WriteLine( "" );
+
                 using ( StreamWriter w = File.AppendText( deleteFileFullPath ) )
                 {
                     foreach ( string delete in deletedPackageFiles )
@@ -349,7 +356,7 @@ namespace RockPackageBuilder
             }
 
             PackageBuilder builder = new PackageBuilder();
-            builder.PopulateFiles( repoPath, manifest.Files );
+            builder.PopulateFiles( options.RepoPath, manifest.Files );
             builder.Populate( manifest.Metadata );
             using ( FileStream stream = File.Open( updatePackageFileName, FileMode.OpenOrCreate ) )
             {
@@ -363,15 +370,20 @@ namespace RockPackageBuilder
         /// Looks in the packageFolder for any previous RockUpdate packages and
         /// adds the last (latest) one to the manifest as a dependency
         /// </summary>
-        /// <param name="packageFolder"></param>
+        /// <param name="options"></param>
         /// <param name="manifest"></param>
-        private static void AddPreviousUpdatePackageAsDependency( string packageFolder, Manifest manifest, string currentPackageName )
+        /// <param name="currentPackageName"></param>
+        private static void AddPreviousUpdatePackageAsDependency( Options options, Manifest manifest, string currentPackageName )
         {
             string previousUpdatePackageId = null;
             string previousUpdatePackageVersion = null;
-            foreach( string packageFile in Directory.GetFiles( packageFolder, ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" ).OrderByDescending( f => f ) )
+            foreach( string packageFile in Directory.GetFiles( options.PackageFolder, ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" ).OrderByDescending( f => f ) )
             {
-                Console.WriteLine( packageFile );
+                if ( options.Verbose )
+                {
+                    Console.WriteLine( "Found the previous package called: " + packageFile );
+                }
+
                 if ( packageFile.Equals( currentPackageName ) )
                 {
                     continue;
@@ -570,7 +582,7 @@ namespace RockPackageBuilder
                 if ( commit.Sha == sha )
                 {
                     results.Add( commit );
-                    Console.WriteLine( "Found about {0} commits.", i );
+                    Console.WriteLine( "Found {0} commits.", i );
                     return results;
                 }
             }
