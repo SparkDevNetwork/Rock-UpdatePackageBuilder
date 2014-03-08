@@ -206,6 +206,7 @@ namespace RockPackageBuilder
                     {
                         // skip a bunch of known projects we don't care about...
                         if ( file.Path.ToLower().EndsWith( ".gitignore" ) || file.Path.StartsWith( @"Apps\" ) ||
+                            file.Path.StartsWith( @"RockWeb\App_Data\Packages" ) ||
                             file.Path.StartsWith( @"Dev Tools\" ) || file.Path.StartsWith( @"Documentation\" ) ||
                             file.Path.StartsWith( @"RockInstaller\" ) || file.Path.StartsWith( @"Rock Installer\" ) ||
                             file.Path.StartsWith( @"Rock.CodeGeneration\" ) || file.Path.StartsWith( @"libs\" ) || file.Path.StartsWith( @"packages\" ) ||
@@ -377,19 +378,28 @@ namespace RockPackageBuilder
         {
             string previousUpdatePackageId = null;
             string previousUpdatePackageVersion = null;
-            foreach( string packageFile in Directory.GetFiles( options.PackageFolder, ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" ).OrderByDescending( f => f ) )
+
+            DirectoryInfo di = new DirectoryInfo( options.PackageFolder );
+            FileSystemInfo[] files = di.GetFileSystemInfos( ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" );
+
+            foreach ( var packageFile in files.OrderByDescending( f => f.CreationTime ) )
             {
                 if ( options.Verbose )
                 {
-                    Console.WriteLine( "Found the previous package called: " + packageFile );
+                    Console.WriteLine( "Found a package called: " + packageFile );
                 }
 
-                if ( packageFile.Equals( currentPackageName ) )
+                if ( currentPackageName.EndsWith( packageFile.Name ) )
                 {
                     continue;
                 }
 
-                var match = Regex.Match( packageFile, @"(RockUpdate-[-\d]+)\.([\.\d]+).nupkg" );
+                if ( options.Verbose )
+                {
+                    Console.WriteLine( "This is the prior package: " + packageFile );
+                }
+
+                var match = Regex.Match( packageFile.ToString(), @"(RockUpdate-[-\d]+)\.([\.\d]+).nupkg" );
                 if ( match.Groups.Count >= 2 )
                 {
                     previousUpdatePackageId = match.Groups[1].Value;
@@ -566,7 +576,7 @@ namespace RockPackageBuilder
                 if ( !commit.Message.StartsWith( "Merge branch 'origin/develop'" ) && 
                     !commit.Message.StartsWith( "Merge branch 'develop'" ) &&
                     !commit.Message.StartsWith( "Merge remote-tracking") &&
-                    !commit.Message.StartsWith("-" ) )
+                    !commit.Message.StartsWith( "-" ) )
                 {
                     // append the commit message an prefix with a + if there isn't one already.
                     if ( ! (commit.Message.StartsWith( "+" ) || commit.Message.StartsWith( " +" ) ) )
