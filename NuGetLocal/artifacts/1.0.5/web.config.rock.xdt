@@ -7,6 +7,7 @@
 				<add assembly="System.Data.Services.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" xdt:Transform="Remove" xdt:Locator="Match(assembly)"/>
 				<add assembly="System.Net.Http.WebRequest, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" xdt:Transform="Remove" xdt:Locator="Match(assembly)"/>
 				<add assembly="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91" xdt:Transform="Remove" xdt:Locator="Match(assembly)"/>
+				<add assembly="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" xdt:Transform="Insert"/>
 			</assemblies>
 			<expressionBuilders xdt:Transform="InsertAfter(/configuration/system.web/compilation/assemblies)">
 				<add expressionPrefix="Fingerprint" type="Rock.Web.FingerprintExpressionBuilder"/>
