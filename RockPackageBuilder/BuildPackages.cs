@@ -160,7 +160,7 @@ namespace RockPackageBuilder
                 var y = rockDLLfvi.ProductVersion;
                 if ( ! rockDLLfvi.FileVersion.StartsWith( version ) )
                 {
-                    Console.WriteLine( "WARNING!!! Version mismatch in {0}", dll );
+                    Console.WriteLine( "WARNING!!! Version mismatch in {0}.  Is that OK for this release?", dll );
                 }
             }
         }
@@ -184,6 +184,12 @@ namespace RockPackageBuilder
                 Branch branch = repo.Branches[ options.RepoBranch ];
                 Tag tag = repo.Tags[options.CurrentVersionTag]; // current tag
                 
+                if ( tag == null )
+                {
+                    Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you forget to tag this release?", options.CurrentVersionTag ) );
+                    System.Environment.Exit( -3 );
+                }
+
                 var commits = branch.Commits;
 
                 // Now go through each commit since the last pagckage commit and
@@ -526,7 +532,7 @@ namespace RockPackageBuilder
             var item = new ManifestFile()
             {
                 Source = Path.Combine( webRootPath, filePath ),
-                Target = Path.Combine( "lib", filePathWithoutBinFolder )
+                Target = Path.Combine( "lib/net451", filePathWithoutBinFolder )
             };
 
             manifest.Files.Add( item );
