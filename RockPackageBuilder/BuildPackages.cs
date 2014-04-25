@@ -116,6 +116,8 @@ namespace RockPackageBuilder
             // Make sure the Rock.Version project's version number has been updated and commit->pushed
             // before you build from master.
             VerifyVersionNumbers( options.RepoPath, options.CurrentVersionTag );
+            
+            Console.WriteLine( "" );
             Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
             Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
             Console.WriteLine( "" );
@@ -160,7 +162,7 @@ namespace RockPackageBuilder
                 var y = rockDLLfvi.ProductVersion;
                 if ( ! rockDLLfvi.FileVersion.StartsWith( version ) )
                 {
-                    Console.WriteLine( "WARNING!!! Version mismatch in {0}.  Is that OK for this release?", dll );
+                    Console.WriteLine( "WARNING:  Version mismatch in {0}.  Is that OK for this release?", dll );
                 }
             }
         }
@@ -182,6 +184,13 @@ namespace RockPackageBuilder
             using ( var repo = new Repository( options.RepoPath ) )
             {
                 Branch branch = repo.Branches[ options.RepoBranch ];
+
+                if ( branch == null )
+                {
+                    Console.WriteLine( string.Format( "Error: I don't see a {0} branch.  Did you specify the wrong branch?", options.RepoBranch ) );
+                    System.Environment.Exit( -3 );
+                }
+
                 Tag tag = repo.Tags[options.CurrentVersionTag]; // current tag
                 
                 if ( tag == null )
@@ -303,9 +312,10 @@ namespace RockPackageBuilder
                 if ( file.ToLower() == "web.config" )
                 {
                     Console.WriteLine( "" );
-                    Console.WriteLine( "WARNING: web.config file was changed since last build. Figure out how you're going to handle that." );
-                    Console.WriteLine( "         You'll probably be creating a web.config.rock.xdt file. See the" );
-                    Console.WriteLine( "         Packaging-Rock-Core-Updates wiki page for details on doing that." );
+                    Console.WriteLine( "--> ACTION! web.config file was changed since last build. Figure out" );
+                    Console.WriteLine( "            out how you're going to handle that. You'll probably have to" );
+                    Console.WriteLine( "            create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates" );
+                    Console.WriteLine( "            wiki page for details on doing that." );
                     continue;
                 }
                 
@@ -322,11 +332,11 @@ namespace RockPackageBuilder
             if ( modifiedProjects.Count > 0 )
             {
                 Console.WriteLine( "" );
-                Console.WriteLine( "WARNING: The following assembly(s) are being added because their project files" );
-                Console.WriteLine( "         were changed since the last tag. You MUST ensure they were built in" );
-                Console.WriteLine( "         RELEASE mode and are currently in the RockWeb/bin folder. Otherwise" );
-                Console.WriteLine( "         you must do that manually and replace the ones I just put into the" );
-                Console.WriteLine( "         packages 'lib' folder." );
+                Console.WriteLine( "NOTE: The following assembly(s) are being added because their project files" );
+                Console.WriteLine( "      were changed since the last tag. You MUST ensure they were built in" );
+                Console.WriteLine( "      RELEASE mode and are currently in the RockWeb/bin folder. Otherwise" );
+                Console.WriteLine( "      you must do that manually and replace the ones I just put into the" );
+                Console.WriteLine( "      package's 'lib/net451' nuget package folder." );
                 Console.WriteLine( "" );
                 foreach ( KeyValuePair<string, bool> entry in modifiedProjects )
                 {
@@ -421,7 +431,7 @@ namespace RockPackageBuilder
             }
 
             Console.WriteLine( "" );
-            Console.WriteLine( "INFO: I added a \"{0}\" dependency to the {1} package. If this is not correct remove it manually.", previousUpdatePackageId, currentPackageName );
+            Console.WriteLine( "NOTE: I added a \"{0}\" dependency to the {1} package. If this is not correct remove it manually.", previousUpdatePackageId, currentPackageName );
 
             // Otherwise, add it as a dependency
             // If there was a previous package, add it as a dependency to the update package
@@ -575,18 +585,29 @@ namespace RockPackageBuilder
         public static List<Commit> StartingAfter( this IQueryableCommitLog obj, string sha, StringBuilder sb )
         {
             int i = 0;
+            Regex regUpdate = new Regex( @"\[update-([^\]]+\] (.*))", RegexOptions.IgnoreCase );
+            List<string> appUpdateBadges = new List<string>();
+
             List<Commit> results = new List<Commit>();
             foreach ( var commit in obj )
             {
                 i++;
-                if ( !commit.Message.StartsWith( "Merge branch 'origin/develop'" ) && 
+                if ( !commit.Message.StartsWith( "Merge branch 'origin/develop'" ) &&
+                    !commit.Message.StartsWith( "Merge branch 'origin/master'" ) &&
                     !commit.Message.StartsWith( "Merge branch 'develop'" ) &&
-                    !commit.Message.StartsWith( "Merge remote-tracking") &&
+                    !commit.Message.StartsWith( "Merge remote-tracking" ) &&
                     !commit.Message.StartsWith( "-" ) )
                 {
-                    // append the commit message an prefix with a + if there isn't one already.
-                    if ( ! (commit.Message.StartsWith( "+" ) || commit.Message.StartsWith( " +" ) ) )
+                    Match match = regUpdate.Match( commit.Message );
+
+                    if ( match.Success )
                     {
+                        appUpdateBadges.Add( string.Format( "<span title=\"This application needs to be updated. {1}\" class=\"label label-warning\">{0}</span>",
+                            match.Groups[1].Value, match.Groups[2].Value.Replace("\"", "\\\"" ) ) );
+                    }
+                    else if ( ! (commit.Message.StartsWith( "+" ) || commit.Message.StartsWith( " +" ) ) )
+                    {
+                        // append the commit message an prefix with a + if there isn't one already.
                         sb.AppendFormat( "+ {0}", commit.Message );
                     }
                     else
@@ -597,6 +618,12 @@ namespace RockPackageBuilder
 
                 if ( commit.Sha == sha )
                 {
+                    // add any app update badges to bottom of the sb
+                    if ( appUpdateBadges.Count > 0 )
+                    {
+                        sb.AppendFormat( "<br/><h4>{0}</h4>", string.Join( "&nbsp;", appUpdateBadges ) );
+                    }
+
                     results.Add( commit );
                     Console.WriteLine( "Found {0} commits.", i );
                     return results;
