@@ -313,7 +313,7 @@ namespace RockPackageBuilder
                 {
                     Console.WriteLine( "" );
                     Console.WriteLine( "--> ACTION! web.config file was changed since last build. Figure out" );
-                    Console.WriteLine( "            out how you're going to handle that. You'll probably have to" );
+                    Console.WriteLine( "            how you're going to handle that. You'll probably have to" );
                     Console.WriteLine( "            create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates" );
                     Console.WriteLine( "            wiki page for details on doing that." );
                     continue;
