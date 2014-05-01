@@ -47,9 +47,6 @@ namespace RockPackageBuilder
             [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 0.1.4)" )]
             public string CurrentVersionTag { get; set; }
 
-            [Option( 'b', "repoBranch", DefaultValue = @"master", HelpText = "The branch to operate against when performing package builds." )]
-            public string RepoBranch { get; set; }
-
             [Option( 'r', "repoPath", DefaultValue = @"C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock", HelpText = "The path to your local git repository." )]
             public string RepoPath { get; set; }
 
@@ -183,96 +180,139 @@ namespace RockPackageBuilder
             // Open the git repo and get the commits for the given branch.
             using ( var repo = new Repository( options.RepoPath ) )
             {
-                Branch branch = repo.Branches[ options.RepoBranch ];
-
-                if ( branch == null )
-                {
-                    Console.WriteLine( string.Format( "Error: I don't see a {0} branch.  Did you specify the wrong branch?", options.RepoBranch ) );
-                    System.Environment.Exit( -3 );
-                }
-
                 Tag tag = repo.Tags[options.CurrentVersionTag]; // current tag
-                
                 if ( tag == null )
                 {
                     Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you forget to tag this release?", options.CurrentVersionTag ) );
                     System.Environment.Exit( -3 );
                 }
 
-                var commits = branch.Commits;
+                Tag previousTag = repo.Tags[options.LastVersionTag];
+                if (tag == null)
+                {
+                    Console.WriteLine(string.Format("Error: I don't see a {0} tag.  Did you enter the correct last version tag?", options.LastVersionTag));
+                    System.Environment.Exit(-3);
+                }
+
+                var previousCommit = (Commit)previousTag.Target;
+                var currentCommit = (Commit)tag.Target;
+
+                // Find all the commits and parse their commit messages
+                var currentCommits = repo.Commits.QueryBy(new CommitFilter { Since = currentCommit });
+                var previousCommits = repo.Commits.QueryBy(new CommitFilter { Since = previousCommit });
+                ParseCommitMessages(currentCommits, previousCommits, options.Verbose, sbChangeLog);
 
                 // Now go through each commit since the last pagckage commit and
                 // determine which projects (dlls) and files from the RockWeb project
                 // need to be included in the package.
+                Console.WriteLine("Comparing... (this could take a few minutes)");
 
-                // TODO device resonable mechanism to determine which was the last commit SHA for the last "package" 
-                Tag previousTag = repo.Tags[options.LastVersionTag];
-                foreach ( var c in repo.Commits.StartingAfter( previousTag.Target.Sha, sbChangeLog ) )
+                TreeChanges changes = repo.Diff.Compare(previousCommit.Tree, currentCommit.Tree);
+                foreach ( var file in changes )
                 {
+                    // skip a bunch of known projects we don't care about...
+                    if ( file.Path.ToLower().EndsWith( ".gitignore" ) || file.Path.StartsWith( @"Apps\" ) ||
+                        file.Path.StartsWith( @"RockWeb\App_Data\Packages" ) ||
+                        file.Path.StartsWith( @"Dev Tools\" ) || file.Path.StartsWith( @"Documentation\" ) ||
+                        file.Path.StartsWith( @"RockInstaller\" ) || file.Path.StartsWith( @"Rock Installer\" ) ||
+                        file.Path.StartsWith( @"Rock.CodeGeneration\" ) || file.Path.StartsWith( @"libs\" ) || file.Path.StartsWith( @"packages\" ) ||
+                        file.Path.StartsWith( @"RockJobSchedulerService\" ) || file.Path.StartsWith( @"RockJobSchedulerServiceInstaller\" ) ||
+                        file.Path.StartsWith( @"Quartz\" ) || file.Path.StartsWith( @"Rock.PayFlowPro\" ) )
+                    {
+                        continue;
+                    }
+
+                    string projectName = file.Path.Split( Path.DirectorySeparatorChar ).First();
                     if ( options.Verbose )
                     {
-                        Console.WriteLine( string.Format( "id: {0} {1}", c.Id, c.Message ) );
+                        Console.WriteLine( "{0}\t{1}", file.Path, file.Status );
                     }
-                    Console.WriteLine( "Comparing... (this could take a few minutes)" );
-                    //TreeChanges changes = repo.Diff.Compare( c.Tree, branch.Tip.Tree );
-                    TreeChanges changes = repo.Diff.Compare( c.Tree, ( (Commit)tag.Target ).Tree );
-                    
-                    foreach ( var file in changes )
+
+                    // any changes with any other non-RockWeb projects?
+                    if ( NON_WEB_PROJECTS.Contains( projectName.ToLower() ) )
                     {
-                        // skip a bunch of known projects we don't care about...
-                        if ( file.Path.ToLower().EndsWith( ".gitignore" ) || file.Path.StartsWith( @"Apps\" ) ||
-                            file.Path.StartsWith( @"RockWeb\App_Data\Packages" ) ||
-                            file.Path.StartsWith( @"Dev Tools\" ) || file.Path.StartsWith( @"Documentation\" ) ||
-                            file.Path.StartsWith( @"RockInstaller\" ) || file.Path.StartsWith( @"Rock Installer\" ) ||
-                            file.Path.StartsWith( @"Rock.CodeGeneration\" ) || file.Path.StartsWith( @"libs\" ) || file.Path.StartsWith( @"packages\" ) ||
-                            file.Path.StartsWith( @"RockJobSchedulerService\" ) || file.Path.StartsWith( @"RockJobSchedulerServiceInstaller\" ) ||
-                            file.Path.StartsWith( @"Quartz\" ) || file.Path.StartsWith( @"Rock.PayFlowPro\" ) )
+                        modifiedProjects[projectName] = true;
+                    }
+                    else if ( file.Path.ToLower().StartsWith( @"rockweb\bin\" ) ) // && x.Path.ToLower().EndsWith( ".dll" ) )
+                    {
+                        if ( ( file.Status == ChangeKind.Added || file.Status == ChangeKind.Modified ) && file.Path.ToLower().EndsWith( ".dll" ) )
                         {
-                            continue;
+                            // Modified or newly added assemblies need to be added differently.  They go into a "lib" folder in the NuGet package.
+                            var filePathSuffix = file.Path.Substring( webRootPathLength );
+                            modifiedLibs.Add( filePathSuffix );
                         }
-
-                        string projectName = file.Path.Split( Path.DirectorySeparatorChar ).First();
-                        if ( options.Verbose )
+                        else if ( file.Status == ChangeKind.Deleted )
                         {
-                            Console.WriteLine( "{0}\t{1}", file.Path, file.Status );
+                            // Deleted assemblies can be just deleted simply by adding them to the deletedPackageFiles list.
+                            Console.WriteLine( "{0}\t{1} (ASSEMBLY)", file.Path, file.Status );
+                            deletedPackageFiles.Add( file.Path );
                         }
-
-                        // any changes with any other non-RockWeb projects?
-                        if ( NON_WEB_PROJECTS.Contains( projectName.ToLower() ) )
+                    }
+                    else if ( file.Path.ToLower().StartsWith( @"rockweb\" ) )
+                    {
+                        if ( file.Status == ChangeKind.Added || file.Status == ChangeKind.Modified )
                         {
-                            modifiedProjects[projectName] = true;
+                            var filePathSuffix = file.Path.Substring( webRootPathLength );
+                            modifiedPackageFiles.Add( filePathSuffix );
                         }
-                        else if ( file.Path.ToLower().StartsWith( @"rockweb\bin\" ) ) // && x.Path.ToLower().EndsWith( ".dll" ) )
+                        else if ( file.Status == ChangeKind.Deleted )
                         {
-                            if ( ( file.Status == ChangeKind.Added || file.Status == ChangeKind.Modified ) && file.Path.ToLower().EndsWith( ".dll" ) )
-                            {
-                                // Modified or newly added assemblies need to be added differently.  They go into a "lib" folder in the NuGet package.
-                                var filePathSuffix = file.Path.Substring( webRootPathLength );
-                                modifiedLibs.Add( filePathSuffix );
-                            }
-                            else if ( file.Status == ChangeKind.Deleted )
-                            {
-                                // Deleted assemblies can be just deleted simply by adding them to the deletedPackageFiles list.
-                                Console.WriteLine( "{0}\t{1} (ASSEMBLY)", file.Path, file.Status );
-                                deletedPackageFiles.Add( file.Path );
-                            }
-                        }
-                        else if ( file.Path.ToLower().StartsWith( @"rockweb\" ) )
-                        {
-                            if ( file.Status == ChangeKind.Added || file.Status == ChangeKind.Modified )
-                            {
-                                var filePathSuffix = file.Path.Substring( webRootPathLength );
-                                modifiedPackageFiles.Add( filePathSuffix );
-                            }
-                            else if ( file.Status == ChangeKind.Deleted )
-                            {
-                                deletedPackageFiles.Add( file.Path );
-                            }
+                            deletedPackageFiles.Add( file.Path );
                         }
                     }
                 }
             }
             return sbChangeLog.ToString();
+        }
+
+        private static void ParseCommitMessages(ICommitLog currentCommits, ICommitLog previousCommits, bool verbose, StringBuilder sb)
+        {
+            
+            Regex regUpdate = new Regex(@"\[update-([^\]]+\] (.*))", RegexOptions.IgnoreCase);
+            List<string> appUpdateBadges = new List<string>();
+
+            var previousShas = previousCommits.Select(c => c.Sha).ToList();
+            var validCommits = currentCommits.Where(c => !previousShas.Contains(c.Sha)).ToList();
+            foreach ( var commit in validCommits )
+            {
+                if (!commit.Message.StartsWith("Merge branch 'origin/develop'") &&
+                    !commit.Message.StartsWith("Merge branch 'origin/master'") &&
+                    !commit.Message.StartsWith("Merge branch 'develop'") &&
+                    !commit.Message.StartsWith("Merge remote-tracking") &&
+                    !commit.Message.StartsWith("-"))
+                {
+                    Match match = regUpdate.Match(commit.Message);
+                    if (match.Success)
+                    {
+                        appUpdateBadges.Add(string.Format("<span title=\"This application needs to be updated. {1}\" class=\"label label-warning\">{0}</span>",
+                            match.Groups[1].Value, match.Groups[2].Value.Replace("\"", "\\\"")));
+                    }
+                    else if (!(commit.Message.StartsWith("+") || commit.Message.StartsWith(" +")))
+                    {
+                        // append the commit message an prefix with a + if there isn't one already.
+                        sb.AppendFormat("+ {0}", commit.Message);
+                    }
+                    else
+                    {
+                        sb.AppendFormat("{0}", commit.Message);
+                    }
+                }
+
+                if (verbose)
+                {
+                    Console.WriteLine(string.Format("id: {0} {1}", commit.Id, commit.Message));
+                }
+
+            }
+
+            // add any app update badges to bottom of the sb
+            if (appUpdateBadges.Count > 0)
+            {
+                sb.AppendFormat("<br/><h4>{0}</h4>", string.Join("&nbsp;", appUpdateBadges));
+            }
+
+            Console.WriteLine("Found {0} commits.", validCommits.Count());
+
         }
 
         /// <summary>
@@ -336,7 +376,7 @@ namespace RockPackageBuilder
                 Console.WriteLine( "      were changed since the last tag. You MUST ensure they were built in" );
                 Console.WriteLine( "      RELEASE mode and are currently in the RockWeb/bin folder. Otherwise" );
                 Console.WriteLine( "      you must do that manually and replace the ones I just put into the" );
-                Console.WriteLine( "      package's 'lib/net451' nuget package folder." );
+                Console.WriteLine( "      package's 'lib' nuget package folder." );
                 Console.WriteLine( "" );
                 foreach ( KeyValuePair<string, bool> entry in modifiedProjects )
                 {
@@ -542,7 +582,7 @@ namespace RockPackageBuilder
             var item = new ManifestFile()
             {
                 Source = Path.Combine( webRootPath, filePath ),
-                Target = Path.Combine( "lib/net451", filePathWithoutBinFolder )
+                Target = Path.Combine( "lib", filePathWithoutBinFolder )
             };
 
             manifest.Files.Add( item );
@@ -580,60 +620,5 @@ namespace RockPackageBuilder
     
     #region Extensions
 
-    public static class LibGit2Extensions
-    {
-        public static List<Commit> StartingAfter( this IQueryableCommitLog obj, string sha, StringBuilder sb )
-        {
-            int i = 0;
-            Regex regUpdate = new Regex( @"\[update-([^\]]+\] (.*))", RegexOptions.IgnoreCase );
-            List<string> appUpdateBadges = new List<string>();
-
-            List<Commit> results = new List<Commit>();
-            foreach ( var commit in obj )
-            {
-                i++;
-                if ( !commit.Message.StartsWith( "Merge branch 'origin/develop'" ) &&
-                    !commit.Message.StartsWith( "Merge branch 'origin/master'" ) &&
-                    !commit.Message.StartsWith( "Merge branch 'develop'" ) &&
-                    !commit.Message.StartsWith( "Merge remote-tracking" ) &&
-                    !commit.Message.StartsWith( "-" ) )
-                {
-                    Match match = regUpdate.Match( commit.Message );
-
-                    if ( match.Success )
-                    {
-                        appUpdateBadges.Add( string.Format( "<span title=\"This application needs to be updated. {1}\" class=\"label label-warning\">{0}</span>",
-                            match.Groups[1].Value, match.Groups[2].Value.Replace("\"", "\\\"" ) ) );
-                    }
-                    else if ( ! (commit.Message.StartsWith( "+" ) || commit.Message.StartsWith( " +" ) ) )
-                    {
-                        // append the commit message an prefix with a + if there isn't one already.
-                        sb.AppendFormat( "+ {0}", commit.Message );
-                    }
-                    else
-                    {
-                        sb.AppendFormat( "{0}", commit.Message );
-                    }
-                }
-
-                if ( commit.Sha == sha )
-                {
-                    // add any app update badges to bottom of the sb
-                    if ( appUpdateBadges.Count > 0 )
-                    {
-                        sb.AppendFormat( "<br/><h4>{0}</h4>", string.Join( "&nbsp;", appUpdateBadges ) );
-                    }
-
-                    results.Add( commit );
-                    Console.WriteLine( "Found {0} commits.", i );
-                    return results;
-                }
-            }
-
-            Console.Error.WriteLine( "ERROR: Could not find sha {0}", sha );
-            System.Environment.Exit( -3 );
-            return results;
-        }
-    }
     #endregion
 }
