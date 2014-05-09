@@ -53,6 +53,9 @@ namespace RockPackageBuilder
             [Option( 'p', "packageFolder", DefaultValue = @"..\..\..\NuGetLocal", HelpText = "The folder to put the output package." )]
             public string PackageFolder { get; set; }
 
+            [Option( 'i', "installArtifactsFolder", DefaultValue = @"..\..\..\InstallerArtifacts", HelpText = "The folder to put the empty dummy packages for use with the installer." )]
+            public string InstallArtifactsFolder { get; set; }
+
             [Option( 'v', "verbose", DefaultValue = false, HelpText = "Set to true to see a more verbose output of what's changed in the repo." )]
             public bool Verbose { get; set; }
 
@@ -89,6 +92,10 @@ namespace RockPackageBuilder
                     Console.WriteLine( string.Format( "The given output package folder ({0}) does not exist.", options.PackageFolder ) );
                     Console.WriteLine( options.GetUsage() );
                     Environment.Exit( -2 );
+                }
+                else if ( !Directory.Exists( options.InstallArtifactsFolder ) )
+                {
+                    Directory.CreateDirectory( options.InstallArtifactsFolder );
                 }
                 else
                 {
