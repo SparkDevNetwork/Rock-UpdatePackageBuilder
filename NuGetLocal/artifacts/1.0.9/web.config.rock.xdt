@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<system.web>
+		<compilation targetFramework="4.5.1" xdt:Transform="SetAttributes(targetFramework)">
+			<assemblies>
+				<add assembly="System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" xdt:Transform="Insert"/>				
+			</assemblies>
+		</compilation>
+	</system.web>
+	<system.webServer>
+		<modules>
+			<remove name="WebDAVModule" xdt:Transform="Insert"/>
+		</modules>
+		<handlers xdt:Transform="InsertAfter(/configuration/system.webServer/staticContent)">
+			<remove name="WebDAV" />
+		</handlers>
+	</system.webServer>
+</configuration>

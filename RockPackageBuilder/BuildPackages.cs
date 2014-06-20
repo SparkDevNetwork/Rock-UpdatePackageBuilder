@@ -445,7 +445,7 @@ namespace RockPackageBuilder
             DirectoryInfo di = new DirectoryInfo( options.PackageFolder );
             FileSystemInfo[] files = di.GetFileSystemInfos( ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" );
 
-            foreach ( var packageFile in files.OrderByDescending( f => f.CreationTime ) )
+            foreach ( var packageFile in files.OrderByDescending( f => f.LastWriteTime ) )
             {
                 if ( options.Verbose )
                 {
