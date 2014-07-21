@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<system.webServer>
+		<staticContent>
+			<remove fileExtension=".woff"  xdt:Transform="Insert" />
+		        <mimeMap fileExtension=".woff" mimeType="application/x-font-woff" xdt:Transform="Insert" />
+		</staticContent>
+	</system.webServer>
+</configuration>
