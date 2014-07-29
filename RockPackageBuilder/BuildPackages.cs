@@ -146,6 +146,8 @@ namespace RockPackageBuilder
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
             BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, "In the future there will be a description and the release notes below will be written for non-developers.", changeMessages );
 
+            BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
+
             Console.WriteLine( "" );
             Console.Write( "Press any key to quit." );
             Console.ReadKey(true);
@@ -272,9 +274,17 @@ namespace RockPackageBuilder
             return sbChangeLog.ToString();
         }
 
+        /// <summary>
+        /// Finds all the commit messages and outputs them to the given StringBuilder.
+        /// Additionally, if it encounters a "[update-" commit message it will create
+        /// special badges for each at the bottom of the output.
+        /// </summary>
+        /// <param name="currentCommits"></param>
+        /// <param name="previousCommits"></param>
+        /// <param name="verbose"></param>
+        /// <param name="sb">the StringBuilder to output the formatted commit messages to.</param>
         private static void ParseCommitMessages(ICommitLog currentCommits, ICommitLog previousCommits, bool verbose, StringBuilder sb)
         {
-            
             Regex regUpdate = new Regex(@"\[update-([^\]]+\] (.*))", RegexOptions.IgnoreCase);
             List<string> appUpdateBadges = new List<string>();
 
@@ -319,7 +329,6 @@ namespace RockPackageBuilder
             }
 
             Console.WriteLine("Found {0} commits.", validCommits.Count());
-
         }
 
         /// <summary>
@@ -494,6 +503,78 @@ namespace RockPackageBuilder
                     }
                 }
             };
+        }
+
+
+        /// <summary>
+        /// Builds the two empty stub packages (Rock.x.y.z.nupkg and RockUpdate-X-Y-Z.x.y.z.nupkg)
+        /// needed for fresh installs via the installer as described here:
+        /// https://github.com/SparkDevNetwork/Rock/blob/develop/Installers/RockInstaller/readme.txt
+        /// </summary>
+        /// <param name="repoPath"></param>
+        /// <param name="packageFolder"></param>
+        /// <param name="version"></param>
+        private static void BuildEmptyStubPackagesForInstaller( string repoPath, string installerArtifactsPath, string version )
+        {
+            string absolutePathOfCurrentDirectory = System.IO.Directory.GetCurrentDirectory();
+            string fullPathToInstallerArtifactsPath = Path.GetFullPath( ( new Uri( Path.Combine( absolutePathOfCurrentDirectory, installerArtifactsPath) ) ).LocalPath );
+
+            FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", "Rock.Version.dll" ) );
+            // Create a manifest for the empty stub Rock.x.y.z package...
+            Manifest manifest = new Manifest();
+            manifest.Files = new List<ManifestFile>();
+            manifest.Metadata = new ManifestMetadata()
+            {
+                Authors = "SparkDevelopmentNetwork",
+                Version = version,
+                Title = rockDLLfvi.ProductVersion,
+                Id = "Rock",
+                Copyright = rockDLLfvi.LegalCopyright,
+                Description = "Installer Updater Stub",
+            };
+
+            // Must add at least one file.
+            string readmeFileRelativePath = "Readme.txt";
+            string readmeFileFullPath = Path.Combine( fullPathToInstallerArtifactsPath, readmeFileRelativePath );
+            System.IO.File.WriteAllText( readmeFileFullPath, "This package is a stub to be included in the installer to assist the Rock Updater to know the current release." );
+            AddToManifest( manifest, readmeFileRelativePath, fullPathToInstallerArtifactsPath );
+
+            string packageFileName = FullPathOfRockPackageFile( installerArtifactsPath, version );
+
+            PackageBuilder builder = new PackageBuilder();
+            builder.PopulateFiles( fullPathToInstallerArtifactsPath, manifest.Files );
+            builder.Populate( manifest.Metadata );
+            using ( FileStream stream = File.Open( packageFileName, FileMode.OpenOrCreate ) )
+            {
+                builder.Save( stream );
+            }
+
+            // Now create the RockUpdate-X-Y-Z.x.y.z.nupkg
+            string dashVersion = version.Replace( '.', '-' );
+            string updatePackageId = ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
+            string updatePackageFileName = Path.Combine( installerArtifactsPath, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
+
+            // Create a manifest for this package...
+            Manifest rockUpdateManifest = new Manifest();
+            rockUpdateManifest.Files = new List<ManifestFile>();
+            rockUpdateManifest.Metadata = new ManifestMetadata()
+            {
+                Authors = "SparkDevelopmentNetwork",
+                Version = version,
+                Id = updatePackageId,
+                Title = updatePackageId,
+                Copyright = rockDLLfvi.LegalCopyright,
+                Description = "Installer Updater Stub",
+            };
+            AddToManifest( rockUpdateManifest, readmeFileRelativePath, fullPathToInstallerArtifactsPath );
+
+            PackageBuilder builder2 = new PackageBuilder();
+            builder2.PopulateFiles( fullPathToInstallerArtifactsPath, rockUpdateManifest.Files );
+            builder2.Populate( rockUpdateManifest.Metadata );
+            using ( FileStream stream = File.Open( updatePackageFileName, FileMode.OpenOrCreate ) )
+            {
+                builder2.Save( stream );
+            }
         }
 
         /// <summary>
