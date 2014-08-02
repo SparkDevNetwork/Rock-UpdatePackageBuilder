@@ -1,1 +1,1 @@
-+ new install version
+This package is a stub to be included in the installer to assist the Rock Updater to know the current release.
