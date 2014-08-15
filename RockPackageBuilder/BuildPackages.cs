@@ -30,7 +30,7 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package.
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version", "rock.payflowpro" };
 
         #endregion
 
@@ -162,7 +162,7 @@ namespace RockPackageBuilder
         /// <param name="version">version number to verify/match</param>
         private static void VerifyVersionNumbers( string repoPath, string version )
         {
-            foreach ( var dll in new string[] {"Rock.dll", "Rock.Migrations.dll", "Rock.Rest.dll", "Rock.Version.dll"} )
+            foreach ( var dll in new string[] {"Rock.dll", "Rock.Migrations.dll", "Rock.Rest.dll", "Rock.Version.dll", "Rock.PayFlowPro.dll"} )
             {
                 FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", dll ) );
                 var y = rockDLLfvi.ProductVersion;
@@ -220,13 +220,19 @@ namespace RockPackageBuilder
                 foreach ( var file in changes )
                 {
                     // skip a bunch of known projects we don't care about...
-                    if ( file.Path.ToLower().EndsWith( ".gitignore" ) || file.Path.StartsWith( @"Apps\" ) ||
+                    if ( file.Path.ToLower().EndsWith( ".gitignore" ) || 
+                        file.Path.StartsWith( @"Apps\" ) ||
                         file.Path.StartsWith( @"RockWeb\App_Data\Packages" ) ||
-                        file.Path.StartsWith( @"Dev Tools\" ) || file.Path.StartsWith( @"Documentation\" ) ||
-                        file.Path.StartsWith( @"RockInstaller\" ) || file.Path.StartsWith( @"Rock Installer\" ) ||
-                        file.Path.StartsWith( @"Rock.CodeGeneration\" ) || file.Path.StartsWith( @"libs\" ) || file.Path.StartsWith( @"packages\" ) ||
-                        file.Path.StartsWith( @"RockJobSchedulerService\" ) || file.Path.StartsWith( @"RockJobSchedulerServiceInstaller\" ) ||
-                        file.Path.StartsWith( @"Quartz\" ) || file.Path.StartsWith( @"Rock.PayFlowPro\" ) )
+                        file.Path.StartsWith( @"Dev Tools\" ) || 
+                        file.Path.StartsWith( @"Documentation\" ) ||
+                        file.Path.StartsWith( @"RockInstaller\" ) || 
+                        file.Path.StartsWith( @"Rock Installer\" ) ||
+                        file.Path.StartsWith( @"Rock.CodeGeneration\" ) || 
+                        file.Path.StartsWith( @"libs\" ) || 
+                        file.Path.StartsWith( @"packages\" ) ||
+                        file.Path.StartsWith( @"RockJobSchedulerService\" ) || 
+                        file.Path.StartsWith( @"RockJobSchedulerServiceInstaller\" ) ||
+                        file.Path.StartsWith( @"Quartz\" )  )
                     {
                         continue;
                     }
