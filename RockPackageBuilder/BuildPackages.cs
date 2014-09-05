@@ -434,6 +434,13 @@ namespace RockPackageBuilder
                 AddToManifest( manifest, deleteFileRelativePath, webRootPath );
             }
 
+            // always add a Run.Migration flag file
+            string migrationFlagFileRelativePath = Path.Combine( "App_Data", "Run.Migration" );
+            string migrationFlagFileFullPath = Path.Combine( webRootPath, migrationFlagFileRelativePath );
+            File.Create( migrationFlagFileFullPath ).Dispose();
+            AddToManifest( manifest, migrationFlagFileRelativePath, webRootPath );
+
+            // build the package
             PackageBuilder builder = new PackageBuilder();
             builder.PopulateFiles( options.RepoPath, manifest.Files );
             builder.Populate( manifest.Metadata );
