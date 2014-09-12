@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <system.web>
+  <customErrors xdt:Transform="Remove" />
+  <customErrors mode="RemoteOnly" xdt:Transform="Insert" />
+    </system.web>
+    <system.webServer>
+        <httpErrors errorMode="Custom" existingResponse="Replace" xdt:Transform="InsertIfMissing">
+          <remove statusCode="500" subStatusCode="-1"  xdt:Transform="Insert"></remove>
+          <error statusCode="500" path="/Error.aspx" responseMode="ExecuteURL" xdt:Transform="Insert" ></error>
+        </httpErrors>
+    </system.webServer>
+</configuration>
