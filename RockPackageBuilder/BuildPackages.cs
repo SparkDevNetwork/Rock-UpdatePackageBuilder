@@ -516,6 +516,9 @@ namespace RockPackageBuilder
                     }
                 }
             };
+
+            // add a "requires-X.Y.Z" tag to force rock to update one at a time.
+            manifest.Metadata.Tags = String.Format( "requires-{0}", previousUpdatePackageVersion );
         }
 
 
