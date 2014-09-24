@@ -30,7 +30,7 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package.
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version", "rock.payflowpro" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version", "rock.payflowpro", "dotliquid" };
 
         #endregion
 
@@ -162,7 +162,7 @@ namespace RockPackageBuilder
         /// <param name="version">version number to verify/match</param>
         private static void VerifyVersionNumbers( string repoPath, string version )
         {
-            foreach ( var dll in new string[] {"Rock.dll", "Rock.Migrations.dll", "Rock.Rest.dll", "Rock.Version.dll", "Rock.PayFlowPro.dll"} )
+            foreach ( var dll in new string[] {"Rock.dll", "Rock.Migrations.dll", "Rock.Rest.dll", "Rock.Version.dll", "Rock.PayFlowPro.dll" } )
             {
                 FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", dll ) );
                 var y = rockDLLfvi.ProductVersion;
