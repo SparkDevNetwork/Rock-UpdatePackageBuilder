@@ -32,6 +32,8 @@ namespace RockPackageBuilder
         /// </summary>
         static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version", "rock.payflowpro", "dotliquid" };
 
+        static string _previousVersion = string.Empty;
+
         #endregion
 
         // Define a class to receive parsed values
@@ -517,8 +519,7 @@ namespace RockPackageBuilder
                 }
             };
 
-            // add a "requires-X.Y.Z" tag to force rock to update one at a time.
-            manifest.Metadata.Tags = String.Format( "requires-{0}", previousUpdatePackageVersion );
+            _previousVersion = previousUpdatePackageVersion;
         }
 
 
@@ -628,6 +629,13 @@ namespace RockPackageBuilder
                     }
                 }
             };
+
+
+            if ( !string.IsNullOrWhiteSpace( _previousVersion ) )
+            {
+                // add a "requires-X.Y.Z" tag to force rock to update one at a time.
+                manifest.Metadata.Tags = String.Format( "requires-{0}", _previousVersion );
+            }
 
             manifest.Files = new List<ManifestFile>();
             string webRootPath = Path.Combine( repoPath, "RockWeb" );
