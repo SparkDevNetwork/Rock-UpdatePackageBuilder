@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ComparisonSet xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Mode>CompareDirectories</Mode>
+  <RecurseSubdirectories>false</RecurseSubdirectories>
+  <Items>
+    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock Assemblies\v3.4</Item>
+    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock Assemblies\v4.0</Item>
+  </Items>
+  <ReferenceDirectories />
+  <Config IsolationLevel="AutoDetect" UseReflectionOnlyContext="true" TryResolveGACFirst="false" Multithread="true" ReferenceDirectories="C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock-SparkSite\RockWeb\Bin" />
+  <Filter PublicTypesOnly="false" IncludePublic="true" IncludeProtected="true" IncludePrivate="false" IncludeInternal="true" ChangedItemsOnly="true" IgnoreAssemblyAttributeChanges="true" CompareMethodImplementations="false" />
+</ComparisonSet>
