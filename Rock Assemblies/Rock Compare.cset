@@ -3,8 +3,8 @@
   <Mode>CompareDirectories</Mode>
   <RecurseSubdirectories>false</RecurseSubdirectories>
   <Items>
-    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock Assemblies\v3.4</Item>
-    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock Assemblies\v4.0</Item>
+    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock-UpdatePackageBuilder\Rock Assemblies\v3.3</Item>
+    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock-UpdatePackageBuilder\Rock Assemblies\v3.4</Item>
   </Items>
   <ReferenceDirectories />
   <Config IsolationLevel="AutoDetect" UseReflectionOnlyContext="true" TryResolveGACFirst="false" Multithread="true" ReferenceDirectories="C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock-SparkSite\RockWeb\Bin" />
