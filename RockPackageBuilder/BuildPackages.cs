@@ -30,7 +30,7 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package.
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "rock", "rock.migrations", "rock.rest", "rock.version", "rock.payflowpro", "dotliquid" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.payflowpro", "rock.rest", "rock.version" };
 
         static string _previousVersion = string.Empty;
 
@@ -119,10 +119,6 @@ namespace RockPackageBuilder
             List<string> deletedPackageFiles = new List<string>();
             Dictionary<string, bool> modifiedProjects = new Dictionary<string, bool>();
 
-            // Make sure the Rock.Version project's version number has been updated and commit->pushed
-            // before you build from master.
-            VerifyVersionNumbers( options.RepoPath, options.CurrentVersionTag );
-            
             Console.WriteLine( "" );
             Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
             Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
@@ -143,12 +139,20 @@ namespace RockPackageBuilder
 
             string changeMessages = GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
+            // Make sure the Rock.Version project's version number has been updated and commit->pushed
+            // before you build from master.
+            if ( !VerifyVersionNumbers( options.RepoPath, options.CurrentVersionTag, modifiedProjects ) )
+            {
+                return 1;
+            }
+
             var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
             BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, "In the future there will be a description and the release notes below will be written for non-developers.", changeMessages );
 
             BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
+
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to quit." );
@@ -162,17 +166,33 @@ namespace RockPackageBuilder
         /// </summary>
         /// <param name="repoPath">path to your rock repository</param>
         /// <param name="version">version number to verify/match</param>
-        private static void VerifyVersionNumbers( string repoPath, string version )
+        /// <param name="modifiedProjects">The modified projects.</param>
+        /// <returns></returns>
+        private static bool VerifyVersionNumbers( string repoPath, string version, Dictionary<string, bool> modifiedProjects )
         {
-            foreach ( var dll in new string[] {"Rock.dll", "Rock.Migrations.dll", "Rock.Rest.dll", "Rock.Version.dll", "Rock.PayFlowPro.dll" } )
+            foreach ( string projectName in modifiedProjects
+                .Where( p =>
+                    p.Value &&
+                    p.Key.ToLower().StartsWith( "rock" ) )
+                .Select( p => p.Key ) )
             {
+                string dll = projectName + ".dll";
                 FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", dll ) );
                 var y = rockDLLfvi.ProductVersion;
-                if ( ! rockDLLfvi.FileVersion.StartsWith( version ) )
+                if ( !rockDLLfvi.FileVersion.StartsWith( version ) )
                 {
-                    Console.WriteLine( "WARNING:  Version mismatch in {0}.  Is that OK for this release?", dll );
+                    Console.Write( "{0}WARNING:  Version mismatch in {1} (v{2}).{0}Is that OK for this release? Y/N (n to quit) ", Environment.NewLine, dll, rockDLLfvi.FileVersion );
+                    ConsoleKeyInfo choice = Console.ReadKey( true );
+                    Console.Write( "\b" );
+                    Console.WriteLine( "" );
+                    if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+                    {
+                        return false;
+                    }
                 }
             }
+
+            return true;
         }
 
         /// <summary>
@@ -240,6 +260,7 @@ namespace RockPackageBuilder
                     }
 
                     string projectName = file.Path.Split( Path.DirectorySeparatorChar ).First();
+
                     if ( options.Verbose )
                     {
                         Console.WriteLine( "{0}\t{1}", file.Path, file.Status );
@@ -248,7 +269,11 @@ namespace RockPackageBuilder
                     // any changes with any other non-RockWeb projects?
                     if ( NON_WEB_PROJECTS.Contains( projectName.ToLower() ) )
                     {
-                        modifiedProjects[projectName] = true;
+                        // Ignore output files in bin folder as they should also be in the rockweb\bin folder
+                        if ( !file.Path.ToLower().StartsWith( projectName.ToLower() + "\\bin" ) )
+                        {
+                            modifiedProjects[projectName] = true;
+                        }
                     }
                     else if ( file.Path.ToLower().StartsWith( @"rockweb\bin\" ) ) // && x.Path.ToLower().EndsWith( ".dll" ) )
                     {
