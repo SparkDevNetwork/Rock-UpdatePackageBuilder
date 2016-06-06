@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<system.webServer>
+		<staticContent>
+			<remove fileExtension=".less" xdt:Transform="Insert"/>
+			<mimeMap fileExtension=".less" mimeType="text/css" xdt:Transform="Insert"/>
+		</staticContent>
+	</system.webServer>
+	<appSettings>
+		<add key="AllowDuplicateGroupMembers" value="false" xdt:Transform="Insert" />
+		<add key="EnableRedisCacheCluster" value="false" xdt:Transform="Insert" />
+		<add key="RedisConnectionString" value="localhost" xdt:Transform="Insert" />
+	</appSettings>
+</configuration>
