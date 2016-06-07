@@ -409,6 +409,16 @@ namespace RockPackageBuilder
                 }
                 
                 AddToManifest( manifest, file, webRootPath );
+
+                // if a less file was updated, check to see if a matching css file exists, and if so, add it (these files are ignored by repo)
+                if ( file.ToLower().EndsWith( ".less" ))
+                {
+                    string cssPath = file.Substring( 0, file.Length - 5 ) + ".css";
+                    if ( File.Exists( Path.Combine( webRootPath, cssPath )))
+                    {
+                        AddToManifest( manifest, cssPath, webRootPath );
+                    }
+                }
             }
 
             foreach ( string file in modifiedLibs )
@@ -431,6 +441,17 @@ namespace RockPackageBuilder
                 {
                     Console.WriteLine( string.Format( "\t * {0}", entry.Key + ".dll" ) );
                     AddLibToManifest( manifest, Path.Combine("bin", entry.Key + ".dll" ), webRootPath );
+
+                    // if rock.dll was updated, add the rock.xml file if it exists
+                    if ( entry.Key.ToLower() == "rock" )
+                    {
+                        string xmlPath = Path.Combine( "bin", entry.Key + ".xml" );
+                        if ( File.Exists( Path.Combine( webRootPath, xmlPath ) ) )
+                        {
+                            AddToManifest( manifest, xmlPath, webRootPath );
+                        }
+                    }
+
                 }
             }
 
