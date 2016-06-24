@@ -3,10 +3,10 @@
   <Mode>CompareDirectories</Mode>
   <RecurseSubdirectories>false</RecurseSubdirectories>
   <Items>
-    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock-UpdatePackageBuilder\Rock Assemblies\v3.3</Item>
-    <Item>C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock-UpdatePackageBuilder\Rock Assemblies\v3.4</Item>
+    <Item>C:\Users\David\Dropbox (Personal)\Projects\SparkDevNetwork\Rock-UpdatePackageBuilder\Rock Assemblies\v4.6</Item>
+    <Item>C:\Users\David\Dropbox (Personal)\Projects\SparkDevNetwork\Rock-UpdatePackageBuilder\Rock Assemblies\v5.0</Item>
   </Items>
   <ReferenceDirectories />
-  <Config IsolationLevel="AutoDetect" UseReflectionOnlyContext="true" TryResolveGACFirst="false" Multithread="true" ReferenceDirectories="C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock-SparkSite\RockWeb\Bin" />
+  <Config IsolationLevel="AutoDetect" UseReflectionOnlyContext="true" TryResolveGACFirst="false" Multithread="true" ReferenceDirectories="C:\Users\David\Dropbox (Personal)\Projects\SparkDevNetwork\Rock-SparkSite\RockWeb\Bin;C:\Users\David\Dropbox (Personal)\Projects\SparkDevNetwork\Rock\Rock\bin" />
   <Filter PublicTypesOnly="false" IncludePublic="true" IncludeProtected="true" IncludePrivate="false" IncludeInternal="true" ChangedItemsOnly="true" IgnoreAssemblyAttributeChanges="true" CompareMethodImplementations="false" />
 </ComparisonSet>
