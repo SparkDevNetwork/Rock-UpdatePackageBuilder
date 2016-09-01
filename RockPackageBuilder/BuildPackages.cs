@@ -28,9 +28,9 @@ namespace RockPackageBuilder
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
         /// <summary>
-        /// Projects who's DLLs need to be included in the package if they changed since the last package.
+        /// Projects who's DLLs need to be included in the package if they changed since the last package (Make sure to only use lowercase as that is how they will be compared).
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.payflowpro", "rock.rest", "rock.version" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.nmi", "rock.payflowpro", "rock.rest", "rock.version" };
 
         static string _previousVersion = string.Empty;
 
