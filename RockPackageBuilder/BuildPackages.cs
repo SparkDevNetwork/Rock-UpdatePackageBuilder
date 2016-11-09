@@ -30,7 +30,7 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package (Make sure to only use lowercase as that is how they will be compared).
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.nmi", "rock.payflowpro", "rock.rest", "rock.version" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.nmi", "rock.payflowpro", "rock.rest", "rock.signnow", "rock.version" };
 
         static string _previousVersion = string.Empty;
 
@@ -45,6 +45,9 @@ namespace RockPackageBuilder
 
             [Option( 'l', "lastVersionTag", Required = true, HelpText = "The last tag to compare with the current tag to build the delta for the package. (Ex: 0.1.3)" )]
             public string LastVersionTag { get; set; }
+
+            [Option( 'n', "lastVersionReadmeTag", Required = true, HelpText = "The last tag to compare with the current tag to build the release notes. (Ex: 0.1.3)" )]
+            public string lastVersionReadmeTag { get; set; }
 
             [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 0.1.4)" )]
             public string CurrentVersionTag { get; set; }
@@ -81,19 +84,19 @@ namespace RockPackageBuilder
             Console.BufferHeight = 9999;
             var options = new Options();
             var parser = new CommandLine.Parser( with => with.HelpWriter = Console.Error );
-            if ( parser.ParseArgumentsStrict( args, options, () => Environment.Exit( -2 ) ) )
+            if ( parser.ParseArgumentsStrict( args, options, () => Exit() ) )
             {
                 if ( !Directory.Exists( options.RepoPath ) )
                 {
                     Console.WriteLine( string.Format( "The given repository folder ({0}) does not exist.", options.RepoPath ) );
                     Console.WriteLine( options.GetUsage() );
-                    Environment.Exit( -2 );
+                    Exit();
                 }
                 else if ( !Directory.Exists( options.PackageFolder ) )
                 {
                     Console.WriteLine( string.Format( "The given output package folder ({0}) does not exist.", options.PackageFolder ) );
                     Console.WriteLine( options.GetUsage() );
-                    Environment.Exit( -2 );
+                    Exit();
                 }
                 else if ( !Directory.Exists( options.InstallArtifactsFolder ) )
                 {
@@ -215,23 +218,31 @@ namespace RockPackageBuilder
                 if ( tag == null )
                 {
                     Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you forget to tag this release?", options.CurrentVersionTag ) );
-                    System.Environment.Exit( -3 );
+                    Exit();
                 }
 
                 Tag previousTag = repo.Tags[options.LastVersionTag];
-                if (tag == null)
+                if ( previousTag == null)
                 {
                     Console.WriteLine(string.Format("Error: I don't see a {0} tag.  Did you enter the correct last version tag?", options.LastVersionTag));
-                    System.Environment.Exit(-3);
+                    Exit();
                 }
 
+                Tag previousReadmeTag = repo.Tags[options.lastVersionReadmeTag];
+                if ( previousReadmeTag == null )
+                {
+                    Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you enter the correct last version readme tag?", options.lastVersionReadmeTag ) );
+                    Exit();
+                }
+
+                var previousReadmeCommit = (Commit)previousReadmeTag.Target;
                 var previousCommit = (Commit)previousTag.Target;
                 var currentCommit = (Commit)tag.Target;
 
                 // Find all the commits and parse their commit messages
                 var currentCommits = repo.Commits.QueryBy(new CommitFilter { Since = currentCommit });
-                var previousCommits = repo.Commits.QueryBy(new CommitFilter { Since = previousCommit });
-                ParseCommitMessages(currentCommits, previousCommits, options.Verbose, sbChangeLog);
+                var previousReadmeCommits = repo.Commits.QueryBy(new CommitFilter { Since = previousReadmeCommit });
+                ParseCommitMessages(currentCommits, previousReadmeCommits, options.Verbose, sbChangeLog);
 
                 // Now go through each commit since the last pagckage commit and
                 // determine which projects (dlls) and files from the RockWeb project
@@ -242,7 +253,7 @@ namespace RockPackageBuilder
                 foreach ( var file in changes )
                 {
                     // skip a bunch of known projects we don't care about...
-                    if ( file.Path.ToLower().EndsWith( ".gitignore" ) || 
+                     if ( file.Path.ToLower().EndsWith( ".gitignore" ) || 
                         file.Path.StartsWith( @"Apps\" ) ||
                         file.Path.StartsWith( @"RockWeb\App_Data\Packages" ) ||
                         file.Path.StartsWith( @"Dev Tools\" ) || 
@@ -325,9 +336,8 @@ namespace RockPackageBuilder
             var validCommits = currentCommits.Where(c => !previousShas.Contains(c.Sha)).ToList();
             foreach ( var commit in validCommits )
             {
-                if (!commit.Message.StartsWith("Merge branch 'origin/develop'") &&
-                    !commit.Message.StartsWith("Merge branch 'origin/master'") &&
-                    !commit.Message.StartsWith("Merge branch 'develop'") &&
+                if (!commit.Message.StartsWith("Merge pull request" ) && 
+                    !commit.Message.StartsWith("Merge branch") &&
                     !commit.Message.StartsWith("Merge remote-tracking") &&
                     !commit.Message.StartsWith("-"))
                 {
@@ -345,6 +355,11 @@ namespace RockPackageBuilder
                     else
                     {
                         sb.AppendFormat("{0}", commit.Message);
+                    }
+
+                    if ( !commit.Message.EndsWith( "\n" ))
+                    {
+                        sb.Append( '\n' );
                     }
                 }
 
@@ -712,6 +727,13 @@ namespace RockPackageBuilder
         private static string FullPathOfRockPackageFile( string packageFolder, string version )
         {
             return Path.Combine( packageFolder, string.Format( "Rock.{0}.nupkg", version ) );
+        }
+
+        private static void Exit()
+        {
+            Console.WriteLine( "Hit any key to quit." );
+            Console.ReadKey();
+            System.Environment.Exit( -3 );
         }
 
         #region NuGet Package Helper Methods
