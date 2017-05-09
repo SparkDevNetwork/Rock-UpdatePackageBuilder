@@ -30,7 +30,7 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package (Make sure to only use lowercase as that is how they will be compared).
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.nmi", "rock.payflowpro", "rock.rest", "rock.signnow", "rock.sligshot", "rock.version", "signnowsdk" };
+        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.nmi", "rock.payflowpro", "rock.rest", "rock.signnow", "rock.slingshot", "rock.slingshot.model", "rock.version", "signnowsdk" };
 
         static string _previousVersion = string.Empty;
 
