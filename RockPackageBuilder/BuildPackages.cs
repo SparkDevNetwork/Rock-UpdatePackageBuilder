@@ -30,7 +30,21 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package (Make sure to only use lowercase as that is how they will be compared).
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> { "dotliquid", "rock", "rock.mailgun", "rock.mandrill", "rock.migrations", "rock.nmi", "rock.payflowpro", "rock.rest", "rock.signnow", "rock.slingshot", "rock.slingshot.model", "rock.version", "signnowsdk" };
+        static List<string> NON_WEB_PROJECTS = new List<string> {
+            "dotliquid",
+            "rock",
+            "rock.mailgun",
+            "rock.mandrill",
+            "rock.migrations",
+            "rock.nmi",
+            "rock.payflowpro",
+            "rock.rest",
+            "rock.signnow",
+            "rock.slingshot",
+            "rock.slingshot.model",
+            "rock.statementgenerator",
+            "rock.version",
+            "signnowsdk" };
 
         static string _previousVersion = string.Empty;
 
@@ -140,7 +154,7 @@ namespace RockPackageBuilder
                 }
             }
 
-            string changeMessages = GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
+            GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
             // Make sure the Rock.Version project's version number has been updated and commit->pushed
             // before you build from master.
@@ -152,7 +166,7 @@ namespace RockPackageBuilder
             var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, "In the future there will be a description and the release notes below will be written for non-developers.", changeMessages );
+            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, "In the future there will be a description and the release notes below will be written for non-developers." );
 
             BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
 
@@ -206,10 +220,10 @@ namespace RockPackageBuilder
         /// <param name="modifiedPackageFiles">a list of files that were modified in the RockWeb project</param>
         /// <param name="deletedPackageFiles">a list of files that were deleted from the RockWeb project</param>
         /// <param name="modifiedProjects">a list of projects that were modified</param>
-        private static string GetRockWebChangedFilesAndProjects( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
+        private static void GetRockWebChangedFilesAndProjects( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
         {
             int webRootPathLength = @"rockweb\".Length;
-            StringBuilder sbChangeLog = new StringBuilder();
+            //StringBuilder sbChangeLog = new StringBuilder();
 
             // Open the git repo and get the commits for the given branch.
             using ( var repo = new Repository( options.RepoPath ) )
@@ -240,9 +254,9 @@ namespace RockPackageBuilder
                 var currentCommit = (Commit)tag.Target;
 
                 // Find all the commits and parse their commit messages
-                var currentCommits = repo.Commits.QueryBy(new CommitFilter { Since = currentCommit });
-                var previousReadmeCommits = repo.Commits.QueryBy(new CommitFilter { Since = previousReadmeCommit });
-                ParseCommitMessages(currentCommits, previousReadmeCommits, options.Verbose, sbChangeLog);
+                //var currentCommits = repo.Commits.QueryBy(new CommitFilter { Since = currentCommit });
+                //var previousReadmeCommits = repo.Commits.QueryBy(new CommitFilter { Since = previousReadmeCommit });
+                //ParseCommitMessages(currentCommits, previousReadmeCommits, options.Verbose, sbChangeLog);
 
                 // Now go through each commit since the last pagckage commit and
                 // determine which projects (dlls) and files from the RockWeb project
@@ -315,7 +329,6 @@ namespace RockPackageBuilder
                     }
                 }
             }
-            return sbChangeLog.ToString();
         }
 
         /// <summary>
@@ -583,7 +596,6 @@ namespace RockPackageBuilder
             _previousVersion = previousUpdatePackageVersion;
         }
 
-
         /// <summary>
         /// Builds the two empty stub packages (Rock.x.y.z.nupkg and RockUpdate-X-Y-Z.x.y.z.nupkg)
         /// needed for fresh installs via the installer as described here:
@@ -663,8 +675,7 @@ namespace RockPackageBuilder
         /// <param name="packageFolder"></param>
         /// <param name="version"></param>
         /// <param name="description"></param>
-        /// <param name="releaseNotes"></param>
-        private static void BuildRockPackage( string updatePackageId, string repoPath, string packageFolder, string version, string description, string releaseNotes )
+        private static void BuildRockPackage( string updatePackageId, string repoPath, string packageFolder, string version, string description )
         {
             FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", "Rock.Version.dll" ) );
             // Create a manifest for this package...
@@ -677,7 +688,6 @@ namespace RockPackageBuilder
                 Id = "Rock",
                 Copyright = rockDLLfvi.LegalCopyright,
                 Description = description,
-                ReleaseNotes = releaseNotes,
                 DependencySets = new List<ManifestDependencySet>
                 {
                     new ManifestDependencySet
@@ -704,7 +714,7 @@ namespace RockPackageBuilder
             // Must add at least one file.
             string readmeFileRelativePath = "Readme.txt";
             string readmeFileFullPath = Path.Combine( webRootPath, readmeFileRelativePath );
-            System.IO.File.WriteAllText( readmeFileFullPath, releaseNotes );
+            manifest.Metadata.ReleaseNotes = System.IO.File.ReadAllText( readmeFileFullPath );
             AddToManifest( manifest, readmeFileRelativePath, webRootPath );
 
             string packageFileName = FullPathOfRockPackageFile( packageFolder, version );
