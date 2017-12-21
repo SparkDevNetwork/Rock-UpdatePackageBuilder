@@ -714,7 +714,23 @@ namespace RockPackageBuilder
             // Must add at least one file.
             string readmeFileRelativePath = "Readme.txt";
             string readmeFileFullPath = Path.Combine( webRootPath, readmeFileRelativePath );
-            manifest.Metadata.ReleaseNotes = System.IO.File.ReadAllText( readmeFileFullPath );
+            var fullReadmeLines = System.IO.File.ReadAllLines( readmeFileFullPath );
+            StringBuilder mostRecentReleaseNotes = new StringBuilder();
+
+            foreach ( var line in fullReadmeLines )
+            {
+                if ( line.StartsWith( "Rock McKinley " ) )
+                {
+                    if ( mostRecentReleaseNotes.Length > 1 )
+                    {
+                        break;
+                    }
+                }
+
+                mostRecentReleaseNotes.AppendLine( line );
+            }
+
+            manifest.Metadata.ReleaseNotes = mostRecentReleaseNotes.ToString().Trim();
             AddToManifest( manifest, readmeFileRelativePath, webRootPath );
 
             string packageFileName = FullPathOfRockPackageFile( packageFolder, version );
