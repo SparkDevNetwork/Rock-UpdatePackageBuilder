@@ -60,9 +60,6 @@ namespace RockPackageBuilder
             [Option( 'l', "lastVersionTag", Required = true, HelpText = "The last tag to compare with the current tag to build the delta for the package. (Ex: 0.1.3)" )]
             public string LastVersionTag { get; set; }
 
-            [Option( 'n', "lastVersionReadmeTag", Required = true, HelpText = "The last tag to compare with the current tag to build the release notes. (Ex: 0.1.3)" )]
-            public string lastVersionReadmeTag { get; set; }
-
             [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 0.1.4)" )]
             public string CurrentVersionTag { get; set; }
 
@@ -223,7 +220,6 @@ namespace RockPackageBuilder
         private static void GetRockWebChangedFilesAndProjects( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
         {
             int webRootPathLength = @"rockweb\".Length;
-            //StringBuilder sbChangeLog = new StringBuilder();
 
             // Open the git repo and get the commits for the given branch.
             using ( var repo = new Repository( options.RepoPath ) )
@@ -241,22 +237,9 @@ namespace RockPackageBuilder
                     Console.WriteLine(string.Format("Error: I don't see a {0} tag.  Did you enter the correct last version tag?", options.LastVersionTag));
                     Exit();
                 }
-
-                Tag previousReadmeTag = repo.Tags[options.lastVersionReadmeTag];
-                if ( previousReadmeTag == null )
-                {
-                    Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you enter the correct last version readme tag?", options.lastVersionReadmeTag ) );
-                    Exit();
-                }
-
-                var previousReadmeCommit = (Commit)previousReadmeTag.Target;
+                
                 var previousCommit = (Commit)previousTag.Target;
                 var currentCommit = (Commit)tag.Target;
-
-                // Find all the commits and parse their commit messages
-                //var currentCommits = repo.Commits.QueryBy(new CommitFilter { Since = currentCommit });
-                //var previousReadmeCommits = repo.Commits.QueryBy(new CommitFilter { Since = previousReadmeCommit });
-                //ParseCommitMessages(currentCommits, previousReadmeCommits, options.Verbose, sbChangeLog);
 
                 // Now go through each commit since the last pagckage commit and
                 // determine which projects (dlls) and files from the RockWeb project
@@ -470,16 +453,12 @@ namespace RockPackageBuilder
                     Console.WriteLine( string.Format( "\t * {0}", entry.Key + ".dll" ) );
                     AddLibToManifest( manifest, Path.Combine("bin", entry.Key + ".dll" ), webRootPath );
 
-                    // if rock.dll was updated, add the rock.xml file if it exists
-                    if ( entry.Key.ToLower() == "rock" )
+                    // if a dll was updated and there is an associated xml documentation file, include it 
+                    string xmlPath = Path.Combine( "bin", entry.Key + ".xml" );
+                    if ( File.Exists( Path.Combine( webRootPath, xmlPath ) ) )
                     {
-                        string xmlPath = Path.Combine( "bin", entry.Key + ".xml" );
-                        if ( File.Exists( Path.Combine( webRootPath, xmlPath ) ) )
-                        {
-                            AddToManifest( manifest, xmlPath, webRootPath );
-                        }
+                        AddToManifest( manifest, xmlPath, webRootPath );
                     }
-
                 }
             }
 
@@ -523,6 +502,12 @@ namespace RockPackageBuilder
             using ( FileStream stream = File.Open( updatePackageFileName, FileMode.OpenOrCreate ) )
             {
                 builder.Save( stream );
+            }
+
+            var updatePackageManifestFileName = Path.ChangeExtension( updatePackageFileName, "nuspec" );
+            using ( FileStream stream = File.Open( updatePackageManifestFileName, FileMode.OpenOrCreate ) )
+            {
+                manifest.Save( stream );
             }
 
             return updatePackageId;
@@ -741,6 +726,12 @@ namespace RockPackageBuilder
             using ( FileStream stream = File.Open( packageFileName, FileMode.OpenOrCreate ) )
             {
                 builder.Save( stream );
+            }
+
+            var packageManifestFileName = Path.ChangeExtension( packageFileName, "nuspec" );
+            using ( FileStream stream = File.Open( packageManifestFileName, FileMode.OpenOrCreate ) )
+            {
+                manifest.Save( stream );
             }
         }
 
