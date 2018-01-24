@@ -15,7 +15,7 @@
         <file src="content\App_Code\BundleConfig.cs" target="content\App_Code\BundleConfig.cs" />
         <file src="content\App_Code\Global.asax.cs" target="content\App_Code\Global.asax.cs" />
         <file src="content\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
-        <file src="..\..\Rock_develop\RockWeb\Bin\Rock.Rest.XML" target="content\bin\Rock.Rest.XML" />
+        <file src="content\bin\Rock.Rest.XML" target="content\bin\Rock.Rest.XML" />
         <file src="content\bin\Rock.xml" target="content\bin\Rock.xml" />
         <file src="content\Blocks\CheckIn\Config\CheckinAreas.ascx.cs" target="content\Blocks\CheckIn\Config\CheckinAreas.ascx.cs" />
         <file src="content\Blocks\CheckIn\AttendanceAnalytics.ascx" target="content\Blocks\CheckIn\AttendanceAnalytics.ascx" />
@@ -72,7 +72,7 @@
         <file src="content\Blocks\Reporting\InteractionChannelList.ascx" target="content\Blocks\Reporting\InteractionChannelList.ascx" />
         <file src="content\Blocks\Reporting\InteractionChannelList.ascx.cs" target="content\Blocks\Reporting\InteractionChannelList.ascx.cs" />
         <file src="content\Blocks\Reporting\InteractionComponentDetail.ascx" target="content\Blocks\Reporting\InteractionComponentDetail.ascx" />
-        <file src="content\Blocks\Reporting\InteractionComponentDetail.ascx.cs" target="content\Blocks\Reporting\InteractionComponentDetail.ascx.cs" />
+        <file src="..\..\Rock\RockWeb\Blocks\Reporting\InteractionComponentDetail.ascx.cs" target="content\Blocks\Reporting\InteractionComponentDetail.ascx.cs" />
         <file src="content\Blocks\Reporting\InteractionComponentList.ascx" target="content\Blocks\Reporting\InteractionComponentList.ascx" />
         <file src="content\Blocks\Reporting\InteractionComponentList.ascx.cs" target="content\Blocks\Reporting\InteractionComponentList.ascx.cs" />
         <file src="content\Blocks\Reporting\InteractionDetail.ascx" target="content\Blocks\Reporting\InteractionDetail.ascx" />
