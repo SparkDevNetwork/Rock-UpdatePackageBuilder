@@ -48,6 +48,8 @@ namespace RockPackageBuilder
 
         static string _previousVersion = string.Empty;
 
+        static string _defaultDescription = "In the future there will be a description and the release notes below will be written for non-developers.";
+
         #endregion
 
         // Define a class to receive parsed values
@@ -149,6 +151,23 @@ namespace RockPackageBuilder
                 {
                     return 1;
                 }
+
+                var existingManifestPackage = Path.ChangeExtension( packagePath, "nuspec" );
+                if ( File.Exists( existingManifestPackage ) )
+                {
+                    try
+                    {
+                        using ( var existingManifestStream = File.OpenRead( existingManifestPackage ) )
+                        {
+                            var existingManifest = Manifest.ReadFrom( existingManifestStream, false );
+                            _defaultDescription = existingManifest.Metadata.Description;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // intentionally ignore
+                    }
+                }
             }
 
             GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
@@ -163,10 +182,9 @@ namespace RockPackageBuilder
             var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes" );
 
             // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, "In the future there will be a description and the release notes below will be written for non-developers." );
+            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, _defaultDescription );
 
             BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
-
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to quit." );
@@ -495,17 +513,19 @@ namespace RockPackageBuilder
             File.Create( migrationFlagFileFullPath ).Dispose();
             AddToManifest( manifest, migrationFlagFileRelativePath, webRootPath );
 
+            manifest.Files = manifest.Files.OrderBy( a => a.Source ).ToList();
+
             // build the package
             PackageBuilder builder = new PackageBuilder();
             builder.PopulateFiles( options.RepoPath, manifest.Files );
             builder.Populate( manifest.Metadata );
-            using ( FileStream stream = File.Open( updatePackageFileName, FileMode.OpenOrCreate ) )
+            using ( FileStream stream = File.Open( updatePackageFileName, FileMode.Create ) )
             {
                 builder.Save( stream );
             }
 
             var updatePackageManifestFileName = Path.ChangeExtension( updatePackageFileName, "nuspec" );
-            using ( FileStream stream = File.Open( updatePackageManifestFileName, FileMode.OpenOrCreate ) )
+            using ( FileStream stream = File.Open( updatePackageManifestFileName, FileMode.Create ) )
             {
                 manifest.Save( stream );
             }
@@ -619,7 +639,7 @@ namespace RockPackageBuilder
             PackageBuilder builder = new PackageBuilder();
             builder.PopulateFiles( fullPathToInstallerArtifactsPath, manifest.Files );
             builder.Populate( manifest.Metadata );
-            using ( FileStream stream = File.Open( packageFileName, FileMode.OpenOrCreate ) )
+            using ( FileStream stream = File.Open( packageFileName, FileMode.Create ) )
             {
                 builder.Save( stream );
             }
@@ -646,7 +666,7 @@ namespace RockPackageBuilder
             PackageBuilder builder2 = new PackageBuilder();
             builder2.PopulateFiles( fullPathToInstallerArtifactsPath, rockUpdateManifest.Files );
             builder2.Populate( rockUpdateManifest.Metadata );
-            using ( FileStream stream = File.Open( updatePackageFileName, FileMode.OpenOrCreate ) )
+            using ( FileStream stream = File.Open( updatePackageFileName, FileMode.Create ) )
             {
                 builder2.Save( stream );
             }
@@ -717,19 +737,20 @@ namespace RockPackageBuilder
 
             manifest.Metadata.ReleaseNotes = mostRecentReleaseNotes.ToString().Trim();
             AddToManifest( manifest, readmeFileRelativePath, webRootPath );
+            manifest.Files = manifest.Files.OrderBy(a => a.Source).ToList();
 
             string packageFileName = FullPathOfRockPackageFile( packageFolder, version );
 
             PackageBuilder builder = new PackageBuilder();
             builder.PopulateFiles( repoPath, manifest.Files );
             builder.Populate( manifest.Metadata );
-            using ( FileStream stream = File.Open( packageFileName, FileMode.OpenOrCreate ) )
+            using ( FileStream stream = File.Open( packageFileName, FileMode.Create ) )
             {
                 builder.Save( stream );
             }
 
             var packageManifestFileName = Path.ChangeExtension( packageFileName, "nuspec" );
-            using ( FileStream stream = File.Open( packageManifestFileName, FileMode.OpenOrCreate ) )
+            using ( FileStream stream = File.Open( packageManifestFileName, FileMode.Create ) )
             {
                 manifest.Save( stream );
             }
