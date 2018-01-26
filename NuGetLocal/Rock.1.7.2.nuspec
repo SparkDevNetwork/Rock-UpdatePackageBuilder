@@ -15,9 +15,9 @@
 + Fixed Registration Instance List Block by removing unused field from the grid.
 + Fixed issue where the Active Registration Instance List block did not show instances when blank dates were present.</releaseNotes>
         <copyright>Copyright © Spark Development Network 2011-2018</copyright>
-        <tags>requires-1.7.1</tags>
+        <tags>requires-1.7.0</tags>
         <dependencies>
-            <dependency id="RockUpdate-1-7-2" version="1.7.2" />
+            <dependency id="RockUpdate-1-7-0" version="1.7.0" />
         </dependencies>
     </metadata>
     <files>
