@@ -8,14 +8,14 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>various changes</description>
         <dependencies>
-            <dependency id="RockUpdate-1-7-0" version="1.7.0" />
+            <dependency id="RockUpdate-1-7-1" version="1.7.1" />
         </dependencies>
     </metadata>
     <files>
         <file src="content\App_Code\BundleConfig.cs" target="content\App_Code\BundleConfig.cs" />
         <file src="content\App_Code\Global.asax.cs" target="content\App_Code\Global.asax.cs" />
         <file src="content\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
-        <file src="..\..\Rock\RockWeb\Bin\Rock.Rest.XML" target="content\bin\Rock.Rest.XML" />
+        <file src="content\bin\Rock.Rest.XML" target="content\bin\Rock.Rest.XML" />
         <file src="content\bin\Rock.xml" target="content\bin\Rock.xml" />
         <file src="content\Blocks\CheckIn\Config\CheckinAreas.ascx.cs" target="content\Blocks\CheckIn\Config\CheckinAreas.ascx.cs" />
         <file src="content\Blocks\CheckIn\AttendanceAnalytics.ascx" target="content\Blocks\CheckIn\AttendanceAnalytics.ascx" />

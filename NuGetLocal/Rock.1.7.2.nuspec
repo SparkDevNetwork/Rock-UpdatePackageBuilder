@@ -7,7 +7,7 @@
         <authors>SparkDevelopmentNetwork</authors>
         <owners>SparkDevelopmentNetwork</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Rock McKinley 7.2 fixes issues that were reported during the previous release(s) (See Release Notes for details).</description>
+        <description>Rock McKinley 7.2 fixes issues that were reported during the v7.0-v7.1 release (See Release Notes for details).</description>
         <releaseNotes>Rock McKinley 7.2
 
 + Fixed communications so that a person's email preference does not affect sending of SMS messages.
@@ -17,7 +17,7 @@
         <copyright>Copyright © Spark Development Network 2011-2018</copyright>
         <tags>requires-1.7.0</tags>
         <dependencies>
-            <dependency id="RockUpdate-1-7-0" version="1.7.0" />
+            <dependency id="RockUpdate-1-7-2" version="1.7.2" />
         </dependencies>
     </metadata>
     <files>
