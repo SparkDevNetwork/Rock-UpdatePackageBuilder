@@ -28,6 +28,7 @@
         <file src="content\Blocks\Cms\ShortLinkDetail.ascx.cs" target="content\Blocks\Cms\ShortLinkDetail.ascx.cs" />
         <file src="content\Blocks\Cms\ThemeStyler.ascx" target="content\Blocks\Cms\ThemeStyler.ascx" />
         <file src="content\Blocks\Cms\ThemeStyler.ascx.cs" target="content\Blocks\Cms\ThemeStyler.ascx.cs" />
+        <file src="..\..\Rock\RockWeb\Blocks\Communication\CommunicationEntry.ascx.cs" target="content\Blocks\Communication\CommunicationEntry.ascx.cs" />
         <file src="content\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
         <file src="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" target="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" />
         <file src="content\Blocks\Communication\CommunicationList.ascx.cs" target="content\Blocks\Communication\CommunicationList.ascx.cs" />
