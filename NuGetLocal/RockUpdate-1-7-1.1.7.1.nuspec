@@ -72,7 +72,7 @@
         <file src="content\Blocks\Reporting\InteractionChannelList.ascx" target="content\Blocks\Reporting\InteractionChannelList.ascx" />
         <file src="content\Blocks\Reporting\InteractionChannelList.ascx.cs" target="content\Blocks\Reporting\InteractionChannelList.ascx.cs" />
         <file src="content\Blocks\Reporting\InteractionComponentDetail.ascx" target="content\Blocks\Reporting\InteractionComponentDetail.ascx" />
-        <file src="..\..\Rock\RockWeb\Blocks\Reporting\InteractionComponentDetail.ascx.cs" target="content\Blocks\Reporting\InteractionComponentDetail.ascx.cs" />
+        <file src="content\Blocks\Reporting\InteractionComponentDetail.ascx.cs" target="content\Blocks\Reporting\InteractionComponentDetail.ascx.cs" />
         <file src="content\Blocks\Reporting\InteractionComponentList.ascx" target="content\Blocks\Reporting\InteractionComponentList.ascx" />
         <file src="content\Blocks\Reporting\InteractionComponentList.ascx.cs" target="content\Blocks\Reporting\InteractionComponentList.ascx.cs" />
         <file src="content\Blocks\Reporting\InteractionDetail.ascx" target="content\Blocks\Reporting\InteractionDetail.ascx" />
@@ -100,7 +100,6 @@
         <file src="content\Styles\_rock-variables.less" target="content\Styles\_rock-variables.less" />
         <file src="content\Themes\Flat\Assets\Lava\GroupDetail.lava" target="content\Themes\Flat\Assets\Lava\GroupDetail.lava" />
         <file src="content\Themes\Rock\Assets\Lava\GroupDetail.lava" target="content\Themes\Rock\Assets\Lava\GroupDetail.lava" />
-        <file src="content\Themes\Rock\Styles\_variable-overrides.less" target="content\Themes\Rock\Styles\_variable-overrides.less" />
         <file src="content\Themes\Stark\Assets\Lava\GroupDetail.lava" target="content\Themes\Stark\Assets\Lava\GroupDetail.lava" />
         <file src="content\license.aspx" target="content\license.aspx" />
         <file src="content\Readme.txt" target="content\Readme.txt" />

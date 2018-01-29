@@ -866,7 +866,6 @@
         <file src="content\Themes\Rock\Styles\email-editor.less" target="content\Themes\Rock\Styles\email-editor.less" />
         <file src="content\Themes\Rock\Styles\theme.css" target="content\Themes\Rock\Styles\theme.css" />
         <file src="content\Themes\Rock\Styles\theme.less" target="content\Themes\Rock\Styles\theme.less" />
-        <file src="content\Themes\Rock\Styles\_variable-overrides.less" target="content\Themes\Rock\Styles\_variable-overrides.less" />
         <file src="content\Themes\Rock\Styles\_variables.less" target="content\Themes\Rock\Styles\_variables.less" />
         <file src="content\Themes\Stark\Assets\Lava\AdDetails.lava" target="content\Themes\Stark\Assets\Lava\AdDetails.lava" />
         <file src="content\Themes\Stark\Assets\Lava\BlogItemDetail.lava" target="content\Themes\Stark\Assets\Lava\BlogItemDetail.lava" />
