@@ -28,7 +28,7 @@
         <file src="content\Blocks\Cms\ShortLinkDetail.ascx.cs" target="content\Blocks\Cms\ShortLinkDetail.ascx.cs" />
         <file src="content\Blocks\Cms\ThemeStyler.ascx" target="content\Blocks\Cms\ThemeStyler.ascx" />
         <file src="content\Blocks\Cms\ThemeStyler.ascx.cs" target="content\Blocks\Cms\ThemeStyler.ascx.cs" />
-        <file src="..\..\Rock\RockWeb\Blocks\Communication\CommunicationEntry.ascx.cs" target="content\Blocks\Communication\CommunicationEntry.ascx.cs" />
+        <file src="content\Blocks\Communication\CommunicationEntry.ascx.cs" target="content\Blocks\Communication\CommunicationEntry.ascx.cs" />
         <file src="content\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
         <file src="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" target="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" />
         <file src="content\Blocks\Communication\CommunicationList.ascx.cs" target="content\Blocks\Communication\CommunicationList.ascx.cs" />
@@ -64,7 +64,8 @@
         <file src="content\Blocks\Finance\PledgeAnalytics.ascx" target="content\Blocks\Finance\PledgeAnalytics.ascx" />
         <file src="content\Blocks\Finance\ScheduledTransactionView.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionView.ascx.cs" />
         <file src="content\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
-        <file src="content\Blocks\Finance\TransactionList.ascx.cs" target="content\Blocks\Finance\TransactionList.ascx.cs" />
+        <file src="..\..\Rock\RockWeb\Blocks\Finance\TransactionList.ascx" target="content\Blocks\Finance\TransactionList.ascx" />
+        <file src="..\..\Rock\RockWeb\Blocks\Finance\TransactionList.ascx.cs" target="content\Blocks\Finance\TransactionList.ascx.cs" />
         <file src="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" target="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" />
         <file src="content\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
         <file src="content\Blocks\Groups\GroupDetailLava.ascx" target="content\Blocks\Groups\GroupDetailLava.ascx" />
@@ -112,7 +113,7 @@
         <file src="content\Themes\Stark\Assets\Lava\GroupDetail.lava" target="content\Themes\Stark\Assets\Lava\GroupDetail.lava" />
         <file src="content\license.aspx" target="content\license.aspx" />
         <file src="content\Readme.txt" target="content\Readme.txt" />
-        <file src="lib\Rock.dll" target="lib\Rock.dll" />
+        <file src="..\..\Rock\RockWeb\Bin\Rock.dll" target="lib\Rock.dll" />
         <file src="lib\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
         <file src="lib\Rock.NMI.dll" target="lib\Rock.NMI.dll" />
         <file src="lib\Rock.StatementGenerator.dll" target="lib\Rock.StatementGenerator.dll" />
