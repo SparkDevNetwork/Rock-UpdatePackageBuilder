@@ -265,22 +265,48 @@ namespace RockPackageBuilder
                 Console.WriteLine("Comparing... (this could take a few minutes)");
 
                 TreeChanges changes = repo.Diff.Compare(previousCommit.Tree, currentCommit.Tree);
+                var filesToIgnore = new string[] 
+                {
+                    "_variable-overrides.less"
+                };
+
+                var extensionsToIgnore = new string[] 
+                {
+                    ".gitignore"
+                };
+
+                var foldersToIgnore = new string[]
+                {
+                     @"Apps\",
+                     @"RockWeb\App_Data\Packages",
+                     @"Dev Tools\",
+                     @"Documentation\",
+                     @"RockInstaller\",
+                     @"Rock Installer\",
+                     @"Rock.CodeGeneration\",
+                     @"libs\",
+                     @"packages\",
+                     @"RockJobSchedulerService\",
+                     @"RockJobSchedulerServiceInstaller\",
+                     @"Quartz\"
+                };
+
                 foreach ( var file in changes )
                 {
                     // skip a bunch of known projects we don't care about...
-                     if ( file.Path.ToLower().EndsWith( ".gitignore" ) || 
-                        file.Path.StartsWith( @"Apps\" ) ||
-                        file.Path.StartsWith( @"RockWeb\App_Data\Packages" ) ||
-                        file.Path.StartsWith( @"Dev Tools\" ) || 
-                        file.Path.StartsWith( @"Documentation\" ) ||
-                        file.Path.StartsWith( @"RockInstaller\" ) || 
-                        file.Path.StartsWith( @"Rock Installer\" ) ||
-                        file.Path.StartsWith( @"Rock.CodeGeneration\" ) || 
-                        file.Path.StartsWith( @"libs\" ) || 
-                        file.Path.StartsWith( @"packages\" ) ||
-                        file.Path.StartsWith( @"RockJobSchedulerService\" ) || 
-                        file.Path.StartsWith( @"RockJobSchedulerServiceInstaller\" ) ||
-                        file.Path.StartsWith( @"Quartz\" )  )
+                    if ( foldersToIgnore.Any( x => file.Path.StartsWith( x ) ) )
+                    {
+                        continue;
+                    }
+
+                    // skip some files
+                    if ( filesToIgnore.Any(x => Path.GetFileName(file.Path).Equals(x, StringComparison.OrdinalIgnoreCase) ) )
+                    {
+                        continue;
+                    }
+
+                    // skip some files
+                    if ( extensionsToIgnore.Any( x => Path.GetExtension( file.Path ).Equals( x, StringComparison.OrdinalIgnoreCase ) ) )
                     {
                         continue;
                     }
