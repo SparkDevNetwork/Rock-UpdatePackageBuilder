@@ -58,7 +58,7 @@
         <file src="content\Blocks\Finance\AccountList.ascx.cs" target="content\Blocks\Finance\AccountList.ascx.cs" />
         <file src="content\Blocks\Finance\AccountTreeView.ascx" target="content\Blocks\Finance\AccountTreeView.ascx" />
         <file src="content\Blocks\Finance\BatchList.ascx.cs" target="content\Blocks\Finance\BatchList.ascx.cs" />
-        <file src="content\Blocks\Finance\BusinessList.ascx.cs" target="content\Blocks\Finance\BusinessList.ascx.cs" />
+        <file src="..\..\Rock\RockWeb\Blocks\Finance\BusinessList.ascx.cs" target="content\Blocks\Finance\BusinessList.ascx.cs" />
         <file src="content\Blocks\Finance\ContributionStatementLava.ascx.cs" target="content\Blocks\Finance\ContributionStatementLava.ascx.cs" />
         <file src="content\Blocks\Finance\GivingAnalytics.ascx" target="content\Blocks\Finance\GivingAnalytics.ascx" />
         <file src="content\Blocks\Finance\PledgeAnalytics.ascx" target="content\Blocks\Finance\PledgeAnalytics.ascx" />
