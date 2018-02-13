@@ -13,6 +13,7 @@
     </metadata>
     <files>
         <file src="content\App_Code\BundleConfig.cs" target="content\App_Code\BundleConfig.cs" />
+        <file src="..\..\Rock\RockWeb\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
         <file src="content\App_Code\Global.asax.cs" target="content\App_Code\Global.asax.cs" />
         <file src="content\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
         <file src="content\bin\Rock.xml" target="content\bin\Rock.xml" />
@@ -131,7 +132,7 @@
         <file src="content\Themes\Rock\Assets\Lava\GroupDetail.lava" target="content\Themes\Rock\Assets\Lava\GroupDetail.lava" />
         <file src="content\Themes\Stark\Assets\Lava\GroupDetail.lava" target="content\Themes\Stark\Assets\Lava\GroupDetail.lava" />
         <file src="content\license.aspx" target="content\license.aspx" />
-        <file src="content\Readme.txt" target="content\Readme.txt" />
+        <file src="..\..\Rock\RockWeb\Readme.txt" target="content\Readme.txt" />
         <file src="lib\Rock.dll" target="lib\Rock.dll" />
         <file src="lib\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
         <file src="lib\Rock.NMI.dll" target="lib\Rock.NMI.dll" />
