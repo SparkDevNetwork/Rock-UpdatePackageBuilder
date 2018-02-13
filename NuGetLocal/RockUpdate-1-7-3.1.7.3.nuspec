@@ -13,7 +13,7 @@
     </metadata>
     <files>
         <file src="content\App_Code\BundleConfig.cs" target="content\App_Code\BundleConfig.cs" />
-        <file src="..\..\Rock\RockWeb\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
+        <file src="content\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
         <file src="content\App_Code\Global.asax.cs" target="content\App_Code\Global.asax.cs" />
         <file src="content\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
         <file src="content\bin\Rock.xml" target="content\bin\Rock.xml" />
