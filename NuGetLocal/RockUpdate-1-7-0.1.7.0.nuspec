@@ -948,7 +948,7 @@
         <file src="lib\React.Core.dll" target="lib\React.Core.dll" />
         <file src="lib\React.Web.dll" target="lib\React.Web.dll" />
         <file src="lib\React.Web.Mvc4.dll" target="lib\React.Web.Mvc4.dll" />
-        <file src="lib\Rock.dll" target="lib\Rock.dll" />
+        <file src="..\..\Rock\RockWeb\Bin\Rock.dll" target="lib\Rock.dll" />
         <file src="lib\Rock.Mailgun.dll" target="lib\Rock.Mailgun.dll" />
         <file src="lib\Rock.Mandrill.dll" target="lib\Rock.Mandrill.dll" />
         <file src="..\..\Rock\RockWeb\Bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
