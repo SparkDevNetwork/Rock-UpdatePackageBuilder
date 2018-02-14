@@ -959,7 +959,7 @@
         <file src="lib\Rock.Slingshot.dll" target="lib\Rock.Slingshot.dll" />
         <file src="lib\Rock.Slingshot.Model.dll" target="lib\Rock.Slingshot.Model.dll" />
         <file src="lib\Rock.StatementGenerator.dll" target="lib\Rock.StatementGenerator.dll" />
-        <file src="lib\Rock.Version.dll" target="lib\Rock.Version.dll" />
+        <file src="..\..\Rock\RockWeb\Bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
         <file src="lib\SignNowSDK.dll" target="lib\SignNowSDK.dll" />
         <file src="lib\Slingshot.Core.dll" target="lib\Slingshot.Core.dll" />
         <file src="lib\Swashbuckle.Core.dll" target="lib\Swashbuckle.Core.dll" />
