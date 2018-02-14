@@ -134,10 +134,10 @@
         <file src="content\Themes\Stark\Assets\Lava\GroupDetail.lava" target="content\Themes\Stark\Assets\Lava\GroupDetail.lava" />
         <file src="content\license.aspx" target="content\license.aspx" />
         <file src="content\Readme.txt" target="content\Readme.txt" />
-        <file src="lib\Rock.dll" target="lib\Rock.dll" />
-        <file src="lib\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
+        <file src="..\..\Rock\RockWeb\Bin\Rock.dll" target="lib\Rock.dll" />
+        <file src="..\..\Rock\RockWeb\Bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
         <file src="lib\Rock.NMI.dll" target="lib\Rock.NMI.dll" />
         <file src="lib\Rock.StatementGenerator.dll" target="lib\Rock.StatementGenerator.dll" />
-        <file src="lib\Rock.Version.dll" target="lib\Rock.Version.dll" />
+        <file src="..\..\Rock\RockWeb\Bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
     </files>
 </package>
