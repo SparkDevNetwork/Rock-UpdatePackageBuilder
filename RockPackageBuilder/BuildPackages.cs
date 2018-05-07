@@ -39,6 +39,7 @@ namespace RockPackageBuilder
             "rock.nmi",
             "rock.payflowpro",
             "rock.rest",
+            "rock.security.authentication.auth0",
             "rock.signnow",
             "rock.slingshot",
             "rock.slingshot.model",
