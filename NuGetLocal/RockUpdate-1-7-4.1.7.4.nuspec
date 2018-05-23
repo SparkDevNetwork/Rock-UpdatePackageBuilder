@@ -92,6 +92,7 @@
     <file src="content\Blocks\Crm\PersonDetail\AddGroup.ascx.cs" target="content\Blocks\Crm\PersonDetail\AddGroup.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\AttributeValues.ascx.cs" target="content\Blocks\Crm\PersonDetail\AttributeValues.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\Bio.ascx.cs" target="content\Blocks\Crm\PersonDetail\Bio.ascx.cs" />
+    <file src="content\Blocks\Crm\PersonDetail\ConnectionRequests.ascx.cs" target="content\Blocks\Crm\PersonDetail\ConnectionRequests.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\EditGroup.ascx.cs" target="content\Blocks\Crm\PersonDetail\EditGroup.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\EditPerson.ascx.cs" target="content\Blocks\Crm\PersonDetail\EditPerson.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\GroupMembers.ascx" target="content\Blocks\Crm\PersonDetail\GroupMembers.ascx" />
@@ -129,6 +130,7 @@
     <file src="content\Blocks\Finance\AccountList.ascx.cs" target="content\Blocks\Finance\AccountList.ascx.cs" />
     <file src="content\Blocks\Finance\AccountTreeView.ascx" target="content\Blocks\Finance\AccountTreeView.ascx" />
     <file src="content\Blocks\Finance\AccountTreeView.ascx.cs" target="content\Blocks\Finance\AccountTreeView.ascx.cs" />
+    <file src="content\Blocks\Finance\BatchList.ascx" target="content\Blocks\Finance\BatchList.ascx" />
     <file src="content\Blocks\Finance\BatchList.ascx.cs" target="content\Blocks\Finance\BatchList.ascx.cs" />
     <file src="content\Blocks\Finance\BenevolenceRequestList.ascx" target="content\Blocks\Finance\BenevolenceRequestList.ascx" />
     <file src="content\Blocks\Finance\BenevolenceRequestList.ascx.cs" target="content\Blocks\Finance\BenevolenceRequestList.ascx.cs" />
@@ -208,6 +210,7 @@
     <file src="content\Blocks\Store\PurchasedPackages.ascx.cs" target="content\Blocks\Store\PurchasedPackages.ascx.cs" />
     <file src="content\Blocks\Utility\HtmlEditorFileBrowser.ascx" target="content\Blocks\Utility\HtmlEditorFileBrowser.ascx" />
     <file src="content\Blocks\Utility\HtmlEditorFileBrowser.ascx.cs" target="content\Blocks\Utility\HtmlEditorFileBrowser.ascx.cs" />
+    <file src="content\Blocks\WorkFlow\WorkflowDetail.ascx.cs" target="content\Blocks\WorkFlow\WorkflowDetail.ascx.cs" />
     <file src="content\Blocks\WorkFlow\WorkflowEntry.ascx.cs" target="content\Blocks\WorkFlow\WorkflowEntry.ascx.cs" />
     <file src="content\Blocks\WorkFlow\WorkflowList.ascx.cs" target="content\Blocks\WorkFlow\WorkflowList.ascx.cs" />
     <file src="content\Blocks\WorkFlow\WorkflowTypeDetail.ascx" target="content\Blocks\WorkFlow\WorkflowTypeDetail.ascx" />
