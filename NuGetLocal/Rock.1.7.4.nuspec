@@ -7,7 +7,18 @@
     <authors>SparkDevelopmentNetwork</authors>
     <owners>SparkDevelopmentNetwork</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Rock McKinley 7.4 fixes issues that were reported during the previous release(s) (See Release Notes for details).</description>
+    <description>Rock McKinley 7.4 fixes issues that were reported during the previous release(s) (See Release Notes for details).
+    
+
+&lt;div class='alert alert-warning margin-t-md'&gt;
+    &lt;strong&gt;Heads Up!&lt;/strong&gt;
+
+&lt;p&gt;&lt;b&gt;Important Technical Notes&lt;/b&gt;&lt;/p&gt;    
+
+&lt;p&gt;Rock v7.4 makes a small change to how age ranges are calculated for check-in. Please
+&lt;a href='https://www.rockrms.com/page/470?Item=1171'&gt;read this blog post for more information&lt;/a&gt;.
+
+&lt;/p&gt;&lt;/div&gt;</description>
     <releaseNotes>Rock McKinley 7.4
 
 + Added a new badge that shows interactions for a specific channel.
