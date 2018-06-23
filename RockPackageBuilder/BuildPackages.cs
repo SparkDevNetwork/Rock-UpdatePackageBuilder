@@ -33,6 +33,7 @@ namespace RockPackageBuilder
         static List<string> NON_WEB_PROJECTS = new List<string> {
             "dotliquid",
             "rock",
+            "rock.checkr",
             "rock.mailgun",
             "rock.mandrill",
             "rock.migrations",
@@ -45,11 +46,12 @@ namespace RockPackageBuilder
             "rock.slingshot.model",
             "rock.statementgenerator",
             "rock.version",
+            "rock.webstartup",
             "signnowsdk" };
 
         static string _previousVersion = string.Empty;
 
-        static string _defaultDescription = "In the future there will be a description and the release notes below will be written for non-developers.";
+        static string _defaultDescription = "##TODO##";
 
         #endregion
 
@@ -266,9 +268,11 @@ namespace RockPackageBuilder
                 Console.WriteLine("Comparing... (this could take a few minutes)");
 
                 TreeChanges changes = repo.Diff.Compare(previousCommit.Tree, currentCommit.Tree);
+
                 var filesToIgnore = new string[] 
                 {
-                    "_variable-overrides.less"
+                    "_variable-overrides.less",
+                    "_css-overrides.less"
                 };
 
                 var extensionsToIgnore = new string[] 
@@ -320,7 +324,7 @@ namespace RockPackageBuilder
                     }
 
                     // any changes with any other non-RockWeb projects?
-                    if ( NON_WEB_PROJECTS.Contains( projectName.ToLower() ) )
+                    if ( NON_WEB_PROJECTS.Contains( projectName, StringComparer.OrdinalIgnoreCase ) )
                     {
                         // Ignore output files in bin folder as they should also be in the rockweb\bin folder
                         if ( !file.Path.ToLower().StartsWith( projectName.ToLower() + "\\bin" ) )
