@@ -905,7 +905,6 @@
     <file src="content\Themes\Rock\Styles\theme.less" target="content\Themes\Rock\Styles\theme.less" />
     <file src="content\Themes\Rock\Styles\_print.less" target="content\Themes\Rock\Styles\_print.less" />
     <file src="content\Themes\Rock\Styles\_root.less" target="content\Themes\Rock\Styles\_root.less" />
-    <file src="content\Themes\Rock\Styles\_variable-overrides.less" target="content\Themes\Rock\Styles\_variable-overrides.less" />
     <file src="content\Themes\Rock\Styles\_variables.less" target="content\Themes\Rock\Styles\_variables.less" />
     <file src="content\Themes\RockOriginal\Assets\Lava\Calendar.lava" target="content\Themes\RockOriginal\Assets\Lava\Calendar.lava" />
     <file src="content\Themes\RockOriginal\Assets\Lava\CalendarGroupedOccurrence.lava" target="content\Themes\RockOriginal\Assets\Lava\CalendarGroupedOccurrence.lava" />
@@ -956,7 +955,6 @@
     <file src="content\Themes\RockOriginal\Styles\font-awesome.less" target="content\Themes\RockOriginal\Styles\font-awesome.less" />
     <file src="content\Themes\RockOriginal\Styles\theme.css" target="content\Themes\RockOriginal\Styles\theme.css" />
     <file src="content\Themes\RockOriginal\Styles\theme.less" target="content\Themes\RockOriginal\Styles\theme.less" />
-    <file src="content\Themes\RockOriginal\Styles\_css-overrides.less" target="content\Themes\RockOriginal\Styles\_css-overrides.less" />
     <file src="content\Themes\RockOriginal\Styles\_print.less" target="content\Themes\RockOriginal\Styles\_print.less" />
     <file src="content\Themes\RockOriginal\Styles\_variables.less" target="content\Themes\RockOriginal\Styles\_variables.less" />
     <file src="content\Themes\RockOriginal\.system" target="content\Themes\RockOriginal\.system" />
