@@ -18,7 +18,6 @@
     <file src="content\App_Code\GetChannelFeed.cs" target="content\App_Code\GetChannelFeed.cs" />
     <file src="content\App_Code\GetEventCalendarFeed.cs" target="content\App_Code\GetEventCalendarFeed.cs" />
     <file src="content\App_Code\GetImage.ashx.cs" target="content\App_Code\GetImage.ashx.cs" />
-    <file src="content\App_Code\GetVCard.ashx.cs" target="content\App_Code\GetVCard.ashx.cs" />
     <file src="content\App_Code\Global.asax.cs" target="content\App_Code\Global.asax.cs" />
     <file src="content\App_Code\ImageUploader.ashx.cs" target="content\App_Code\ImageUploader.ashx.cs" />
     <file src="content\App_Code\LavaFileSystem.cs" target="content\App_Code\LavaFileSystem.cs" />
@@ -74,7 +73,6 @@
     <file src="content\Blocks\Administration\ShortLink.ascx" target="content\Blocks\Administration\ShortLink.ascx" />
     <file src="content\Blocks\Administration\ShortLink.ascx.cs" target="content\Blocks\Administration\ShortLink.ascx.cs" />
     <file src="content\Blocks\Administration\SystemConfiguration.ascx" target="content\Blocks\Administration\SystemConfiguration.ascx" />
-    <file src="content\Blocks\Administration\SystemConfiguration.ascx.cs" target="content\Blocks\Administration\SystemConfiguration.ascx.cs" />
     <file src="content\Blocks\Administration\SystemInfo.ascx" target="content\Blocks\Administration\SystemInfo.ascx" />
     <file src="content\Blocks\Administration\SystemInfo.ascx.cs" target="content\Blocks\Administration\SystemInfo.ascx.cs" />
     <file src="content\Blocks\Administration\ZoneBlocks.ascx" target="content\Blocks\Administration\ZoneBlocks.ascx" />
@@ -92,7 +90,6 @@
     <file src="content\Blocks\CheckIn\Manager\Locations.ascx.cs" target="content\Blocks\CheckIn\Manager\Locations.ascx.cs" />
     <file src="content\Blocks\CheckIn\Manager\Person.ascx" target="content\Blocks\CheckIn\Manager\Person.ascx" />
     <file src="content\Blocks\CheckIn\Manager\Person.ascx.cs" target="content\Blocks\CheckIn\Manager\Person.ascx.cs" />
-    <file src="content\Blocks\CheckIn\Manager\SelectArea.ascx.cs" target="content\Blocks\CheckIn\Manager\SelectArea.ascx.cs" />
     <file src="content\Blocks\CheckIn\AbilityLevelSelect.ascx.cs" target="content\Blocks\CheckIn\AbilityLevelSelect.ascx.cs" />
     <file src="content\Blocks\CheckIn\Admin.ascx.cs" target="content\Blocks\CheckIn\Admin.ascx.cs" />
     <file src="content\Blocks\CheckIn\AttendanceAnalytics.ascx" target="content\Blocks\CheckIn\AttendanceAnalytics.ascx" />
@@ -106,6 +103,7 @@
     <file src="content\Blocks\CheckIn\LocationSelect.ascx.cs" target="content\Blocks\CheckIn\LocationSelect.ascx.cs" />
     <file src="content\Blocks\CheckIn\MultiPersonSelect.ascx.cs" target="content\Blocks\CheckIn\MultiPersonSelect.ascx.cs" />
     <file src="content\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" target="content\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" />
+    <file src="content\Blocks\CheckIn\Search.ascx" target="content\Blocks\CheckIn\Search.ascx" />
     <file src="content\Blocks\CheckIn\Search.ascx.cs" target="content\Blocks\CheckIn\Search.ascx.cs" />
     <file src="content\Blocks\CheckIn\Success.ascx.cs" target="content\Blocks\CheckIn\Success.ascx.cs" />
     <file src="content\Blocks\CheckIn\Welcome.ascx" target="content\Blocks\CheckIn\Welcome.ascx" />
@@ -168,7 +166,6 @@
     <file src="content\Blocks\Cms\SiteDetail.ascx.cs" target="content\Blocks\Cms\SiteDetail.ascx.cs" />
     <file src="content\Blocks\Cms\SiteList.ascx.cs" target="content\Blocks\Cms\SiteList.ascx.cs" />
     <file src="content\Blocks\Cms\ThemeList.ascx" target="content\Blocks\Cms\ThemeList.ascx" />
-    <file src="content\Blocks\Cms\ThemeList.ascx.cs" target="content\Blocks\Cms\ThemeList.ascx.cs" />
     <file src="content\Blocks\Cms\ThemeStyler.ascx" target="content\Blocks\Cms\ThemeStyler.ascx" />
     <file src="content\Blocks\Cms\ThemeStyler.ascx.cs" target="content\Blocks\Cms\ThemeStyler.ascx.cs" />
     <file src="content\Blocks\Cms\UniversalSearch.ascx" target="content\Blocks\Cms\UniversalSearch.ascx" />
@@ -238,7 +235,6 @@
     <file src="content\Blocks\Core\CategoryTreeView.ascx.cs" target="content\Blocks\Core\CategoryTreeView.ascx.cs" />
     <file src="content\Blocks\Core\Components.ascx" target="content\Blocks\Core\Components.ascx" />
     <file src="content\Blocks\Core\Components.ascx.cs" target="content\Blocks\Core\Components.ascx.cs" />
-    <file src="content\Blocks\Core\DateRangeContextSetter.ascx.cs" target="content\Blocks\Core\DateRangeContextSetter.ascx.cs" />
     <file src="content\Blocks\Core\DefinedTypeDetail.ascx" target="content\Blocks\Core\DefinedTypeDetail.ascx" />
     <file src="content\Blocks\Core\DefinedTypeDetail.ascx.cs" target="content\Blocks\Core\DefinedTypeDetail.ascx.cs" />
     <file src="content\Blocks\Core\DefinedTypeList.ascx" target="content\Blocks\Core\DefinedTypeList.ascx" />
@@ -267,6 +263,7 @@
     <file src="content\Blocks\Core\MergeTemplateDetail.ascx.cs" target="content\Blocks\Core\MergeTemplateDetail.ascx.cs" />
     <file src="content\Blocks\Core\MergeTemplateEntry.ascx" target="content\Blocks\Core\MergeTemplateEntry.ascx" />
     <file src="content\Blocks\Core\MergeTemplateEntry.ascx.cs" target="content\Blocks\Core\MergeTemplateEntry.ascx.cs" />
+    <file src="content\Blocks\Core\MergeTemplateList.ascx.cs" target="content\Blocks\Core\MergeTemplateList.ascx.cs" />
     <file src="content\Blocks\Core\Notes.ascx" target="content\Blocks\Core\Notes.ascx" />
     <file src="content\Blocks\Core\Notes.ascx.cs" target="content\Blocks\Core\Notes.ascx.cs" />
     <file src="content\Blocks\Core\NoteTypeDetail.ascx" target="content\Blocks\Core\NoteTypeDetail.ascx" />
@@ -294,10 +291,8 @@
     <file src="content\Blocks\Core\ScheduleList.ascx.cs" target="content\Blocks\Core\ScheduleList.ascx.cs" />
     <file src="content\Blocks\Core\SignatureDocumentDetail.ascx" target="content\Blocks\Core\SignatureDocumentDetail.ascx" />
     <file src="content\Blocks\Core\SignatureDocumentList.ascx" target="content\Blocks\Core\SignatureDocumentList.ascx" />
-    <file src="content\Blocks\Core\SignatureDocumentList.ascx.cs" target="content\Blocks\Core\SignatureDocumentList.ascx.cs" />
     <file src="content\Blocks\Core\SignatureDocumentTemplateDetail.ascx" target="content\Blocks\Core\SignatureDocumentTemplateDetail.ascx" />
     <file src="content\Blocks\Core\SignatureDocumentTemplateDetail.ascx.cs" target="content\Blocks\Core\SignatureDocumentTemplateDetail.ascx.cs" />
-    <file src="content\Blocks\Core\SignatureDocumentTemplateList.ascx.cs" target="content\Blocks\Core\SignatureDocumentTemplateList.ascx.cs" />
     <file src="content\Blocks\Core\TagDetail.ascx" target="content\Blocks\Core\TagDetail.ascx" />
     <file src="content\Blocks\Core\TagDetail.ascx.cs" target="content\Blocks\Core\TagDetail.ascx.cs" />
     <file src="content\Blocks\Core\TagList.ascx.cs" target="content\Blocks\Core\TagList.ascx.cs" />
@@ -327,7 +322,6 @@
     <file src="content\Blocks\Crm\PersonDetail\PersonHistory.ascx" target="content\Blocks\Crm\PersonDetail\PersonHistory.ascx" />
     <file src="content\Blocks\Crm\PersonDetail\PersonHistory.ascx.cs" target="content\Blocks\Crm\PersonDetail\PersonHistory.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\Relationships.ascx" target="content\Blocks\Crm\PersonDetail\Relationships.ascx" />
-    <file src="content\Blocks\Crm\PersonDetail\Relationships.ascx.cs" target="content\Blocks\Crm\PersonDetail\Relationships.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\SignalList.ascx" target="content\Blocks\Crm\PersonDetail\SignalList.ascx" />
     <file src="content\Blocks\Crm\PersonDetail\SignalList.ascx.cs" target="content\Blocks\Crm\PersonDetail\SignalList.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\TransactionLinks.ascx.cs" target="content\Blocks\Crm\PersonDetail\TransactionLinks.ascx.cs" />
@@ -357,7 +351,6 @@
     <file src="content\Blocks\Crm\PersonDuplicateList.ascx.cs" target="content\Blocks\Crm\PersonDuplicateList.ascx.cs" />
     <file src="content\Blocks\Crm\PersonMerge.ascx" target="content\Blocks\Crm\PersonMerge.ascx" />
     <file src="content\Blocks\Crm\PersonMerge.ascx.cs" target="content\Blocks\Crm\PersonMerge.ascx.cs" />
-    <file src="content\Blocks\Crm\PersonMergeRequestList.ascx.cs" target="content\Blocks\Crm\PersonMergeRequestList.ascx.cs" />
     <file src="content\Blocks\Crm\PersonPageViews.ascx" target="content\Blocks\Crm\PersonPageViews.ascx" />
     <file src="content\Blocks\Crm\PersonPageViews.ascx.cs" target="content\Blocks\Crm\PersonPageViews.ascx.cs" />
     <file src="content\Blocks\Crm\PersonPreferences.ascx.cs" target="content\Blocks\Crm\PersonPreferences.ascx.cs" />
@@ -367,9 +360,7 @@
     <file src="content\Blocks\Crm\PersonSignalTypeList.ascx" target="content\Blocks\Crm\PersonSignalTypeList.ascx" />
     <file src="content\Blocks\Crm\PersonSignalTypeList.ascx.cs" target="content\Blocks\Crm\PersonSignalTypeList.ascx.cs" />
     <file src="content\Blocks\Crm\PersonUpdate.Kiosk.ascx.cs" target="content\Blocks\Crm\PersonUpdate.Kiosk.ascx.cs" />
-    <file src="content\Blocks\Crm\PhotoOptOut.ascx.cs" target="content\Blocks\Crm\PhotoOptOut.ascx.cs" />
     <file src="content\Blocks\Crm\PhotoSendRequest.ascx.cs" target="content\Blocks\Crm\PhotoSendRequest.ascx.cs" />
-    <file src="content\Blocks\Crm\PhotoUpload.ascx.cs" target="content\Blocks\Crm\PhotoUpload.ascx.cs" />
     <file src="content\Blocks\Crm\PhotoVerify.ascx" target="content\Blocks\Crm\PhotoVerify.ascx" />
     <file src="content\Blocks\Crm\PhotoVerify.ascx.cs" target="content\Blocks\Crm\PhotoVerify.ascx.cs" />
     <file src="content\Blocks\Event\CalendarContentChannelItemList.ascx.cs" target="content\Blocks\Event\CalendarContentChannelItemList.ascx.cs" />
@@ -387,7 +378,6 @@
     <file src="content\Blocks\Event\EventItemOccurrenceDetail.ascx.cs" target="content\Blocks\Event\EventItemOccurrenceDetail.ascx.cs" />
     <file src="content\Blocks\Event\EventItemOccurrenceLava.ascx.cs" target="content\Blocks\Event\EventItemOccurrenceLava.ascx.cs" />
     <file src="content\Blocks\Event\EventItemOccurrenceList.ascx" target="content\Blocks\Event\EventItemOccurrenceList.ascx" />
-    <file src="content\Blocks\Event\EventItemOccurrenceList.ascx.cs" target="content\Blocks\Event\EventItemOccurrenceList.ascx.cs" />
     <file src="content\Blocks\Event\EventItemOccurrenceListByAudienceLava.ascx.cs" target="content\Blocks\Event\EventItemOccurrenceListByAudienceLava.ascx.cs" />
     <file src="content\Blocks\Event\EventItemOccurrenceListLava.ascx.cs" target="content\Blocks\Event\EventItemOccurrenceListLava.ascx.cs" />
     <file src="content\Blocks\Event\EventItemOccurrencesSearchLava.ascx.cs" target="content\Blocks\Event\EventItemOccurrencesSearchLava.ascx.cs" />
@@ -433,17 +423,14 @@
     <file src="content\Blocks\Finance\BusinessDetail.ascx.cs" target="content\Blocks\Finance\BusinessDetail.ascx.cs" />
     <file src="content\Blocks\Finance\BusinessList.ascx.cs" target="content\Blocks\Finance\BusinessList.ascx.cs" />
     <file src="content\Blocks\Finance\ContributionStatementLava.ascx.cs" target="content\Blocks\Finance\ContributionStatementLava.ascx.cs" />
-    <file src="content\Blocks\Finance\ContributionStatementListLava.ascx.cs" target="content\Blocks\Finance\ContributionStatementListLava.ascx.cs" />
     <file src="content\Blocks\Finance\ConvertBusiness.ascx" target="content\Blocks\Finance\ConvertBusiness.ascx" />
     <file src="content\Blocks\Finance\ConvertBusiness.ascx.cs" target="content\Blocks\Finance\ConvertBusiness.ascx.cs" />
     <file src="content\Blocks\Finance\GatewayDetail.ascx" target="content\Blocks\Finance\GatewayDetail.ascx" />
     <file src="content\Blocks\Finance\GatewayDetail.ascx.cs" target="content\Blocks\Finance\GatewayDetail.ascx.cs" />
-    <file src="content\Blocks\Finance\GatewayList.ascx.cs" target="content\Blocks\Finance\GatewayList.ascx.cs" />
     <file src="content\Blocks\Finance\GivingAnalytics.ascx" target="content\Blocks\Finance\GivingAnalytics.ascx" />
     <file src="content\Blocks\Finance\GivingAnalytics.ascx.cs" target="content\Blocks\Finance\GivingAnalytics.ascx.cs" />
     <file src="content\Blocks\Finance\GivingTypeContextPicker.ascx.cs" target="content\Blocks\Finance\GivingTypeContextPicker.ascx.cs" />
     <file src="content\Blocks\Finance\PledgeAnalytics.ascx" target="content\Blocks\Finance\PledgeAnalytics.ascx" />
-    <file src="content\Blocks\Finance\PledgeAnalytics.ascx.cs" target="content\Blocks\Finance\PledgeAnalytics.ascx.cs" />
     <file src="content\Blocks\Finance\PledgeDetail.ascx" target="content\Blocks\Finance\PledgeDetail.ascx" />
     <file src="content\Blocks\Finance\PledgeDetail.ascx.cs" target="content\Blocks\Finance\PledgeDetail.ascx.cs" />
     <file src="content\Blocks\Finance\PledgeEntry.ascx" target="content\Blocks\Finance\PledgeEntry.ascx" />
@@ -453,7 +440,6 @@
     <file src="content\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" />
     <file src="content\Blocks\Finance\ScheduledTransactionList.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionList.ascx.cs" />
     <file src="content\Blocks\Finance\ScheduledTransactionListLiquid.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionListLiquid.ascx.cs" />
-    <file src="content\Blocks\Finance\ScheduledTransactionSummary.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionSummary.ascx.cs" />
     <file src="content\Blocks\Finance\ScheduledTransactionView.ascx" target="content\Blocks\Finance\ScheduledTransactionView.ascx" />
     <file src="content\Blocks\Finance\ScheduledTransactionView.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionView.ascx.cs" />
     <file src="content\Blocks\Finance\TransactionDetail.ascx" target="content\Blocks\Finance\TransactionDetail.ascx" />
@@ -472,18 +458,14 @@
     <file src="content\Blocks\Finance\TransactionYearlySummaryLava.ascx.cs" target="content\Blocks\Finance\TransactionYearlySummaryLava.ascx.cs" />
     <file src="content\Blocks\Follow\EventDetail.ascx" target="content\Blocks\Follow\EventDetail.ascx" />
     <file src="content\Blocks\Follow\EventDetail.ascx.cs" target="content\Blocks\Follow\EventDetail.ascx.cs" />
-    <file src="content\Blocks\Follow\EventList.ascx.cs" target="content\Blocks\Follow\EventList.ascx.cs" />
-    <file src="content\Blocks\Follow\EventSubscription.ascx.cs" target="content\Blocks\Follow\EventSubscription.ascx.cs" />
     <file src="content\Blocks\Follow\PersonFollowingList.ascx.cs" target="content\Blocks\Follow\PersonFollowingList.ascx.cs" />
     <file src="content\Blocks\Follow\PersonSuggestionList.ascx.cs" target="content\Blocks\Follow\PersonSuggestionList.ascx.cs" />
     <file src="content\Blocks\Follow\PersonSuggestionNotice.ascx.cs" target="content\Blocks\Follow\PersonSuggestionNotice.ascx.cs" />
     <file src="content\Blocks\Follow\SuggestionDetail.ascx" target="content\Blocks\Follow\SuggestionDetail.ascx" />
     <file src="content\Blocks\Follow\SuggestionDetail.ascx.cs" target="content\Blocks\Follow\SuggestionDetail.ascx.cs" />
-    <file src="content\Blocks\Follow\SuggestionList.ascx.cs" target="content\Blocks\Follow\SuggestionList.ascx.cs" />
     <file src="content\Blocks\Fundraising\FundraisingDonationEntry.ascx.cs" target="content\Blocks\Fundraising\FundraisingDonationEntry.ascx.cs" />
     <file src="content\Blocks\Fundraising\FundraisingDonationList.ascx" target="content\Blocks\Fundraising\FundraisingDonationList.ascx" />
     <file src="content\Blocks\Fundraising\FundraisingDonationList.ascx.cs" target="content\Blocks\Fundraising\FundraisingDonationList.ascx.cs" />
-    <file src="content\Blocks\Fundraising\FundraisingLeaderToolbox.ascx.cs" target="content\Blocks\Fundraising\FundraisingLeaderToolbox.ascx.cs" />
     <file src="content\Blocks\Fundraising\FundraisingList.ascx.cs" target="content\Blocks\Fundraising\FundraisingList.ascx.cs" />
     <file src="content\Blocks\Fundraising\FundraisingOpportunityView.ascx.cs" target="content\Blocks\Fundraising\FundraisingOpportunityView.ascx.cs" />
     <file src="content\Blocks\Fundraising\FundraisingParticipant.ascx" target="content\Blocks\Fundraising\FundraisingParticipant.ascx" />
@@ -578,7 +560,6 @@
     <file src="content\Blocks\Reporting\PowerBiReportViewer.ascx.cs" target="content\Blocks\Reporting\PowerBiReportViewer.ascx.cs" />
     <file src="content\Blocks\Reporting\ReportDetail.ascx" target="content\Blocks\Reporting\ReportDetail.ascx" />
     <file src="content\Blocks\Reporting\ReportDetail.ascx.cs" target="content\Blocks\Reporting\ReportDetail.ascx.cs" />
-    <file src="content\Blocks\Reporting\ReportList.ascx.cs" target="content\Blocks\Reporting\ReportList.ascx.cs" />
     <file src="content\Blocks\Reporting\ServiceMetricsEntry.ascx" target="content\Blocks\Reporting\ServiceMetricsEntry.ascx" />
     <file src="content\Blocks\Reporting\ServiceMetricsEntry.ascx.cs" target="content\Blocks\Reporting\ServiceMetricsEntry.ascx.cs" />
     <file src="content\Blocks\Security\BackgroundCheck\CheckrRequestList.ascx" target="content\Blocks\Security\BackgroundCheck\CheckrRequestList.ascx" />
@@ -616,14 +597,9 @@
     <file src="content\Blocks\Security\VerifySecurity.ascx.cs" target="content\Blocks\Security\VerifySecurity.ascx.cs" />
     <file src="content\Blocks\Store\AccountRedirect.ascx.cs" target="content\Blocks\Store\AccountRedirect.ascx.cs" />
     <file src="content\Blocks\Store\LinkOrganization.ascx.cs" target="content\Blocks\Store\LinkOrganization.ascx.cs" />
-    <file src="content\Blocks\Store\PackageCategoryListLava.ascx.cs" target="content\Blocks\Store\PackageCategoryListLava.ascx.cs" />
     <file src="content\Blocks\Store\PackageDetail.ascx.cs" target="content\Blocks\Store\PackageDetail.ascx.cs" />
-    <file src="content\Blocks\Store\PackageDetailLava.ascx.cs" target="content\Blocks\Store\PackageDetailLava.ascx.cs" />
     <file src="content\Blocks\Store\PackageInstall.ascx.cs" target="content\Blocks\Store\PackageInstall.ascx.cs" />
-    <file src="content\Blocks\Store\PackageListLava.ascx.cs" target="content\Blocks\Store\PackageListLava.ascx.cs" />
     <file src="content\Blocks\Store\PackageRating.ascx" target="content\Blocks\Store\PackageRating.ascx" />
-    <file src="content\Blocks\Store\PackageRating.ascx.cs" target="content\Blocks\Store\PackageRating.ascx.cs" />
-    <file src="content\Blocks\Store\PromoListLava.ascx.cs" target="content\Blocks\Store\PromoListLava.ascx.cs" />
     <file src="content\Blocks\Store\PurchasedPackages.ascx" target="content\Blocks\Store\PurchasedPackages.ascx" />
     <file src="content\Blocks\Store\PurchasedPackages.ascx.cs" target="content\Blocks\Store\PurchasedPackages.ascx.cs" />
     <file src="content\Blocks\Utility\DefinedTypeCheckList.ascx.cs" target="content\Blocks\Utility\DefinedTypeCheckList.ascx.cs" />
@@ -634,10 +610,7 @@
     <file src="content\Blocks\Utility\InternalCommunicationView.ascx.cs" target="content\Blocks\Utility\InternalCommunicationView.ascx.cs" />
     <file src="content\Blocks\Utility\StarkDetail.ascx" target="content\Blocks\Utility\StarkDetail.ascx" />
     <file src="content\Blocks\Utility\StarkDetail.ascx.cs" target="content\Blocks\Utility\StarkDetail.ascx.cs" />
-    <file src="content\Blocks\Utility\StarkDynamicAttributes.ascx.cs" target="content\Blocks\Utility\StarkDynamicAttributes.ascx.cs" />
     <file src="content\Blocks\Utility\StarkList.ascx" target="content\Blocks\Utility\StarkList.ascx" />
-    <file src="content\Blocks\Utility\StarkList.ascx.cs" target="content\Blocks\Utility\StarkList.ascx.cs" />
-    <file src="content\Blocks\WorkFlow\ActivateWorkflow.ascx.cs" target="content\Blocks\WorkFlow\ActivateWorkflow.ascx.cs" />
     <file src="content\Blocks\WorkFlow\MyWorkflows.ascx.cs" target="content\Blocks\WorkFlow\MyWorkflows.ascx.cs" />
     <file src="content\Blocks\WorkFlow\MyWorkflowsLava.ascx.cs" target="content\Blocks\WorkFlow\MyWorkflowsLava.ascx.cs" />
     <file src="content\Blocks\WorkFlow\WorkflowDetail.ascx" target="content\Blocks\WorkFlow\WorkflowDetail.ascx" />
@@ -736,6 +709,7 @@
     <file src="content\Styles\rock-components\upload-controls.less" target="content\Styles\rock-components\upload-controls.less" />
     <file src="content\Styles\rock-components\wizard.less" target="content\Styles\rock-components\wizard.less" />
     <file src="content\Styles\developer.css" target="content\Styles\developer.css" />
+    <file src="content\Styles\_blocks-checkinadmin.less" target="content\Styles\_blocks-checkinadmin.less" />
     <file src="content\Styles\_blocks-cms.less" target="content\Styles\_blocks-cms.less" />
     <file src="content\Styles\_blocks-communication.less" target="content\Styles\_blocks-communication.less" />
     <file src="content\Styles\_blocks-core.less" target="content\Styles\_blocks-core.less" />
@@ -860,7 +834,6 @@
     <file src="content\Themes\LandingPage\Styles\bootstrap.less" target="content\Themes\LandingPage\Styles\bootstrap.less" />
     <file src="content\Themes\LandingPage\Styles\theme.css" target="content\Themes\LandingPage\Styles\theme.css" />
     <file src="content\Themes\LandingPage\Styles\theme.less" target="content\Themes\LandingPage\Styles\theme.less" />
-    <file src="content\Themes\LandingPage\Styles\_css-overrides.less" target="content\Themes\LandingPage\Styles\_css-overrides.less" />
     <file src="content\Themes\LandingPage\Styles\_mixins.less" target="content\Themes\LandingPage\Styles\_mixins.less" />
     <file src="content\Themes\LandingPage\Styles\_print.less" target="content\Themes\LandingPage\Styles\_print.less" />
     <file src="content\Themes\LandingPage\Styles\_root.less" target="content\Themes\LandingPage\Styles\_root.less" />
@@ -1000,7 +973,6 @@
     <file src="content\Webhooks\Mailgun.ashx" target="content\Webhooks\Mailgun.ashx" />
     <file src="content\Webhooks\PowerBiAuth.ashx" target="content\Webhooks\PowerBiAuth.ashx" />
     <file src="content\Webhooks\TextToWorkflowTwilio.ashx" target="content\Webhooks\TextToWorkflowTwilio.ashx" />
-    <file src="content\Webhooks\Twilio.ashx" target="content\Webhooks\Twilio.ashx" />
     <file src="content\app_offline-template.htm" target="content\app_offline-template.htm" />
     <file src="content\error.aspx" target="content\error.aspx" />
     <file src="content\error.aspx.cs" target="content\error.aspx.cs" />

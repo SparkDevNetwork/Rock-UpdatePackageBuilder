@@ -601,7 +601,10 @@ namespace RockPackageBuilder
                 {
                     previousUpdatePackageId = match.Groups[1].Value;
                     previousUpdatePackageVersion = match.Groups[2].Value;
-                    break;
+                    if ( previousUpdatePackageVersion == options.LastVersionTag )
+                    {
+                        break;
+                    }
                 }
             }
 
