@@ -1000,6 +1000,7 @@
     <file src="lib\Rock.Checkr.dll" target="lib\Rock.Checkr.dll" />
     <file src="lib\Rock.dll" target="lib\Rock.dll" />
     <file src="lib\Rock.Mailgun.dll" target="lib\Rock.Mailgun.dll" />
+    <file src="lib\Rock.Mandrill.dll" target="lib\Rock.Mandrill.dll" />
     <file src="lib\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
     <file src="lib\Rock.NMI.dll" target="lib\Rock.NMI.dll" />
     <file src="lib\Rock.PayFlowPro.dll" target="lib\Rock.PayFlowPro.dll" />
@@ -1007,6 +1008,7 @@
     <file src="lib\Rock.Security.Authentication.Auth0.dll" target="lib\Rock.Security.Authentication.Auth0.dll" />
     <file src="lib\Rock.SignNow.dll" target="lib\Rock.SignNow.dll" />
     <file src="lib\Rock.Slingshot.dll" target="lib\Rock.Slingshot.dll" />
+    <file src="lib\Rock.Slingshot.Model.dll" target="lib\Rock.Slingshot.Model.dll" />
     <file src="lib\Rock.StatementGenerator.dll" target="lib\Rock.StatementGenerator.dll" />
     <file src="lib\Rock.Version.dll" target="lib\Rock.Version.dll" />
     <file src="lib\Rock.WebStartup.dll" target="lib\Rock.WebStartup.dll" />
