@@ -56,10 +56,10 @@
     <file src="content\Assets\Lava\Store\PromoList.lava" target="content\Assets\Lava\Store\PromoList.lava" />
     <file src="content\Assets\Lava\NoteViewItem.lava" target="content\Assets\Lava\NoteViewItem.lava" />
     <file src="content\Assets\Lava\NoteViewList.lava" target="content\Assets\Lava\NoteViewList.lava" />
-    <file src="content\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="content\bin\Rock.Rest.XML" target="content\bin\Rock.Rest.XML" />
     <file src="content\bin\Rock.Security.Authentication.Auth0.xml" target="content\bin\Rock.Security.Authentication.Auth0.xml" />
     <file src="content\bin\Rock.StatementGenerator.xml" target="content\bin\Rock.StatementGenerator.xml" />
-    <file src="content\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="content\bin\Rock.XML" target="content\bin\Rock.XML" />
     <file src="content\Blocks\Administration\DataAutomationSettings.ascx" target="content\Blocks\Administration\DataAutomationSettings.ascx" />
     <file src="content\Blocks\Administration\DataAutomationSettings.ascx.cs" target="content\Blocks\Administration\DataAutomationSettings.ascx.cs" />
     <file src="content\Blocks\Administration\ExternalApplicationList.ascx.cs" target="content\Blocks\Administration\ExternalApplicationList.ascx.cs" />
