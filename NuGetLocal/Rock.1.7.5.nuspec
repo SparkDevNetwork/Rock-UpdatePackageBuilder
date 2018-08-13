@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Rock</id>
+    <version>1.7.5</version>
+    <title>Rock McKinley 7.5</title>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Rock McKinley 7.5 fixes issues that were reported during the previous release(s) (See Release Notes for details).</description>
+    <releaseNotes>Rock McKinley 7.5
+
++ Increased security for social media endpoints.</releaseNotes>
+    <copyright>Copyright © Spark Development Network 2011-2018</copyright>
+    <tags>requires-1.7.0</tags>
+    <dependencies>
+      <dependency id="RockUpdate-1-7-5" version="1.7.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="content\Readme.txt" target="content\Readme.txt" />
+  </files>
+</package>
