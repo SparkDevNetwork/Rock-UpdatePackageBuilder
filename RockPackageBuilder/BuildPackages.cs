@@ -145,7 +145,7 @@ namespace RockPackageBuilder
 
             string publicVersion = options.CurrentVersionTag.Substring( 2 );
 
-            _defaultDescription = $"Rock McKinley {publicVersion} fixes issues that were reported during the previous release(s) (See &lt;a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'&gt;Release Notes&lt;/a&gt; for details).";
+            _defaultDescription = $"Rock McKinley {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'>Release Notes</a> for details).";
 
             string packagePath = FullPathOfRockPackageFile( options.PackageFolder, options.CurrentVersionTag );
             if ( File.Exists( packagePath ) )
@@ -252,6 +252,7 @@ namespace RockPackageBuilder
                 Tag tag = repo.Tags[options.CurrentVersionTag]; // current tag
                 if ( tag == null )
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you forget to tag this release?", options.CurrentVersionTag ) );
                     Exit();
                 }
@@ -259,6 +260,7 @@ namespace RockPackageBuilder
                 Tag previousTag = repo.Tags[options.LastVersionTag];
                 if ( previousTag == null)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(string.Format("Error: I don't see a {0} tag.  Did you enter the correct last version tag?", options.LastVersionTag));
                     Exit();
                 }
@@ -465,10 +467,12 @@ namespace RockPackageBuilder
                 if ( file.ToLower() == "web.config" )
                 {
                     Console.WriteLine( "" );
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine( "--> ACTION! web.config file was changed since last build. Figure out" );
                     Console.WriteLine( "            how you're going to handle that. You'll probably have to" );
                     Console.WriteLine( "            create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates" );
                     Console.WriteLine( "            wiki page for details on doing that." );
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     continue;
                 }
                 
@@ -756,7 +760,7 @@ namespace RockPackageBuilder
 
             string publicVersion = version.Substring( 2 );
 
-            manifest.Metadata.ReleaseNotes = $"You can read the details on the official &lt;a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'&gt;Release Notes&lt;/a&gt; page.";
+            manifest.Metadata.ReleaseNotes = $"<br /> You can read the details on the official <a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'>Release Notes</a> page.";
 
             string tempReadmeFileRelativePath = Path.Combine( "Readme.txt" );
             string tempReadmeFileFullPath = Path.Combine( webRootPath, tempReadmeFileRelativePath );
@@ -813,7 +817,9 @@ namespace RockPackageBuilder
         {
             if ( !File.Exists( Path.Combine( webRootPath, filePath ) ) )
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine( "ERROR: Unable to find {0} to add to package lib!", filePath );
+                Console.ForegroundColor = ConsoleColor.Gray;
                 return;
             }
 
@@ -843,7 +849,9 @@ namespace RockPackageBuilder
         {
             if ( !File.Exists( Path.Combine( webRootPath, filePath ) ) )
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine( "ERROR: Unable to find {0} to add to package content!", filePath );
+                Console.ForegroundColor = ConsoleColor.Gray;
                 return;
             }
 
