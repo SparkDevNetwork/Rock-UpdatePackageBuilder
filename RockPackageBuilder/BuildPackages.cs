@@ -143,6 +143,10 @@ namespace RockPackageBuilder
             Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
             Console.WriteLine( "" );
 
+            string publicVersion = options.CurrentVersionTag.Substring( 2 );
+
+            _defaultDescription = $"Rock McKinley {publicVersion} fixes issues that were reported during the previous release(s) (See &lt;a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'&gt;Release Notes&lt;/a&gt; for details).";
+
             string packagePath = FullPathOfRockPackageFile( options.PackageFolder, options.CurrentVersionTag );
             if ( File.Exists( packagePath ) )
             {
@@ -166,7 +170,7 @@ namespace RockPackageBuilder
                             _defaultDescription = existingManifest.Metadata.Description;
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         // intentionally ignore
                     }
@@ -750,27 +754,15 @@ namespace RockPackageBuilder
             manifest.Files = new List<ManifestFile>();
             string webRootPath = Path.Combine( repoPath, "RockWeb" );
 
-            // Must add at least one file.
-            string readmeFileRelativePath = "Readme.txt";
-            string readmeFileFullPath = Path.Combine( webRootPath, readmeFileRelativePath );
-            var fullReadmeLines = System.IO.File.ReadAllLines( readmeFileFullPath );
-            StringBuilder mostRecentReleaseNotes = new StringBuilder();
+            string publicVersion = version.Substring( 2 );
 
-            foreach ( var line in fullReadmeLines )
-            {
-                if ( line.StartsWith( "Rock McKinley " ) )
-                {
-                    if ( mostRecentReleaseNotes.Length > 1 )
-                    {
-                        break;
-                    }
-                }
+            manifest.Metadata.ReleaseNotes = $"You can read the details on the official &lt;a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'&gt;Release Notes&lt;/a&gt; page.";
 
-                mostRecentReleaseNotes.AppendLine( line );
-            }
+            string tempReadmeFileRelativePath = Path.Combine( "Readme.txt" );
+            string tempReadmeFileFullPath = Path.Combine( webRootPath, tempReadmeFileRelativePath );
+            File.WriteAllText( tempReadmeFileFullPath, "You can read the details on the official https://www.rockrms.com/releasenotes page." );
 
-            manifest.Metadata.ReleaseNotes = mostRecentReleaseNotes.ToString().Trim();
-            AddToManifest( manifest, readmeFileRelativePath, webRootPath );
+            AddToManifest( manifest, tempReadmeFileRelativePath, webRootPath );
             manifest.Files = manifest.Files.OrderBy(a => a.Source).ToList();
 
             string packageFileName = FullPathOfRockPackageFile( packageFolder, version );
@@ -861,7 +853,7 @@ namespace RockPackageBuilder
             var item = new ManifestFile()
             {
                 Source = Path.Combine( webRootPath, filePath ),
-                Target = Path.Combine( "content", filePath )
+                Target = Path.Combine( "content", filePath ),
             };
 
             manifest.Files.Add( item );
