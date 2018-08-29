@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-8-2</id>
+    <version>1.8.2</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-8-1" version="1.8.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\deletefile.lst" target="content\App_Data\deletefile.lst" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Checkr.dll" target="lib\Rock.Checkr.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\Assets\spark.png" target="content\Blocks\Administration\Assets\spark.png" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\DataAutomationSettings.ascx" target="content\Blocks\Administration\DataAutomationSettings.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\DataAutomationSettings.ascx.cs" target="content\Blocks\Administration\DataAutomationSettings.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\SparkDataSettings.ascx" target="content\Blocks\Administration\SparkDataSettings.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\SparkDataSettings.ascx.cs" target="content\Blocks\Administration\SparkDataSettings.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\CheckinScheduledLocations.ascx.cs" target="content\Blocks\CheckIn\CheckinScheduledLocations.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Connection\ConnectionOpportunitySignup.ascx.cs" target="content\Blocks\Connection\ConnectionOpportunitySignup.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Connection\ConnectionTypeDetail.ascx" target="content\Blocks\Connection\ConnectionTypeDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Connection\ConnectionTypeDetail.ascx.cs" target="content\Blocks\Connection\ConnectionTypeDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\CampusDetail.ascx" target="content\Blocks\Core\CampusDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\CampusDetail.ascx.cs" target="content\Blocks\Core\CampusDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\DefinedTypeList.ascx.cs" target="content\Blocks\Core\DefinedTypeList.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\FamilyPreRegistration.ascx.cs" target="content\Blocks\Crm\FamilyPreRegistration.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\NcoaResults.ascx" target="content\Blocks\Crm\NcoaResults.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\NcoaResults.ascx.cs" target="content\Blocks\Crm\NcoaResults.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Event\RegistrationDetail.ascx.cs" target="content\Blocks\Event\RegistrationDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\PledgeEntry.ascx.cs" target="content\Blocks\Finance\PledgeEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionEntry.ascx.cs" target="content\Blocks\Finance\TransactionEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupRegistration.ascx.cs" target="content\Blocks\Groups\GroupRegistration.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Prayer\PrayerRequestEntry.ascx" target="content\Blocks\Prayer\PrayerRequestEntry.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Prayer\PrayerRequestEntry.ascx.cs" target="content\Blocks\Prayer\PrayerRequestEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\WorkFlow\WorkflowTypeDetail.ascx.cs" target="content\Blocks\WorkFlow\WorkflowTypeDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_blocks-reporting.less" target="content\Styles\_blocks-reporting.less" />
+  </files>
+</package>
