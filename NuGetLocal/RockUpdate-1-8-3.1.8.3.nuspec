@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-8-3</id>
+    <version>1.8.3</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-8-2" version="1.8.2" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.eot" target="content\Assets\Fonts\FontAwesome\fa-brands-400.eot" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.svg" target="content\Assets\Fonts\FontAwesome\fa-brands-400.svg" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-brands-400.ttf" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff2" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.eot" target="content\Assets\Fonts\FontAwesome\fa-regular-400.eot" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.svg" target="content\Assets\Fonts\FontAwesome\fa-regular-400.svg" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-regular-400.ttf" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff2" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.eot" target="content\Assets\Fonts\FontAwesome\fa-solid-900.eot" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.svg" target="content\Assets\Fonts\FontAwesome\fa-solid-900.svg" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.ttf" target="content\Assets\Fonts\FontAwesome\fa-solid-900.ttf" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff2" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff2" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Checkr.dll" target="lib\Rock.Checkr.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\DataAutomationSettings.ascx" target="content\Blocks\Administration\DataAutomationSettings.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\SparkDataSettings.ascx" target="content\Blocks\Administration\SparkDataSettings.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\SparkDataSettings.ascx.cs" target="content\Blocks\Administration\SparkDataSettings.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx.cs" target="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\Attributes.ascx.cs" target="content\Blocks\Core\Attributes.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\HistoryLog.ascx.cs" target="content\Blocks\Core\HistoryLog.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupMap.ascx.cs" target="content\Blocks\Groups\GroupMap.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupMemberList.ascx" target="content\Blocks\Groups\GroupMemberList.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupMemberList.ascx.cs" target="content\Blocks\Groups\GroupMemberList.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Reporting\DataViewDetail.ascx.cs" target="content\Blocks\Reporting\DataViewDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Reporting\DynamicHeatMap.ascx.cs" target="content\Blocks\Reporting\DynamicHeatMap.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Reporting\ReportDetail.ascx.cs" target="content\Blocks\Reporting\ReportDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Security\CaptivePortal.ascx" target="content\Blocks\Security\CaptivePortal.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Security\CaptivePortal.ascx.cs" target="content\Blocks\Security\CaptivePortal.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\_icons.less" target="content\Styles\FontAwesome\_icons.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\_shims.less" target="content\Styles\FontAwesome\_shims.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\_variables.less" target="content\Styles\FontAwesome\_variables.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\brands.less" target="content\Styles\FontAwesome\brands.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\fa-brands.less" target="content\Styles\FontAwesome\fa-brands.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\fa-regular.less" target="content\Styles\FontAwesome\fa-regular.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\fa-solid.less" target="content\Styles\FontAwesome\fa-solid.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\fontawesome.less" target="content\Styles\FontAwesome\fontawesome.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\regular.less" target="content\Styles\FontAwesome\regular.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\solid.less" target="content\Styles\FontAwesome\solid.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\v4-shims.less" target="content\Styles\FontAwesome\v4-shims.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\variables.less" target="content\Styles\FontAwesome\variables.less" />
+  </files>
+</package>
