@@ -40,6 +40,7 @@
     <file src="content\Blocks\Core\HistoryLog.ascx.cs" target="content\Blocks\Core\HistoryLog.ascx.cs" />
     <file src="content\Blocks\Crm\PersonDetail\EditGroup.ascx.cs" target="content\Blocks\Crm\PersonDetail\EditGroup.ascx.cs" />
     <file src="content\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
+    <file src="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" target="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" />
     <file src="content\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
     <file src="content\Blocks\Groups\GroupMap.ascx.cs" target="content\Blocks\Groups\GroupMap.ascx.cs" />
     <file src="content\Blocks\Groups\GroupMemberList.ascx" target="content\Blocks\Groups\GroupMemberList.ascx" />
