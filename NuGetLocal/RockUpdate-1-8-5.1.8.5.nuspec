@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-8-5</id>
+    <version>1.8.5</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-8-4" version="1.8.4" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\Global.asax.cs" target="content\App_Code\Global.asax.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\Mailgun.ashx.cs" target="content\App_Code\Mailgun.ashx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.eot" target="content\Assets\Fonts\FontAwesome\fa-brands-400.eot" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.svg" target="content\Assets\Fonts\FontAwesome\fa-brands-400.svg" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-brands-400.ttf" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff2" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.eot" target="content\Assets\Fonts\FontAwesome\fa-regular-400.eot" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.svg" target="content\Assets\Fonts\FontAwesome\fa-regular-400.svg" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-regular-400.ttf" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff2" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.eot" target="content\Assets\Fonts\FontAwesome\fa-solid-900.eot" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.svg" target="content\Assets\Fonts\FontAwesome\fa-solid-900.svg" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.ttf" target="content\Assets\Fonts\FontAwesome\fa-solid-900.ttf" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff2" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff2" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Lava\NoteViewItem.lava" target="content\Assets\Lava\NoteViewItem.lava" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Checkr.dll" target="lib\Rock.Checkr.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\SparkDataSettings.ascx" target="content\Blocks\Administration\SparkDataSettings.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\SystemSettings.ascx" target="content\Blocks\Administration\SystemSettings.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Administration\SystemSettings.ascx.cs" target="content\Blocks\Administration\SystemSettings.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\CheckinScheduleBuilder.ascx.cs" target="content\Blocks\CheckIn\CheckinScheduleBuilder.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Config\CheckinTypeDetail.ascx" target="content\Blocks\CheckIn\Config\CheckinTypeDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Config\CheckinTypeDetail.ascx.cs" target="content\Blocks\CheckIn\Config\CheckinTypeDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\EditFamily.ascx" target="content\Blocks\CheckIn\EditFamily.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\EditFamily.ascx.cs" target="content\Blocks\CheckIn\EditFamily.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\FamilySelect.ascx" target="content\Blocks\CheckIn\FamilySelect.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\FamilySelect.ascx.cs" target="content\Blocks\CheckIn\FamilySelect.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\MultiPersonSelect.ascx" target="content\Blocks\CheckIn\MultiPersonSelect.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\MultiPersonSelect.ascx.cs" target="content\Blocks\CheckIn\MultiPersonSelect.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\PersonSelect.ascx" target="content\Blocks\CheckIn\PersonSelect.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\PersonSelect.ascx.cs" target="content\Blocks\CheckIn\PersonSelect.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Search.ascx" target="content\Blocks\CheckIn\Search.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Search.ascx.cs" target="content\Blocks\CheckIn\Search.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Success.ascx" target="content\Blocks\CheckIn\Success.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Success.ascx.cs" target="content\Blocks\CheckIn\Success.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\TimeSelect.ascx" target="content\Blocks\CheckIn\TimeSelect.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Welcome.ascx" target="content\Blocks\CheckIn\Welcome.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Welcome.ascx.cs" target="content\Blocks\CheckIn\Welcome.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\ContentChannelItemView.ascx.cs" target="content\Blocks\Cms\ContentChannelItemView.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\ContentChannelViewDetail.ascx.cs" target="content\Blocks\Cms\ContentChannelViewDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\EmailForm.ascx.cs" target="content\Blocks\Cms\EmailForm.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\LavaShortcodeList.ascx" target="content\Blocks\Cms\LavaShortcodeList.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\LavaShortcodeList.ascx.cs" target="content\Blocks\Cms\LavaShortcodeList.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PageMenu.ascx.cs" target="content\Blocks\Cms\PageMenu.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PageZoneBlocksEditor.ascx.cs" target="content\Blocks\Cms\PageZoneBlocksEditor.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationDetail.ascx.cs" target="content\Blocks\Communication\CommunicationDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationEntry.ascx" target="content\Blocks\Communication\CommunicationEntry.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationEntry.ascx.cs" target="content\Blocks\Communication\CommunicationEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx.cs" target="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationListSubscribe.ascx.cs" target="content\Blocks\Communication\CommunicationListSubscribe.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationRecipientList.ascx" target="content\Blocks\Communication\CommunicationRecipientList.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationRecipientList.ascx.cs" target="content\Blocks\Communication\CommunicationRecipientList.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\EmailAnalytics.ascx.cs" target="content\Blocks\Communication\EmailAnalytics.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\EmailPreferenceEntry.ascx.cs" target="content\Blocks\Communication\EmailPreferenceEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\TemplateDetail.ascx.cs" target="content\Blocks\Communication\TemplateDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Connection\ConnectionRequestDetail.ascx.cs" target="content\Blocks\Connection\ConnectionRequestDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Connection\MyConnectionOpportunities.ascx.cs" target="content\Blocks\Connection\MyConnectionOpportunities.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\Attributes.ascx.cs" target="content\Blocks\Core\Attributes.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\BlockProperties.ascx" target="content\Blocks\Core\BlockProperties.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\DeviceDetail.ascx" target="content\Blocks\Core\DeviceDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\DeviceDetail.ascx.cs" target="content\Blocks\Core\DeviceDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\BulkUpdate.ascx.cs" target="content\Blocks\Crm\BulkUpdate.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\FamilyPreRegistration.ascx.cs" target="content\Blocks\Crm\FamilyPreRegistration.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\NcoaResults.ascx" target="content\Blocks\Crm\NcoaResults.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\NcoaResults.ascx.cs" target="content\Blocks\Crm\NcoaResults.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\PersonDetail\AddGroup.ascx.cs" target="content\Blocks\Crm\PersonDetail\AddGroup.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\PersonDetail\Bio.ascx.cs" target="content\Blocks\Crm\PersonDetail\Bio.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\PersonDuplicateList.ascx" target="content\Blocks\Crm\PersonDuplicateList.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\PersonDuplicateList.ascx.cs" target="content\Blocks\Crm\PersonDuplicateList.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\PersonUpdate.Kiosk.ascx" target="content\Blocks\Crm\PersonUpdate.Kiosk.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Event\RegistrationInstanceDetail.ascx.cs" target="content\Blocks\Event\RegistrationInstanceDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Examples\ModelMap.ascx" target="content\Blocks\Examples\ModelMap.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Examples\ModelMap.ascx.cs" target="content\Blocks\Examples\ModelMap.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Examples\RockControlGallery.ascx" target="content\Blocks\Examples\RockControlGallery.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\ConvertBusiness.ascx.cs" target="content\Blocks\Finance\ConvertBusiness.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\PledgeDetail.ascx.cs" target="content\Blocks\Finance\PledgeDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\PledgeEntry.ascx.cs" target="content\Blocks\Finance\PledgeEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionDetail.ascx" target="content\Blocks\Finance\TransactionDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionEntry.ascx" target="content\Blocks\Finance\TransactionEntry.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionEntry.ascx.cs" target="content\Blocks\Finance\TransactionEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionEntry.Kiosk.ascx" target="content\Blocks\Finance\TransactionEntry.Kiosk.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Finance\TransactionReport.ascx.cs" target="content\Blocks\Finance\TransactionReport.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupAttendanceDetail.ascx.cs" target="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupDetail.ascx" target="content\Blocks\Groups\GroupDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" target="content\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupMemberDetail.ascx.cs" target="content\Blocks\Groups\GroupMemberDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupRegistration.ascx.cs" target="content\Blocks\Groups\GroupRegistration.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Prayer\PrayerRequestEntry.ascx.cs" target="content\Blocks\Prayer\PrayerRequestEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Reporting\DynamicHeatMap.ascx.cs" target="content\Blocks\Reporting\DynamicHeatMap.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Security\BackgroundCheck\ProtectMyMinistrySettings.ascx.cs" target="content\Blocks\Security\BackgroundCheck\ProtectMyMinistrySettings.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Security\CaptivePortal.ascx.cs" target="content\Blocks\Security\CaptivePortal.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Utility\IdleRedirect.ascx.cs" target="content\Blocks\Utility\IdleRedirect.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\WorkFlow\WorkflowTriggerDetail.ascx.cs" target="content\Blocks\WorkFlow\WorkflowTriggerDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\moment-with-locales.min.js" target="content\Scripts\moment-with-locales.min.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\buttonGroup.js" target="content\Scripts\Rock\Controls\buttonGroup.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\datePartsPicker.js" target="content\Scripts\Rock\Controls\datePartsPicker.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\dateRangePicker.js" target="content\Scripts\Rock\Controls\dateRangePicker.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\modal.js" target="content\Scripts\Rock\Controls\modal.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\noteEditor.js" target="content\Scripts\Rock\Controls\noteEditor.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\numberUpDownGroup.js" target="content\Scripts\Rock\Controls\numberUpDownGroup.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\scheduleBuilder.js" target="content\Scripts\Rock\Controls\scheduleBuilder.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Extensions\rockTree.js" target="content\Scripts\Rock\Extensions\rockTree.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\reportingInclude.js" target="content\Scripts\Rock\reportingInclude.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Validate\validation.js" target="content\Scripts\Rock\Validate\validation.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_blocks-core.less" target="content\Styles\_blocks-core.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_checkin-core.less" target="content\Styles\_checkin-core.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\_icons.less" target="content\Styles\FontAwesome\_icons.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\_shims.less" target="content\Styles\FontAwesome\_shims.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\_variables.less" target="content\Styles\FontAwesome\_variables.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\brands.less" target="content\Styles\FontAwesome\brands.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\fontawesome.less" target="content\Styles\FontAwesome\fontawesome.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\regular.less" target="content\Styles\FontAwesome\regular.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\solid.less" target="content\Styles\FontAwesome\solid.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\FontAwesome\v4-shims.less" target="content\Styles\FontAwesome\v4-shims.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\rock-components\picker-date.less" target="content\Styles\rock-components\picker-date.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\rock-components\picker-time.less" target="content\Styles\rock-components\picker-time.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinAdventureKids\Styles\_variables.less" target="content\Themes\CheckinAdventureKids\Styles\_variables.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinBlueCrystal\Styles\_variables.less" target="content\Themes\CheckinBlueCrystal\Styles\_variables.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinBlueCrystal\Styles\checkin-theme.css" target="content\Themes\CheckinBlueCrystal\Styles\checkin-theme.css" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinBlueCrystal\Styles\checkin-theme.less" target="content\Themes\CheckinBlueCrystal\Styles\checkin-theme.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinPark\Styles\_variables.css" target="content\Themes\CheckinPark\Styles\_variables.css" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinPark\Styles\_variables.less" target="content\Themes\CheckinPark\Styles\_variables.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\Rock\Assets\Lava\PageNav.lava" target="content\Themes\Rock\Assets\Lava\PageNav.lava" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\Rock\Assets\Scripts\theme.js" target="content\Themes\Rock\Assets\Scripts\theme.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\Rock\Layouts\Site.Master" target="content\Themes\Rock\Layouts\Site.Master" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\Rock\Styles\theme.css" target="content\Themes\Rock\Styles\theme.css" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\Rock\Styles\theme.less" target="content\Themes\Rock\Styles\theme.less" />
+  </files>
+</package>
