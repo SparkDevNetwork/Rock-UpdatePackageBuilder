@@ -14,6 +14,7 @@
   <files>
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\Global.asax.cs" target="content\App_Code\Global.asax.cs" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\Mailgun.ashx.cs" target="content\App_Code\Mailgun.ashx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\deletefile.lst" target="content\App_Data\deletefile.lst" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.eot" target="content\Assets\Fonts\FontAwesome\fa-brands-400.eot" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.svg" target="content\Assets\Fonts\FontAwesome\fa-brands-400.svg" />
@@ -145,7 +146,6 @@
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinBlueCrystal\Styles\_variables.less" target="content\Themes\CheckinBlueCrystal\Styles\_variables.less" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinBlueCrystal\Styles\checkin-theme.css" target="content\Themes\CheckinBlueCrystal\Styles\checkin-theme.css" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinBlueCrystal\Styles\checkin-theme.less" target="content\Themes\CheckinBlueCrystal\Styles\checkin-theme.less" />
-    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinPark\Styles\_variables.css" target="content\Themes\CheckinPark\Styles\_variables.css" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinPark\Styles\_variables.less" target="content\Themes\CheckinPark\Styles\_variables.less" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\Rock\Assets\Lava\PageNav.lava" target="content\Themes\Rock\Assets\Lava\PageNav.lava" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\Rock\Assets\Scripts\theme.js" target="content\Themes\Rock\Assets\Scripts\theme.js" />
