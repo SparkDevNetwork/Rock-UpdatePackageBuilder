@@ -15,6 +15,9 @@
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\BundleConfig.cs" target="content\App_Code\BundleConfig.cs" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\GetChannelFeed.cs" target="content\App_Code\GetChannelFeed.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\GetFile.ashx.cs" target="content\App_Code\GetFile.ashx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\GetImage.ashx.cs" target="content\App_Code\GetImage.ashx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\ImageUploader.ashx.cs" target="content\App_Code\ImageUploader.ashx.cs" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\deletefile.lst" target="content\App_Data\deletefile.lst" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.eot" target="content\Assets\Fonts\FontAwesome\fa-brands-400.eot" />
@@ -58,6 +61,7 @@
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\ContentChannelView.ascx.cs" target="content\Blocks\Cms\ContentChannelView.ascx.cs" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\ContentChannelViewDetail.ascx" target="content\Blocks\Cms\ContentChannelViewDetail.ascx" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\ContentChannelViewDetail.ascx.cs" target="content\Blocks\Cms\ContentChannelViewDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\FileManager.ascx.cs" target="content\Blocks\Cms\FileManager.ascx.cs" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\FontAwesomeSettings.ascx" target="content\Blocks\Cms\FontAwesomeSettings.ascx" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PublicProfileEdit.ascx" target="content\Blocks\Cms\PublicProfileEdit.ascx" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PublicProfileEdit.ascx.cs" target="content\Blocks\Cms\PublicProfileEdit.ascx.cs" />
@@ -116,6 +120,7 @@
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\datePicker.js" target="content\Scripts\Rock\Controls\datePicker.js" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\dateTimePicker.js" target="content\Scripts\Rock\Controls\dateTimePicker.js" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\slidingDateRangePicker.js" target="content\Scripts\Rock\Controls\slidingDateRangePicker.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\summernote\plugins\RockFileBrowser.js" target="content\Scripts\summernote\plugins\RockFileBrowser.js" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_forms.less" target="content\Styles\_forms.less" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_grid.less" target="content\Styles\_grid.less" />
     <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_rock-variables.less" target="content\Styles\_rock-variables.less" />
