@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-8-8</id>
+    <version>1.8.8</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-8-7" version="1.8.7" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock8\RockWeb\App_Code\GetChannelFeed.cs" target="content\App_Code\GetChannelFeed.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\App_Code\GetEventCalendarFeed.cs" target="content\App_Code\GetEventCalendarFeed.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\App_Data\deletefile.lst" target="content\App_Data\deletefile.lst" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Administration\PageProperties.ascx" target="content\Blocks\Administration\PageProperties.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Cms\ContentChannelViewDetail.ascx.cs" target="content\Blocks\Cms\ContentChannelViewDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Cms\FontAwesomeSettings.ascx.cs" target="content\Blocks\Cms\FontAwesomeSettings.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Cms\PublicProfileEdit.ascx" target="content\Blocks\Cms\PublicProfileEdit.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Cms\PublicProfileEdit.ascx.cs" target="content\Blocks\Cms\PublicProfileEdit.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Communication\CommunicationEntry.ascx" target="content\Blocks\Communication\CommunicationEntry.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Communication\CommunicationEntry.ascx.cs" target="content\Blocks\Communication\CommunicationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx.cs" target="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Core\MergeTemplateEntry.ascx.cs" target="content\Blocks\Core\MergeTemplateEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Crm\PersonDetail\EditGroup.ascx.cs" target="content\Blocks\Crm\PersonDetail\EditGroup.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Crm\PersonDetail\EditPerson.ascx" target="content\Blocks\Crm\PersonDetail\EditPerson.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Event\EventItemOccurrenceDetail.ascx" target="content\Blocks\Event\EventItemOccurrenceDetail.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Event\EventItemOccurrenceDetail.ascx.cs" target="content\Blocks\Event\EventItemOccurrenceDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Event\RegistrationInstanceDetail.ascx.cs" target="content\Blocks\Event\RegistrationInstanceDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Event\RegistrationTemplateDetail.ascx" target="content\Blocks\Event\RegistrationTemplateDetail.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Event\RegistrationTemplateDetail.ascx.cs" target="content\Blocks\Event\RegistrationTemplateDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\BenevolenceRequestList.ascx" target="content\Blocks\Finance\BenevolenceRequestList.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\GivingAnalytics.ascx" target="content\Blocks\Finance\GivingAnalytics.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\ScheduledTransactionListLiquid.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionListLiquid.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\TransactionEntityMatching.ascx" target="content\Blocks\Finance\TransactionEntityMatching.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\TransactionEntityMatching.ascx.cs" target="content\Blocks\Finance\TransactionEntityMatching.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Fundraising\FundraisingParticipant.ascx" target="content\Blocks\Fundraising\FundraisingParticipant.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Fundraising\FundraisingParticipant.ascx.cs" target="content\Blocks\Fundraising\FundraisingParticipant.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Groups\GroupAttendanceDetail.ascx.cs" target="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Groups\GroupFinder.ascx.cs" target="content\Blocks\Groups\GroupFinder.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Groups\GroupMap.ascx.cs" target="content\Blocks\Groups\GroupMap.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Groups\GroupTypeMap.ascx.cs" target="content\Blocks\Groups\GroupTypeMap.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Reporting\DynamicHeatMap.ascx" target="content\Blocks\Reporting\DynamicHeatMap.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Security\AccountEntry.ascx" target="content\Blocks\Security\AccountEntry.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Security\AccountEntry.ascx.cs" target="content\Blocks\Security\AccountEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Scripts\Rock\Controls\geoPicker.js" target="content\Scripts\Rock\Controls\geoPicker.js" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Scripts\Rock\Controls\numberUpDownGroup.js" target="content\Scripts\Rock\Controls\numberUpDownGroup.js" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Scripts\Rock\Controls\personPicker.js" target="content\Scripts\Rock\Controls\personPicker.js" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\_blocks-crm.less" target="content\Styles\_blocks-crm.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\_forms.less" target="content\Styles\_forms.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\_grid.less" target="content\Styles\_grid.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\_rock-mixins.less" target="content\Styles\_rock-mixins.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\_rock-variables.less" target="content\Styles\_rock-variables.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\rock-components\checkbox.less" target="content\Styles\rock-components\checkbox.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\rock-components\number-increment.less" target="content\Styles\rock-components\number-increment.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\rock-components\wizard.less" target="content\Styles\rock-components\wizard.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Themes\Rock\Styles\_variables.less" target="content\Themes\Rock\Styles\_variables.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Themes\Rock\Styles\theme.css" target="content\Themes\Rock\Styles\theme.css" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Themes\Rock\Styles\theme.less" target="content\Themes\Rock\Styles\theme.less" />
+  </files>
+</package>
