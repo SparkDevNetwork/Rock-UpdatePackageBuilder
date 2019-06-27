@@ -1025,9 +1025,19 @@
     <file src="content\packages.config" target="content\packages.config" />
     <file src="content\Settings.StyleCop" target="content\Settings.StyleCop" />
     <file src="content\web.config.rock.xdt" target="content\web.config.rock.xdt" />
+    <file src="lib\AngleSharp.dll" target="lib\AngleSharp.dll" />
+    <file src="lib\Antlr3.Runtime.dll" target="lib\Antlr3.Runtime.dll" />
     <file src="lib\AWSSDK.Core.dll" target="lib\AWSSDK.Core.dll" />
     <file src="lib\AWSSDK.S3.dll" target="lib\AWSSDK.S3.dll" />
+    <file src="lib\C5.dll" target="lib\C5.dll" />
     <file src="lib\DotLiquid.dll" target="lib\DotLiquid.dll" />
+    <file src="lib\EntityFramework.Utilities.dll" target="lib\EntityFramework.Utilities.dll" />
+    <file src="lib\EPPlus.dll" target="lib\EPPlus.dll" />
+    <file src="lib\EXIFextractor.dll" target="lib\EXIFextractor.dll" />
+    <file src="lib\HtmlAgilityPack.dll" target="lib\HtmlAgilityPack.dll" />
+    <file src="lib\Humanizer.dll" target="lib\Humanizer.dll" />
+    <file src="lib\Payflow_dotNET.dll" target="lib\Payflow_dotNET.dll" />
+    <file src="lib\Quartz.dll" target="lib\Quartz.dll" />
     <file src="lib\RestSharp.Newtonsoft.Json.dll" target="lib\RestSharp.Newtonsoft.Json.dll" />
     <file src="lib\Rock.Checkr.dll" target="lib\Rock.Checkr.dll" />
     <file src="lib\Rock.dll" target="lib\Rock.dll" />
