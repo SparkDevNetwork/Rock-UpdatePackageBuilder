@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Rock</id>
+    <version>1.9.0</version>
+    <title>Rock McKinley 9.0</title>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Rock 9.0 is a major update with several new features and improvements including group scheduling, assessments and numerous bug fixes.
+
+&lt;br/&gt;&lt;br/&gt;
+&lt;div class='alert alert-warning margin-t-md'&gt;
+    &lt;strong&gt;Heads Up!&lt;/strong&gt;
+    &lt;p&gt;&lt;b&gt;Important Technical Notes&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt;This is the last release supporting the Legacy and LegacyWithWarning options for the Lava Support Level. Be sure to check your ExceptionLog for any remaining legacy Lava and get those cleaned up before v10.&lt;/p&gt;
+    &lt;p&gt;The old "RockOriginal" theme, which was the Rock theme for v7, has been deleted with this release. Any sites that were using RockOriginal have been changed to use the Rock theme.&lt;/p&gt;
+&lt;/div&gt;</description>
+    <releaseNotes>&lt;br /&gt; You can read the details on the official &lt;a href='https://www.rockrms.com/releasenotes?version#v9.0'&gt;Release Notes&lt;/a&gt; page.</releaseNotes>
+    <copyright>Copyright © Spark Development Network 2011-2018</copyright>
+    <tags>requires-1.8.8</tags>
+    <dependencies>
+      <dependency id="RockUpdate-1-9-0" version="1.9.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="content\Readme.txt" target="content\Readme.txt" />
+  </files>
+</package>
