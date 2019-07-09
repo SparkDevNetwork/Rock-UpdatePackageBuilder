@@ -80,6 +80,7 @@
     <file src="content\Blocks\Cms\ContentChannelDetail.ascx.cs" target="content\Blocks\Cms\ContentChannelDetail.ascx.cs" />
     <file src="content\Blocks\Cms\ContentChannelItemDetail.ascx" target="content\Blocks\Cms\ContentChannelItemDetail.ascx" />
     <file src="content\Blocks\Cms\ContentChannelItemDetail.ascx.cs" target="content\Blocks\Cms\ContentChannelItemDetail.ascx.cs" />
+    <file src="content\Blocks\Cms\ContentChannelItemList.ascx.cs" target="content\Blocks\Cms\ContentChannelItemList.ascx.cs" />
     <file src="content\Blocks\Cms\ContentChannelItemView.ascx" target="content\Blocks\Cms\ContentChannelItemView.ascx" />
     <file src="content\Blocks\Cms\ContentChannelItemView.ascx.cs" target="content\Blocks\Cms\ContentChannelItemView.ascx.cs" />
     <file src="content\Blocks\Cms\ContentChannelList.ascx.cs" target="content\Blocks\Cms\ContentChannelList.ascx.cs" />
