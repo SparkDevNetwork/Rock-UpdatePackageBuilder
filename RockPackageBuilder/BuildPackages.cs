@@ -68,6 +68,9 @@ namespace RockPackageBuilder
             [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 0.1.4)" )]
             public string CurrentVersionTag { get; set; }
 
+            [Option( 'h', "currentVersionCommitHash", Required = false, HelpText = "Use only for testing! The hash of the current commit to compare with the last tag to build the delta for the package. NOTE: Supplying this will OVERRIDE the given current tag. (Ex: afd14572e3f1529ce0007fe0b7524becee626e55)" )]
+            public string CurrentVersionCommitHash { get; set; }
+
             [Option( 'r', "repoPath", DefaultValue = @"C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock", HelpText = "The path to your local git repository." )]
             public string RepoPath { get; set; }
 
@@ -266,7 +269,22 @@ namespace RockPackageBuilder
                 }
                 
                 var previousCommit = (Commit)previousTag.Target;
-                var currentCommit = (Commit)tag.Target;
+
+                Commit currentCommit = null;
+                if ( string.IsNullOrWhiteSpace( options.CurrentVersionCommitHash )  )
+                {
+                    currentCommit = ( Commit ) tag.Target;
+                }
+                else
+                {
+                    currentCommit = repo.Lookup<Commit>( options.CurrentVersionCommitHash );
+                    if ( currentCommit == null )
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine( string.Format( "Error: I don't see a commit with Id {0}.  Did you copy the hash correctly?", options.CurrentVersionTag ) );
+                        Exit();
+                    }
+                }
 
                 // Now go through each commit since the last pagckage commit and
                 // determine which projects (dlls) and files from the RockWeb project
@@ -275,7 +293,7 @@ namespace RockPackageBuilder
 
                 TreeChanges changes = repo.Diff.Compare(previousCommit.Tree, currentCommit.Tree);
 
-                var filesToIgnore = new string[] 
+                var filesToIgnoreButOnlyIfModify = new string[] 
                 {
                     "_variable-overrides.less",
                     "_css-overrides.less"
@@ -311,9 +329,24 @@ namespace RockPackageBuilder
                     }
 
                     // skip some files
-                    if ( filesToIgnore.Any(x => Path.GetFileName(file.Path).Equals(x, StringComparison.OrdinalIgnoreCase) ) )
+                    if ( filesToIgnoreButOnlyIfModify.Any( x => Path.GetFileName( file.Path ).Equals( x, StringComparison.OrdinalIgnoreCase ) ) )
                     {
-                        continue;
+                        // If v9.0, don't skip the RockWeb\Themes\DashboardStark\Styles\_css-overrides.less, RockWeb\Themes\KioskStark\Styles\_css-overrides.less, RockWeb\Themes\LandingPage\Styles\_variable-overrides.less, and RockWeb\Themes\LandingPage\Styles\_css-overrides.less
+                        if ( options.CurrentVersionTag == "1.9.0" &&
+                            ( 
+                                file.Path == @"RockWeb\Themes\DashboardStark\Styles\_css-overrides.less" ||
+                                file.Path == @"RockWeb\Themes\KioskStark\Styles\_css-overrides.less" ||
+                                file.Path == @"RockWeb\Themes\LandingPage\Styles\_css-overrides.less" ||
+                                file.Path == @"RockWeb\Themes\LandingPage\Styles\_variable-overrides.less"
+                            ) )
+                        {
+                            // don't skip; otherwise...
+                        }
+                        else if ( file.Status == ChangeKind.Modified )
+                        {
+                            // ...only skip if changed 
+                            continue;
+                        }
                     }
 
                     // skip some files
