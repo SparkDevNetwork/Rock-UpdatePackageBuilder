@@ -951,6 +951,7 @@
     <file src="content\Styles\_scroll.less" target="content\Styles\_scroll.less" />
     <file src="content\Styles\_store.less" target="content\Styles\_store.less" />
     <file src="content\Themes\DashboardStark\Layouts\Site.Master" target="content\Themes\DashboardStark\Layouts\Site.Master" />
+    <file src="content\Themes\DashboardStark\Styles\_css-overrides.less" target="content\Themes\DashboardStark\Styles\_css-overrides.less" />
     <file src="content\Themes\Flat\Assets\Lava\CalendarItem.lava" target="content\Themes\Flat\Assets\Lava\CalendarItem.lava" />
     <file src="content\Themes\Flat\Assets\Lava\FundraisingOpportunitySummary.lava" target="content\Themes\Flat\Assets\Lava\FundraisingOpportunitySummary.lava" />
     <file src="content\Themes\Flat\Assets\Lava\FundraisingParticipantProfile.lava" target="content\Themes\Flat\Assets\Lava\FundraisingParticipantProfile.lava" />
@@ -964,6 +965,7 @@
     <file src="content\Themes\Flat\Styles\_print.less" target="content\Themes\Flat\Styles\_print.less" />
     <file src="content\Themes\KioskStark\Assets\Lava\KioskGivingReceipt.lava" target="content\Themes\KioskStark\Assets\Lava\KioskGivingReceipt.lava" />
     <file src="content\Themes\KioskStark\Assets\Lava\PageNav.lava" target="content\Themes\KioskStark\Assets\Lava\PageNav.lava" />
+    <file src="content\Themes\KioskStark\Styles\_css-overrides.less" target="content\Themes\KioskStark\Styles\_css-overrides.less" />
     <file src="content\Themes\LandingPage\Layouts\Blank.aspx" target="content\Themes\LandingPage\Layouts\Blank.aspx" />
     <file src="content\Themes\LandingPage\Layouts\Dialog.aspx" target="content\Themes\LandingPage\Layouts\Dialog.aspx" />
     <file src="content\Themes\LandingPage\Layouts\FullBottom.aspx" target="content\Themes\LandingPage\Layouts\FullBottom.aspx" />
@@ -980,7 +982,9 @@
     <file src="content\Themes\LandingPage\Layouts\SimpleFiftyFifty.aspx" target="content\Themes\LandingPage\Layouts\SimpleFiftyFifty.aspx" />
     <file src="content\Themes\LandingPage\Layouts\SimpleFiftyFiftyOverlay.aspx" target="content\Themes\LandingPage\Layouts\SimpleFiftyFiftyOverlay.aspx" />
     <file src="content\Themes\LandingPage\Layouts\Site.Master" target="content\Themes\LandingPage\Layouts\Site.Master" />
+    <file src="content\Themes\LandingPage\Styles\_css-overrides.less" target="content\Themes\LandingPage\Styles\_css-overrides.less" />
     <file src="content\Themes\LandingPage\Styles\_root.less" target="content\Themes\LandingPage\Styles\_root.less" />
+    <file src="content\Themes\LandingPage\Styles\_variable-overrides.less" target="content\Themes\LandingPage\Styles\_variable-overrides.less" />
     <file src="content\Themes\LandingPage\Styles\_variables.less" target="content\Themes\LandingPage\Styles\_variables.less" />
     <file src="content\Themes\Rock\Assets\Lava\CalendarItem.lava" target="content\Themes\Rock\Assets\Lava\CalendarItem.lava" />
     <file src="content\Themes\Rock\Assets\Lava\FundraisingOpportunitySummary.lava" target="content\Themes\Rock\Assets\Lava\FundraisingOpportunitySummary.lava" />
