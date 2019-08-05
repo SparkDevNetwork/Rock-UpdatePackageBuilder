@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-8-9</id>
+    <version>1.8.9</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-9-0" version="1.9.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock8\RockWeb\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.eot" target="content\Assets\Fonts\FontAwesome\fa-brands-400.eot" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.svg" target="content\Assets\Fonts\FontAwesome\fa-brands-400.svg" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-brands-400.ttf" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff2" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.eot" target="content\Assets\Fonts\FontAwesome\fa-regular-400.eot" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.svg" target="content\Assets\Fonts\FontAwesome\fa-regular-400.svg" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-regular-400.ttf" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff2" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.eot" target="content\Assets\Fonts\FontAwesome\fa-solid-900.eot" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.svg" target="content\Assets\Fonts\FontAwesome\fa-solid-900.svg" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.ttf" target="content\Assets\Fonts\FontAwesome\fa-solid-900.ttf" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff2" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff2" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.Slingshot.dll" target="lib\Rock.Slingshot.dll" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Cms\PublicProfileEdit.ascx.cs" target="content\Blocks\Cms\PublicProfileEdit.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\BusinessList.ascx" target="content\Blocks\Finance\BusinessList.ascx" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\BusinessList.ascx.cs" target="content\Blocks\Finance\BusinessList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Finance\TransactionEntry.Kiosk.ascx.cs" target="content\Blocks\Finance\TransactionEntry.Kiosk.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Blocks\Security\Login.ascx.cs" target="content\Blocks\Security\Login.ascx.cs" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\_icons.less" target="content\Styles\FontAwesome\_icons.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\_list.less" target="content\Styles\FontAwesome\_list.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\_mixins.less" target="content\Styles\FontAwesome\_mixins.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\_variables.less" target="content\Styles\FontAwesome\_variables.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\brands.less" target="content\Styles\FontAwesome\brands.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\fontawesome.less" target="content\Styles\FontAwesome\fontawesome.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\regular.less" target="content\Styles\FontAwesome\regular.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\solid.less" target="content\Styles\FontAwesome\solid.less" />
+    <file src="C:\Source\Repos\Rock8\RockWeb\Styles\FontAwesome\v4-shims.less" target="content\Styles\FontAwesome\v4-shims.less" />
+  </files>
+</package>
