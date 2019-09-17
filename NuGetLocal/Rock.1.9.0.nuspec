@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Rock</id>
@@ -13,6 +13,7 @@
 &lt;div class='alert alert-warning margin-t-md'&gt;
     &lt;strong&gt;Heads Up!&lt;/strong&gt;
     &lt;p&gt;&lt;b&gt;Important Technical Notes&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt;As of v9, any iOS device you want to run check-in on must have iOS 10 or newer. This is due to JavaScript changes that older versions of iOS cannot run.&lt;/p&gt;
     &lt;p&gt;This is the last release supporting the Legacy and LegacyWithWarning options for the Lava Support Level. Be sure to check your ExceptionLog for any remaining legacy Lava and get those cleaned up before v10.&lt;/p&gt;
     &lt;p&gt;The old "RockOriginal" theme, which was the Rock theme for v7, has been deleted with this release. Any sites that were using RockOriginal have been changed to use the Rock theme.&lt;/p&gt;
 &lt;/div&gt;</description>
@@ -24,6 +25,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Readme.txt" target="content\Readme.txt" />
+    <file src="content\Readme.txt" target="content\Readme.txt" />
   </files>
 </package>
