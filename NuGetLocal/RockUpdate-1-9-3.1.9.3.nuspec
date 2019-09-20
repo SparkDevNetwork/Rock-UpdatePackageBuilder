@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-9-3</id>
+    <version>1.9.3</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-9-2" version="1.9.2" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock9\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Administration\DataAutomationSettings.ascx.cs" target="content\Blocks\Administration\DataAutomationSettings.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Cms\ContentChannelView.ascx.cs" target="content\Blocks\Cms\ContentChannelView.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Connection\ConnectionOpportunityDetail.ascx" target="content\Blocks\Connection\ConnectionOpportunityDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Connection\ConnectionOpportunityDetail.ascx.cs" target="content\Blocks\Connection\ConnectionOpportunityDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Connection\ConnectionRequestDetail.ascx.cs" target="content\Blocks\Connection\ConnectionRequestDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\Disc.ascx" target="content\Blocks\Crm\Disc.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\Disc.ascx.cs" target="content\Blocks\Crm\Disc.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\FamilyPreRegistration.ascx.cs" target="content\Blocks\Crm\FamilyPreRegistration.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\PersonDetail\TransactionLinks.ascx.cs" target="content\Blocks\Crm\PersonDetail\TransactionLinks.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationInstanceDetail.ascx.cs" target="content\Blocks\Event\RegistrationInstanceDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\AccountTreeView.ascx.cs" target="content\Blocks\Finance\AccountTreeView.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\BusinessList.ascx" target="content\Blocks\Finance\BusinessList.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\BusinessList.ascx.cs" target="content\Blocks\Finance\BusinessList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\ScheduledTransactionEdit.ascx" target="content\Blocks\Finance\ScheduledTransactionEdit.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\ScheduledTransactionView.ascx" target="content\Blocks\Finance\ScheduledTransactionView.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\ScheduledTransactionView.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionView.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionDetail.ascx" target="content\Blocks\Finance\TransactionDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionEntry.ascx.cs" target="content\Blocks\Finance\TransactionEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Fundraising\FundraisingDonationList.ascx" target="content\Blocks\Fundraising\FundraisingDonationList.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" target="content\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Prayer\PrayerRequestEntry.ascx.cs" target="content\Blocks\Prayer\PrayerRequestEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Prayer\PrayerRequestEntry.Kiosk.ascx.cs" target="content\Blocks\Prayer\PrayerRequestEntry.Kiosk.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Reporting\PowerBiReportViewer.ascx.cs" target="content\Blocks\Reporting\PowerBiReportViewer.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Security\BackgroundCheck\CheckrRequestList.ascx.cs" target="content\Blocks\Security\BackgroundCheck\CheckrRequestList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Security\BackgroundCheck\RequestList.ascx.cs" target="content\Blocks\Security\BackgroundCheck\RequestList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Security\CaptivePortal.ascx.cs" target="content\Blocks\Security\CaptivePortal.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\_blocks-crm.less" target="content\Styles\_blocks-crm.less" />
+  </files>
+</package>
