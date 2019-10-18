@@ -14,6 +14,7 @@
     &lt;strong&gt;Heads Up!&lt;/strong&gt;
     &lt;p&gt;&lt;b&gt;Important Technical Notes&lt;/b&gt;&lt;/p&gt;
     &lt;p&gt;As of v9, any iOS device you want to run check-in on must have iOS 10 or newer. This is due to JavaScript changes that older versions of iOS cannot run.&lt;/p&gt;
+    &lt;p&gt;If you have a check-in theme that was created before Version 7, we recommend removing &amp;lt;meta http-equiv="X-UA-Compatible" content="IE=10" /&amp;gt; from your theme to maintain compatibility for the Rock Windows Check-In App.&lt;/p&gt;
     &lt;p&gt;This is the last release supporting the Legacy and LegacyWithWarning options for the Lava Support Level. Be sure to check your ExceptionLog for any remaining legacy Lava and get those cleaned up before v10.&lt;/p&gt;
     &lt;p&gt;The old "RockOriginal" theme, which was the Rock theme for v7, has been deleted with this release. Any sites that were using RockOriginal have been changed to use the Rock theme.&lt;/p&gt;
 &lt;/div&gt;</description>
