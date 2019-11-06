@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>RockUpdate-1-8-10</id>
@@ -8,14 +8,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>various changes</description>
     <dependencies>
-      <dependency id="RockUpdate-1-9-0" version="1.9.0" />
+      <dependency id="RockUpdate-1-8-9" version="1.8.9" />
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Source\Repos\Rock8\RockWeb\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
-    <file src="C:\Source\Repos\Rock8\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
-    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
-    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
-    <file src="C:\Source\Repos\Rock8\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="content\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
+    <file src="content\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="content\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="lib\Rock.dll" target="lib\Rock.dll" />
+    <file src="lib\Rock.Version.dll" target="lib\Rock.Version.dll" />
   </files>
 </package>
