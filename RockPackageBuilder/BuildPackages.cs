@@ -28,6 +28,14 @@ namespace RockPackageBuilder
         static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
 
         /// <summary>
+        /// The warning message for when web.config transformation is needed.
+        /// </summary>
+        static readonly string WEBCONFIG_XDT_MESSAGE = @"--> ACTION! web.config file was changed since last build. Figure out
+            how you're going to handle that. You'll probably have to
+            create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates
+            wiki page for details on doing that.";
+
+        /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package (Make sure to only use lowercase as that is how they will be compared).
         /// </summary>
         static List<string> NON_WEB_PROJECTS = new List<string> {
@@ -82,6 +90,9 @@ namespace RockPackageBuilder
 
             [Option( 'v', "verbose", DefaultValue = false, HelpText = "Set to true to see a more verbose output of what's changed in the repo." )]
             public bool Verbose { get; set; }
+
+            [Option( 't', "testing", DefaultValue = false, HelpText = "Set to true to just see the list of changed files between the two tagged releases." )]
+            public bool Testing { get; set; }
 
             [ParserState]
             public IParserState LastParserState { get; set; }
@@ -189,12 +200,28 @@ namespace RockPackageBuilder
                 return 1;
             }
 
-            var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes" );
+            string actionWarnings = string.Empty;
 
-            // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-            BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, _defaultDescription );
+            if ( !options.Testing )
+            {
+                var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
 
-            BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
+                // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
+                BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, _defaultDescription );
+                BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
+            }
+            else
+            {
+                OnlyOutputChanges( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
+            }
+
+            if ( ! string.IsNullOrEmpty( actionWarnings ) )
+            {
+                Console.WriteLine( "" );
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine( actionWarnings );
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to quit." );
@@ -373,7 +400,12 @@ namespace RockPackageBuilder
                     }
                     else if ( file.Path.ToLower().StartsWith( @"rockweb\bin\" ) ) // && x.Path.ToLower().EndsWith( ".dll" ) )
                     {
-                        if ( ( file.Status == ChangeKind.Added || file.Status == ChangeKind.Modified ) && file.Path.ToLower().EndsWith( ".dll" ) )
+                        if ( ( file.Status == ChangeKind.Added || file.Status == ChangeKind.Modified ) &&
+                             (
+                                file.Path.ToLower().EndsWith( ".dll" ) ||
+                                ( file.Path.ToLower().StartsWith( @"rockweb\bin\roslyn\" ) && !file.Path.ToLower().EndsWith( ".refresh" ) )
+                             )
+                           )
                         {
                             // Modified or newly added assemblies need to be added differently.  They go into a "lib" folder in the NuGet package.
                             var filePathSuffix = file.Path.Substring( webRootPathLength );
@@ -468,13 +500,16 @@ namespace RockPackageBuilder
         /// the paths to all the files that are to be deleted.
         /// </summary>
         /// <param name="options">The options object created upon execution.</param>
-        /// <param name="packageFiles"></param>
-        /// <param name="deletedPackageFiles"></param>
-        /// <param name="modifiedProjects"></param>
-        /// <param name="description"></param>
+        /// <param name="modifiedLibs">The modified libs.</param>
+        /// <param name="packageFiles">The package files.</param>
+        /// <param name="deletedPackageFiles">The deleted package files.</param>
+        /// <param name="modifiedProjects">The modified projects.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="actionWarnings">The action warnings (if any) which are useful to display again as the very last thing before quitting.</param>
         /// <returns></returns>
-        private static string BuildUpdatePackage( Options options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description )
+        private static string BuildUpdatePackage( Options options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
         {
+            actionWarnings = string.Empty;
             string version = options.CurrentVersionTag;
             string dashVersion = version.Replace( '.', '-' );
             string updatePackageId = ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
@@ -496,16 +531,15 @@ namespace RockPackageBuilder
             string webRootPath = Path.Combine( options.RepoPath, "RockWeb" );
             foreach ( string file in packageFiles )
             {
-                // Skip the root web.config
+                // Skip the root web.config, but YELL to let the person know they need to do something with this.
                 if ( file.ToLower() == "web.config" )
                 {
                     Console.WriteLine( "" );
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine( "--> ACTION! web.config file was changed since last build. Figure out" );
-                    Console.WriteLine( "            how you're going to handle that. You'll probably have to" );
-                    Console.WriteLine( "            create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates" );
-                    Console.WriteLine( "            wiki page for details on doing that." );
+                    Console.WriteLine( WEBCONFIG_XDT_MESSAGE );
                     Console.ForegroundColor = ConsoleColor.Gray;
+
+                    actionWarnings += WEBCONFIG_XDT_MESSAGE;
                     continue;
                 }
                 
@@ -603,6 +637,95 @@ namespace RockPackageBuilder
             }
 
             return updatePackageId;
+        }
+
+        /// <summary>
+        /// Outputs the changes to the console (used for testing/seeing what's going to be in a release without actually creating it yet).
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="modifiedLibs">The modified libs.</param>
+        /// <param name="packageFiles">The package files.</param>
+        /// <param name="deletedPackageFiles">The deleted package files.</param>
+        /// <param name="modifiedProjects">The modified projects.</param>
+        /// <param name="description">The description.</param>
+        private static void OnlyOutputChanges( Options options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
+        {
+            actionWarnings = string.Empty;
+            string webRootPath = Path.Combine( options.RepoPath, "RockWeb" );
+
+            foreach ( string file in packageFiles )
+            {
+                // Skip the root web.config, but YELL to let the person know they need to do something with this.
+                if ( file.ToLower() == "web.config" )
+                {
+                    Console.WriteLine( "" );
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine( WEBCONFIG_XDT_MESSAGE );
+                    Console.ForegroundColor = ConsoleColor.Gray;
+
+                    actionWarnings += WEBCONFIG_XDT_MESSAGE;
+                    continue;
+                }
+
+                // if a less file was updated, check to see if a matching css file exists, and if so, add it (these files are ignored by repo)
+                if ( file.ToLower().EndsWith( ".less" ) )
+                {
+                    string cssPath = file.Substring( 0, file.Length - 5 ) + ".css";
+                    if ( File.Exists( Path.Combine( webRootPath, cssPath ) ) )
+                    {
+                        Console.WriteLine( Path.Combine( webRootPath, cssPath ) );
+                    }
+                }
+            }
+
+            foreach ( string file in modifiedLibs )
+            {
+                Console.WriteLine( file );
+            }
+
+            // Add any modified Rock project libs but warn the user that they MUST be recently compiled
+            // against the master head we're operating against.
+            if ( modifiedProjects.Count > 0 )
+            {
+                Console.WriteLine( "" );
+                Console.WriteLine( "NOTE: The following assembly(s) are being added because their project files" );
+                Console.WriteLine( "      were changed since the last tag. You MUST ensure they were built in" );
+                Console.WriteLine( "      RELEASE mode and are currently in the RockWeb/bin folder. Otherwise" );
+                Console.WriteLine( "      you must do that manually and replace the ones I just put into the" );
+                Console.WriteLine( "      package's 'lib' nuget package folder." );
+                Console.WriteLine( "" );
+                foreach ( KeyValuePair<string, bool> entry in modifiedProjects )
+                {
+                    Console.WriteLine( string.Format( "\t * {0}", entry.Key + ".dll" ) );
+
+                    // if a dll was updated and there is an associated xml documentation file, include it 
+                    string xmlPath = Path.Combine( "bin", entry.Key + ".xml" );
+                    if ( File.Exists( Path.Combine( webRootPath, xmlPath ) ) )
+                    {
+                        Console.WriteLine( Path.Combine( webRootPath, xmlPath ) );
+                    }
+                }
+            }
+
+            // write out all the files to delete in the deletefile.lst ) 
+            string deleteFileRelativePath = Path.Combine( "App_Data", "deletefile.lst" );
+            string deleteFileFullPath = Path.Combine( webRootPath, deleteFileRelativePath );
+
+            if ( deletedPackageFiles.Count > 0 )
+            {
+                Console.WriteLine( "" );
+                Console.WriteLine( "WARNING: Files are designated to be DELETED in this update." );
+                Console.WriteLine( "         Review all the files listed in the App_Data\\deletefile.lst" );
+                Console.WriteLine( "         as a sanity check.  If you see anything odd, ask someone to verify." );
+                Console.WriteLine( "" );
+
+                foreach ( string delete in deletedPackageFiles )
+                {
+                    Console.WriteLine( delete );
+                }
+
+                Console.WriteLine( deleteFileRelativePath );
+            }
         }
 
         /// <summary>
