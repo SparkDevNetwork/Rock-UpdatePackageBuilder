@@ -16,6 +16,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Source\Repos\Rock\RockWeb\Readme.txt" target="content\Readme.txt" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Readme.txt" target="content\Readme.txt" />
   </files>
 </package>
