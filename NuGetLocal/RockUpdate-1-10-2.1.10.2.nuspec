@@ -157,6 +157,8 @@
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Finance\TransactionEntryV2.ascx.cs" target="content\Blocks\Finance\TransactionEntryV2.ascx.cs" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Finance\TransactionMatching.ascx" target="content\Blocks\Finance\TransactionMatching.ascx" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Finance\TransactionMatching.ascx.cs" target="content\Blocks\Finance\TransactionMatching.ascx.cs" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Fundraising\FundraisingDonationEntry.ascx.cs" target="content\Blocks\Fundraising\FundraisingDonationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Fundraising\FundraisingProgress.ascx.cs" target="content\Blocks\Fundraising\FundraisingProgress.ascx.cs" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupAttendanceDetail.ascx.cs" target="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupAttendanceList.ascx" target="content\Blocks\Groups\GroupAttendanceList.ascx" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupAttendanceList.ascx.cs" target="content\Blocks\Groups\GroupAttendanceList.ascx.cs" />
@@ -164,6 +166,7 @@
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupDetailLava.ascx" target="content\Blocks\Groups\GroupDetailLava.ascx" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupDetailLava.ascx.cs" target="content\Blocks\Groups\GroupDetailLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupFinder.ascx.cs" target="content\Blocks\Groups\GroupFinder.ascx.cs" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupList.ascx" target="content\Blocks\Groups\GroupList.ascx" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupList.ascx.cs" target="content\Blocks\Groups\GroupList.ascx.cs" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Blocks\Groups\GroupMemberDetail.ascx" target="content\Blocks\Groups\GroupMemberDetail.ascx" />
@@ -221,9 +224,13 @@
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\editor.js\table.js" target="content\Scripts\editor.js\table.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\editor.js\warning.js" target="content\Scripts\editor.js\warning.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Admin\pageAdmin.js" target="content\Scripts\Rock\Admin\pageAdmin.js" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\datePicker.js" target="content\Scripts\Rock\Controls\datePicker.js" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\dateTimePicker.js" target="content\Scripts\Rock\Controls\dateTimePicker.js" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\fieldVisibilityWrapper.js" target="content\Scripts\Rock\Controls\fieldVisibilityWrapper.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\groupPlacementTool.js" target="content\Scripts\Rock\Controls\groupPlacementTool.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\personPicker.js" target="content\Scripts\Rock\Controls\personPicker.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\rangeSlider.js" target="content\Scripts\Rock\Controls\rangeSlider.js" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\yearPicker.js" target="content\Scripts\Rock\Controls\yearPicker.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\coreListeners.js" target="content\Scripts\Rock\coreListeners.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Styles\_blocks-cms.less" target="content\Styles\_blocks-cms.less" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Styles\_blocks-communication.less" target="content\Styles\_blocks-communication.less" />
