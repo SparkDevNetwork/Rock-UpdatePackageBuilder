@@ -182,11 +182,13 @@
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\editor.js\notetool.js" target="content\Scripts\editor.js\notetool.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\editor.js\simpleimage.js" target="content\Scripts\editor.js\simpleimage.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\itemPicker.js" target="content\Scripts\Rock\Controls\itemPicker.js" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Controls\numberUpDownGroup.js" target="content\Scripts\Rock\Controls\numberUpDownGroup.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\Extensions\rockTree.js" target="content\Scripts\Rock\Extensions\rockTree.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\reportingInclude.js" target="content\Scripts\Rock\reportingInclude.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Scripts\Rock\utility.js" target="content\Scripts\Rock\utility.js" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Styles\_blocks-core.less" target="content\Styles\_blocks-core.less" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Styles\_checkin-core.less" target="content\Styles\_checkin-core.less" />
+    <file src="C:\Source\Repos\Rock10\RockWeb\Styles\_rock-core.less" target="content\Styles\_rock-core.less" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Styles\FontAwesome\_icons.less" target="content\Styles\FontAwesome\_icons.less" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Styles\FontAwesome\_variables.less" target="content\Styles\FontAwesome\_variables.less" />
     <file src="C:\Source\Repos\Rock10\RockWeb\Styles\FontAwesome\brands.less" target="content\Styles\FontAwesome\brands.less" />
