@@ -38,10 +38,12 @@ namespace RockPackageBuilder
         /// <summary>
         /// Projects who's DLLs need to be included in the package if they changed since the last package (Make sure to only use lowercase as that is how they will be compared).
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string> {
+        static List<string> NON_WEB_PROJECTS = new List<string>
+        {
             "dotliquid",
             "rock",
             "rock.checkr",
+            "rock.downhillcss",
             "rock.mailgun",
             "rock.mandrill",
             "rock.migrations",
@@ -49,6 +51,7 @@ namespace RockPackageBuilder
             "rock.payflowpro",
             "rock.rest",
             "rock.security.authentication.auth0",
+            "rock.sendgrid",
             "rock.signnow",
             "rock.slingshot",
             "rock.slingshot.model",
@@ -56,6 +59,16 @@ namespace RockPackageBuilder
             "rock.version",
             "rock.webstartup",
             "signnowsdk" };
+
+        static List<string> PROJECTS_TO_IGNORE = new List<string>
+        {
+            "rock.codegeneration",
+            "rock.specs",
+            "rock.tests",
+            "rock.tests.integration",
+            "rock.tests.shared",
+            "rock.tests.unittests",
+        };
 
         static string _previousVersion = string.Empty;
 
@@ -152,10 +165,10 @@ namespace RockPackageBuilder
             List<string> deletedPackageFiles = new List<string>();
             Dictionary<string, bool> modifiedProjects = new Dictionary<string, bool>();
 
-            Console.WriteLine( "" );
-            Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
-            Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
-            Console.WriteLine( "" );
+            if ( ! ContinueAfterReadingSplashScreen( options.RepoPath ) )
+            {
+                return 1;
+            }
 
             string publicVersion = options.CurrentVersionTag.Substring( 2 );
 
@@ -193,6 +206,16 @@ namespace RockPackageBuilder
 
             GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
+            /*
+                6/29/2020 - NA
+                The Rock.Common.Mobile dll is not part of the Rock solution, and it must always be
+                pulled from NuGet, therefore it should always be included in the list of files to be
+                put into the RockUpdate package.
+
+                Reason: Assembly is not part of Rock Solution but needs to be in the UpdatePackage. 
+            */
+            modifiedProjects[ "Rock.Common.Mobile" ] = true;
+
             // Make sure the Rock.Version project's version number has been updated and commit->pushed
             // before you build from master.
             if ( !VerifyVersionNumbers( options.RepoPath, options.CurrentVersionTag, modifiedProjects ) )
@@ -228,6 +251,74 @@ namespace RockPackageBuilder
             Console.ReadKey(true);
 
             return 0;
+        }
+
+        /// <summary>
+        /// An important message for the packager to read before continuing.
+        /// </summary>
+        /// <returns>False if packaging should not continue.</returns>
+        private static bool ContinueAfterReadingSplashScreen( string repoPath )
+        {
+            Console.WriteLine( "" );
+            Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
+            Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
+            Console.WriteLine( "" );
+
+            // Look for any Rock.* folders in the repo path and show each one that is not
+            // included in the NON_WEB_PROJECTS to the packager.  Because any of these would not
+            // otherwise be included in the package -- even if there are changes to the files/code
+            // in those projects.
+
+            var missing = new List<string>();
+            var dir = new System.IO.DirectoryInfo( repoPath );
+            foreach ( var folder in dir.GetDirectories( "Rock.*", SearchOption.TopDirectoryOnly ) )
+            {
+                var name = folder.Name.ToLower();
+                if ( PROJECTS_TO_IGNORE.Contains( name ) )
+                {
+                    continue;
+                }
+
+                if ( name.StartsWith( "rock" ) && ! NON_WEB_PROJECTS.Contains( folder.Name.ToLower() ) &&  File.Exists( Path.Combine( folder.FullName, folder + ".csproj" ) ) )
+                {
+                    missing.Add( folder.Name );
+                }
+            }
+
+            if ( missing.Any() )
+            {
+                Console.WriteLine( "WARNING! The following are Rock.* projects that are not included in the " );
+                Console.WriteLine( "         NON_WEB_PROJECTS list.  That means changes to these projects " );
+                Console.Write(     "         " );
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write( "will not be included " );
+                Console.ResetColor();
+                Console.WriteLine( "as updated assemblies in the bin/lib folder:" );
+
+                foreach ( var name in missing )
+                {
+                    Console.WriteLine( "\t\t* " + name );
+                }
+                Console.WriteLine();
+                Console.Write( "         " );
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine( "Please VERIFY this is what you expect." );
+                Console.ResetColor();
+                Console.WriteLine();
+
+            }
+
+            Console.Write( "Do you want to continue? Y/N (n to quit) ", Environment.NewLine );
+            ConsoleKeyInfo choice = Console.ReadKey( true );
+            Console.Write( "\b" );
+            Console.WriteLine( "" );
+            if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+            {
+                Console.WriteLine( "" );
+                return false;
+            }
+            Console.WriteLine( "" );
+            return true;
         }
 
         /// <summary>
@@ -597,10 +688,19 @@ namespace RockPackageBuilder
             if ( deletedPackageFiles.Count > 0 )
             {
                 Console.WriteLine( "" );
-                Console.WriteLine( "WARNING: Files are designated to be DELETED in this update." );
+                Console.Write    ( "WARNING! Files are designated" );
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write    ( " to be DELETED " );
+                Console.ResetColor();
+                Console.WriteLine( "in this update." );
                 Console.WriteLine( "         Review all the files listed in the App_Data\\deletefile.lst" );
                 Console.WriteLine( "         as a sanity check.  If you see anything odd, ask someone to verify." );
                 Console.WriteLine( "" );
+
+                foreach ( var name in deletedPackageFiles )
+                {
+                    Console.WriteLine( "\t * " + name ); 
+                }
 
                 using ( StreamWriter w = File.AppendText( deleteFileFullPath ) )
                 {
@@ -714,7 +814,7 @@ namespace RockPackageBuilder
             if ( deletedPackageFiles.Count > 0 )
             {
                 Console.WriteLine( "" );
-                Console.WriteLine( "WARNING: Files are designated to be DELETED in this update." );
+                Console.WriteLine( "WARNING! Files are designated to be DELETED in this update." );
                 Console.WriteLine( "         Review all the files listed in the App_Data\\deletefile.lst" );
                 Console.WriteLine( "         as a sanity check.  If you see anything odd, ask someone to verify." );
                 Console.WriteLine( "" );
