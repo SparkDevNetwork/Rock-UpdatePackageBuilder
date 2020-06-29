@@ -165,7 +165,7 @@ namespace RockPackageBuilder
             List<string> deletedPackageFiles = new List<string>();
             Dictionary<string, bool> modifiedProjects = new Dictionary<string, bool>();
 
-            if ( ! ContinueAfterReadingSplashScreen( options.RepoPath ) )
+            if ( ! ContinueAfterReadingSplashScreen( options ) )
             {
                 return 1;
             }
@@ -246,8 +246,15 @@ namespace RockPackageBuilder
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
 
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine( "" );
-            Console.Write( "Press any key to quit." );
+            Console.WriteLine( "CRITICAL NOTE: There are many assemblies that Rock needs which are" );
+            Console.WriteLine( "no longer managed in our Github, so it's up to you to verify that the right" );
+            Console.WriteLine( "DLLs and versions are included in the update package's lib folder." );
+            Console.ResetColor();
+
+            Console.WriteLine( "" );
+            Console.Write( "Press any key to finish." );
             Console.ReadKey(true);
 
             return 0;
@@ -257,8 +264,19 @@ namespace RockPackageBuilder
         /// An important message for the packager to read before continuing.
         /// </summary>
         /// <returns>False if packaging should not continue.</returns>
-        private static bool ContinueAfterReadingSplashScreen( string repoPath )
+        private static bool ContinueAfterReadingSplashScreen( Options options )
         {
+            string repoPath = options.RepoPath;
+
+            Console.Write( "Building update package from version " ); 
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Write( options.LastVersionTag );
+            Console.ResetColor();
+            Console.Write( " to version " );
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Write( options.CurrentVersionTag );
+            Console.ResetColor();
+
             Console.WriteLine( "" );
             Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
             Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
@@ -293,7 +311,7 @@ namespace RockPackageBuilder
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write( "will not be included " );
                 Console.ResetColor();
-                Console.WriteLine( "as updated assemblies in the bin/lib folder:" );
+                Console.WriteLine( "as updated DLLs in the bin/lib folder:" );
 
                 foreach ( var name in missing )
                 {
