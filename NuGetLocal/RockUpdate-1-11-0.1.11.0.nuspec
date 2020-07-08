@@ -31,7 +31,9 @@
     <file src="C:\Source\Repos\Rock\RockWeb\bin\DotLiquid.dll" target="lib\DotLiquid.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\Bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" target="lib\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Checkr.dll" target="lib\Rock.Checkr.dll" />
+    <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Common.Mobile.dll" target="lib\Rock.Common.Mobile.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.DownhillCss.dll" target="lib\Rock.DownhillCss.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Mailgun.dll" target="lib\Rock.Mailgun.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Mandrill.dll" target="lib\Rock.Mandrill.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
@@ -41,6 +43,8 @@
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Security.Authentication.Auth0.dll" target="lib\Rock.Security.Authentication.Auth0.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Security.Authentication.Auth0.xml" target="content\bin\Rock.Security.Authentication.Auth0.xml" />
+    <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.SendGrid.dll" target="lib\Rock.SendGrid.dll" />
+    <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.SendGrid.xml" target="content\bin\Rock.SendGrid.xml" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.SignNow.dll" target="lib\Rock.SignNow.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.Slingshot.dll" target="lib\Rock.Slingshot.dll" />
     <file src="C:\Source\Repos\Rock\RockWeb\bin\Rock.StatementGenerator.dll" target="lib\Rock.StatementGenerator.dll" />
