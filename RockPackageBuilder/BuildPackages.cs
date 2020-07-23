@@ -36,38 +36,18 @@ namespace RockPackageBuilder
             wiki page for details on doing that.";
 
         /// <summary>
-        /// Projects who's DLLs need to be included in the package if they changed since the last package (Make sure to only use lowercase as that is how they will be compared).
+        /// The projects to ignore. These projects will not be used to create the package and 
+        /// files with these names will be excluded in the bin folder compare.
         /// </summary>
-        static List<string> NON_WEB_PROJECTS = new List<string>
-        {
-            "dotliquid",
-            "rock",
-            "rock.checkr",
-            "rock.downhillcss",
-            "rock.mailgun",
-            "rock.mandrill",
-            "rock.migrations",
-            "rock.nmi",
-            "rock.payflowpro",
-            "rock.rest",
-            "rock.security.authentication.auth0",
-            "rock.sendgrid",
-            "rock.signnow",
-            "rock.slingshot",
-            "rock.slingshot.model",
-            "rock.statementgenerator",
-            "rock.version",
-            "rock.webstartup",
-            "signnowsdk" };
-
         static List<string> PROJECTS_TO_IGNORE = new List<string>
         {
             "rock.codegeneration",
+            "rock.mywell",
             "rock.specs",
             "rock.tests",
             "rock.tests.integration",
             "rock.tests.shared",
-            "rock.tests.unittests",
+            "rock.tests.unittests"
         };
 
         static string _previousVersion = string.Empty;
@@ -106,6 +86,11 @@ namespace RockPackageBuilder
 
             [Option( 't', "testing", DefaultValue = false, HelpText = "Set to true to just see the list of changed files between the two tagged releases." )]
             public bool Testing { get; set; }
+
+            [Option( 'b', "previousVersionBinFolderPath", Required = false, HelpText = "The path to a clean bin folder of the previous version. Used to compare bin folders and get files that are not included in the solution." )]
+            public string PreviousVersionBinFolderPath { get; set; }
+
+            public List<string> ProjectsInSolution { get; set; }
 
             [ParserState]
             public IParserState LastParserState { get; set; }
@@ -165,6 +150,8 @@ namespace RockPackageBuilder
             List<string> deletedPackageFiles = new List<string>();
             Dictionary<string, bool> modifiedProjects = new Dictionary<string, bool>();
 
+            options.ProjectsInSolution = GetProjects( options );
+
             if ( ! ContinueAfterReadingSplashScreen( options ) )
             {
                 return 1;
@@ -205,7 +192,8 @@ namespace RockPackageBuilder
             }
 
             GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
-
+            GetUpdatedFilesNotInSolution( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
+            
             /*
                 6/29/2020 - NA
                 The Rock.Common.Mobile dll is not part of the Rock solution, and it must always be
@@ -214,7 +202,7 @@ namespace RockPackageBuilder
 
                 Reason: Assembly is not part of Rock Solution but needs to be in the UpdatePackage. 
             */
-            modifiedProjects[ "Rock.Common.Mobile" ] = true;
+            //modifiedProjects[ "Rock.Common.Mobile" ] = true;
 
             // Make sure the Rock.Version project's version number has been updated and commit->pushed
             // before you build from master.
@@ -246,18 +234,38 @@ namespace RockPackageBuilder
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
 
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine( "" );
-            Console.WriteLine( "CRITICAL NOTE: There are many assemblies that Rock needs which are" );
-            Console.WriteLine( "no longer managed in our Github, so it's up to you to verify that the right" );
-            Console.WriteLine( "DLLs and versions are included in the update package's lib folder." );
-            Console.ResetColor();
+            if ( string.IsNullOrWhiteSpace( options.PreviousVersionBinFolderPath ) )
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine( "" );
+                Console.WriteLine( "CRITICAL NOTE: There are many assemblies that Rock needs which are" );
+                Console.WriteLine( "no longer managed in our Github, so it's up to you to verify that the right" );
+                Console.WriteLine( "DLLs and versions are included in the update package's lib folder." );
+                Console.ResetColor();
+            }
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to finish." );
             Console.ReadKey(true);
 
             return 0;
+        }
+
+        /// <summary>
+        /// Parse the solution file to get a list of the projects
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <returns></returns>
+        private static List<string> GetProjects( Options options )
+        {
+            string solutionPath = Path.Combine( options.RepoPath, "Rock.sln" );
+            var solutionText = File.ReadAllText( solutionPath );
+
+            Regex projReg = new Regex( "Project\\(\"\\{[\\w-]*\\}\"\\) = \"([\\w _]*.*)\", \"(.*\\.(cs|vcx|vb)proj)\"", RegexOptions.Compiled );
+            var matches = projReg.Matches( solutionText ).Cast<Match>();
+            var projects = matches.Select( x => x.Groups[1].Value.ToLower() ).ToList();
+
+            return projects.Where( p => !PROJECTS_TO_IGNORE.Contains( p ) ).ToList();
         }
 
         /// <summary>
@@ -297,7 +305,7 @@ namespace RockPackageBuilder
                     continue;
                 }
 
-                if ( name.StartsWith( "rock" ) && ! NON_WEB_PROJECTS.Contains( folder.Name.ToLower() ) &&  File.Exists( Path.Combine( folder.FullName, folder + ".csproj" ) ) )
+                if ( name.StartsWith( "rock" ) && ! options.ProjectsInSolution.Contains( folder.Name.ToLower() ) &&  File.Exists( Path.Combine( folder.FullName, folder + ".csproj" ) ) )
                 {
                     missing.Add( folder.Name );
                 }
@@ -499,7 +507,7 @@ namespace RockPackageBuilder
                     }
 
                     // any changes with any other non-RockWeb projects?
-                    if ( NON_WEB_PROJECTS.Contains( projectName, StringComparer.OrdinalIgnoreCase ) )
+                    if ( options.ProjectsInSolution.Contains( projectName, StringComparer.OrdinalIgnoreCase ) )
                     {
                         // Ignore output files in bin folder as they should also be in the rockweb\bin folder
                         if ( !file.Path.ToLower().StartsWith( projectName.ToLower() + "\\bin" ) )
@@ -539,6 +547,109 @@ namespace RockPackageBuilder
                             deletedPackageFiles.Add( file.Path );
                         }
                     }
+                }
+            }
+        }
+
+        private static void GetUpdatedFilesNotInSolution( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
+        {
+            if ( string.IsNullOrWhiteSpace( options.PreviousVersionBinFolderPath ) )
+            {
+                // There is nothing to compare to so the user will get a message to do this manually.
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine( "" );
+            Console.WriteLine( "================================================================================" );
+            Console.WriteLine( "Starting byte compare. This is to get new and updated files that are not part" );
+            Console.WriteLine( "of the solution." );
+            Console.WriteLine( "================================================================================" );
+            Console.WriteLine( "" );
+            Console.ResetColor();
+
+            // Ignore files with these extensions
+            List<string> ignoreFilePatterns = new List<string>() { ".pdb", ".refresh" };
+
+            // Get a list of files from the previous version directory.
+            // Filter out files already identified as updated, solution files, and ignore files
+            List<string> oldFileList = Directory.GetFiles( options.PreviousVersionBinFolderPath )
+                // Filter out files by extension
+                .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                // Filter out files for ignored projects
+                .Where( f => !PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                // Filter out files that have already been flagged as updated by other checks
+                .Where( f => !modifiedLibs.Any( p => Path.GetFileName( f ).Equals( Path.GetFileName( p ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !modifiedPackageFiles.Any( p => Path.Combine("Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
+                .ToList();
+
+            // Get a list of files from the repo directory that contains the version being created
+            // Filter out files already identified as updated, solution files, and ignore files
+            List<string> newFileList = Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Bin" ) )
+                // Filter out files by extension
+                .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                // Filter out files for ignored projects
+                .Where( f => !PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                // Filter out files that have already been flagged as updated by other checks
+                .Where( f => !modifiedLibs.Any( p => Path.GetFileName( f ).Equals( Path.GetFileName( p ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !modifiedPackageFiles.Any( p => Path.Combine("RockWeb", "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "RockWeb", "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
+                .ToList();
+          
+            // loop through the old file list and compare to new file version
+            foreach( var oldFile in oldFileList )
+            {
+                FileInfo oldFileInfo = new FileInfo( oldFile );
+                FileInfo newFileInfo = new FileInfo( Path.Combine( options.RepoPath, "RockWeb", "Bin", oldFileInfo.Name ) );
+
+                // If exists in old but not new then add to deleted list
+                if( !newFileInfo.Exists )
+                {
+                    string file = Path.Combine( "RockWeb", "Bin", oldFileInfo.Name );
+                    if ( !deletedPackageFiles.Where( d => d.Equals( file, StringComparison.OrdinalIgnoreCase ) ).Any() )
+                    {
+                        deletedPackageFiles.Add( file );
+                    }
+
+                    continue;
+                }
+
+                // Compare the old and new Bytes and move on if they are the same
+                if( oldFileInfo.Length == newFileInfo.Length
+                    && File.ReadAllBytes(oldFileInfo.FullName).SequenceEqual( File.ReadAllBytes( newFileInfo.FullName ) ) )
+                {
+                    continue;
+                }
+
+                string relativeFilePath = "Bin\\" + oldFileInfo.Name;
+
+                // The file has changed. If dll then add to modifiedLibs (filename), otherwise add to modifiedPackageFiles (bin\filename)
+                if( oldFileInfo.Extension == ".dll" )
+                {
+                    modifiedLibs.Add( relativeFilePath );
+                }
+                else
+                {
+                    modifiedPackageFiles.Add( relativeFilePath );
+                }
+            }
+
+            // If exists in new but not old then we need to add the file
+            var filesToAdd = newFileList
+                .Where( o => !oldFileList.Any( n => Path.GetFileName( o ).Equals( Path.GetFileName( n ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Select( o => o.Replace( Path.Combine( options.RepoPath, "RockWeb" ) + "\\", string.Empty ) );
+
+            foreach( var newFile in filesToAdd )
+            {
+                // If dll then add to modifiedLibs (filename), otherwise add to modifiedPackageFiles (bin\filename)
+                if( Path.GetExtension( newFile ) == ".dll" )
+                {
+                    modifiedLibs.Add( newFile );
+                }
+                else
+                {
+                    modifiedPackageFiles.Add( newFile );
                 }
             }
         }
@@ -731,11 +842,16 @@ namespace RockPackageBuilder
                 AddToManifest( manifest, deleteFileRelativePath, webRootPath );
             }
 
-            // always add a Run.Migration flag file
-            string migrationFlagFileRelativePath = Path.Combine( "App_Data", "Run.Migration" );
-            string migrationFlagFileFullPath = Path.Combine( webRootPath, migrationFlagFileRelativePath );
-            File.Create( migrationFlagFileFullPath ).Dispose();
-            AddToManifest( manifest, migrationFlagFileRelativePath, webRootPath );
+            // Then Run.Migration file is not needed for version 1.11 and up.
+            int[] versionParts = options.CurrentVersionTag.Split( '.' ).Select( v => int.Parse( v ) ).ToArray();
+            if ( versionParts[0] < 2 && versionParts[1] < 11 )
+            {
+                // always add a Run.Migration flag file
+                string migrationFlagFileRelativePath = Path.Combine( "App_Data", "Run.Migration" );
+                string migrationFlagFileFullPath = Path.Combine( webRootPath, migrationFlagFileRelativePath );
+                File.Create( migrationFlagFileFullPath ).Dispose();
+                AddToManifest( manifest, migrationFlagFileRelativePath, webRootPath );
+            }
 
             manifest.Files = manifest.Files.OrderBy( a => a.Source ).ToList();
 
