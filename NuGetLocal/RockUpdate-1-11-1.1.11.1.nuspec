@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-11-1</id>
+    <version>1.11.1</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-11-0" version="1.11.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock11\RockWeb\App_Data\deletefile.lst" target="content\App_Data\deletefile.lst" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.DownhillCss.dll" target="lib\Rock.DownhillCss.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.NMI.dll" target="lib\Rock.NMI.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Slingshot.dll" target="lib\Rock.Slingshot.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Bin\Slingshot.Core.dll" target="lib\Slingshot.Core.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Bin\Slingshot.Core.xml" target="content\Bin\Slingshot.Core.xml" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Administration\PageProperties.ascx.cs" target="content\Blocks\Administration\PageProperties.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Administration\Security.ascx.cs" target="content\Blocks\Administration\Security.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Administration\SystemInfo.ascx.cs" target="content\Blocks\Administration\SystemInfo.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\AttendanceSelfEntry.ascx.cs" target="content\Blocks\CheckIn\AttendanceSelfEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\FamilySelect.ascx" target="content\Blocks\CheckIn\FamilySelect.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\MobileLauncher.ascx.cs" target="content\Blocks\CheckIn\MobileLauncher.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" target="content\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\Success.ascx.cs" target="content\Blocks\CheckIn\Success.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\Welcome.ascx.cs" target="content\Blocks\CheckIn\Welcome.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\AssetManager.ascx.cs" target="content\Blocks\Cms\AssetManager.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentChannelDetail.ascx" target="content\Blocks\Cms\ContentChannelDetail.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentChannelDetail.ascx.cs" target="content\Blocks\Cms\ContentChannelDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentChannelItemDetail.ascx" target="content\Blocks\Cms\ContentChannelItemDetail.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentChannelView.ascx" target="content\Blocks\Cms\ContentChannelView.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentChannelView.ascx.cs" target="content\Blocks\Cms\ContentChannelView.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\EmailForm.ascx.cs" target="content\Blocks\Cms\EmailForm.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\PublicProfileEdit.ascx.cs" target="content\Blocks\Cms\PublicProfileEdit.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\SiteDetail.ascx" target="content\Blocks\Cms\SiteDetail.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Communication\CommunicationSettings.ascx" target="content\Blocks\Communication\CommunicationSettings.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Communication\CommunicationSettings.ascx.cs" target="content\Blocks\Communication\CommunicationSettings.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Communication\EmailPreferenceEntry.ascx.cs" target="content\Blocks\Communication\EmailPreferenceEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Connection\ConnectionOpportunitySignup.ascx.cs" target="content\Blocks\Connection\ConnectionOpportunitySignup.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Core\DeviceDetail.ascx" target="content\Blocks\Core\DeviceDetail.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Core\DeviceDetail.ascx.cs" target="content\Blocks\Core\DeviceDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Core\EntityTypes.ascx.cs" target="content\Blocks\Core\EntityTypes.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Core\FollowingByEntityLava.ascx.cs" target="content\Blocks\Core\FollowingByEntityLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Crm\Documents.ascx" target="content\Blocks\Crm\Documents.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Crm\PersonalDevices.ascx.cs" target="content\Blocks\Crm\PersonalDevices.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Crm\PersonMerge.ascx.cs" target="content\Blocks\Crm\PersonMerge.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\EventRegistrationWizard.ascx" target="content\Blocks\Event\EventRegistrationWizard.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\EventRegistrationWizard.ascx.cs" target="content\Blocks\Event\EventRegistrationWizard.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\RegistrationEntry.ascx" target="content\Blocks\Event\RegistrationEntry.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\RegistrationInstanceRegistrantList.ascx.cs" target="content\Blocks\Event\RegistrationInstanceRegistrantList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\RegistrationInstanceRegistrationList.ascx.cs" target="content\Blocks\Event\RegistrationInstanceRegistrationList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\RegistrationTemplateDetail.ascx" target="content\Blocks\Event\RegistrationTemplateDetail.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Finance\TransactionEntry.ascx.cs" target="content\Blocks\Finance\TransactionEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Finance\TransactionMatching.ascx" target="content\Blocks\Finance\TransactionMatching.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Finance\TransactionMatching.ascx.cs" target="content\Blocks\Finance\TransactionMatching.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupAttendanceDetail.ascx.cs" target="content\Blocks\Groups\GroupAttendanceDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupDetail.ascx" target="content\Blocks\Groups\GroupDetail.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupDetailLava.ascx" target="content\Blocks\Groups\GroupDetailLava.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupDetailLava.ascx.cs" target="content\Blocks\Groups\GroupDetailLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupFinder.ascx" target="content\Blocks\Groups\GroupFinder.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupFinder.ascx.cs" target="content\Blocks\Groups\GroupFinder.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" target="content\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupMemberDetail.ascx.cs" target="content\Blocks\Groups\GroupMemberDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupTypeDetail.ascx.cs" target="content\Blocks\Groups\GroupTypeDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Mobile\MobileApplicationDetail.ascx" target="content\Blocks\Mobile\MobileApplicationDetail.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Mobile\MobileApplicationDetail.ascx.cs" target="content\Blocks\Mobile\MobileApplicationDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Prayer\PrayerRequestEntry.ascx.cs" target="content\Blocks\Prayer\PrayerRequestEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Reporting\DataViewDetail.ascx.cs" target="content\Blocks\Reporting\DataViewDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Reporting\DynamicChart.ascx.cs" target="content\Blocks\Reporting\DynamicChart.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Security\AccountDetail.ascx.cs" target="content\Blocks\Security\AccountDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Security\AccountEdit.ascx.cs" target="content\Blocks\Security\AccountEdit.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Steps\StepParticipantList.ascx.cs" target="content\Blocks\Steps\StepParticipantList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\WorkFlow\WorkflowLaunch.ascx.cs" target="content\Blocks\WorkFlow\WorkflowLaunch.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Scripts\ace\mode-lava.js" target="content\Scripts\ace\mode-lava.js" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Scripts\Rock\Controls\assetManager.js" target="content\Scripts\Rock\Controls\assetManager.js" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\_rock-core.less" target="content\Styles\_rock-core.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\_rock-variables.less" target="content\Styles\_rock-variables.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\rock-components\pickers.less" target="content\Styles\rock-components\pickers.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\rock-components\upload-controls.less" target="content\Styles\rock-components\upload-controls.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\utilities\_cursor.less" target="content\Styles\utilities\_cursor.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAdventureKids\Assets\Sounds\success.mp3" target="content\Themes\CheckinAdventureKids\Assets\Sounds\success.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAdventureKids\Assets\Sounds\tap.mp3" target="content\Themes\CheckinAdventureKids\Assets\Sounds\tap.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAdventureKids\Layouts\Site.Master" target="content\Themes\CheckinAdventureKids\Layouts\Site.Master" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Assets\Sounds\success.mp3" target="content\Themes\CheckinAero\Assets\Sounds\success.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Assets\Sounds\tap.mp3" target="content\Themes\CheckinAero\Assets\Sounds\tap.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Layouts\Site.Master" target="content\Themes\CheckinAero\Layouts\Site.Master" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Styles\_variables.less" target="content\Themes\CheckinAero\Styles\_variables.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Styles\checkin-theme.css" target="content\Themes\CheckinAero\Styles\checkin-theme.css" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Styles\checkin-theme.less" target="content\Themes\CheckinAero\Styles\checkin-theme.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Styles\includes\_welcome.less" target="content\Themes\CheckinAero\Styles\includes\_welcome.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinBlueCrystal\Assets\Sounds\success.mp3" target="content\Themes\CheckinBlueCrystal\Assets\Sounds\success.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinBlueCrystal\Assets\Sounds\tap.mp3" target="content\Themes\CheckinBlueCrystal\Assets\Sounds\tap.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinBlueCrystal\Layouts\Site.Master" target="content\Themes\CheckinBlueCrystal\Layouts\Site.Master" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinElectric\Assets\Sounds\success.mp3" target="content\Themes\CheckinElectric\Assets\Sounds\success.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinElectric\Assets\Sounds\tap.mp3" target="content\Themes\CheckinElectric\Assets\Sounds\tap.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinElectric\Layouts\Site.Master" target="content\Themes\CheckinElectric\Layouts\Site.Master" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinElectric\Styles\_variables.less" target="content\Themes\CheckinElectric\Styles\_variables.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinElectric\Styles\checkin-theme-dark.css" target="content\Themes\CheckinElectric\Styles\checkin-theme-dark.css" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinElectric\Styles\checkin-theme-dark.less" target="content\Themes\CheckinElectric\Styles\checkin-theme-dark.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinElectric\Styles\includes\_defaults.less" target="content\Themes\CheckinElectric\Styles\includes\_defaults.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinPark\Assets\Sounds\success.mp3" target="content\Themes\CheckinPark\Assets\Sounds\success.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinPark\Assets\Sounds\tap.mp3" target="content\Themes\CheckinPark\Assets\Sounds\tap.mp3" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinPark\Layouts\Site.Master" target="content\Themes\CheckinPark\Layouts\Site.Master" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Flat\Assets\Lava\Calendar.lava" target="content\Themes\Flat\Assets\Lava\Calendar.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Flat\Assets\Lava\EventItemList.lava" target="content\Themes\Flat\Assets\Lava\EventItemList.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Rock\Assets\Lava\Calendar.lava" target="content\Themes\Rock\Assets\Lava\Calendar.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Rock\Assets\Lava\EventItemList.lava" target="content\Themes\Rock\Assets\Lava\EventItemList.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Stark\Assets\Lava\Calendar.lava" target="content\Themes\Stark\Assets\Lava\Calendar.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Stark\Assets\Lava\EventItemList.lava" target="content\Themes\Stark\Assets\Lava\EventItemList.lava" />
+  </files>
+</package>
