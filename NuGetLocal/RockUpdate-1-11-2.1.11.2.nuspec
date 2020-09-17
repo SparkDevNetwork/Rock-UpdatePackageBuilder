@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-11-2</id>
+    <version>1.11.2</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-11-1" version="1.11.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock11\RockWeb\App_Code\TwilioSendGrid.ashx.cs" target="content\App_Code\TwilioSendGrid.ashx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.eot" target="content\Assets\Fonts\FontAwesome\fa-brands-400.eot" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.svg" target="content\Assets\Fonts\FontAwesome\fa-brands-400.svg" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-brands-400.ttf" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff2" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.eot" target="content\Assets\Fonts\FontAwesome\fa-regular-400.eot" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.svg" target="content\Assets\Fonts\FontAwesome\fa-regular-400.svg" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-regular-400.ttf" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff2" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.eot" target="content\Assets\Fonts\FontAwesome\fa-solid-900.eot" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.svg" target="content\Assets\Fonts\FontAwesome\fa-solid-900.svg" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.ttf" target="content\Assets\Fonts\FontAwesome\fa-solid-900.ttf" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff2" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff2" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.NMI.dll" target="lib\Rock.NMI.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.PayFlowPro.dll" target="lib\Rock.PayFlowPro.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.WebStartup.dll" target="lib\Rock.WebStartup.dll" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\Admin.ascx.cs" target="content\Blocks\CheckIn\Admin.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\GroupTypeSelect.ascx" target="content\Blocks\CheckIn\GroupTypeSelect.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\MobileLauncher.ascx.cs" target="content\Blocks\CheckIn\MobileLauncher.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\RapidAttendanceEntry.ascx" target="content\Blocks\CheckIn\RapidAttendanceEntry.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" target="content\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentChannelItemDetail.ascx.cs" target="content\Blocks\Cms\ContentChannelItemDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentChannelView.ascx.cs" target="content\Blocks\Cms\ContentChannelView.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\ContentComponent.ascx.cs" target="content\Blocks\Cms\ContentComponent.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Cms\PageZoneBlocksEditor.ascx.cs" target="content\Blocks\Cms\PageZoneBlocksEditor.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Connection\AddCampaignRequests.ascx.cs" target="content\Blocks\Connection\AddCampaignRequests.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Connection\MyConnectionOpportunities.ascx.cs" target="content\Blocks\Connection\MyConnectionOpportunities.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Crm\Documents.ascx" target="content\Blocks\Crm\Documents.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Crm\Documents.ascx.cs" target="content\Blocks\Crm\Documents.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\CalendarLava.ascx.cs" target="content\Blocks\Event\CalendarLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\EventItemListLava.ascx.cs" target="content\Blocks\Event\EventItemListLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\EventRegistrationWizard.ascx" target="content\Blocks\Event\EventRegistrationWizard.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\EventRegistrationWizard.ascx.cs" target="content\Blocks\Event\EventRegistrationWizard.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Event\RegistrationInstanceRegistrationList.ascx.cs" target="content\Blocks\Event\RegistrationInstanceRegistrationList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupDetailLava.ascx.cs" target="content\Blocks\Groups\GroupDetailLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" target="content\Blocks\Groups\GroupListPersonalizedLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Mobile\MobileApplicationDetail.ascx.cs" target="content\Blocks\Mobile\MobileApplicationDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Mobile\MobilePageDetail.ascx.cs" target="content\Blocks\Mobile\MobilePageDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Reporting\DataViewDetail.ascx.cs" target="content\Blocks\Reporting\DataViewDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Security\PhoneNumberIdentification.ascx.cs" target="content\Blocks\Security\PhoneNumberIdentification.ascx.cs" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Blocks\Steps\PersonProgramStepList.ascx" target="content\Blocks\Steps\PersonProgramStepList.ascx" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\_blocks-crm.less" target="content\Styles\_blocks-crm.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\_blocks-events.less" target="content\Styles\_blocks-events.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\Bootstrap\variables.less" target="content\Styles\Bootstrap\variables.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\FontAwesome\_icons.less" target="content\Styles\FontAwesome\_icons.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\FontAwesome\_variables.less" target="content\Styles\FontAwesome\_variables.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\FontAwesome\brands.less" target="content\Styles\FontAwesome\brands.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\FontAwesome\fontawesome.less" target="content\Styles\FontAwesome\fontawesome.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\FontAwesome\regular.less" target="content\Styles\FontAwesome\regular.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\FontAwesome\solid.less" target="content\Styles\FontAwesome\solid.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\FontAwesome\v4-shims.less" target="content\Styles\FontAwesome\v4-shims.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Styles\utilities\_sizing.less" target="content\Styles\utilities\_sizing.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Styles\checkin-theme.css" target="content\Themes\CheckinAero\Styles\checkin-theme.css" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Styles\checkin-theme.less" target="content\Themes\CheckinAero\Styles\checkin-theme.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\CheckinAero\Styles\includes\_pages.less" target="content\Themes\CheckinAero\Styles\includes\_pages.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Flat\Assets\Lava\Calendar.lava" target="content\Themes\Flat\Assets\Lava\Calendar.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Flat\Assets\Lava\EventItemList.lava" target="content\Themes\Flat\Assets\Lava\EventItemList.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Rock\Assets\Lava\Calendar.lava" target="content\Themes\Rock\Assets\Lava\Calendar.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Rock\Assets\Lava\EventItemList.lava" target="content\Themes\Rock\Assets\Lava\EventItemList.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Rock\Styles\theme.css" target="content\Themes\Rock\Styles\theme.css" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Rock\Styles\theme.less" target="content\Themes\Rock\Styles\theme.less" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Stark\Assets\Lava\Calendar.lava" target="content\Themes\Stark\Assets\Lava\Calendar.lava" />
+    <file src="C:\Source\Repos\Rock11\RockWeb\Themes\Stark\Assets\Lava\EventItemList.lava" target="content\Themes\Stark\Assets\Lava\EventItemList.lava" />
+  </files>
+</package>
