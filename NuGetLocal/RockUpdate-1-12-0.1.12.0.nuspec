@@ -310,6 +310,8 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionEntityMatching.ascx" target="content\Blocks\Finance\TransactionEntityMatching.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionEntityMatching.ascx.cs" target="content\Blocks\Finance\TransactionEntityMatching.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionEntry.Kiosk.ascx" target="content\Blocks\Finance\TransactionEntry.Kiosk.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionEntry.Kiosk.ascx.cs" target="content\Blocks\Finance\TransactionEntry.Kiosk.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionEntryV2.ascx.cs" target="content\Blocks\Finance\TransactionEntryV2.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Follow\PersonSuggestionList.ascx.cs" target="content\Blocks\Follow\PersonSuggestionList.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupAttendanceDetail.ascx" target="content\Blocks\Groups\GroupAttendanceDetail.ascx" />
@@ -319,7 +321,6 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupMemberDetail.ascx" target="content\Blocks\Groups\GroupMemberDetail.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupMemberDetail.ascx.cs" target="content\Blocks\Groups\GroupMemberDetail.ascx.cs" />
-    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupMemberList.ascx" target="content\Blocks\Groups\GroupMemberList.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupMemberList.ascx.cs" target="content\Blocks\Groups\GroupMemberList.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\GroupScheduling\GroupScheduleCommunication.ascx" target="content\Blocks\GroupScheduling\GroupScheduleCommunication.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\GroupScheduling\GroupScheduleCommunication.ascx.cs" target="content\Blocks\GroupScheduling\GroupScheduleCommunication.ascx.cs" />
@@ -375,6 +376,8 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Steps\StepProgramDetail.ascx" target="content\Blocks\Steps\StepProgramDetail.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Steps\StepTypeDetail.ascx" target="content\Blocks\Steps\StepTypeDetail.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Steps\StepTypeDetail.ascx.cs" target="content\Blocks\Steps\StepTypeDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Store\LinkOrganization.ascx" target="content\Blocks\Store\LinkOrganization.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Store\PurchasedPackages.ascx" target="content\Blocks\Store\PurchasedPackages.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Streaks\AchievementAttemptDetail.ascx" target="content\Blocks\Streaks\AchievementAttemptDetail.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Streaks\AchievementAttemptDetail.ascx.cs" target="content\Blocks\Streaks\AchievementAttemptDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Streaks\AchievementAttemptList.ascx" target="content\Blocks\Streaks\AchievementAttemptList.ascx" />
@@ -411,6 +414,8 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\Rock\Controls\groupScheduler.js" target="content\Scripts\Rock\Controls\groupScheduler.js" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\Rock\Controls\modal.js" target="content\Scripts\Rock\Controls\modal.js" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\Rock\slug.js" target="content\Scripts\Rock\slug.js" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\summernote\summernote.js" target="content\Scripts\summernote\summernote.js" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\summernote\summernote.min.js" target="content\Scripts\summernote\summernote.min.js" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_blocks-cms.less" target="content\Styles\_blocks-cms.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_blocks-communication.less" target="content\Styles\_blocks-communication.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_blocks-connections.less" target="content\Styles\_blocks-connections.less" />
