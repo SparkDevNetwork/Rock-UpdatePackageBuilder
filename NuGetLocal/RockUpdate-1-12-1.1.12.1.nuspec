@@ -79,6 +79,7 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Connection\ConnectionRequestDetail.ascx.cs" target="content\Blocks\Connection\ConnectionRequestDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Connection\ConnectionTypeList.ascx" target="content\Blocks\Connection\ConnectionTypeList.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Connection\MyConnectionOpportunitiesLava.ascx.cs" target="content\Blocks\Connection\MyConnectionOpportunitiesLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Core\LocationDetail.ascx.cs" target="content\Blocks\Core\LocationDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Event\EventCalendarItemPersonalizedRegistration.ascx" target="content\Blocks\Event\EventCalendarItemPersonalizedRegistration.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Event\EventCalendarItemPersonalizedRegistration.ascx.cs" target="content\Blocks\Event\EventCalendarItemPersonalizedRegistration.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Event\EventItemOccurrencesSearchLava.ascx" target="content\Blocks\Event\EventItemOccurrencesSearchLava.ascx" />
@@ -93,11 +94,24 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\ContributionStatementLava.ascx.cs" target="content\Blocks\Finance\ContributionStatementLava.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\EventRegistrationMatching.ascx" target="content\Blocks\Finance\EventRegistrationMatching.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\EventRegistrationMatching.ascx.cs" target="content\Blocks\Finance\EventRegistrationMatching.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionEdit.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\ScheduledTransactionEditV2.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionEditV2.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\ScheduledTransactionView.ascx" target="content\Blocks\Finance\ScheduledTransactionView.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\ScheduledTransactionView.ascx.cs" target="content\Blocks\Finance\ScheduledTransactionView.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionDetail.ascx" target="content\Blocks\Finance\TransactionDetail.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionEntryV2.ascx" target="content\Blocks\Finance\TransactionEntryV2.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionEntryV2.ascx.cs" target="content\Blocks\Finance\TransactionEntryV2.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionFeeReport.ascx" target="content\Blocks\Finance\TransactionFeeReport.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Finance\TransactionFeeReport.ascx.cs" target="content\Blocks\Finance\TransactionFeeReport.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupAttendanceList.ascx.cs" target="content\Blocks\Groups\GroupAttendanceList.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupFinder.ascx.cs" target="content\Blocks\Groups\GroupFinder.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Groups\GroupRegistration.ascx.cs" target="content\Blocks\Groups\GroupRegistration.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\GroupScheduling\GroupScheduler.ascx.cs" target="content\Blocks\GroupScheduling\GroupScheduler.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\GroupScheduling\GroupScheduleRoster.ascx.cs" target="content\Blocks\GroupScheduling\GroupScheduleRoster.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\GroupScheduling\GroupScheduleToolbox.ascx" target="content\Blocks\GroupScheduling\GroupScheduleToolbox.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\GroupScheduling\GroupScheduleToolbox.ascx.cs" target="content\Blocks\GroupScheduling\GroupScheduleToolbox.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\MobilePageDetail.ascx" target="content\Blocks\Mobile\MobilePageDetail.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\MobilePageDetail.ascx.cs" target="content\Blocks\Mobile\MobilePageDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Reporting\DataViewDetail.ascx.cs" target="content\Blocks\Reporting\DataViewDetail.ascx.cs" />
@@ -118,7 +132,6 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Utility\StarkDetail.ascx.cs" target="content\Blocks\Utility\StarkDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\WorkFlow\WorkflowEntry.ascx.cs" target="content\Blocks\WorkFlow\WorkflowEntry.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\GetVideoEmbed.ashx" target="content\GetVideoEmbed.ashx" />
-    <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\CheckinClient\ZebraPrint.js" target="content\Scripts\CheckinClient\ZebraPrint.js" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\Rock\Controls\connectionRequestBoard.js" target="content\Scripts\Rock\Controls\connectionRequestBoard.js" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\Rock\Controls\EmailEditor\buttonComponentHelper.js" target="content\Scripts\Rock\Controls\EmailEditor\buttonComponentHelper.js" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Scripts\Rock\Controls\EmailEditor\email-editor.js" target="content\Scripts\Rock\Controls\EmailEditor\email-editor.js" />
@@ -130,13 +143,19 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_blocks-core.less" target="content\Styles\_blocks-core.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_blocks-crm.less" target="content\Styles\_blocks-crm.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_components.less" target="content\Styles\_components.less" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_grid.less" target="content\Styles\_grid.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_page-admin.less" target="content\Styles\_page-admin.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\_rock-variables.less" target="content\Styles\_rock-variables.less" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Styles\Bootstrap\variables.less" target="content\Styles\Bootstrap\variables.less" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Styles\chosen\bootstrap-chosen.less" target="content\Styles\chosen\bootstrap-chosen.less" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Styles\rock-components\checkbox.less" target="content\Styles\rock-components\checkbox.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\rock-components\code-editor.less" target="content\Styles\rock-components\code-editor.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\rock-components\kpi.less" target="content\Styles\rock-components\kpi.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\rock-components\photo-round.less" target="content\Styles\rock-components\photo-round.less" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Styles\rock-components\pickers.less" target="content\Styles\rock-components\pickers.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\rock-components\switch.less" target="content\Styles\rock-components\switch.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\utilities\_borders.less" target="content\Styles\utilities\_borders.less" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Styles\utilities\_card.less" target="content\Styles\utilities\_card.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\utilities\_position.less" target="content\Styles\utilities\_position.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\utilities\_sizing.less" target="content\Styles\utilities\_sizing.less" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Styles\utilities\_text.less" target="content\Styles\utilities\_text.less" />
