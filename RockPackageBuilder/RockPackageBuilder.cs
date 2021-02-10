@@ -7,7 +7,7 @@ namespace RockPackageBuilder
 {
     internal class RockPackageBuilder
     {
-        public static string BuildUpdatePackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
+        public static string BuildRockPackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
         {
             actionWarnings = string.Empty;
             string version = options.CurrentVersionTag;
