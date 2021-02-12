@@ -116,16 +116,6 @@ namespace RockPackageBuilder
             GetUpdatedFilesNotInSolution( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
             /*
-                2/11/2021 - NA
-                Once all of the list are updated we need to make sure that if any of the files
-                that are in the deletedPackageFiles were added back in modifiedLibs or modifiedPackageFiles
-                those files need to be removed from the deletedPackageFiles list.
-
-                Reason: Ensure necessary files aren't deleted. 
-            */
-            UpdateDeletedFilesList( modifiedLibs, modifiedPackageFiles, deletedPackageFiles );
-
-            /*
                 6/29/2020 - NA
                 The Rock.Common.Mobile dll is not part of the Rock solution, and it must always be
                 pulled from NuGet, therefore it should always be included in the list of files to be
@@ -180,19 +170,6 @@ namespace RockPackageBuilder
             Console.ReadKey( true );
 
             return 0;
-        }
-
-        private static void UpdateDeletedFilesList( List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles )
-        {
-            foreach ( var file in modifiedLibs )
-            {
-                deletedPackageFiles.Remove( file );
-            }
-
-            foreach ( var file in modifiedPackageFiles )
-            {
-                deletedPackageFiles.Remove( file );
-            }
         }
 
         /// <summary>

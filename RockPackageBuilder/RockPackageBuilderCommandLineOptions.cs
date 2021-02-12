@@ -38,7 +38,7 @@ namespace RockPackageBuilder
         [Option( 'd', "includepdb", DefaultValue = false, HelpText = "Set to true to include all of the pdb files otherwise just the Rock and Rock.Rest pdbs will be included." )]
         public bool IncludePdb { get; set; }
 
-        [Option( 'b', "previousVersionBinFolderPath", Required = false, HelpText = "The path to a clean bin folder of the previous version. Used to compare bin folders and get files that are not included in the solution." )]
+        [Option( 'b', "previousVersionBinFolderPath", Required = true, HelpText = "The path to a clean bin folder of the previous version. Used to compare bin folders and get files that are not included in the solution." )]
         public string PreviousVersionBinFolderPath { get; set; }
 
         public List<string> ProjectsInSolution { get; set; }
