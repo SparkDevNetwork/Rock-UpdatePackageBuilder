@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using LibGit2Sharp;
-using CommandLine;
-using CommandLine.Text;
 using NuGet;
-using System.Reflection;
-using System.Diagnostics;
 
 namespace RockPackageBuilder
 {
@@ -21,86 +17,11 @@ namespace RockPackageBuilder
     class BuildPackages
     {
         #region Properties
-        
-        /// <summary>
-        /// Name of the NuGet Package Prefix for the actual update delta packages.
-        /// </summary>
-        static string ROCKUPDATE_PACKAGE_PREFIX = "RockUpdate";
-
-        /// <summary>
-        /// The warning message for when web.config transformation is needed.
-        /// </summary>
-        static readonly string WEBCONFIG_XDT_MESSAGE = @"--> ACTION! web.config file was changed since last build. Figure out
-            how you're going to handle that. You'll probably have to
-            create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates
-            wiki page for details on doing that.";
-
-        /// <summary>
-        /// The projects to ignore. These projects will not be used to create the package and 
-        /// files with these names will be excluded in the bin folder compare.
-        /// </summary>
-        static List<string> PROJECTS_TO_IGNORE = new List<string>
-        {
-            "rock.codegeneration",
-            "rock.mywell",
-            "rock.specs",
-            "rock.tests",
-            "rock.tests.integration",
-            "rock.tests.shared",
-            "rock.tests.unittests"
-        };
 
         static string _previousVersion = string.Empty;
-
         static string _defaultDescription = "##TODO##";
 
         #endregion
-
-        // Define a class to receive parsed values
-        class Options
-        {
-            /// <summary>
-            /// Future use.  Will record the current head SHA so that the next package can be built using it.
-            /// </summary>
-
-            [Option( 'l', "lastVersionTag", Required = true, HelpText = "The last tag to compare with the current tag to build the delta for the package. (Ex: 0.1.3)" )]
-            public string LastVersionTag { get; set; }
-
-            [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 0.1.4)" )]
-            public string CurrentVersionTag { get; set; }
-
-            [Option( 'h', "currentVersionCommitHash", Required = false, HelpText = "Use only for testing! The hash of the current commit to compare with the last tag to build the delta for the package. NOTE: Supplying this will OVERRIDE the given current tag. (Ex: afd14572e3f1529ce0007fe0b7524becee626e55)" )]
-            public string CurrentVersionCommitHash { get; set; }
-
-            [Option( 'r', "repoPath", DefaultValue = @"C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock", HelpText = "The path to your local git repository." )]
-            public string RepoPath { get; set; }
-
-            [Option( 'p', "packageFolder", DefaultValue = @"..\..\..\NuGetLocal", HelpText = "The folder to put the output package." )]
-            public string PackageFolder { get; set; }
-
-            [Option( 'i', "installArtifactsFolder", DefaultValue = @"..\..\..\InstallerArtifacts", HelpText = "The folder to put the empty dummy packages for use with the installer." )]
-            public string InstallArtifactsFolder { get; set; }
-
-            [Option( 'v', "verbose", DefaultValue = false, HelpText = "Set to true to see a more verbose output of what's changed in the repo." )]
-            public bool Verbose { get; set; }
-
-            [Option( 't', "testing", DefaultValue = false, HelpText = "Set to true to just see the list of changed files between the two tagged releases." )]
-            public bool Testing { get; set; }
-
-            [Option( 'b', "previousVersionBinFolderPath", Required = false, HelpText = "The path to a clean bin folder of the previous version. Used to compare bin folders and get files that are not included in the solution." )]
-            public string PreviousVersionBinFolderPath { get; set; }
-
-            public List<string> ProjectsInSolution { get; set; }
-
-            [ParserState]
-            public IParserState LastParserState { get; set; }
-
-            [HelpOption]
-            public string GetUsage()
-            {
-                return HelpText.AutoBuild( this, ( HelpText current ) => HelpText.DefaultParsingErrorsHandler( this, current ) );
-            }
-        }
 
         /// <summary>
         /// Entry point and check command line parameters.
@@ -110,7 +31,7 @@ namespace RockPackageBuilder
         static int Main( string[] args )
         {
             Console.BufferHeight = 9999;
-            var options = new Options();
+            var options = new RockPackageBuilderCommandLineOptions();
             var parser = new CommandLine.Parser( with => with.HelpWriter = Console.Error );
             if ( parser.ParseArgumentsStrict( args, options, () => Exit() ) )
             {
@@ -143,7 +64,7 @@ namespace RockPackageBuilder
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        private static int Run( Options options )
+        private static int Run( RockPackageBuilderCommandLineOptions options )
         {
             List<string> modifiedLibs = new List<string>();
             List<string> modifiedPackageFiles = new List<string>();
@@ -152,7 +73,7 @@ namespace RockPackageBuilder
 
             options.ProjectsInSolution = GetProjects( options );
 
-            if ( ! ContinueAfterReadingSplashScreen( options ) )
+            if ( !ContinueAfterReadingSplashScreen( options ) )
             {
                 return 1;
             }
@@ -165,7 +86,7 @@ namespace RockPackageBuilder
             if ( File.Exists( packagePath ) )
             {
                 Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", packagePath, Environment.NewLine );
-                ConsoleKeyInfo choice = Console.ReadKey(true);
+                ConsoleKeyInfo choice = Console.ReadKey( true );
                 Console.Write( "\b" );
                 Console.WriteLine( "" );
                 if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
@@ -193,7 +114,7 @@ namespace RockPackageBuilder
 
             GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
             GetUpdatedFilesNotInSolution( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
-            
+
             /*
                 6/29/2020 - NA
                 The Rock.Common.Mobile dll is not part of the Rock solution, and it must always be
@@ -216,7 +137,7 @@ namespace RockPackageBuilder
             if ( !options.Testing )
             {
                 var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
-
+                var v2UpdatePackageName = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
                 // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
                 BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, _defaultDescription );
                 BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
@@ -226,7 +147,7 @@ namespace RockPackageBuilder
                 OnlyOutputChanges( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
             }
 
-            if ( ! string.IsNullOrEmpty( actionWarnings ) )
+            if ( !string.IsNullOrEmpty( actionWarnings ) )
             {
                 Console.WriteLine( "" );
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -246,7 +167,7 @@ namespace RockPackageBuilder
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to finish." );
-            Console.ReadKey(true);
+            Console.ReadKey( true );
 
             return 0;
         }
@@ -256,7 +177,7 @@ namespace RockPackageBuilder
         /// </summary>
         /// <param name="options">The options.</param>
         /// <returns></returns>
-        private static List<string> GetProjects( Options options )
+        private static List<string> GetProjects( RockPackageBuilderCommandLineOptions options )
         {
             string solutionPath = Path.Combine( options.RepoPath, "Rock.sln" );
             var solutionText = File.ReadAllText( solutionPath );
@@ -265,18 +186,18 @@ namespace RockPackageBuilder
             var matches = projReg.Matches( solutionText ).Cast<Match>();
             var projects = matches.Select( x => x.Groups[1].Value.ToLower() ).ToList();
 
-            return projects.Where( p => !PROJECTS_TO_IGNORE.Contains( p ) ).ToList();
+            return projects.Where( p => !Constants.PROJECTS_TO_IGNORE.Contains( p ) ).ToList();
         }
 
         /// <summary>
         /// An important message for the packager to read before continuing.
         /// </summary>
         /// <returns>False if packaging should not continue.</returns>
-        private static bool ContinueAfterReadingSplashScreen( Options options )
+        private static bool ContinueAfterReadingSplashScreen( RockPackageBuilderCommandLineOptions options )
         {
             string repoPath = options.RepoPath;
 
-            Console.Write( "Building update package from version " ); 
+            Console.Write( "Building update package from version " );
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Write( options.LastVersionTag );
             Console.ResetColor();
@@ -300,12 +221,12 @@ namespace RockPackageBuilder
             foreach ( var folder in dir.GetDirectories( "Rock.*", SearchOption.TopDirectoryOnly ) )
             {
                 var name = folder.Name.ToLower();
-                if ( PROJECTS_TO_IGNORE.Contains( name ) )
+                if ( Constants.PROJECTS_TO_IGNORE.Contains( name ) )
                 {
                     continue;
                 }
 
-                if ( name.StartsWith( "rock" ) && ! options.ProjectsInSolution.Contains( folder.Name.ToLower() ) &&  File.Exists( Path.Combine( folder.FullName, folder + ".csproj" ) ) )
+                if ( name.StartsWith( "rock" ) && !options.ProjectsInSolution.Contains( folder.Name.ToLower() ) && File.Exists( Path.Combine( folder.FullName, folder + ".csproj" ) ) )
                 {
                     missing.Add( folder.Name );
                 }
@@ -315,7 +236,7 @@ namespace RockPackageBuilder
             {
                 Console.WriteLine( "WARNING! The following are Rock.* projects that are not included in the " );
                 Console.WriteLine( "         NON_WEB_PROJECTS list.  That means changes to these projects " );
-                Console.Write(     "         " );
+                Console.Write( "         " );
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write( "will not be included " );
                 Console.ResetColor();
@@ -389,7 +310,7 @@ namespace RockPackageBuilder
         /// <param name="modifiedPackageFiles">a list of files that were modified in the RockWeb project</param>
         /// <param name="deletedPackageFiles">a list of files that were deleted from the RockWeb project</param>
         /// <param name="modifiedProjects">a list of projects that were modified</param>
-        private static void GetRockWebChangedFilesAndProjects( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
+        private static void GetRockWebChangedFilesAndProjects( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
         {
             int webRootPathLength = @"rockweb\".Length;
 
@@ -405,17 +326,17 @@ namespace RockPackageBuilder
                 }
 
                 Tag previousTag = repo.Tags[options.LastVersionTag];
-                if ( previousTag == null)
+                if ( previousTag == null )
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(string.Format("Error: I don't see a {0} tag.  Did you enter the correct last version tag?", options.LastVersionTag));
+                    Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you enter the correct last version tag?", options.LastVersionTag ) );
                     Exit();
                 }
-                
-                var previousCommit = (Commit)previousTag.Target;
+
+                var previousCommit = ( Commit ) previousTag.Target;
 
                 Commit currentCommit = null;
-                if ( string.IsNullOrWhiteSpace( options.CurrentVersionCommitHash )  )
+                if ( string.IsNullOrWhiteSpace( options.CurrentVersionCommitHash ) )
                 {
                     currentCommit = ( Commit ) tag.Target;
                 }
@@ -433,17 +354,17 @@ namespace RockPackageBuilder
                 // Now go through each commit since the last pagckage commit and
                 // determine which projects (dlls) and files from the RockWeb project
                 // need to be included in the package.
-                Console.WriteLine("Comparing... (this could take a few minutes)");
+                Console.WriteLine( "Comparing... (this could take a few minutes)" );
 
-                TreeChanges changes = repo.Diff.Compare(previousCommit.Tree, currentCommit.Tree);
+                TreeChanges changes = repo.Diff.Compare( previousCommit.Tree, currentCommit.Tree );
 
-                var filesToIgnoreButOnlyIfModify = new string[] 
+                var filesToIgnoreButOnlyIfModify = new string[]
                 {
                     "_variable-overrides.less",
                     "_css-overrides.less"
                 };
 
-                var extensionsToIgnore = new string[] 
+                var extensionsToIgnore = new string[]
                 {
                     ".gitignore"
                 };
@@ -477,7 +398,7 @@ namespace RockPackageBuilder
                     {
                         // If v9.0, don't skip the RockWeb\Themes\DashboardStark\Styles\_css-overrides.less, RockWeb\Themes\KioskStark\Styles\_css-overrides.less, RockWeb\Themes\LandingPage\Styles\_variable-overrides.less, and RockWeb\Themes\LandingPage\Styles\_css-overrides.less
                         if ( options.CurrentVersionTag == "1.9.0" &&
-                            ( 
+                            (
                                 file.Path == @"RockWeb\Themes\DashboardStark\Styles\_css-overrides.less" ||
                                 file.Path == @"RockWeb\Themes\KioskStark\Styles\_css-overrides.less" ||
                                 file.Path == @"RockWeb\Themes\LandingPage\Styles\_css-overrides.less" ||
@@ -551,7 +472,7 @@ namespace RockPackageBuilder
             }
         }
 
-        private static void GetUpdatedFilesNotInSolution( Options options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
+        private static void GetUpdatedFilesNotInSolution( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
         {
             if ( string.IsNullOrWhiteSpace( options.PreviousVersionBinFolderPath ) )
             {
@@ -577,10 +498,10 @@ namespace RockPackageBuilder
                 // Filter out files by extension
                 .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
                 // Filter out files for ignored projects
-                .Where( f => !PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
                 // Filter out files that have already been flagged as updated by other checks
                 .Where( f => !modifiedLibs.Any( p => Path.GetFileName( f ).Equals( Path.GetFileName( p ), StringComparison.OrdinalIgnoreCase ) ) )
-                .Where( f => !modifiedPackageFiles.Any( p => Path.Combine("Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !modifiedPackageFiles.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
 
@@ -590,21 +511,21 @@ namespace RockPackageBuilder
                 // Filter out files by extension
                 .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
                 // Filter out files for ignored projects
-                .Where( f => !PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
                 // Filter out files that have already been flagged as updated by other checks
                 .Where( f => !modifiedLibs.Any( p => Path.GetFileName( f ).Equals( Path.GetFileName( p ), StringComparison.OrdinalIgnoreCase ) ) )
-                .Where( f => !modifiedPackageFiles.Any( p => Path.Combine("RockWeb", "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "RockWeb", "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !modifiedPackageFiles.Any( p => Path.Combine( "RockWeb", "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "RockWeb", "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
-          
+
             // loop through the old file list and compare to new file version
-            foreach( var oldFile in oldFileList )
+            foreach ( var oldFile in oldFileList )
             {
                 FileInfo oldFileInfo = new FileInfo( oldFile );
                 FileInfo newFileInfo = new FileInfo( Path.Combine( options.RepoPath, "RockWeb", "Bin", oldFileInfo.Name ) );
 
                 // If exists in old but not new then add to deleted list
-                if( !newFileInfo.Exists )
+                if ( !newFileInfo.Exists )
                 {
                     string file = Path.Combine( "RockWeb", "Bin", oldFileInfo.Name );
                     if ( !deletedPackageFiles.Where( d => d.Equals( file, StringComparison.OrdinalIgnoreCase ) ).Any() )
@@ -616,8 +537,8 @@ namespace RockPackageBuilder
                 }
 
                 // Compare the old and new Bytes and move on if they are the same
-                if( oldFileInfo.Length == newFileInfo.Length
-                    && File.ReadAllBytes(oldFileInfo.FullName).SequenceEqual( File.ReadAllBytes( newFileInfo.FullName ) ) )
+                if ( oldFileInfo.Length == newFileInfo.Length
+                    && File.ReadAllBytes( oldFileInfo.FullName ).SequenceEqual( File.ReadAllBytes( newFileInfo.FullName ) ) )
                 {
                     continue;
                 }
@@ -625,7 +546,7 @@ namespace RockPackageBuilder
                 string relativeFilePath = "Bin\\" + oldFileInfo.Name;
 
                 // The file has changed. If dll then add to modifiedLibs (filename), otherwise add to modifiedPackageFiles (bin\filename)
-                if( oldFileInfo.Extension == ".dll" )
+                if ( oldFileInfo.Extension == ".dll" )
                 {
                     modifiedLibs.Add( relativeFilePath );
                 }
@@ -640,10 +561,10 @@ namespace RockPackageBuilder
                 .Where( o => !oldFileList.Any( n => Path.GetFileName( o ).Equals( Path.GetFileName( n ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Select( o => o.Replace( Path.Combine( options.RepoPath, "RockWeb" ) + "\\", string.Empty ) );
 
-            foreach( var newFile in filesToAdd )
+            foreach ( var newFile in filesToAdd )
             {
                 // If dll then add to modifiedLibs (filename), otherwise add to modifiedPackageFiles (bin\filename)
-                if( Path.GetExtension( newFile ) == ".dll" )
+                if ( Path.GetExtension( newFile ) == ".dll" )
                 {
                     modifiedLibs.Add( newFile );
                 }
@@ -663,56 +584,56 @@ namespace RockPackageBuilder
         /// <param name="previousCommits"></param>
         /// <param name="verbose"></param>
         /// <param name="sb">the StringBuilder to output the formatted commit messages to.</param>
-        private static void ParseCommitMessages(ICommitLog currentCommits, ICommitLog previousCommits, bool verbose, StringBuilder sb)
+        private static void ParseCommitMessages( ICommitLog currentCommits, ICommitLog previousCommits, bool verbose, StringBuilder sb )
         {
-            Regex regUpdate = new Regex(@"\[update-([^\]]+\] (.*))", RegexOptions.IgnoreCase);
+            Regex regUpdate = new Regex( @"\[update-([^\]]+\] (.*))", RegexOptions.IgnoreCase );
             List<string> appUpdateBadges = new List<string>();
 
-            var previousShas = previousCommits.Select(c => c.Sha).ToList();
-            var validCommits = currentCommits.Where(c => !previousShas.Contains(c.Sha)).ToList();
+            var previousShas = previousCommits.Select( c => c.Sha ).ToList();
+            var validCommits = currentCommits.Where( c => !previousShas.Contains( c.Sha ) ).ToList();
             foreach ( var commit in validCommits )
             {
-                if (!commit.Message.StartsWith("Merge pull request" ) && 
-                    !commit.Message.StartsWith("Merge branch") &&
-                    !commit.Message.StartsWith("Merge remote-tracking") &&
-                    !commit.Message.StartsWith("-"))
+                if ( !commit.Message.StartsWith( "Merge pull request" ) &&
+                    !commit.Message.StartsWith( "Merge branch" ) &&
+                    !commit.Message.StartsWith( "Merge remote-tracking" ) &&
+                    !commit.Message.StartsWith( "-" ) )
                 {
-                    Match match = regUpdate.Match(commit.Message);
-                    if (match.Success)
+                    Match match = regUpdate.Match( commit.Message );
+                    if ( match.Success )
                     {
-                        appUpdateBadges.Add(string.Format("<span title=\"This application needs to be updated. {1}\" class=\"label label-warning\">{0}</span>",
-                            match.Groups[1].Value, match.Groups[2].Value.Replace("\"", "\\\"")));
+                        appUpdateBadges.Add( string.Format( "<span title=\"This application needs to be updated. {1}\" class=\"label label-warning\">{0}</span>",
+                            match.Groups[1].Value, match.Groups[2].Value.Replace( "\"", "\\\"" ) ) );
                     }
-                    else if (!(commit.Message.StartsWith("+") || commit.Message.StartsWith(" +")))
+                    else if ( !( commit.Message.StartsWith( "+" ) || commit.Message.StartsWith( " +" ) ) )
                     {
                         // append the commit message an prefix with a + if there isn't one already.
-                        sb.AppendFormat("+ {0}", commit.Message);
+                        sb.AppendFormat( "+ {0}", commit.Message );
                     }
                     else
                     {
-                        sb.AppendFormat("{0}", commit.Message);
+                        sb.AppendFormat( "{0}", commit.Message );
                     }
 
-                    if ( !commit.Message.EndsWith( "\n" ))
+                    if ( !commit.Message.EndsWith( "\n" ) )
                     {
                         sb.Append( '\n' );
                     }
                 }
 
-                if (verbose)
+                if ( verbose )
                 {
-                    Console.WriteLine(string.Format("id: {0} {1}", commit.Id, commit.Message));
+                    Console.WriteLine( string.Format( "id: {0} {1}", commit.Id, commit.Message ) );
                 }
 
             }
 
             // add any app update badges to bottom of the sb
-            if (appUpdateBadges.Count > 0)
+            if ( appUpdateBadges.Count > 0 )
             {
-                sb.AppendFormat("<br/><h4>{0}</h4>", string.Join("&nbsp;", appUpdateBadges));
+                sb.AppendFormat( "<br/><h4>{0}</h4>", string.Join( "&nbsp;", appUpdateBadges ) );
             }
 
-            Console.WriteLine("Found {0} commits.", validCommits.Count());
+            Console.WriteLine( "Found {0} commits.", validCommits.Count() );
         }
 
         /// <summary>
@@ -727,12 +648,12 @@ namespace RockPackageBuilder
         /// <param name="description">The description.</param>
         /// <param name="actionWarnings">The action warnings (if any) which are useful to display again as the very last thing before quitting.</param>
         /// <returns></returns>
-        private static string BuildUpdatePackage( Options options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
+        private static string BuildUpdatePackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
         {
             actionWarnings = string.Empty;
             string version = options.CurrentVersionTag;
             string dashVersion = version.Replace( '.', '-' );
-            string updatePackageId = ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
+            string updatePackageId = Constants.ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
             string updatePackageFileName = Path.Combine( options.PackageFolder, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
 
             // Create a manifest for this package...
@@ -754,22 +675,30 @@ namespace RockPackageBuilder
                 // Skip the root web.config, but YELL to let the person know they need to do something with this.
                 if ( file.ToLower() == "web.config" )
                 {
+                    var xdtPath = file.Replace( "web.config", "web.config.rock.xdt" );
+
+                    if ( File.Exists( Path.Combine( webRootPath, xdtPath ) ) )
+                    {
+                        AddToManifest( manifest, xdtPath, webRootPath );
+                        continue;
+                    }
+
                     Console.WriteLine( "" );
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine( WEBCONFIG_XDT_MESSAGE );
+                    Console.WriteLine( Constants.WEBCONFIG_XDT_MESSAGE );
                     Console.ForegroundColor = ConsoleColor.Gray;
 
-                    actionWarnings += WEBCONFIG_XDT_MESSAGE;
+                    actionWarnings += Constants.WEBCONFIG_XDT_MESSAGE;
                     continue;
                 }
-                
+
                 AddToManifest( manifest, file, webRootPath );
 
                 // if a less file was updated, check to see if a matching css file exists, and if so, add it (these files are ignored by repo)
-                if ( file.ToLower().EndsWith( ".less" ))
+                if ( file.ToLower().EndsWith( ".less" ) )
                 {
                     string cssPath = file.Substring( 0, file.Length - 5 ) + ".css";
-                    if ( File.Exists( Path.Combine( webRootPath, cssPath )))
+                    if ( File.Exists( Path.Combine( webRootPath, cssPath ) ) )
                     {
                         AddToManifest( manifest, cssPath, webRootPath );
                     }
@@ -795,13 +724,23 @@ namespace RockPackageBuilder
                 foreach ( KeyValuePair<string, bool> entry in modifiedProjects )
                 {
                     Console.WriteLine( string.Format( "\t * {0}", entry.Key + ".dll" ) );
-                    AddLibToManifest( manifest, Path.Combine("bin", entry.Key + ".dll" ), webRootPath );
+                    AddLibToManifest( manifest, Path.Combine( "bin", entry.Key + ".dll" ), webRootPath );
 
                     // if a dll was updated and there is an associated xml documentation file, include it 
                     string xmlPath = Path.Combine( "bin", entry.Key + ".xml" );
                     if ( File.Exists( Path.Combine( webRootPath, xmlPath ) ) )
                     {
                         AddToManifest( manifest, xmlPath, webRootPath );
+                    }
+
+                    // if a dll was updated and there is an associated pdb documentation file, include it
+                    if ( options.IncludePdb || Constants.DEFAULT_PDB_TO_INCLUDE.Contains( entry.Key.ToLower() ) )
+                    {
+                        string pdbPath = Path.Combine( "bin", entry.Key + ".pdb" );
+                        if ( File.Exists( Path.Combine( webRootPath, pdbPath ) ) )
+                        {
+                            AddToManifest( manifest, pdbPath, webRootPath );
+                        }
                     }
                 }
             }
@@ -817,9 +756,9 @@ namespace RockPackageBuilder
             if ( deletedPackageFiles.Count > 0 )
             {
                 Console.WriteLine( "" );
-                Console.Write    ( "WARNING! Files are designated" );
+                Console.Write( "WARNING! Files are designated" );
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write    ( " to be DELETED " );
+                Console.Write( " to be DELETED " );
                 Console.ResetColor();
                 Console.WriteLine( "in this update." );
                 Console.WriteLine( "         Review all the files listed in the App_Data\\deletefile.lst" );
@@ -828,7 +767,7 @@ namespace RockPackageBuilder
 
                 foreach ( var name in deletedPackageFiles )
                 {
-                    Console.WriteLine( "\t * " + name ); 
+                    Console.WriteLine( "\t * " + name );
                 }
 
                 using ( StreamWriter w = File.AppendText( deleteFileFullPath ) )
@@ -882,7 +821,7 @@ namespace RockPackageBuilder
         /// <param name="deletedPackageFiles">The deleted package files.</param>
         /// <param name="modifiedProjects">The modified projects.</param>
         /// <param name="description">The description.</param>
-        private static void OnlyOutputChanges( Options options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
+        private static void OnlyOutputChanges( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
         {
             actionWarnings = string.Empty;
             string webRootPath = Path.Combine( options.RepoPath, "RockWeb" );
@@ -894,10 +833,10 @@ namespace RockPackageBuilder
                 {
                     Console.WriteLine( "" );
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine( WEBCONFIG_XDT_MESSAGE );
+                    Console.WriteLine( Constants.WEBCONFIG_XDT_MESSAGE );
                     Console.ForegroundColor = ConsoleColor.Gray;
 
-                    actionWarnings += WEBCONFIG_XDT_MESSAGE;
+                    actionWarnings += Constants.WEBCONFIG_XDT_MESSAGE;
                     continue;
                 }
 
@@ -969,13 +908,13 @@ namespace RockPackageBuilder
         /// <param name="options"></param>
         /// <param name="manifest"></param>
         /// <param name="currentPackageName"></param>
-        private static void AddPreviousUpdatePackageAsDependency( Options options, Manifest manifest, string currentPackageName )
+        private static void AddPreviousUpdatePackageAsDependency( RockPackageBuilderCommandLineOptions options, Manifest manifest, string currentPackageName )
         {
             string previousUpdatePackageId = null;
             string previousUpdatePackageVersion = null;
 
             DirectoryInfo di = new DirectoryInfo( options.PackageFolder );
-            FileSystemInfo[] files = di.GetFileSystemInfos( ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" );
+            FileSystemInfo[] files = di.GetFileSystemInfos( Constants.ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" );
 
             foreach ( var packageFile in files.OrderByDescending( f => f.LastWriteTime ) )
             {
@@ -1023,7 +962,7 @@ namespace RockPackageBuilder
                 new ManifestDependencySet
                 {
                     TargetFramework = null,
-                    Dependencies = new List<ManifestDependency> 
+                    Dependencies = new List<ManifestDependency>
                     {
                         new ManifestDependency { Id = previousUpdatePackageId, Version = previousUpdatePackageVersion }
                     }
@@ -1044,7 +983,7 @@ namespace RockPackageBuilder
         private static void BuildEmptyStubPackagesForInstaller( string repoPath, string installerArtifactsPath, string version )
         {
             string absolutePathOfCurrentDirectory = System.IO.Directory.GetCurrentDirectory();
-            string fullPathToInstallerArtifactsPath = Path.GetFullPath( ( new Uri( Path.Combine( absolutePathOfCurrentDirectory, installerArtifactsPath) ) ).LocalPath );
+            string fullPathToInstallerArtifactsPath = Path.GetFullPath( ( new Uri( Path.Combine( absolutePathOfCurrentDirectory, installerArtifactsPath ) ) ).LocalPath );
 
             FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", "Rock.Version.dll" ) );
             // Create a manifest for the empty stub Rock.x.y.z package...
@@ -1078,7 +1017,7 @@ namespace RockPackageBuilder
 
             // Now create the RockUpdate-X-Y-Z.x.y.z.nupkg
             string dashVersion = version.Replace( '.', '-' );
-            string updatePackageId = ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
+            string updatePackageId = Constants.ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
             string updatePackageFileName = Path.Combine( installerArtifactsPath, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
 
             // Create a manifest for this package...
@@ -1130,7 +1069,7 @@ namespace RockPackageBuilder
                     new ManifestDependencySet
                     {
                         TargetFramework = null,
-                        Dependencies = new List<ManifestDependency> 
+                        Dependencies = new List<ManifestDependency>
                         {
                             new ManifestDependency { Id = updatePackageId, Version = version }
                         }
@@ -1157,7 +1096,7 @@ namespace RockPackageBuilder
             File.WriteAllText( tempReadmeFileFullPath, "You can read the details on the official https://www.rockrms.com/releasenotes page." );
 
             AddToManifest( manifest, tempReadmeFileRelativePath, webRootPath );
-            manifest.Files = manifest.Files.OrderBy(a => a.Source).ToList();
+            manifest.Files = manifest.Files.OrderBy( a => a.Source ).ToList();
 
             string packageFileName = FullPathOfRockPackageFile( packageFolder, version );
 
@@ -1195,7 +1134,7 @@ namespace RockPackageBuilder
         }
 
         #region NuGet Package Helper Methods
-        
+
         /// <summary>
         /// Add the given files (matching the given file filter and search options)
         /// to the manifest.
@@ -1259,7 +1198,7 @@ namespace RockPackageBuilder
 
         #endregion
     }
-    
+
     #region Extensions
 
     #endregion
