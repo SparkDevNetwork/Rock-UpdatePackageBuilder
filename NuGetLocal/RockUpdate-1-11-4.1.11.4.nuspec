@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-11-4</id>
+    <version>1.11.4</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-11-3" version="1.11.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\Mailgun.ashx.cs" target="content\App_Code\Mailgun.ashx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.pdb" target="content\bin\Rock.pdb" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Rest.pdb" target="content\bin\Rock.Rest.pdb" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Config\EditLabel.ascx.cs" target="content\Blocks\CheckIn\Config\EditLabel.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\Success.ascx.cs" target="content\Blocks\CheckIn\Success.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\ContentChannelNavigation.ascx.cs" target="content\Blocks\Cms\ContentChannelNavigation.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PublicProfileEdit.ascx" target="content\Blocks\Cms\PublicProfileEdit.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PublicProfileEdit.ascx.cs" target="content\Blocks\Cms\PublicProfileEdit.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Communication\CommunicationDetail.ascx.cs" target="content\Blocks\Communication\CommunicationDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Connection\MyConnectionOpportunities.ascx.cs" target="content\Blocks\Connection\MyConnectionOpportunities.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\RockUpdate.ascx.cs" target="content\Blocks\Core\RockUpdate.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\TagReport.ascx.cs" target="content\Blocks\Core\TagReport.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Follow\PersonSuggestionList.ascx.cs" target="content\Blocks\Follow\PersonSuggestionList.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Prayer\PrayerSession.ascx" target="content\Blocks\Prayer\PrayerSession.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Security\ForgotUserName.ascx.cs" target="content\Blocks\Security\ForgotUserName.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_rock-core.less" target="content\Styles\_rock-core.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinAero\Styles\checkin-theme.css" target="content\Themes\CheckinAero\Styles\checkin-theme.css" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinAero\Styles\checkin-theme.less" target="content\Themes\CheckinAero\Styles\checkin-theme.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinAero\Styles\includes\_pages.less" target="content\Themes\CheckinAero\Styles\includes\_pages.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Themes\CheckinAero\Styles\includes\_timeselect.less" target="content\Themes\CheckinAero\Styles\includes\_timeselect.less" />
+  </files>
+</package>
