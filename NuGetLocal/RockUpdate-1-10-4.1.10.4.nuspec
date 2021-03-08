@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-10-4</id>
+    <version>1.10.4</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-10-3" version="1.10.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Code\Mailgun.ashx.cs" target="content\App_Code\Mailgun.ashx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Common.Mobile.dll" target="lib\Rock.Common.Mobile.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.DownhillCss.dll" target="lib\Rock.DownhillCss.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\EditFamily.ascx.cs" target="content\Blocks\CheckIn\EditFamily.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" target="content\Blocks\CheckIn\RapidAttendanceEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\HtmlContentDetail.ascx.cs" target="content\Blocks\Cms\HtmlContentDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PageZoneBlocksEditor.ascx.cs" target="content\Blocks\Cms\PageZoneBlocksEditor.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Cms\PublicProfileEdit.ascx.cs" target="content\Blocks\Cms\PublicProfileEdit.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Core\CampusDetail.ascx.cs" target="content\Blocks\Core\CampusDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\BulkUpdate.ascx.cs" target="content\Blocks\Crm\BulkUpdate.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Crm\PersonMerge.ascx.cs" target="content\Blocks\Crm\PersonMerge.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Groups\GroupRegistration.ascx" target="content\Blocks\Groups\GroupRegistration.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Mobile\MobileApplicationDetail.ascx" target="content\Blocks\Mobile\MobileApplicationDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Mobile\MobileApplicationDetail.ascx.cs" target="content\Blocks\Mobile\MobileApplicationDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Prayer\PrayerRequestDetail.ascx.cs" target="content\Blocks\Prayer\PrayerRequestDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Reporting\SqlCommand.ascx" target="content\Blocks\Reporting\SqlCommand.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Reporting\SqlCommand.ascx.cs" target="content\Blocks\Reporting\SqlCommand.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Rsvp\RsvpDetail.ascx" target="content\Blocks\Rsvp\RsvpDetail.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Security\Login.ascx" target="content\Blocks\Security\Login.ascx" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Steps\StepBulkEntry.ascx.cs" target="content\Blocks\Steps\StepBulkEntry.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Blocks\Steps\StepTypeDetail.ascx.cs" target="content\Blocks\Steps\StepTypeDetail.ascx.cs" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\EmailEditor\rsvpComponentHelper.js" target="content\Scripts\Rock\Controls\EmailEditor\rsvpComponentHelper.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\itemPicker.js" target="content\Scripts\Rock\Controls\itemPicker.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Controls\numberUpDownGroup.js" target="content\Scripts\Rock\Controls\numberUpDownGroup.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Scripts\Rock\Extensions\rockTree.js" target="content\Scripts\Rock\Extensions\rockTree.js" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_blocks-cms.less" target="content\Styles\_blocks-cms.less" />
+    <file src="C:\Github\SparkDevNetwork\Rock\RockWeb\Styles\_rock-core.less" target="content\Styles\_rock-core.less" />
+  </files>
+</package>
