@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Rock</id>
+    <version>1.10.2</version>
+    <title>Rock McKinley 10.2</title>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Rock McKinley 10.2 fixes issues that were reported during the previous release(s) (See &lt;a href='https://www.rockrms.com/releasenotes?version#v10.2'&gt;Release Notes&lt;/a&gt; for details).</description>
+    <releaseNotes>&lt;br /&gt; You can read the details on the official &lt;a href='https://www.rockrms.com/releasenotes?version#v10.2'&gt;Release Notes&lt;/a&gt; page.</releaseNotes>
+    <copyright>Copyright © Spark Development Network 2011-2019</copyright>
+    <tags>requires-1.10.1</tags>
+    <dependencies>
+      <dependency id="RockUpdate-1-10-2" version="1.10.2" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock10\RockWeb\Readme.txt" target="content\Readme.txt" />
+  </files>
+</package>

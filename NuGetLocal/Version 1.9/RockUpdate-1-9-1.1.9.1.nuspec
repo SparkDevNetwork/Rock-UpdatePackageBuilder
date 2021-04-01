@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-9-1</id>
+    <version>1.9.1</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-9-0" version="1.9.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock9\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.eot" target="content\Assets\Fonts\FontAwesome\fa-brands-400.eot" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.svg" target="content\Assets\Fonts\FontAwesome\fa-brands-400.svg" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-brands-400.ttf" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-brands-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-brands-400.woff2" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.eot" target="content\Assets\Fonts\FontAwesome\fa-regular-400.eot" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.svg" target="content\Assets\Fonts\FontAwesome\fa-regular-400.svg" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.ttf" target="content\Assets\Fonts\FontAwesome\fa-regular-400.ttf" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-regular-400.woff2" target="content\Assets\Fonts\FontAwesome\fa-regular-400.woff2" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.eot" target="content\Assets\Fonts\FontAwesome\fa-solid-900.eot" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.svg" target="content\Assets\Fonts\FontAwesome\fa-solid-900.svg" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.ttf" target="content\Assets\Fonts\FontAwesome\fa-solid-900.ttf" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Assets\Fonts\FontAwesome\fa-solid-900.woff2" target="content\Assets\Fonts\FontAwesome\fa-solid-900.woff2" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\CheckIn\AttendanceAnalytics.ascx.cs" target="content\Blocks\CheckIn\AttendanceAnalytics.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\CheckIn\Config\CheckinTypeDetail.ascx" target="content\Blocks\CheckIn\Config\CheckinTypeDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\CheckIn\Manager\Person.ascx.cs" target="content\Blocks\CheckIn\Manager\Person.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Cms\AssetManager.ascx" target="content\Blocks\Cms\AssetManager.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Cms\AssetManager.ascx.cs" target="content\Blocks\Cms\AssetManager.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Cms\ContentChannelItemDetail.ascx" target="content\Blocks\Cms\ContentChannelItemDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx.cs" target="content\Blocks\Communication\CommunicationEntryWizard.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Connection\ConnectionOpportunityDetailLava.ascx.cs" target="content\Blocks\Connection\ConnectionOpportunityDetailLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Connection\ConnectionRequestDetail.ascx" target="content\Blocks\Connection\ConnectionRequestDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Connection\ConnectionRequestDetail.ascx.cs" target="content\Blocks\Connection\ConnectionRequestDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Connection\MyConnectionOpportunities.ascx.cs" target="content\Blocks\Connection\MyConnectionOpportunities.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Core\CampusContextSetter.ascx.cs" target="content\Blocks\Core\CampusContextSetter.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Core\DefinedValueList.ascx.cs" target="content\Blocks\Core\DefinedValueList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\FamilyPreRegistration.ascx" target="content\Blocks\Crm\FamilyPreRegistration.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\Motivators.ascx.cs" target="content\Blocks\Crm\Motivators.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\PersonDetail\AttributeValues.ascx.cs" target="content\Blocks\Crm\PersonDetail\AttributeValues.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\PersonDetail\EditPerson.ascx" target="content\Blocks\Crm\PersonDetail\EditPerson.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Crm\PersonDetail\EditPerson.ascx.cs" target="content\Blocks\Crm\PersonDetail\EditPerson.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\EventRegistrationWizard.ascx" target="content\Blocks\Event\EventRegistrationWizard.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrantDetail.ascx.cs" target="content\Blocks\Event\RegistrantDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationEntry.ascx" target="content\Blocks\Event\RegistrationEntry.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationTemplateDetail.ascx" target="content\Blocks\Event\RegistrationTemplateDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationTemplateDetail.ascx.cs" target="content\Blocks\Event\RegistrationTemplateDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\ContributionStatementLava.ascx.cs" target="content\Blocks\Finance\ContributionStatementLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionEntityMatching.ascx.cs" target="content\Blocks\Finance\TransactionEntityMatching.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionMatching.ascx" target="content\Blocks\Finance\TransactionMatching.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionMatching.ascx.cs" target="content\Blocks\Finance\TransactionMatching.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupMemberList.ascx.cs" target="content\Blocks\Groups\GroupMemberList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupRegistration.ascx.cs" target="content\Blocks\Groups\GroupRegistration.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\GroupScheduling\GroupScheduler.ascx" target="content\Blocks\GroupScheduling\GroupScheduler.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\GroupScheduling\GroupScheduleToolbox.ascx.cs" target="content\Blocks\GroupScheduling\GroupScheduleToolbox.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Reporting\DynamicHeatMap.ascx.cs" target="content\Blocks\Reporting\DynamicHeatMap.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Reporting\MetricValueList.ascx.cs" target="content\Blocks\Reporting\MetricValueList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Reporting\PowerBiReportViewer.ascx" target="content\Blocks\Reporting\PowerBiReportViewer.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Scripts\Chartjs\Gauge.js" target="content\Scripts\Chartjs\Gauge.js" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Scripts\Rock\slug.js" target="content\Scripts\Rock\slug.js" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\_blocks-crm.less" target="content\Styles\_blocks-crm.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\_blocks-finance.less" target="content\Styles\_blocks-finance.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\_forms.less" target="content\Styles\_forms.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\_core.less" target="content\Styles\FontAwesome\_core.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\_icons.less" target="content\Styles\FontAwesome\_icons.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\_shims.less" target="content\Styles\FontAwesome\_shims.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\_variables.less" target="content\Styles\FontAwesome\_variables.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\brands.less" target="content\Styles\FontAwesome\brands.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\fontawesome.less" target="content\Styles\FontAwesome\fontawesome.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\regular.less" target="content\Styles\FontAwesome\regular.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\solid.less" target="content\Styles\FontAwesome\solid.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\FontAwesome\v4-shims.less" target="content\Styles\FontAwesome\v4-shims.less" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Styles\rock-components\upload-controls.less" target="content\Styles\rock-components\upload-controls.less" />
+  </files>
+</package>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-9-2</id>
+    <version>1.9.2</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-9-1" version="1.9.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock9\RockWeb\App_Data\Run.Migration" target="content\App_Data\Run.Migration" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationDetail.ascx" target="content\Blocks\Event\RegistrationDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationDetail.ascx.cs" target="content\Blocks\Event\RegistrationDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationEntry.ascx" target="content\Blocks\Event\RegistrationEntry.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationInstanceDetail.ascx" target="content\Blocks\Event\RegistrationInstanceDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Event\RegistrationInstanceDetail.ascx.cs" target="content\Blocks\Event\RegistrationInstanceDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionDetail.ascx" target="content\Blocks\Finance\TransactionDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Finance\TransactionDetail.ascx.cs" target="content\Blocks\Finance\TransactionDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupDetail.ascx.cs" target="content\Blocks\Groups\GroupDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupMemberDetail.ascx" target="content\Blocks\Groups\GroupMemberDetail.ascx" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupMemberDetail.ascx.cs" target="content\Blocks\Groups\GroupMemberDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Blocks\Groups\GroupTypeDetail.ascx.cs" target="content\Blocks\Groups\GroupTypeDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock9\RockWeb\Scripts\Rock\Controls\mediaPlayer.js" target="content\Scripts\Rock\Controls\mediaPlayer.js" />
+  </files>
+</package>
