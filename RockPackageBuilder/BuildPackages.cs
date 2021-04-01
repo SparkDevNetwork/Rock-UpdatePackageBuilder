@@ -47,6 +47,12 @@ namespace RockPackageBuilder
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
+                else if ( !Directory.Exists( options.RockPackageFolder ) )
+                {
+                    Console.WriteLine( string.Format( "The given output rock package folder ({0}) does not exist.", options.RockPackageFolder ) );
+                    Console.WriteLine( options.GetUsage() );
+                    Exit();
+                }
                 else if ( !Directory.Exists( options.InstallArtifactsFolder ) )
                 {
                     Directory.CreateDirectory( options.InstallArtifactsFolder );

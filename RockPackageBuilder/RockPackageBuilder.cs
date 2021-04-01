@@ -11,7 +11,7 @@ namespace RockPackageBuilder
         {
             actionWarnings = string.Empty;
             string version = options.CurrentVersionTag;
-            string updatePackageFileName = Path.Combine( options.PackageFolder, $"{version}.rockpkg" );
+            string updatePackageFileName = Path.Combine( options.RockPackageFolder, $"{version}.rockpkg" );
 
             if ( File.Exists( updatePackageFileName ) )
             {
@@ -138,6 +138,9 @@ namespace RockPackageBuilder
             {
                 return;
             }
+
+            // \ should always be /
+            target = target.Replace( "\\", "/" );
 
             packageFile.CreateEntryFromFile( source, target );
         }

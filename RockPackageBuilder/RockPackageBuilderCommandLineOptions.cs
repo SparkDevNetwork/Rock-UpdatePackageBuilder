@@ -20,11 +20,14 @@ namespace RockPackageBuilder
         [Option( 'h', "currentVersionCommitHash", Required = false, HelpText = "Use only for testing! The hash of the current commit to compare with the last tag to build the delta for the package. NOTE: Supplying this will OVERRIDE the given current tag. (Ex: afd14572e3f1529ce0007fe0b7524becee626e55)" )]
         public string CurrentVersionCommitHash { get; set; }
 
-        [Option( 'r', "repoPath", DefaultValue = @"C:\Users\dturner\Dropbox\Projects\SparkDevNetwork\Rock", HelpText = "The path to your local git repository." )]
+        [Option( 'r', "repoPath", DefaultValue = @"\src\SparkDevNetwork\Rock", HelpText = "The path to your local git repository." )]
         public string RepoPath { get; set; }
 
         [Option( 'p', "packageFolder", DefaultValue = @"..\..\..\NuGetLocal", HelpText = "The folder to put the output package." )]
         public string PackageFolder { get; set; }
+
+        [Option( "rockPackageFolder", DefaultValue = @"..\..\..\RockPackages", HelpText = "The folder to put the output rock package." )]
+        public string RockPackageFolder { get; set; }
 
         [Option( 'i', "installArtifactsFolder", DefaultValue = @"..\..\..\InstallerArtifacts", HelpText = "The folder to put the empty dummy packages for use with the installer." )]
         public string InstallArtifactsFolder { get; set; }
