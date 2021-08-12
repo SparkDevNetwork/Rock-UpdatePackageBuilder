@@ -40,7 +40,6 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Assets\Lava\Store\PromoListSponsored.lava" target="content\Assets\Lava\Store\PromoListSponsored.lava" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Assets\Lava\Store\PromoListTopFree.lava" target="content\Assets\Lava\Store\PromoListTopFree.lava" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Assets\Lava\Store\PromoRotator.lava" target="content\Assets\Lava\Store\PromoRotator.lava" />
-    <file src="C:\Source\Repos\Rock12\RockWeb\Bin\CloudinaryDotNet.dll" target="lib\CloudinaryDotNet.dll" />
     <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
     <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.DownhillCss.dll" target="lib\Rock.DownhillCss.dll" />
     <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.DownhillCss.pdb" target="content\bin\Rock.DownhillCss.pdb" />
@@ -68,7 +67,6 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Bin\System.Text.Encodings.Web.dll" target="lib\System.Text.Encodings.Web.dll" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Bin\System.Text.Encodings.Web.xml" target="content\Bin\System.Text.Encodings.Web.xml" />
-    <file src="C:\Source\Repos\Rock12\RockWeb\Bin\tech.triumph.CloudinaryStorageProvider.dll" target="lib\tech.triumph.CloudinaryStorageProvider.dll" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Administration\LogSettings.ascx" target="content\Blocks\Administration\LogSettings.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Administration\LogSettings.ascx.cs" target="content\Blocks\Administration\LogSettings.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Administration\LogViewer.ascx" target="content\Blocks\Administration\LogViewer.ascx" />
