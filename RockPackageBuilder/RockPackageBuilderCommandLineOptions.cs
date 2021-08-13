@@ -24,7 +24,7 @@ namespace RockPackageBuilder
         public string RepoPath { get; set; }
 
         [Option( 'p', "packageFolder", DefaultValue = @"..\..\..\NuGetLocal", HelpText = "The folder to put the output package." )]
-        public string PackageFolder { get; set; }
+        public string NuGetPackageFolder { get; set; }
 
         [Option( "rockPackageFolder", DefaultValue = @"..\..\..\RockPackages", HelpText = "The folder to put the output rock package." )]
         public string RockPackageFolder { get; set; }

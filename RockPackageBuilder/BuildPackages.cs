@@ -41,9 +41,9 @@ namespace RockPackageBuilder
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
-                else if ( !Directory.Exists( options.PackageFolder ) )
+                else if ( !Directory.Exists( options.NuGetPackageFolder ) )
                 {
-                    Console.WriteLine( string.Format( "The given output package folder ({0}) does not exist.", options.PackageFolder ) );
+                    Console.WriteLine( string.Format( "The given output NuGet package folder ({0}) does not exist.", options.NuGetPackageFolder ) );
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
@@ -88,7 +88,7 @@ namespace RockPackageBuilder
 
             _defaultDescription = $"Rock McKinley {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'>Release Notes</a> for details).";
 
-            string packagePath = FullPathOfRockPackageFile( options.PackageFolder, options.CurrentVersionTag );
+            string packagePath = FullPathOfRockNuGetPackageFile( options.NuGetPackageFolder, options.CurrentVersionTag );
             if ( File.Exists( packagePath ) )
             {
                 Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", packagePath, Environment.NewLine );
@@ -142,11 +142,11 @@ namespace RockPackageBuilder
 
             if ( !options.Testing )
             {
-                var updatePackageName = BuildUpdatePackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
-                var v2UpdatePackageName = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
+                var updatePackageName = BuildUpdateNuGetPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
+                var stubPackagePaths = BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
+                var v2UpdatePackageName = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", stubPackagePaths, out actionWarnings );
                 // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-                BuildRockPackage( updatePackageName, options.RepoPath, options.PackageFolder, options.CurrentVersionTag, _defaultDescription );
-                BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
+                BuildRockNuGetPackage( updatePackageName, options.RepoPath, options.NuGetPackageFolder, options.CurrentVersionTag, _defaultDescription );
             }
             else
             {
@@ -654,13 +654,13 @@ namespace RockPackageBuilder
         /// <param name="description">The description.</param>
         /// <param name="actionWarnings">The action warnings (if any) which are useful to display again as the very last thing before quitting.</param>
         /// <returns></returns>
-        private static string BuildUpdatePackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
+        private static string BuildUpdateNuGetPackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
         {
             actionWarnings = string.Empty;
             string version = options.CurrentVersionTag;
             string dashVersion = version.Replace( '.', '-' );
             string updatePackageId = Constants.ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
-            string updatePackageFileName = Path.Combine( options.PackageFolder, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
+            string updatePackageFileName = Path.Combine( options.NuGetPackageFolder, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
 
             // Create a manifest for this package...
             Manifest manifest = new Manifest();
@@ -672,7 +672,7 @@ namespace RockPackageBuilder
                 Description = description,
             };
 
-            AddPreviousUpdatePackageAsDependency( options, manifest, updatePackageFileName );
+            AddPreviousUpdateNuGetPackageAsDependency( options, manifest, updatePackageFileName );
 
             manifest.Files = new List<ManifestFile>();
             string webRootPath = Path.Combine( options.RepoPath, "RockWeb" );
@@ -914,12 +914,12 @@ namespace RockPackageBuilder
         /// <param name="options"></param>
         /// <param name="manifest"></param>
         /// <param name="currentPackageName"></param>
-        private static void AddPreviousUpdatePackageAsDependency( RockPackageBuilderCommandLineOptions options, Manifest manifest, string currentPackageName )
+        private static void AddPreviousUpdateNuGetPackageAsDependency( RockPackageBuilderCommandLineOptions options, Manifest manifest, string currentPackageName )
         {
             string previousUpdatePackageId = null;
             string previousUpdatePackageVersion = null;
 
-            DirectoryInfo di = new DirectoryInfo( options.PackageFolder );
+            DirectoryInfo di = new DirectoryInfo( options.NuGetPackageFolder );
             FileSystemInfo[] files = di.GetFileSystemInfos( Constants.ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" );
 
             foreach ( var packageFile in files.OrderByDescending( f => f.LastWriteTime ) )
@@ -986,7 +986,7 @@ namespace RockPackageBuilder
         /// <param name="repoPath"></param>
         /// <param name="packageFolder"></param>
         /// <param name="version"></param>
-        private static void BuildEmptyStubPackagesForInstaller( string repoPath, string installerArtifactsPath, string version )
+        private static List<string> BuildEmptyStubPackagesForInstaller( string repoPath, string installerArtifactsPath, string version )
         {
             string absolutePathOfCurrentDirectory = System.IO.Directory.GetCurrentDirectory();
             string fullPathToInstallerArtifactsPath = Path.GetFullPath( ( new Uri( Path.Combine( absolutePathOfCurrentDirectory, installerArtifactsPath ) ) ).LocalPath );
@@ -1011,7 +1011,7 @@ namespace RockPackageBuilder
             System.IO.File.WriteAllText( readmeFileFullPath, "This package is a stub to be included in the installer to assist the Rock Updater to know the current release." );
             AddToManifest( manifest, readmeFileRelativePath, fullPathToInstallerArtifactsPath );
 
-            string packageFileName = FullPathOfRockPackageFile( installerArtifactsPath, version );
+            string packageFileName = FullPathOfRockNuGetPackageFile( installerArtifactsPath, version );
 
             PackageBuilder builder = new PackageBuilder();
             builder.PopulateFiles( fullPathToInstallerArtifactsPath, manifest.Files );
@@ -1047,6 +1047,12 @@ namespace RockPackageBuilder
             {
                 builder2.Save( stream );
             }
+
+            return new List<string>()
+            {
+                Path.Combine( fullPathToInstallerArtifactsPath, string.Format( "Rock.{0}.nupkg", version ) ),
+                Path.Combine( fullPathToInstallerArtifactsPath, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) )
+            };
         }
 
         /// <summary>
@@ -1057,7 +1063,7 @@ namespace RockPackageBuilder
         /// <param name="packageFolder"></param>
         /// <param name="version"></param>
         /// <param name="description"></param>
-        private static void BuildRockPackage( string updatePackageId, string repoPath, string packageFolder, string version, string description )
+        private static void BuildRockNuGetPackage( string updatePackageId, string repoPath, string packageFolder, string version, string description )
         {
             FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", "Rock.Version.dll" ) );
             // Create a manifest for this package...
@@ -1104,7 +1110,7 @@ namespace RockPackageBuilder
             AddToManifest( manifest, tempReadmeFileRelativePath, webRootPath );
             manifest.Files = manifest.Files.OrderBy( a => a.Source ).ToList();
 
-            string packageFileName = FullPathOfRockPackageFile( packageFolder, version );
+            string packageFileName = FullPathOfRockNuGetPackageFile( packageFolder, version );
 
             PackageBuilder builder = new PackageBuilder();
             builder.PopulateFiles( repoPath, manifest.Files );
@@ -1127,7 +1133,7 @@ namespace RockPackageBuilder
         /// <param name="path"></param>
         /// <param name="version"></param>
         /// <returns></returns>
-        private static string FullPathOfRockPackageFile( string packageFolder, string version )
+        private static string FullPathOfRockNuGetPackageFile( string packageFolder, string version )
         {
             return Path.Combine( packageFolder, string.Format( "Rock.{0}.nupkg", version ) );
         }
