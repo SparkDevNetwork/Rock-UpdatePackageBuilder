@@ -88,10 +88,10 @@ namespace RockPackageBuilder
 
             _defaultDescription = $"Rock McKinley {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'>Release Notes</a> for details).";
 
-            string packagePath = FullPathOfRockNuGetPackageFile( options.NuGetPackageFolder, options.CurrentVersionTag );
-            if ( File.Exists( packagePath ) )
+            string nuGetPackagePath = FullPathOfRockNuGetPackageFile( options.NuGetPackageFolder, options.CurrentVersionTag );
+            if ( File.Exists( nuGetPackagePath ) )
             {
-                Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", packagePath, Environment.NewLine );
+                Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", nuGetPackagePath, Environment.NewLine );
                 ConsoleKeyInfo choice = Console.ReadKey( true );
                 Console.Write( "\b" );
                 Console.WriteLine( "" );
@@ -100,7 +100,7 @@ namespace RockPackageBuilder
                     return 1;
                 }
 
-                var existingManifestPackage = Path.ChangeExtension( packagePath, "nuspec" );
+                var existingManifestPackage = Path.ChangeExtension( nuGetPackagePath, "nuspec" );
                 if ( File.Exists( existingManifestPackage ) )
                 {
                     try
@@ -115,6 +115,19 @@ namespace RockPackageBuilder
                     {
                         // intentionally ignore
                     }
+                }
+            }
+
+            string rockUpdatePackageFileName = Path.Combine( options.RockPackageFolder, $"{options.CurrentVersionTag}.rockpkg" );
+            if ( File.Exists( rockUpdatePackageFileName ) )
+            {
+                Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", rockUpdatePackageFileName, Environment.NewLine );
+                ConsoleKeyInfo choice = Console.ReadKey( true );
+                Console.Write( "\b" );
+                Console.WriteLine( "" );
+                if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+                {
+                    return 1;
                 }
             }
 
