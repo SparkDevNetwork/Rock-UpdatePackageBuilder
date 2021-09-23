@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-12-6</id>
+    <version>1.12.6</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-12-5" version="1.12.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock12\RockWeb\Bin\RestSharp.dll" target="lib\RestSharp.dll" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.Migrations.pdb" target="content\bin\Rock.Migrations.pdb" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.pdb" target="content\bin\Rock.pdb" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.Slingshot.dll" target="lib\Rock.Slingshot.dll" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.Slingshot.pdb" target="content\bin\Rock.Slingshot.pdb" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.Version.pdb" target="content\bin\Rock.Version.pdb" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Bus\BusStatus.ascx.cs" target="content\Blocks\Bus\BusStatus.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\WorkFlow\WorkflowEntry.ascx.cs" target="content\Blocks\WorkFlow\WorkflowEntry.ascx.cs" />
+  </files>
+</package>
