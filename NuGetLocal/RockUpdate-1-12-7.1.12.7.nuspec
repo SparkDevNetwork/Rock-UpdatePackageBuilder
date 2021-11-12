@@ -36,5 +36,9 @@
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\GroupScheduling\GroupScheduleToolbox.ascx.cs" target="content\Blocks\GroupScheduling\GroupScheduleToolbox.ascx.cs" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\GroupFinderSettings.ascx" target="content\Blocks\Mobile\GroupFinderSettings.ascx" />
     <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\GroupFinderSettings.ascx.cs" target="content\Blocks\Mobile\GroupFinderSettings.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\MobileApplicationDetail.ascx" target="content\Blocks\Mobile\MobileApplicationDetail.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\MobileApplicationDetail.ascx.cs" target="content\Blocks\Mobile\MobileApplicationDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\MobilePageDetail.ascx" target="content\Blocks\Mobile\MobilePageDetail.ascx" />
+    <file src="C:\Source\Repos\Rock12\RockWeb\Blocks\Mobile\MobilePageDetail.ascx.cs" target="content\Blocks\Mobile\MobilePageDetail.ascx.cs" />
   </files>
 </package>
