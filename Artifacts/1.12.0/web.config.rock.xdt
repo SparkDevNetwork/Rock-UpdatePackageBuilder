@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <system.web>
+    <httpRuntime targetFramework="4.5.2"
+      requestValidationMode="4.5"
+      requestValidationType="Rock.Web.RequestValidator"
+      relaxedUrlToFileSystemMapping="true"
+      maxRequestLength="102400"
+      waitChangeNotification="5"
+      maxQueryStringLength="16384" xdt:Transform="Replace"/>
+    </system.web>
+
+    <system.webServer>
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="104857600" maxQueryString="16384" xdt:Transform="Replace" />
+      </requestFiltering>
+    </security>
+
+    </system.webServer>
+  <appSettings>
+    <add key="CacheManagerEnableStatistics" value="False" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
+  </appSettings>
+<runtime xdt:Transform="Replace">
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http.Formatting" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-11.0.0.0" newVersion="11.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.5.2.14234" newVersion="1.5.2.14234" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.4.1.9004" newVersion="3.4.1.9004" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Google.Apis.Auth" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.42.0.0" newVersion="1.42.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Google.Apis" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.42.0.0" newVersion="1.42.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Google.Apis.Core" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.42.0.0" newVersion="1.42.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.IdentityModel.Tokens.Jwt" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <codeBase version="5.1.5.0" href="Bin\System.IdentityModel.Tokens.Jwt\5.1.5\System.IdentityModel.Tokens.Jwt.dll" />
+        <bindingRedirect oldVersion="5.0.0.0-5.1.5.0" newVersion="5.1.5.0" />
+        <codeBase version="4.0.40306.1554" href="Bin\System.IdentityModel.Tokens.Jwt\4.0.4\System.IdentityModel.Tokens.Jwt.dll" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.40306.1554" newVersion="4.0.40306.1554" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Tokens" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.1.5.0" newVersion="5.1.5.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Protocol.Extensions" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.0.40306.1554" newVersion="1.0.40306.1554" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.1.2.0" newVersion="1.1.2.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Logging" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.1.2.0" newVersion="1.1.2.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.DependencyInjection.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.1.1.0" newVersion="1.1.1.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+
+
+</configuration>
