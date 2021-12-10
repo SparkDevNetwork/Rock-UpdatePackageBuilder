@@ -519,7 +519,7 @@ namespace RockPackageBuilder
                 // Filter out files for ignored projects
                 .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
                 // Filter out files that have already been flagged as updated by other checks
-                .Where( f => !modifiedLibs.Any( p => Path.GetFileName( f ).Equals( Path.GetFileName( p ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !modifiedLibs.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !modifiedPackageFiles.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
@@ -532,7 +532,7 @@ namespace RockPackageBuilder
                 // Filter out files for ignored projects
                 .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
                 // Filter out files that have already been flagged as updated by other checks
-                .Where( f => !modifiedLibs.Any( p => Path.GetFileName( f ).Equals( Path.GetFileName( p ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Where( f => !modifiedLibs.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !modifiedPackageFiles.Any( p => Path.Combine( "RockWeb", "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "RockWeb", "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
