@@ -79,10 +79,14 @@ namespace RockPackageBuilder
                         }
 
                         // if a dll was updated and there is an associated pdb documentation file, include it
-                        if ( options.IncludePdb || Constants.DEFAULT_PDB_TO_INCLUDE.Contains( entry.Key.ToLower() ) )
+                        string pdbPath = Path.Combine( "bin", entry.Key + ".pdb" );
+                        string pdbAbsolutePath = Path.Combine( webRootPath, pdbPath );
+                        if ( File.Exists( pdbAbsolutePath ) )
                         {
-                            string pdbPath = Path.Combine( "bin", entry.Key + ".pdb" );
-                            if ( File.Exists( Path.Combine( webRootPath, pdbPath ) ) )
+                            var artifactsFolderForVersionPath = Path.Combine( options.ArtifactsFolder, options.CurrentVersionTag, $"{entry.Key}.pdb" );
+                            File.Copy( pdbAbsolutePath, artifactsFolderForVersionPath );
+
+                            if ( options.IncludePdb || Constants.DEFAULT_PDB_TO_INCLUDE.Contains( entry.Key.ToLower() ) )
                             {
                                 AddContentFileToPackage( packageFile, pdbPath, webRootPath );
                             }

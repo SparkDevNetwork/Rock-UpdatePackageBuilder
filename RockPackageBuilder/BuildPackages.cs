@@ -41,27 +41,41 @@ namespace RockPackageBuilder
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
-                else if ( !Directory.Exists( options.NuGetPackageFolder ) )
+
+                if ( !Directory.Exists( options.NuGetPackageFolder ) )
                 {
                     Console.WriteLine( string.Format( "The given output NuGet package folder ({0}) does not exist.", options.NuGetPackageFolder ) );
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
-                else if ( !Directory.Exists( options.RockPackageFolder ) )
+
+                if ( !Directory.Exists( options.RockPackageFolder ) )
                 {
                     Console.WriteLine( string.Format( "The given output rock package folder ({0}) does not exist.", options.RockPackageFolder ) );
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
-                else if ( !Directory.Exists( options.InstallArtifactsFolder ) )
+
+                if ( !Directory.Exists( options.InstallArtifactsFolder ) )
                 {
                     Directory.CreateDirectory( options.InstallArtifactsFolder );
                 }
+
+                // This is where the installer will store pdb files and where it will look for xdt files.
+                var artifactsFolderForVersion = Path.Combine( options.ArtifactsFolder, options.CurrentVersionTag );
+                if ( !Directory.Exists( artifactsFolderForVersion ) )
+                {
+                    Directory.CreateDirectory( artifactsFolderForVersion );
+                }
                 else
                 {
-                    return Run( options );
+                    // Delete any old pdb files since they may be out of sync with the dlls in the repo
+                    Directory.EnumerateFiles( artifactsFolderForVersion, "*.pdb" ).ToList().ForEach( x => File.Delete( x ) );
                 }
+
+                return Run( options );
             }
+
             return 0;
         }
 

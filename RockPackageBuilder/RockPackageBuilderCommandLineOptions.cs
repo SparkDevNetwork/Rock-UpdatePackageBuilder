@@ -32,6 +32,9 @@ namespace RockPackageBuilder
         [Option( 'i', "installArtifactsFolder", DefaultValue = @"..\..\..\InstallerArtifacts", HelpText = "The folder to put the empty dummy packages for use with the installer." )]
         public string InstallArtifactsFolder { get; set; }
 
+        [Option( 'a', "artifactsFolder", DefaultValue = @"..\..\..\Artifacts", HelpText = "The folder for PDB and xtd files.")]
+        public string ArtifactsFolder { get; set; }
+
         [Option( 'v', "verbose", DefaultValue = false, HelpText = "Set to true to see a more verbose output of what's changed in the repo." )]
         public bool Verbose { get; set; }
 
