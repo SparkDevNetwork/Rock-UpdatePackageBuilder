@@ -25,7 +25,8 @@ x64/
 *.meta
 *.obj
 *.pch
-*.pdb
+# *.pdb
+# !Artifacts/*.pdb
 *.pgc
 *.pgd
 *.rsp
