@@ -171,7 +171,7 @@ namespace RockPackageBuilder
             {
                 var updatePackageName = BuildUpdateNuGetPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
                 var stubPackagePaths = BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
-                var v2UpdatePackageName = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", stubPackagePaths, out actionWarnings );
+                _ = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", stubPackagePaths, out actionWarnings );
                 // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
                 BuildRockNuGetPackage( updatePackageName, options.RepoPath, options.NuGetPackageFolder, options.CurrentVersionTag, _defaultDescription );
             }
@@ -188,15 +188,15 @@ namespace RockPackageBuilder
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
 
-            if ( string.IsNullOrWhiteSpace( options.PreviousVersionBinFolderPath ) )
-            {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine( "" );
-                Console.WriteLine( "CRITICAL NOTE: There are many assemblies that Rock needs which are" );
-                Console.WriteLine( "no longer managed in our Github, so it's up to you to verify that the right" );
-                Console.WriteLine( "DLLs and versions are included in the update package's lib folder." );
-                Console.ResetColor();
-            }
+            //if ( string.IsNullOrWhiteSpace( options.PreviousVersionRockWebFolderPath ) )
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Blue;
+            //    Console.WriteLine( "" );
+            //    Console.WriteLine( "CRITICAL NOTE: There are many assemblies that Rock needs which are" );
+            //    Console.WriteLine( "no longer managed in our Github, so it's up to you to verify that the right" );
+            //    Console.WriteLine( "DLLs and versions are included in the update package's lib folder." );
+            //    Console.ResetColor();
+            //}
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to finish." );
@@ -507,7 +507,7 @@ namespace RockPackageBuilder
 
         private static void GetUpdatedFilesNotInSolution( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> modifiedPackageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects )
         {
-            if ( string.IsNullOrWhiteSpace( options.PreviousVersionBinFolderPath ) )
+            if ( string.IsNullOrWhiteSpace( options.PreviousVersionRockWebFolderPath ) )
             {
                 // There is nothing to compare to so the user will get a message to do this manually.
                 return;
@@ -527,7 +527,7 @@ namespace RockPackageBuilder
 
             // Get a list of files from the previous version directory.
             // Filter out files already identified as updated, solution files, and ignore files
-            List<string> oldFileList = Directory.GetFiles( options.PreviousVersionBinFolderPath )
+            List<string> oldFileList = Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Bin" ) )
                 // Filter out files by extension
                 .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
                 // Filter out files for ignored projects
@@ -537,6 +537,8 @@ namespace RockPackageBuilder
                 .Where( f => !modifiedPackageFiles.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
+
+            oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ), "*", SearchOption.AllDirectories ) );
 
             // Get a list of files from the repo directory that contains the version being created
             // Filter out files already identified as updated, solution files, and ignore files
@@ -551,16 +553,23 @@ namespace RockPackageBuilder
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
 
+            newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ), "*", SearchOption.AllDirectories ) );
+
             // loop through the old file list and compare to new file version
             foreach ( var oldFile in oldFileList )
             {
                 FileInfo oldFileInfo = new FileInfo( oldFile );
-                FileInfo newFileInfo = new FileInfo( Path.Combine( options.RepoPath, "RockWeb", "Bin", oldFileInfo.Name ) );
+
+                var relativeDirectory = Path.GetDirectoryName( oldFile ).Replace( options.PreviousVersionRockWebFolderPath, string.Empty ).TrimStart( Path.DirectorySeparatorChar );
+                var NewFileAbsoluteDirectory = Path.Combine( options.RepoPath, "RockWeb", relativeDirectory );
+                var newFileInfo = new FileInfo( Path.Combine( NewFileAbsoluteDirectory, oldFileInfo.Name ) );
+                //FileInfo newFileInfo = new FileInfo( Path.Combine( options.RepoPath, "RockWeb", "Bin", oldFileInfo.Name ) );
 
                 // If exists in old but not new then add to deleted list
                 if ( !newFileInfo.Exists )
                 {
-                    string file = Path.Combine( "RockWeb", "Bin", oldFileInfo.Name );
+                    //string file = Path.Combine( "RockWeb", "Bin", oldFileInfo.Name );
+                    string file = newFileInfo.FullName.Replace( options.RepoPath, string.Empty ).TrimStart( Path.DirectorySeparatorChar );
                     if ( !deletedPackageFiles.Where( d => d.Equals( file, StringComparison.OrdinalIgnoreCase ) ).Any() )
                     {
                         deletedPackageFiles.Add( file );
@@ -570,16 +579,15 @@ namespace RockPackageBuilder
                 }
 
                 // Compare the old and new Bytes and move on if they are the same
-                if ( oldFileInfo.Length == newFileInfo.Length
-                    && File.ReadAllBytes( oldFileInfo.FullName ).SequenceEqual( File.ReadAllBytes( newFileInfo.FullName ) ) )
+                if ( oldFileInfo.Length == newFileInfo.Length && File.ReadAllBytes( oldFileInfo.FullName ).SequenceEqual( File.ReadAllBytes( newFileInfo.FullName ) ) )
                 {
                     continue;
                 }
 
-                string relativeFilePath = "Bin\\" + oldFileInfo.Name;
+                string relativeFilePath = Path.Combine( relativeDirectory, oldFileInfo.Name );
 
-                // The file has changed. If dll then add to modifiedLibs (filename), otherwise add to modifiedPackageFiles (bin\filename)
-                if ( oldFileInfo.Extension == ".dll" )
+                // The file has changed. If dll in the bin folder then add to modifiedLibs, otherwise add to modifiedPackageFiles. This is needed for nuget, once that is not needed then this logic can be removed.
+                if ( relativeFilePath.IndexOf("Bin", StringComparison.OrdinalIgnoreCase ) >= 0 && oldFileInfo.Extension == ".dll" )
                 {
                     modifiedLibs.Add( relativeFilePath );
                 }
