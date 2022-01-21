@@ -37,21 +37,21 @@ namespace RockPackageBuilder
             {
                 if ( !Directory.Exists( options.RepoPath ) )
                 {
-                    Console.WriteLine( string.Format( "The given repository folder ({0}) does not exist.", options.RepoPath ) );
+                    Console.WriteLine( $"The given repository folder ({options.RepoPath}) does not exist." );
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
 
                 if ( !Directory.Exists( options.NuGetPackageFolder ) )
                 {
-                    Console.WriteLine( string.Format( "The given output NuGet package folder ({0}) does not exist.", options.NuGetPackageFolder ) );
+                    Console.WriteLine( $"The given output NuGet package folder ({options.NuGetPackageFolder}) does not exist." );
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
 
                 if ( !Directory.Exists( options.RockPackageFolder ) )
                 {
-                    Console.WriteLine( string.Format( "The given output rock package folder ({0}) does not exist.", options.RockPackageFolder ) );
+                    Console.WriteLine( $"The given output rock package folder ({options.RockPackageFolder}) does not exist." );
                     Console.WriteLine( options.GetUsage() );
                     Exit();
                 }
@@ -172,6 +172,7 @@ namespace RockPackageBuilder
                 var updatePackageName = BuildUpdateNuGetPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
                 var stubPackagePaths = BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
                 _ = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", stubPackagePaths, out actionWarnings );
+                
                 // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
                 BuildRockNuGetPackage( updatePackageName, options.RepoPath, options.NuGetPackageFolder, options.CurrentVersionTag, _defaultDescription );
             }
@@ -187,16 +188,6 @@ namespace RockPackageBuilder
                 Console.WriteLine( actionWarnings );
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
-
-            //if ( string.IsNullOrWhiteSpace( options.PreviousVersionRockWebFolderPath ) )
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Blue;
-            //    Console.WriteLine( "" );
-            //    Console.WriteLine( "CRITICAL NOTE: There are many assemblies that Rock needs which are" );
-            //    Console.WriteLine( "no longer managed in our Github, so it's up to you to verify that the right" );
-            //    Console.WriteLine( "DLLs and versions are included in the update package's lib folder." );
-            //    Console.ResetColor();
-            //}
 
             Console.WriteLine( "" );
             Console.Write( "Press any key to finish." );
@@ -354,7 +345,7 @@ namespace RockPackageBuilder
                 if ( tag == null )
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you forget to tag this release?", options.CurrentVersionTag ) );
+                    Console.WriteLine( $"Error: I don't see a {options.CurrentVersionTag} tag.  Did you forget to tag this release?" );
                     Exit();
                 }
 
@@ -362,7 +353,7 @@ namespace RockPackageBuilder
                 if ( previousTag == null )
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine( string.Format( "Error: I don't see a {0} tag.  Did you enter the correct last version tag?", options.LastVersionTag ) );
+                    Console.WriteLine( $"Error: I don't see a {options.LastVersionTag} tag.  Did you enter the correct last version tag?" );
                     Exit();
                 }
 
@@ -379,7 +370,7 @@ namespace RockPackageBuilder
                     if ( currentCommit == null )
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine( string.Format( "Error: I don't see a commit with Id {0}.  Did you copy the hash correctly?", options.CurrentVersionTag ) );
+                        Console.WriteLine( $"Error: I don't see a commit with Id {options.CurrentVersionTag}.  Did you copy the hash correctly?" );
                         Exit();
                     }
                 }
@@ -563,7 +554,6 @@ namespace RockPackageBuilder
                 var relativeDirectory = Path.GetDirectoryName( oldFile ).Replace( options.PreviousVersionRockWebFolderPath, string.Empty ).TrimStart( Path.DirectorySeparatorChar );
                 var NewFileAbsoluteDirectory = Path.Combine( options.RepoPath, "RockWeb", relativeDirectory );
                 var newFileInfo = new FileInfo( Path.Combine( NewFileAbsoluteDirectory, oldFileInfo.Name ) );
-                //FileInfo newFileInfo = new FileInfo( Path.Combine( options.RepoPath, "RockWeb", "Bin", oldFileInfo.Name ) );
 
                 // If exists in old but not new then add to deleted list
                 if ( !newFileInfo.Exists )
@@ -642,8 +632,7 @@ namespace RockPackageBuilder
                     Match match = regUpdate.Match( commit.Message );
                     if ( match.Success )
                     {
-                        appUpdateBadges.Add( string.Format( "<span title=\"This application needs to be updated. {1}\" class=\"label label-warning\">{0}</span>",
-                            match.Groups[1].Value, match.Groups[2].Value.Replace( "\"", "\\\"" ) ) );
+                        appUpdateBadges.Add( $"<span title=\"This application needs to be updated. {match.Groups[2].Value.Replace( "\"", "\\\"" )}\" class=\"label label-warning\">{match.Groups[1].Value}</span>" );
                     }
                     else if ( !( commit.Message.StartsWith( "+" ) || commit.Message.StartsWith( " +" ) ) )
                     {
@@ -663,7 +652,7 @@ namespace RockPackageBuilder
 
                 if ( verbose )
                 {
-                    Console.WriteLine( string.Format( "id: {0} {1}", commit.Id, commit.Message ) );
+                    Console.WriteLine( $"id: {commit.Id} {commit.Message}" );
                 }
 
             }
@@ -695,7 +684,7 @@ namespace RockPackageBuilder
             string version = options.CurrentVersionTag;
             string dashVersion = version.Replace( '.', '-' );
             string updatePackageId = Constants.ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
-            string updatePackageFileName = Path.Combine( options.NuGetPackageFolder, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
+            string updatePackageFileName = Path.Combine( options.NuGetPackageFolder, $"{updatePackageId}.{version}.nupkg" );
 
             // Create a manifest for this package...
             Manifest manifest = new Manifest();
@@ -764,7 +753,7 @@ namespace RockPackageBuilder
                 Console.WriteLine( "" );
                 foreach ( KeyValuePair<string, bool> entry in modifiedProjects )
                 {
-                    Console.WriteLine( string.Format( "\t * {0}", entry.Key + ".dll" ) );
+                    Console.WriteLine( $"\t * {entry.Key}.dll" );
                     AddLibToManifest( manifest, Path.Combine( "bin", entry.Key + ".dll" ), webRootPath );
 
                     // if a dll was updated and there is an associated xml documentation file, include it 
@@ -910,7 +899,7 @@ namespace RockPackageBuilder
                 Console.WriteLine( "" );
                 foreach ( KeyValuePair<string, bool> entry in modifiedProjects )
                 {
-                    Console.WriteLine( string.Format( "\t * {0}", entry.Key + ".dll" ) );
+                    Console.WriteLine( $"\t * {entry.Key}.dll" );
 
                     // if a dll was updated and there is an associated xml documentation file, include it 
                     string xmlPath = Path.Combine( "bin", entry.Key + ".xml" );
@@ -1059,7 +1048,7 @@ namespace RockPackageBuilder
             // Now create the RockUpdate-X-Y-Z.x.y.z.nupkg
             string dashVersion = version.Replace( '.', '-' );
             string updatePackageId = Constants.ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
-            string updatePackageFileName = Path.Combine( installerArtifactsPath, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) );
+            string updatePackageFileName = Path.Combine( installerArtifactsPath, $"{updatePackageId}.{version}.nupkg" );
 
             // Create a manifest for this package...
             Manifest rockUpdateManifest = new Manifest();
@@ -1085,8 +1074,8 @@ namespace RockPackageBuilder
 
             return new List<string>()
             {
-                Path.Combine( fullPathToInstallerArtifactsPath, string.Format( "Rock.{0}.nupkg", version ) ),
-                Path.Combine( fullPathToInstallerArtifactsPath, string.Format( "{0}.{1}.nupkg", updatePackageId, version ) )
+                Path.Combine( fullPathToInstallerArtifactsPath, $"Rock.{version}.nupkg" ),
+                Path.Combine( fullPathToInstallerArtifactsPath, $"{updatePackageId}.{version}.nupkg" )
             };
         }
 
@@ -1128,7 +1117,7 @@ namespace RockPackageBuilder
             if ( !string.IsNullOrWhiteSpace( _previousVersion ) )
             {
                 // add a "requires-X.Y.Z" tag to force rock to update one at a time.
-                manifest.Metadata.Tags = String.Format( "requires-{0}", _previousVersion );
+                manifest.Metadata.Tags = $"requires-{_previousVersion}";
             }
 
             manifest.Files = new List<ManifestFile>();
@@ -1170,7 +1159,7 @@ namespace RockPackageBuilder
         /// <returns></returns>
         private static string FullPathOfRockNuGetPackageFile( string packageFolder, string version )
         {
-            return Path.Combine( packageFolder, string.Format( "Rock.{0}.nupkg", version ) );
+            return Path.Combine( packageFolder, $"Rock.{version}.nupkg" );
         }
 
         private static void Exit()
