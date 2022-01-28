@@ -529,7 +529,10 @@ namespace RockPackageBuilder
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
 
-            oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ), "*", SearchOption.AllDirectories ) );
+            if ( Directory.Exists( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ) ) )
+            {
+                oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ), "*", SearchOption.AllDirectories ) );
+            }
 
             // Get a list of files from the repo directory that contains the version being created
             // Filter out files already identified as updated, solution files, and ignore files
@@ -544,7 +547,10 @@ namespace RockPackageBuilder
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
 
-            newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ), "*", SearchOption.AllDirectories ) );
+            if ( Directory.Exists( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ) ) )
+            {
+                newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ), "*", SearchOption.AllDirectories ) );
+            }
 
             // loop through the old file list and compare to new file version
             foreach ( var oldFile in oldFileList )
