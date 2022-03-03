@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-13-2</id>
+    <version>1.13.2</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-13-1" version="1.13.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Source\Repos\Rock13\RockWeb\App_Code\Startup.cs" target="content\App_Code\Startup.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\App_Data\deletefile.lst" target="content\App_Data\deletefile.lst" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Blocks.dll" target="lib\Rock.Blocks.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Lava.Fluid.dll" target="lib\Rock.Lava.Fluid.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.pdb" target="content\bin\Rock.pdb" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Rest.pdb" target="content\bin\Rock.Rest.pdb" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.ViewModel.dll" target="lib\Rock.ViewModel.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Cms\PageZoneBlocksEditor.ascx" target="content\Blocks\Cms\PageZoneBlocksEditor.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Cms\UniversalSearch.ascx.cs" target="content\Blocks\Cms\UniversalSearch.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Communication\CommunicationJobPreview.ascx" target="content\Blocks\Communication\CommunicationJobPreview.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Communication\CommunicationJobPreview.ascx.cs" target="content\Blocks\Communication\CommunicationJobPreview.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Communication\SystemCommunicationDetail.ascx.cs" target="content\Blocks\Communication\SystemCommunicationDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Connection\ConnectionOpportunityList.ascx.cs" target="content\Blocks\Connection\ConnectionOpportunityList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Connection\ConnectionRequestBoard.ascx.cs" target="content\Blocks\Connection\ConnectionRequestBoard.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Connection\ConnectionRequestDetail.ascx.cs" target="content\Blocks\Connection\ConnectionRequestDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Core\CampusDetail.ascx" target="content\Blocks\Core\CampusDetail.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Core\CampusDetail.ascx.cs" target="content\Blocks\Core\CampusDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Core\RelatedEntityList.ascx.cs" target="content\Blocks\Core\RelatedEntityList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Core\RockUpdate.ascx" target="content\Blocks\Core\RockUpdate.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Crm\PersonDetail\GivingOverview.ascx.cs" target="content\Blocks\Crm\PersonDetail\GivingOverview.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Event\RegistrationDetail.ascx" target="content\Blocks\Event\RegistrationDetail.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Event\RegistrationDetail.ascx.cs" target="content\Blocks\Event\RegistrationDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Event\RegistrationEntry.ascx.cs" target="content\Blocks\Event\RegistrationEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Event\RegistrationInstanceRegistrantList.ascx.cs" target="content\Blocks\Event\RegistrationInstanceRegistrantList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Event\RegistrationTemplateDetail.ascx" target="content\Blocks\Event\RegistrationTemplateDetail.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Event\RegistrationTemplateDetail.ascx.cs" target="content\Blocks\Event\RegistrationTemplateDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\BenevolenceRequestDetail.ascx.cs" target="content\Blocks\Finance\BenevolenceRequestDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\BenevolenceTypeDetail.ascx.cs" target="content\Blocks\Finance\BenevolenceTypeDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\BenevolenceTypeList.ascx.cs" target="content\Blocks\Finance\BenevolenceTypeList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\TransactionEntry.ascx.cs" target="content\Blocks\Finance\TransactionEntry.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\TransactionEntryV2.ascx.cs" target="content\Blocks\Finance\TransactionEntryV2.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Groups\GroupDetailLava.ascx.cs" target="content\Blocks\Groups\GroupDetailLava.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\GroupScheduling\GroupScheduler.ascx" target="content\Blocks\GroupScheduling\GroupScheduler.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\GroupScheduling\GroupScheduler.ascx.cs" target="content\Blocks\GroupScheduling\GroupScheduler.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Rsvp\RsvpDetail.ascx" target="content\Blocks\Rsvp\RsvpDetail.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Steps\StepProgramDetail.ascx" target="content\Blocks\Steps\StepProgramDetail.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Steps\StepProgramDetail.ascx.cs" target="content\Blocks\Steps\StepProgramDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Steps\StepProgramList.ascx" target="content\Blocks\Steps\StepProgramList.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Steps\StepProgramList.ascx.cs" target="content\Blocks\Steps\StepProgramList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx" target="content\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx.cs" target="content\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormTemplateList.ascx" target="content\Blocks\WorkFlow\FormBuilder\FormTemplateList.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormTemplateList.ascx.cs" target="content\Blocks\WorkFlow\FormBuilder\FormTemplateList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\WorkflowTypeDetail.ascx.cs" target="content\Blocks\WorkFlow\WorkflowTypeDetail.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Utility\starkDetail.js" target="content\Obsidian\Blocks\Utility\starkDetail.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Utility\starkDetail.js.map" target="content\Obsidian\Blocks\Utility\starkDetail.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\formBuilderDetail.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\formBuilderDetail.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\formBuilderDetail.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\formBuilderDetail.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\communicationsTab.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\communicationsTab.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\communicationsTab.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\communicationsTab.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\configurableZone.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\configurableZone.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\fieldEditAside.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\fieldEditAside.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\fieldEditAside.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\fieldEditAside.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formBuilderTab.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formBuilderTab.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formBuilderTab.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formBuilderTab.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formContentZone.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formContentZone.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formContentZone.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\formContentZone.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalAside.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalAside.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalAside.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalAside.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalSettings.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalSettings.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalSettings.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\generalSettings.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\notificationEmail.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\notificationEmail.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\personEntryEditAside.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\personEntryEditAside.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\personEntryEditAside.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\personEntryEditAside.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\settingsTab.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\settingsTab.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\settingsTab.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\settingsTab.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\formTemplateDetail.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\formTemplateDetail.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\formTemplateDetail.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\formTemplateDetail.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\editPanel.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\editPanel.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\editPanel.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\editPanel.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\viewPanel.js" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\viewPanel.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\viewPanel.js.map" target="content\Obsidian\Blocks\Workflow\FormBuilder\FormTemplateDetail\viewPanel.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\addressControl.js" target="content\Obsidian\Controls\addressControl.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\attributeEditor.js" target="content\Obsidian\Controls\attributeEditor.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\categoryPicker.js" target="content\Obsidian\Controls\categoryPicker.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\fieldTypeEditor.js" target="content\Obsidian\Controls\fieldTypeEditor.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\panel.js" target="content\Obsidian\Controls\panel.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\rockField.js" target="content\Obsidian\Controls\rockField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\rockForm.js" target="content\Obsidian\Controls\rockForm.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\rockValidation.js" target="content\Obsidian\Controls\rockValidation.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Controls\treeItemPicker.js" target="content\Obsidian\Controls\treeItemPicker.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Directives\dragDrop.js" target="content\Obsidian\Directives\dragDrop.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\auditDetail.js" target="content\Obsidian\Elements\auditDetail.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\auditDetail.js.map" target="content\Obsidian\Elements\auditDetail.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\checkBox.js" target="content\Obsidian\Elements\checkBox.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\datePicker.js" target="content\Obsidian\Elements\datePicker.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\dateTimePicker.js" target="content\Obsidian\Elements\dateTimePicker.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\dropDownList.js" target="content\Obsidian\Elements\dropDownList.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\fullscreen.js" target="content\Obsidian\Elements\fullscreen.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\rockFormField.js" target="content\Obsidian\Elements\rockFormField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\switch.js" target="content\Obsidian\Elements\switch.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\textBox.js" target="content\Obsidian\Elements\textBox.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Elements\treeList.js" target="content\Obsidian\Elements\treeList.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\addressField.js" target="content\Obsidian\Fields\addressField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\booleanField.js" target="content\Obsidian\Fields\booleanField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\booleanFieldComponents.js" target="content\Obsidian\Fields\booleanFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\campusesField.js" target="content\Obsidian\Fields\campusesField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\campusField.js" target="content\Obsidian\Fields\campusField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\colorField.js" target="content\Obsidian\Fields\colorField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\colorFieldComponents.js" target="content\Obsidian\Fields\colorFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\currencyField.js" target="content\Obsidian\Fields\currencyField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\dateField.js" target="content\Obsidian\Fields\dateField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\dateFieldComponents.js" target="content\Obsidian\Fields\dateFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\dateRangeField.js" target="content\Obsidian\Fields\dateRangeField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\dateTimeField.js" target="content\Obsidian\Fields\dateTimeField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\dateTimeFieldComponents.js" target="content\Obsidian\Fields\dateTimeFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\dayOfWeekField.js" target="content\Obsidian\Fields\dayOfWeekField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\dayOfWeekFieldComponents.js" target="content\Obsidian\Fields\dayOfWeekFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\daysOfWeekField.js" target="content\Obsidian\Fields\daysOfWeekField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\decimalField.js" target="content\Obsidian\Fields\decimalField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\decimalRangeField.js" target="content\Obsidian\Fields\decimalRangeField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\definedValueField.js" target="content\Obsidian\Fields\definedValueField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\definedValueRangeField.js" target="content\Obsidian\Fields\definedValueRangeField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\emailField.js" target="content\Obsidian\Fields\emailField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\emailFieldComponents.js" target="content\Obsidian\Fields\emailFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\fieldType.js" target="content\Obsidian\Fields\fieldType.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\genderField.js" target="content\Obsidian\Fields\genderField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\genderFieldComponents.js" target="content\Obsidian\Fields\genderFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\integerField.js" target="content\Obsidian\Fields\integerField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\integerRangeField.js" target="content\Obsidian\Fields\integerRangeField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\keyValueListField.js" target="content\Obsidian\Fields\keyValueListField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\memoField.js" target="content\Obsidian\Fields\memoField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\memoFieldComponents.js" target="content\Obsidian\Fields\memoFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\monthDayField.js" target="content\Obsidian\Fields\monthDayField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\multiSelectField.js" target="content\Obsidian\Fields\multiSelectField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\phoneNumberField.js" target="content\Obsidian\Fields\phoneNumberField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\ratingField.js" target="content\Obsidian\Fields\ratingField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\ratingFieldComponents.js" target="content\Obsidian\Fields\ratingFieldComponents.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\singleSelectField.js" target="content\Obsidian\Fields\singleSelectField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\ssnField.js" target="content\Obsidian\Fields\ssnField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\textField.js" target="content\Obsidian\Fields\textField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\timeField.js" target="content\Obsidian\Fields\timeField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\urlLinkField.js" target="content\Obsidian\Fields\urlLinkField.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Fields\utils.js" target="content\Obsidian\Fields\utils.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Util\guid.js" target="content\Obsidian\Util\guid.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Obsidian\Util\guid.js.map" target="content\Obsidian\Util\guid.js.map" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Scripts\Rock\Controls\GroupScheduler\groupScheduler.js" target="content\Scripts\Rock\Controls\GroupScheduler\groupScheduler.js" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Styles\_grid.less" target="content\Styles\_grid.less" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Themes\CheckinElectric\Styles\_variables.less" target="content\Themes\CheckinElectric\Styles\_variables.less" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Themes\CheckinPark\Styles\_variables.less" target="content\Themes\CheckinPark\Styles\_variables.less" />
+  </files>
+</package>
