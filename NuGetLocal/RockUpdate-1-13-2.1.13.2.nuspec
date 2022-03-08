@@ -16,6 +16,7 @@
     <file src="C:\Source\Repos\Rock13\RockWeb\App_Data\deletefile.lst" target="content\App_Data\deletefile.lst" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Blocks.dll" target="lib\Rock.Blocks.dll" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Lava.dll" target="lib\Rock.Lava.dll" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Lava.Fluid.dll" target="lib\Rock.Lava.Fluid.dll" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Migrations.dll" target="lib\Rock.Migrations.dll" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.pdb" target="content\bin\Rock.pdb" />
@@ -24,7 +25,9 @@
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.ViewModel.dll" target="lib\Rock.ViewModel.dll" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.WebStartup.dll" target="lib\Rock.WebStartup.dll" />
     <file src="C:\Source\Repos\Rock13\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Cms\FontAwesomeSettings.ascx" target="content\Blocks\Cms\FontAwesomeSettings.ascx" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Cms\PageZoneBlocksEditor.ascx" target="content\Blocks\Cms\PageZoneBlocksEditor.ascx" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Cms\UniversalSearch.ascx.cs" target="content\Blocks\Cms\UniversalSearch.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Communication\CommunicationEntryWizard.ascx" target="content\Blocks\Communication\CommunicationEntryWizard.ascx" />
@@ -48,6 +51,7 @@
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\BenevolenceRequestDetail.ascx.cs" target="content\Blocks\Finance\BenevolenceRequestDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\BenevolenceTypeDetail.ascx.cs" target="content\Blocks\Finance\BenevolenceTypeDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\BenevolenceTypeList.ascx.cs" target="content\Blocks\Finance\BenevolenceTypeList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\PledgeEntry.ascx.cs" target="content\Blocks\Finance\PledgeEntry.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\TransactionEntry.ascx.cs" target="content\Blocks\Finance\TransactionEntry.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Finance\TransactionEntryV2.ascx.cs" target="content\Blocks\Finance\TransactionEntryV2.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Groups\GroupDetailLava.ascx.cs" target="content\Blocks\Groups\GroupDetailLava.ascx.cs" />
@@ -58,6 +62,8 @@
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Steps\StepProgramDetail.ascx.cs" target="content\Blocks\Steps\StepProgramDetail.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Steps\StepProgramList.ascx" target="content\Blocks\Steps\StepProgramList.ascx" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\Steps\StepProgramList.ascx.cs" target="content\Blocks\Steps\StepProgramList.ascx.cs" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormAnalytics.ascx" target="content\Blocks\WorkFlow\FormBuilder\FormAnalytics.ascx" />
+    <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormAnalytics.ascx.cs" target="content\Blocks\WorkFlow\FormBuilder\FormAnalytics.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx" target="content\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx.cs" target="content\Blocks\WorkFlow\FormBuilder\FormSubmissionList.ascx.cs" />
     <file src="C:\Source\Repos\Rock13\RockWeb\Blocks\WorkFlow\FormBuilder\FormTemplateList.ascx" target="content\Blocks\WorkFlow\FormBuilder\FormTemplateList.ascx" />
