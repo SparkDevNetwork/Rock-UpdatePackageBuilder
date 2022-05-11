@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1" >
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.Buffers'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Buffers" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.2.0" newVersion="4.0.2.0" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0" />
+        <codeBase version="4.0.2.0" href="bin/roslyn/System.Buffers.dll" />
+        <codeBase version="4.0.3.0" href="bin/System.Buffers.dll" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>

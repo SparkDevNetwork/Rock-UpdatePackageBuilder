@@ -1,0 +1,16 @@
+RockWeb\Blocks\Cms\ContentChannelViewDetail.ascx
+RockWeb\Blocks\Cms\ContentChannelViewDetail.ascx.cs
+RockWeb\Blocks\Finance\GatewayMigrationUtility.ascx
+RockWeb\Blocks\Finance\GatewayMigrationUtility.ascx.cs
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\completionSettings.js
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\completionSettings.js.map
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\confirmationEmail.js
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\confirmationEmail.js.map
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\emailSource.js
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\emailSource.js.map
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\personEntrySettings.js
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\personEntrySettings.js.map
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\segmentedPicker.js
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\segmentedPicker.js.map
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\settingsWell.js
+RockWeb\Obsidian\Blocks\Workflow\FormBuilder\FormBuilderDetail\settingsWell.js.map
