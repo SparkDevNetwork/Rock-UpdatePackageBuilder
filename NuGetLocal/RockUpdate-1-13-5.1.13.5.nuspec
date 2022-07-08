@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-13-5</id>
+    <version>1.13.5</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-13-4" version="1.13.4" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Github\Rock13\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Github\Rock13\RockWeb\Obsidian\Blocks\Security\login.js.map" target="content\Obsidian\Blocks\Security\login.js.map" />
+    <file src="C:\Github\Rock13\RockWeb\Webhooks\Checkr.ashx" target="content\Webhooks\Checkr.ashx" />
+  </files>
+</package>
