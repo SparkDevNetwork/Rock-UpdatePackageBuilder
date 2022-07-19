@@ -7,7 +7,7 @@ namespace RockPackageBuilder
 {
     internal class RockPackageBuilder
     {
-        public static string BuildRockPackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, List<string> nugetPackageStubs, out string actionWarnings )
+        public static string BuildRockPackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, out string actionWarnings )
         {
             actionWarnings = string.Empty;
             string version = options.CurrentVersionTag;
@@ -55,12 +55,6 @@ namespace RockPackageBuilder
                 foreach ( string file in modifiedLibs )
                 {
                     AddContentFileToPackage( packageFile, file, webRootPath );
-                }
-
-                foreach ( var nugetPackageStub in nugetPackageStubs )
-                {
-                    var packagePath = "content\\App_Data\\Packages\\" + Path.GetFileName( nugetPackageStub );
-                    AddFileToPackage( packageFile, nugetPackageStub, packagePath );
                 }
 
                 // Add any modified Rock project libs but warn the user that they MUST be recently compiled

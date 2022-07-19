@@ -42,13 +42,6 @@ namespace RockPackageBuilder
                     Exit();
                 }
 
-                if ( !Directory.Exists( options.NuGetPackageFolder ) )
-                {
-                    Console.WriteLine( $"The given output NuGet package folder ({options.NuGetPackageFolder}) does not exist." );
-                    Console.WriteLine( options.GetUsage() );
-                    Exit();
-                }
-
                 if ( !Directory.Exists( options.RockPackageFolder ) )
                 {
                     Console.WriteLine( $"The given output rock package folder ({options.RockPackageFolder}) does not exist." );
@@ -102,36 +95,6 @@ namespace RockPackageBuilder
 
             _defaultDescription = $"Rock McKinley {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'>Release Notes</a> for details).";
 
-            string nuGetPackagePath = FullPathOfRockNuGetPackageFile( options.NuGetPackageFolder, options.CurrentVersionTag );
-            if ( File.Exists( nuGetPackagePath ) )
-            {
-                Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", nuGetPackagePath, Environment.NewLine );
-                ConsoleKeyInfo choice = Console.ReadKey( true );
-                Console.Write( "\b" );
-                Console.WriteLine( "" );
-                if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
-                {
-                    return 1;
-                }
-
-                var existingManifestPackage = Path.ChangeExtension( nuGetPackagePath, "nuspec" );
-                if ( File.Exists( existingManifestPackage ) )
-                {
-                    try
-                    {
-                        using ( var existingManifestStream = File.OpenRead( existingManifestPackage ) )
-                        {
-                            var existingManifest = Manifest.ReadFrom( existingManifestStream, false );
-                            _defaultDescription = existingManifest.Metadata.Description;
-                        }
-                    }
-                    catch
-                    {
-                        // intentionally ignore
-                    }
-                }
-            }
-
             string rockUpdatePackageFileName = Path.Combine( options.RockPackageFolder, $"{options.CurrentVersionTag}.rockpkg" );
             if ( File.Exists( rockUpdatePackageFileName ) )
             {
@@ -148,18 +111,7 @@ namespace RockPackageBuilder
             GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
             GetUpdatedFilesNotInSolution( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
 
-            /*
-                6/29/2020 - NA
-                The Rock.Common.Mobile dll is not part of the Rock solution, and it must always be
-                pulled from NuGet, therefore it should always be included in the list of files to be
-                put into the RockUpdate package.
-
-                Reason: Assembly is not part of Rock Solution but needs to be in the UpdatePackage. 
-            */
-            //modifiedProjects[ "Rock.Common.Mobile" ] = true;
-
-            // Make sure the Rock.Version project's version number has been updated and commit->pushed
-            // before you build from master.
+            // Make sure the Rock.Version project's version number has been updated and commit->pushed before you build from master.
             if ( !VerifyVersionNumbers( options.RepoPath, options.CurrentVersionTag, modifiedProjects ) )
             {
                 return 1;
@@ -169,12 +121,7 @@ namespace RockPackageBuilder
 
             if ( !options.Testing )
             {
-                var updatePackageName = BuildUpdateNuGetPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", out actionWarnings );
-                var stubPackagePaths = BuildEmptyStubPackagesForInstaller( options.RepoPath, options.InstallArtifactsFolder, options.CurrentVersionTag );
-                _ = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, "various changes", stubPackagePaths, out actionWarnings );
-                
-                // Create wrapper Rock.X.Y.Z.nupkg package as per: https://github.com/SparkDevNetwork/Rock-ChMS/wiki/Packaging-Rock-Core-Updates
-                BuildRockNuGetPackage( updatePackageName, options.RepoPath, options.NuGetPackageFolder, options.CurrentVersionTag, _defaultDescription );
+                _ = RockPackageBuilder.BuildRockPackage( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects, out actionWarnings );
             }
             else
             {
@@ -270,13 +217,13 @@ namespace RockPackageBuilder
                 {
                     Console.WriteLine( "\t\t* " + name );
                 }
+
                 Console.WriteLine();
                 Console.Write( "         " );
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine( "Please VERIFY this is what you expect." );
                 Console.ResetColor();
                 Console.WriteLine();
-
             }
 
             Console.Write( "Do you want to continue? Y/N (n to quit) ", Environment.NewLine );
@@ -673,182 +620,6 @@ namespace RockPackageBuilder
         }
 
         /// <summary>
-        /// Builds the RockUpdate-X-Y-Z.x.y.z.nupkg package which has all the modified files and a file that contains
-        /// the paths to all the files that are to be deleted.
-        /// </summary>
-        /// <param name="options">The options object created upon execution.</param>
-        /// <param name="modifiedLibs">The modified libs.</param>
-        /// <param name="packageFiles">The package files.</param>
-        /// <param name="deletedPackageFiles">The deleted package files.</param>
-        /// <param name="modifiedProjects">The modified projects.</param>
-        /// <param name="description">The description.</param>
-        /// <param name="actionWarnings">The action warnings (if any) which are useful to display again as the very last thing before quitting.</param>
-        /// <returns></returns>
-        private static string BuildUpdateNuGetPackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, string description, out string actionWarnings )
-        {
-            actionWarnings = string.Empty;
-            string version = options.CurrentVersionTag;
-            string dashVersion = version.Replace( '.', '-' );
-            string updatePackageId = Constants.ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
-            string updatePackageFileName = Path.Combine( options.NuGetPackageFolder, $"{updatePackageId}.{version}.nupkg" );
-
-            // Create a manifest for this package...
-            Manifest manifest = new Manifest();
-            manifest.Metadata = new ManifestMetadata()
-            {
-                Authors = "SparkDevelopmentNetwork",
-                Version = version,
-                Id = updatePackageId,
-                Description = description,
-            };
-
-            AddPreviousUpdateNuGetPackageAsDependency( options, manifest, updatePackageFileName );
-
-            manifest.Files = new List<ManifestFile>();
-            string webRootPath = Path.Combine( options.RepoPath, "RockWeb" );
-            foreach ( string file in packageFiles )
-            {
-                // Skip the root web.config, but YELL to let the person know they need to do something with this.
-                if ( file.ToLower() == "web.config" )
-                {
-                    var xdtPath = file.Replace( "web.config", "web.config.rock.xdt" );
-
-                    if ( File.Exists( Path.Combine( webRootPath, xdtPath ) ) )
-                    {
-                        AddToManifest( manifest, xdtPath, webRootPath );
-                        continue;
-                    }
-
-                    Console.WriteLine( "" );
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine( Constants.WEBCONFIG_XDT_MESSAGE );
-                    Console.ForegroundColor = ConsoleColor.Gray;
-
-                    actionWarnings += Constants.WEBCONFIG_XDT_MESSAGE;
-                    continue;
-                }
-
-                AddToManifest( manifest, file, webRootPath );
-
-                // if a less file was updated, check to see if a matching css file exists, and if so, add it (these files are ignored by repo)
-                if ( file.ToLower().EndsWith( ".less" ) )
-                {
-                    string cssPath = file.Substring( 0, file.Length - 5 ) + ".css";
-                    if ( File.Exists( Path.Combine( webRootPath, cssPath ) ) )
-                    {
-                        AddToManifest( manifest, cssPath, webRootPath );
-                    }
-                }
-            }
-
-            foreach ( string file in modifiedLibs )
-            {
-                AddLibToManifest( manifest, file, webRootPath );
-            }
-
-            // Add any modified Rock project libs but warn the user that they MUST be recently compiled
-            // against the master head we're operating against.
-            if ( modifiedProjects.Count > 0 )
-            {
-                Console.WriteLine( "" );
-                Console.WriteLine( "NOTE: The following assembly(s) are being added because their project files" );
-                Console.WriteLine( "      were changed since the last tag. You MUST ensure they were built in" );
-                Console.WriteLine( "      RELEASE mode and are currently in the RockWeb/bin folder. Otherwise" );
-                Console.WriteLine( "      you must do that manually and replace the ones I just put into the" );
-                Console.WriteLine( "      package's 'lib' nuget package folder." );
-                Console.WriteLine( "" );
-                foreach ( KeyValuePair<string, bool> entry in modifiedProjects )
-                {
-                    Console.WriteLine( $"\t * {entry.Key}.dll" );
-                    AddLibToManifest( manifest, Path.Combine( "bin", entry.Key + ".dll" ), webRootPath );
-
-                    // if a dll was updated and there is an associated xml documentation file, include it 
-                    string xmlPath = Path.Combine( "bin", entry.Key + ".xml" );
-                    if ( File.Exists( Path.Combine( webRootPath, xmlPath ) ) )
-                    {
-                        AddToManifest( manifest, xmlPath, webRootPath );
-                    }
-
-                    // if a dll was updated and there is an associated pdb documentation file, include it
-                    if ( options.IncludePdb || Constants.DEFAULT_PDB_TO_INCLUDE.Contains( entry.Key.ToLower() ) )
-                    {
-                        string pdbPath = Path.Combine( "bin", entry.Key + ".pdb" );
-                        if ( File.Exists( Path.Combine( webRootPath, pdbPath ) ) )
-                        {
-                            AddToManifest( manifest, pdbPath, webRootPath );
-                        }
-                    }
-                }
-            }
-
-            // write out all the files to delete in the deletefile.lst ) 
-            string deleteFileRelativePath = Path.Combine( "App_Data", "deletefile.lst" );
-            string deleteFileFullPath = Path.Combine( webRootPath, deleteFileRelativePath );
-            if ( File.Exists( deleteFileFullPath ) )
-            {
-                File.Delete( deleteFileFullPath );
-            }
-
-            if ( deletedPackageFiles.Count > 0 )
-            {
-                Console.WriteLine( "" );
-                Console.Write( "WARNING! Files are designated" );
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write( " to be DELETED " );
-                Console.ResetColor();
-                Console.WriteLine( "in this update." );
-                Console.WriteLine( "         Review all the files listed in the App_Data\\deletefile.lst" );
-                Console.WriteLine( "         as a sanity check.  If you see anything odd, ask someone to verify." );
-                Console.WriteLine( "" );
-
-                foreach ( var name in deletedPackageFiles )
-                {
-                    Console.WriteLine( "\t * " + name );
-                }
-
-                using ( StreamWriter w = File.AppendText( deleteFileFullPath ) )
-                {
-                    foreach ( string delete in deletedPackageFiles )
-                    {
-                        w.WriteLine( delete );
-                    }
-                }
-
-                AddToManifest( manifest, deleteFileRelativePath, webRootPath );
-            }
-
-            // Then Run.Migration file is not needed for version 1.11 and up.
-            int[] versionParts = options.CurrentVersionTag.Split( '.' ).Select( v => int.Parse( v ) ).ToArray();
-            if ( versionParts[0] < 2 && versionParts[1] < 11 )
-            {
-                // always add a Run.Migration flag file
-                string migrationFlagFileRelativePath = Path.Combine( "App_Data", "Run.Migration" );
-                string migrationFlagFileFullPath = Path.Combine( webRootPath, migrationFlagFileRelativePath );
-                File.Create( migrationFlagFileFullPath ).Dispose();
-                AddToManifest( manifest, migrationFlagFileRelativePath, webRootPath );
-            }
-
-            manifest.Files = manifest.Files.OrderBy( a => a.Source ).ToList();
-
-            // build the package
-            PackageBuilder builder = new PackageBuilder();
-            builder.PopulateFiles( options.RepoPath, manifest.Files );
-            builder.Populate( manifest.Metadata );
-            using ( FileStream stream = File.Open( updatePackageFileName, FileMode.Create ) )
-            {
-                builder.Save( stream );
-            }
-
-            var updatePackageManifestFileName = Path.ChangeExtension( updatePackageFileName, "nuspec" );
-            using ( FileStream stream = File.Open( updatePackageManifestFileName, FileMode.Create ) )
-            {
-                manifest.Save( stream );
-            }
-
-            return updatePackageId;
-        }
-
-        /// <summary>
         /// Outputs the changes to the console (used for testing/seeing what's going to be in a release without actually creating it yet).
         /// </summary>
         /// <param name="options">The options.</param>
@@ -937,311 +708,11 @@ namespace RockPackageBuilder
             }
         }
 
-        /// <summary>
-        /// Looks in the packageFolder for any previous RockUpdate packages and
-        /// adds the last (latest) one to the manifest as a dependency
-        /// </summary>
-        /// <param name="options"></param>
-        /// <param name="manifest"></param>
-        /// <param name="currentPackageName"></param>
-        private static void AddPreviousUpdateNuGetPackageAsDependency( RockPackageBuilderCommandLineOptions options, Manifest manifest, string currentPackageName )
-        {
-            string previousUpdatePackageId = null;
-            string previousUpdatePackageVersion = null;
-
-            DirectoryInfo di = new DirectoryInfo( options.NuGetPackageFolder );
-            FileSystemInfo[] files = di.GetFileSystemInfos( Constants.ROCKUPDATE_PACKAGE_PREFIX + "*.nupkg" );
-
-            foreach ( var packageFile in files.OrderByDescending( f => f.LastWriteTime ) )
-            {
-                if ( options.Verbose )
-                {
-                    Console.WriteLine( "Found a package called: " + packageFile );
-                }
-
-                if ( currentPackageName.EndsWith( packageFile.Name ) )
-                {
-                    continue;
-                }
-
-                if ( options.Verbose )
-                {
-                    Console.WriteLine( "This is the prior package: " + packageFile );
-                }
-
-                var match = Regex.Match( packageFile.ToString(), @"(RockUpdate-[-\d]+)\.([\.\d]+).nupkg" );
-                if ( match.Groups.Count >= 2 )
-                {
-                    previousUpdatePackageId = match.Groups[1].Value;
-                    previousUpdatePackageVersion = match.Groups[2].Value;
-                    if ( previousUpdatePackageVersion == options.LastVersionTag )
-                    {
-                        break;
-                    }
-                }
-            }
-
-            // If we didn't find one, we're done...
-            if ( previousUpdatePackageId == null )
-            {
-                return;
-            }
-
-            Console.WriteLine( "" );
-            Console.WriteLine( "NOTE: I added a \"{0}\" dependency to the {1} package. If this is not correct remove it manually.", previousUpdatePackageId, currentPackageName );
-
-            // Otherwise, add it as a dependency
-            // If there was a previous package, add it as a dependency to the update package
-
-            manifest.Metadata.DependencySets = new List<ManifestDependencySet>
-            {
-                new ManifestDependencySet
-                {
-                    TargetFramework = null,
-                    Dependencies = new List<ManifestDependency>
-                    {
-                        new ManifestDependency { Id = previousUpdatePackageId, Version = previousUpdatePackageVersion }
-                    }
-                }
-            };
-
-            _previousVersion = previousUpdatePackageVersion;
-        }
-
-        /// <summary>
-        /// Builds the two empty stub packages (Rock.x.y.z.nupkg and RockUpdate-X-Y-Z.x.y.z.nupkg)
-        /// needed for fresh installs via the installer as described here:
-        /// https://github.com/SparkDevNetwork/Rock/blob/develop/Installers/RockInstaller/readme.txt
-        /// </summary>
-        /// <param name="repoPath"></param>
-        /// <param name="packageFolder"></param>
-        /// <param name="version"></param>
-        private static List<string> BuildEmptyStubPackagesForInstaller( string repoPath, string installerArtifactsPath, string version )
-        {
-            string absolutePathOfCurrentDirectory = System.IO.Directory.GetCurrentDirectory();
-            string fullPathToInstallerArtifactsPath = Path.GetFullPath( ( new Uri( Path.Combine( absolutePathOfCurrentDirectory, installerArtifactsPath ) ) ).LocalPath );
-
-            FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", "Rock.Version.dll" ) );
-            // Create a manifest for the empty stub Rock.x.y.z package...
-            Manifest manifest = new Manifest();
-            manifest.Files = new List<ManifestFile>();
-            manifest.Metadata = new ManifestMetadata()
-            {
-                Authors = "SparkDevelopmentNetwork",
-                Version = version,
-                Title = rockDLLfvi.ProductVersion,
-                Id = "Rock",
-                Copyright = rockDLLfvi.LegalCopyright,
-                Description = "Installer Updater Stub",
-            };
-
-            // Must add at least one file.
-            string readmeFileRelativePath = "Readme.txt";
-            string readmeFileFullPath = Path.Combine( fullPathToInstallerArtifactsPath, readmeFileRelativePath );
-            System.IO.File.WriteAllText( readmeFileFullPath, "This package is a stub to be included in the installer to assist the Rock Updater to know the current release." );
-            AddToManifest( manifest, readmeFileRelativePath, fullPathToInstallerArtifactsPath );
-
-            string packageFileName = FullPathOfRockNuGetPackageFile( installerArtifactsPath, version );
-
-            PackageBuilder builder = new PackageBuilder();
-            builder.PopulateFiles( fullPathToInstallerArtifactsPath, manifest.Files );
-            builder.Populate( manifest.Metadata );
-            using ( FileStream stream = File.Open( packageFileName, FileMode.Create ) )
-            {
-                builder.Save( stream );
-            }
-
-            // Now create the RockUpdate-X-Y-Z.x.y.z.nupkg
-            string dashVersion = version.Replace( '.', '-' );
-            string updatePackageId = Constants.ROCKUPDATE_PACKAGE_PREFIX + "-" + dashVersion;
-            string updatePackageFileName = Path.Combine( installerArtifactsPath, $"{updatePackageId}.{version}.nupkg" );
-
-            // Create a manifest for this package...
-            Manifest rockUpdateManifest = new Manifest();
-            rockUpdateManifest.Files = new List<ManifestFile>();
-            rockUpdateManifest.Metadata = new ManifestMetadata()
-            {
-                Authors = "SparkDevelopmentNetwork",
-                Version = version,
-                Id = updatePackageId,
-                Title = updatePackageId,
-                Copyright = rockDLLfvi.LegalCopyright,
-                Description = "Installer Updater Stub",
-            };
-            AddToManifest( rockUpdateManifest, readmeFileRelativePath, fullPathToInstallerArtifactsPath );
-
-            PackageBuilder builder2 = new PackageBuilder();
-            builder2.PopulateFiles( fullPathToInstallerArtifactsPath, rockUpdateManifest.Files );
-            builder2.Populate( rockUpdateManifest.Metadata );
-            using ( FileStream stream = File.Open( updatePackageFileName, FileMode.Create ) )
-            {
-                builder2.Save( stream );
-            }
-
-            return new List<string>()
-            {
-                Path.Combine( fullPathToInstallerArtifactsPath, $"Rock.{version}.nupkg" ),
-                Path.Combine( fullPathToInstallerArtifactsPath, $"{updatePackageId}.{version}.nupkg" )
-            };
-        }
-
-        /// <summary>
-        /// Builds the Rock package (v version) which references the RockUpdate-version.version.nupkg.
-        /// </summary>
-        /// <param name="updatePackageName"></param>
-        /// <param name="repoPath"></param>
-        /// <param name="packageFolder"></param>
-        /// <param name="version"></param>
-        /// <param name="description"></param>
-        private static void BuildRockNuGetPackage( string updatePackageId, string repoPath, string packageFolder, string version, string description )
-        {
-            FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", "Rock.Version.dll" ) );
-            // Create a manifest for this package...
-            Manifest manifest = new Manifest();
-            manifest.Metadata = new ManifestMetadata()
-            {
-                Authors = "SparkDevelopmentNetwork",
-                Version = version,
-                Title = rockDLLfvi.ProductVersion,
-                Id = "Rock",
-                Copyright = rockDLLfvi.LegalCopyright,
-                Description = description,
-                DependencySets = new List<ManifestDependencySet>
-                {
-                    new ManifestDependencySet
-                    {
-                        TargetFramework = null,
-                        Dependencies = new List<ManifestDependency>
-                        {
-                            new ManifestDependency { Id = updatePackageId, Version = version }
-                        }
-                    }
-                }
-            };
-
-
-            if ( !string.IsNullOrWhiteSpace( _previousVersion ) )
-            {
-                // add a "requires-X.Y.Z" tag to force rock to update one at a time.
-                manifest.Metadata.Tags = $"requires-{_previousVersion}";
-            }
-
-            manifest.Files = new List<ManifestFile>();
-            string webRootPath = Path.Combine( repoPath, "RockWeb" );
-
-            string publicVersion = version.Substring( 2 );
-
-            manifest.Metadata.ReleaseNotes = $"<br /> You can read the details on the official <a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'>Release Notes</a> page.";
-
-            string tempReadmeFileRelativePath = Path.Combine( "Readme.txt" );
-            string tempReadmeFileFullPath = Path.Combine( webRootPath, tempReadmeFileRelativePath );
-            File.WriteAllText( tempReadmeFileFullPath, "You can read the details on the official https://www.rockrms.com/releasenotes page." );
-
-            AddToManifest( manifest, tempReadmeFileRelativePath, webRootPath );
-            manifest.Files = manifest.Files.OrderBy( a => a.Source ).ToList();
-
-            string packageFileName = FullPathOfRockNuGetPackageFile( packageFolder, version );
-
-            PackageBuilder builder = new PackageBuilder();
-            builder.PopulateFiles( repoPath, manifest.Files );
-            builder.Populate( manifest.Metadata );
-            using ( FileStream stream = File.Open( packageFileName, FileMode.Create ) )
-            {
-                builder.Save( stream );
-            }
-
-            var packageManifestFileName = Path.ChangeExtension( packageFileName, "nuspec" );
-            using ( FileStream stream = File.Open( packageManifestFileName, FileMode.Create ) )
-            {
-                manifest.Save( stream );
-            }
-        }
-
-        /// <summary>
-        /// Builds the full path to the Rock.x.y.z.nupkg package file.
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="version"></param>
-        /// <returns></returns>
-        private static string FullPathOfRockNuGetPackageFile( string packageFolder, string version )
-        {
-            return Path.Combine( packageFolder, $"Rock.{version}.nupkg" );
-        }
-
         private static void Exit()
         {
             Console.WriteLine( "Hit any key to quit." );
             Console.ReadKey();
             System.Environment.Exit( -3 );
         }
-
-        #region NuGet Package Helper Methods
-
-        /// <summary>
-        /// Add the given files (matching the given file filter and search options)
-        /// to the manifest.
-        /// </summary>
-        /// <param name="manifest">A NuGet Manifest</param>
-        /// <param name="filePath">the path to the file (relative to the webroot)</param>
-        /// <param name="webRootPath">the physical path to the app's webroot</param>
-        private static void AddLibToManifest( Manifest manifest, string filePath, string webRootPath )
-        {
-            if ( !File.Exists( Path.Combine( webRootPath, filePath ) ) )
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine( "ERROR: Unable to find {0} to add to package lib!", filePath );
-                Console.ForegroundColor = ConsoleColor.Gray;
-                return;
-            }
-
-            // remove the "bin\" from the path...
-            string filePathWithoutBinFolder = filePath.Substring( filePath.IndexOf( Path.DirectorySeparatorChar ) + 1 );
-
-            // All files need to have a target folder under the "content\"
-            // folder and the source path suffix will be the relative path to the file's physical location.
-            // ex: `Blocks\Foo\Foo.ascx` and `bin\some.dll`
-            var item = new ManifestFile()
-            {
-                Source = Path.Combine( webRootPath, filePath ),
-                Target = Path.Combine( "lib", filePathWithoutBinFolder )
-            };
-
-            manifest.Files.Add( item );
-        }
-
-        /// <summary>
-        /// Add the given files (matching the given file filter and search options)
-        /// to the manifest.
-        /// </summary>
-        /// <param name="manifest">A NuGet Manifest</param>
-        /// <param name="filePath">the path to the file (relative to the webroot)</param>
-        /// <param name="webRootPath">the physical path to the app's webroot</param>
-        private static void AddToManifest( Manifest manifest, string filePath, string webRootPath )
-        {
-            if ( !File.Exists( Path.Combine( webRootPath, filePath ) ) )
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine( "ERROR: Unable to find {0} to add to package content!", filePath );
-                Console.ForegroundColor = ConsoleColor.Gray;
-                return;
-            }
-
-            // All files need to have a target folder under the "content\"
-            // folder and the source path suffix will be the relative path to the file's physical location.
-            // ex: `Blocks\Foo\Foo.ascx` and `bin\some.dll`
-            var item = new ManifestFile()
-            {
-                Source = Path.Combine( webRootPath, filePath ),
-                Target = Path.Combine( "content", filePath ),
-            };
-
-            manifest.Files.Add( item );
-        }
-
-        #endregion
     }
-
-    #region Extensions
-
-    #endregion
 }
