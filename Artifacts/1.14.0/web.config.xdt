@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+
+  <!-- Add System.Numerics -->
+  <system.web>
+    <compilation>
+      <assemblies>
+         <add assembly="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" xdt:Transform="Insert" />
+      </assemblies>
+    </compilation>
+  </system.web>
+
+  <!-- Remove section no longer needed for MelissaData, etc. --> 
+  <system.serviceModel xdt:Transform="Replace" />
+
+
+  <!-- Update assembly bindings -->
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1" >
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Newtonsoft.Json'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-13.0.0.0" newVersion="13.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Antlr3.Runtime'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.IdentityModel.Tokens.Jwt'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.IdentityModel.Tokens.Jwt" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <codeBase version="5.1.5.0" href="Bin\System.IdentityModel.Tokens.Jwt\5.1.5\System.IdentityModel.Tokens.Jwt.dll" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.1.0" newVersion="5.2.1.0" />
+        <codeBase version="4.0.40306.1554" href="Bin\System.IdentityModel.Tokens.Jwt\4.0.4\System.IdentityModel.Tokens.Jwt.dll" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.40306.1554" newVersion="4.0.40306.1554" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.IdentityModel.Tokens'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.IdentityModel.Tokens" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.1.0" newVersion="5.2.1.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Owin'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Owin.Security'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Extensions.Logging.Abstractions'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.2.0" newVersion="2.0.2.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Extensions.Logging'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Logging" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.2.0" newVersion="2.0.2.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Extensions.DependencyInjection.Abstractions'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.DependencyInjection.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Extensions.Primitives'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Primitives" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.2.0.0" newVersion="2.2.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Extensions.FileProviders.Abstractions'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.FileProviders.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.Text.Json'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Text.Json" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.0.0.2" newVersion="5.0.0.2" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Extensions.Options'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Options" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.2.0" newVersion="2.0.2.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.ValueTuple'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.ValueTuple" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.Memory'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Memory" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.1.1" newVersion="4.0.1.1" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.AspNetCore.DataProtection.Abstractions'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.AspNetCore.DataProtection.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.AspNetCore.DataProtection.Extensions'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.AspNetCore.DataProtection.Extensions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Owin.Security.Interop'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Owin.Security.Interop" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Bcl.AsyncInterfaces'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.0.0.0" newVersion="5.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.IdentityModel.Protocols'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.IdentityModel.Protocols" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.1.0" newVersion="5.2.1.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.IdentityModel.Logging'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.IdentityModel.Logging" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.1.0" newVersion="5.2.1.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.Diagnostics.DiagnosticSource'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Diagnostics.DiagnosticSource" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.0.0.0" newVersion="5.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Elasticsearch.Net'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Elasticsearch.Net" publicKeyToken="96c599bbe3e70f5d" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-7.0.0.0" newVersion="7.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.SqlServer.Types'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.SqlServer.Types" publicKeyToken="89845dcd8080cc91" culture="neutral" />
+        <bindingRedirect oldVersion="10.0.0.0" newVersion="14.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.Collections.Immutable'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Collections.Immutable" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.2.3.0" newVersion="1.2.3.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'System.Security.Cryptography.Xml'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Security.Cryptography.Xml" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.1" newVersion="4.0.0.1" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(starts-with(./_defaultNamespace:assemblyIdentity/@name,'Microsoft.Net.Http.Headers'))"> ></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Net.Http.Headers" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.2.0" newVersion="2.0.2.0" />
+      </dependentAssembly>
+
+    </assemblyBinding>
+  </runtime>
+
+  <!-- Update C# lang limit to C# 7.3 (needed for 14.0) -->
+  <system.codedom>
+    <compilers>
+      <compiler compilerOptions="/langversion:7.3 /nowarn:1659;1699;1701" xdt:Transform="SetAttributes(compilerOptions)">
+      </compiler>
+    </compilers>
+  </system.codedom>
+
+</configuration>
