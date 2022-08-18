@@ -540,10 +540,15 @@ namespace RockPackageBuilder
                 }
             }
 
-            // If exists in new but not old then we need to add the file
+            // If exists in new but not old then we need to add the file. Needs to compare relative paths due to different obsidian files having the same name but in different directories.
             var filesToAdd = newFileList
-                .Where( o => !oldFileList.Any( n => Path.GetFileName( o ).Equals( Path.GetFileName( n ), StringComparison.OrdinalIgnoreCase ) ) )
-                .Select( o => o.Replace( Path.Combine( options.RepoPath, "RockWeb" ) + "\\", string.Empty ) );
+                .Where( n => !oldFileList.Any( o => o.Replace( options.PreviousVersionRockWebFolderPath, string.Empty ).Equals( n.Replace( options.RepoPath + "\\RockWeb", string.Empty ), StringComparison.OrdinalIgnoreCase ) ) )
+                .Select( n => n.Replace( Path.Combine( options.RepoPath, "RockWeb" ) + "\\", string.Empty ) )
+                .ToList();
+
+            //filesToAdd = newFileList
+            //    .Where( o => !oldFileList.Any( n => Path.GetFileName( o ).Equals( Path.GetFileName( n ), StringComparison.OrdinalIgnoreCase ) ) )
+            //    .Select( o => o.Replace( Path.Combine( options.RepoPath, "RockWeb" ) + "\\", string.Empty ) ).ToList();
 
             foreach ( var newFile in filesToAdd )
             {
