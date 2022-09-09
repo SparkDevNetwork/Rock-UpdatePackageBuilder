@@ -50,7 +50,7 @@
       <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Primitives')"> ></dependentAssembly>
       <dependentAssembly xdt:Transform="Insert">
         <assemblyIdentity name="Microsoft.Extensions.Primitives" publicKeyToken="adb9793829ddae60" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-2.2.0.0" newVersion="2.2.0.0" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
       </dependentAssembly>
 
       <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.FileProviders.Abstractions')"> ></dependentAssembly>
