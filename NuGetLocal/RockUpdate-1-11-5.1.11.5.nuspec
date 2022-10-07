@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RockUpdate-1-11-5</id>
+    <version>1.11.5</version>
+    <authors>SparkDevelopmentNetwork</authors>
+    <owners>SparkDevelopmentNetwork</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>various changes</description>
+    <dependencies>
+      <dependency id="RockUpdate-1-11-4" version="1.11.4" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Github\Rock11\RockWeb\App_Code\FileUploader.ashx.cs" target="content\App_Code\FileUploader.ashx.cs" />
+    <file src="C:\Github\Rock11\RockWeb\bin\Rock.dll" target="lib\Rock.dll" />
+    <file src="C:\Github\Rock11\RockWeb\bin\Rock.pdb" target="content\bin\Rock.pdb" />
+    <file src="C:\Github\Rock11\RockWeb\bin\Rock.Rest.dll" target="lib\Rock.Rest.dll" />
+    <file src="C:\Github\Rock11\RockWeb\bin\Rock.Rest.pdb" target="content\bin\Rock.Rest.pdb" />
+    <file src="C:\Github\Rock11\RockWeb\bin\Rock.Rest.xml" target="content\bin\Rock.Rest.xml" />
+    <file src="C:\Github\Rock11\RockWeb\bin\Rock.Version.dll" target="lib\Rock.Version.dll" />
+    <file src="C:\Github\Rock11\RockWeb\bin\Rock.xml" target="content\bin\Rock.xml" />
+    <file src="C:\Github\Rock11\RockWeb\Blocks\Cms\AssetManager.ascx.cs" target="content\Blocks\Cms\AssetManager.ascx.cs" />
+    <file src="C:\Github\Rock11\RockWeb\Blocks\Security\ConfirmAccount.ascx.cs" target="content\Blocks\Security\ConfirmAccount.ascx.cs" />
+    <file src="C:\Github\Rock11\RockWeb\Blocks\Security\ForgotUserName.ascx.cs" target="content\Blocks\Security\ForgotUserName.ascx.cs" />
+    <file src="C:\Github\Rock11\RockWeb\Blocks\Security\Login.ascx.cs" target="content\Blocks\Security\Login.ascx.cs" />
+    <file src="C:\Github\Rock11\RockWeb\Blocks\Security\RestKeyDetail.ascx.cs" target="content\Blocks\Security\RestKeyDetail.ascx.cs" />
+    <file src="C:\Github\Rock11\RockWeb\Scripts\Rock\Extensions\rockTree.js" target="content\Scripts\Rock\Extensions\rockTree.js" />
+  </files>
+</package>
