@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace RockPackageBuilder
 {
@@ -143,10 +145,40 @@ namespace RockPackageBuilder
                 return;
             }
 
+            EnsureCssOlderThanLess( source );
+
             // \ should always be /
             target = target.Replace( "\\", "/" );
 
             packageFile.CreateEntryFromFile( source, target );
+        }
+
+        /// <summary>
+        /// If the file is a css file check for a corresponding less file and compare the Creation and LastWriteTime dates.
+        /// If the css file date is newer than the less file then set the css file date to a day earlier than the less file.
+        /// This is to ensure that the LESS is compiled on Rock start after upgrade so any overrides on the client system
+        /// will be included.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        private static void EnsureCssOlderThanLess( string source )
+        {
+            var sourceFile = new FileInfo( source );
+
+            if ( sourceFile.Extension.ToLower() != ".css" )
+            {
+                return;
+            }
+
+            var lessFileName = Regex.Replace( source, ".css", ".less", RegexOptions.IgnoreCase );
+
+            if( !File.Exists( lessFileName ) )
+            {
+                return;
+            }
+
+            var lessFile = new FileInfo( lessFileName );
+            sourceFile.CreationTime = sourceFile.CreationTime >= lessFile.CreationTime ? lessFile.CreationTime.AddMinutes( -1 ) : sourceFile.CreationTime;
+            sourceFile.LastWriteTime = sourceFile.LastWriteTime >= lessFile.LastWriteTime ? lessFile.LastWriteTime.AddMinutes( -1 ) : sourceFile.LastWriteTime;
         }
     }
 }
