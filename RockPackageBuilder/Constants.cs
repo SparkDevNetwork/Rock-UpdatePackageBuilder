@@ -29,7 +29,8 @@ namespace RockPackageBuilder
             "rock.tests",
             "rock.tests.integration",
             "rock.tests.shared",
-            "rock.tests.unittests"
+            "rock.tests.unittests",
+            "rock.tests.performance"
         };
 
         public static readonly List<string> DEFAULT_PDB_TO_INCLUDE = new List<string>
