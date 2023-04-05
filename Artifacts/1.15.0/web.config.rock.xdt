@@ -1,6 +1,16 @@
 <?xml version="1.0"?>
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
 
+<!-- Fix System.Numerics that was inserted in 14.0 & 14.1 -->
+<system.web>
+    <compilation>
+      <assemblies>
+        <add assembly="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" xdt:Locator="Match(assembly)" xdt:Transform="RemoveAll" />
+        <add assembly="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" xdt:Transform="Insert" />
+      </assemblies>
+    </compilation>
+  </system.web>
+
 <!-- Remove Redis Settings and add Azure SignalR -->
 <appSettings>
   <add key="EnableRedisCacheCluster" xdt:Locator="Match(key)" xdt:Transform="Remove" />
