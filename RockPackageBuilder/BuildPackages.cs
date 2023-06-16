@@ -110,6 +110,7 @@ namespace RockPackageBuilder
 
             GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
             GetUpdatedFilesNotInSolution( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
+            VerifyDeletedFiles( options, ref deletedPackageFiles );
 
             // Make sure the Rock.Version project's version number has been updated and commit->pushed before you build from master.
             if ( !VerifyVersionNumbers( options.RepoPath, options.CurrentVersionTag, modifiedProjects ) )
@@ -562,6 +563,33 @@ namespace RockPackageBuilder
                     modifiedPackageFiles.Add( newFile );
                 }
             }
+        }
+
+        /// <summary>
+        /// Check to see if any of the deleted files actually exist on the updated code. This can happen if a generated file was removed from source control.
+        /// </summary>
+        /// <param name="deletedFiles">The deleted files.</param>
+        private static void VerifyDeletedFiles( RockPackageBuilderCommandLineOptions options, ref List<string> deletedFiles )
+        {
+            if ( string.IsNullOrWhiteSpace( options.RepoPath ) || !deletedFiles.Any() )
+            {
+                // There is nothing to compare to so the user will get a message to do this manually.
+                return;
+            }
+
+            List<string> filesToKeep = new List<string>();
+
+            foreach ( var deletedFile in deletedFiles )
+            {
+                var path = Path.Combine( options.RepoPath, deletedFile );
+                var exists = File.Exists( path );
+                if( exists )
+                {
+                    filesToKeep.Add( deletedFile );
+                }
+            }
+
+            deletedFiles = deletedFiles.Where( f => !filesToKeep.Contains( f ) ).ToList();
         }
 
         /// <summary>
