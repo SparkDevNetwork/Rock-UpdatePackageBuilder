@@ -113,17 +113,12 @@ namespace RockPackageBuilder
                         Path.Combine( webRootPath, deleteFileRelativePath ),
                         Path.Combine( "install", Path.GetFileName( deleteFileRelativePath ) )
                     );
-                }
 
-                // Then Run.Migration file is not needed for version 1.11 and up.
-                int[] versionParts = options.CurrentVersionTag.Split( '.' ).Select( v => int.Parse( v ) ).ToArray();
-                if ( versionParts[0] < 2 && versionParts[1] < 11 )
-                {
-                    // always add a Run.Migration flag file
-                    string migrationFlagFileRelativePath = Path.Combine( "App_Data", "Run.Migration" );
-                    string migrationFlagFileFullPath = Path.Combine( webRootPath, migrationFlagFileRelativePath );
-                    File.Create( migrationFlagFileFullPath ).Dispose();
-                    AddContentFileToPackage( packageFile, migrationFlagFileRelativePath, webRootPath );
+                    // now delete deletefile.lst from the source repo
+                    if ( File.Exists( deleteFileFullPath ) )
+                    {
+                        File.Delete( deleteFileFullPath );
+                    }
                 }
             }
 
