@@ -462,42 +462,57 @@ namespace RockPackageBuilder
             Console.ResetColor();
 
             // Ignore files with these extensions
-            List<string> ignoreFilePatterns = new List<string>() { ".pdb", ".refresh" };
+            List<string> ignoreFilePatterns = new List<string>() { ".pdb", ".refresh", ".js.map" };
 
             // Get a list of files from the previous version directory.
             // Filter out files already identified as updated, solution files, and ignore files
             List<string> oldFileList = Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Bin" ) )
-                // Filter out files by extension
-                .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
-                // Filter out files for ignored projects
-                .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) // Filter out files by extension
+                .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) // Filter out files for ignored projects
                 // Filter out files that have already been flagged as updated by other checks
                 .Where( f => !modifiedLibs.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !modifiedPackageFiles.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
 
+            // The entire Obsidian folder is not in source control, so get every file except the ones that should be ignored.
             if ( Directory.Exists( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ) ) )
             {
-                oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ), "*", SearchOption.AllDirectories ) );
+                oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
+            }
+
+            // Get the script files, which may or may not be in source control, except the ones that should be ignored.
+            if ( Directory.Exists( Path.Combine( options.PreviousVersionRockWebFolderPath, "Scripts" ) ) )
+            {
+                oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Scripts" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
             }
 
             // Get a list of files from the repo directory that contains the version being created
             // Filter out files already identified as updated, solution files, and ignore files
             List<string> newFileList = Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Bin" ) )
-                // Filter out files by extension
-                .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
-                // Filter out files for ignored projects
-                .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) )
+                .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) // Filter out files by extension
+                .Where( f => !Constants.PROJECTS_TO_IGNORE.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) // Filter out files for ignored projects
                 // Filter out files that have already been flagged as updated by other checks
                 .Where( f => !modifiedLibs.Any( p => Path.Combine( "Bin", Path.GetFileName( f ) ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !modifiedPackageFiles.Any( p => Path.Combine( "RockWeb", "Bin", Path.GetFileName( f ) ).Equals( Path.Combine( "RockWeb", "Bin", Path.GetFileName( p ) ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Where( f => !options.ProjectsInSolution.Any( p => Path.GetFileNameWithoutExtension( f ).Equals( p, StringComparison.OrdinalIgnoreCase ) ) )
                 .ToList();
 
+            // A list of all new Obsidian files except the ones that should be ignored.
             if ( Directory.Exists( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ) ) )
             {
-                newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ), "*", SearchOption.AllDirectories ) );
+                newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
+            }
+
+            // A list of script files filtered by "ignored" and ones that are not already in the "Modified" list.
+            if ( Directory.Exists( Path.Combine( options.RepoPath, "RockWeb", "Scripts" ) ) )
+            {
+                newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Scripts" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) 
+                    .Where( f => !modifiedPackageFiles.Any( p => p.Equals( f.Replace( Path.Combine( options.RepoPath, "RockWeb" ), string.Empty ).TrimStart( Path.DirectorySeparatorChar ), StringComparison.OrdinalIgnoreCase ) ) ) );
             }
 
             // loop through the old file list and compare to new file version
@@ -512,7 +527,6 @@ namespace RockPackageBuilder
                 // If exists in old but not new then add to deleted list
                 if ( !newFileInfo.Exists )
                 {
-                    //string file = Path.Combine( "RockWeb", "Bin", oldFileInfo.Name );
                     string file = newFileInfo.FullName.Replace( options.RepoPath, string.Empty ).TrimStart( Path.DirectorySeparatorChar );
                     if ( !deletedPackageFiles.Where( d => d.Equals( file, StringComparison.OrdinalIgnoreCase ) ).Any() )
                     {
@@ -535,7 +549,7 @@ namespace RockPackageBuilder
                 {
                     modifiedLibs.Add( relativeFilePath );
                 }
-                else
+                else if ( !modifiedPackageFiles.Contains( relativeFilePath ) )
                 {
                     modifiedPackageFiles.Add( relativeFilePath );
                 }
@@ -546,10 +560,6 @@ namespace RockPackageBuilder
                 .Where( n => !oldFileList.Any( o => o.Replace( options.PreviousVersionRockWebFolderPath, string.Empty ).Equals( n.Replace( options.RepoPath + "\\RockWeb", string.Empty ), StringComparison.OrdinalIgnoreCase ) ) )
                 .Select( n => n.Replace( Path.Combine( options.RepoPath, "RockWeb" ) + "\\", string.Empty ) )
                 .ToList();
-
-            //filesToAdd = newFileList
-            //    .Where( o => !oldFileList.Any( n => Path.GetFileName( o ).Equals( Path.GetFileName( n ), StringComparison.OrdinalIgnoreCase ) ) )
-            //    .Select( o => o.Replace( Path.Combine( options.RepoPath, "RockWeb" ) + "\\", string.Empty ) ).ToList();
 
             foreach ( var newFile in filesToAdd )
             {
