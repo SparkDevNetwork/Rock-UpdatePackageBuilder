@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+
+  <!-- Remove Redis Settings and add Azure SignalR -->
+  <appSettings>
+    <add key="ObservabilityServiceName" value="rock-rms" xdt:Transform="Insert" />
+    <add key="SparkApiUrl" value="https://api.rockrms.com/" xdt:Transform="Insert" />
+  </appSettings>
+
+  <!-- Update assembly bindings -->
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1" >
+    <!-- Remove bindings that are no longer used -->
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Owin.Security')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Owin')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Primitives')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.FileProviders.Abstractions')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.IdentityModel.Tokens')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Logging.Abstractions')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Logging')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.DependencyInjection.Abstractions')"></dependentAssembly>
+
+    <!-- Update existing bindings -->
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Options')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Microsoft.Extensions.Options" publicKeyToken="adb9793829ddae60" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-3.1.0.0" newVersion="3.1.0.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Memory')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="System.Memory" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-4.0.1.2" newVersion="4.0.1.2" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Diagnostics.DiagnosticSource')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="System.Diagnostics.DiagnosticSource" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-7.0.0.0" newVersion="7.0.0.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Collections.Immutable')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="System.Collections.Immutable" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-1.2.5.0" newVersion="1.2.5.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Configuration.Abstractions')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Microsoft.Extensions.Configuration.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-3.1.0.0" newVersion="3.1.0.0" />
+    </dependentAssembly>
+
+    <!-- Add new bindings -->
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='CacheManager.Core')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="CacheManager.Core" publicKeyToken="5b450b4fb65c4cdb" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-1.2.0.0" newVersion="1.2.0.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.OData.Edm')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Microsoft.OData.Edm" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-7.12.3.0" newVersion="7.12.3.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.OData.Core')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Microsoft.OData.Core" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-7.12.3.0" newVersion="7.12.3.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.DependencyInjection')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Microsoft.Extensions.DependencyInjection" publicKeyToken="adb9793829ddae60" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-3.1.0.0" newVersion="3.1.0.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Spatial')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Microsoft.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-7.12.3.0" newVersion="7.12.3.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Win32.Registry')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Microsoft.Win32.Registry" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-4.1.1.0" newVersion="4.1.1.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Security.Principal.Windows')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="System.Security.Principal.Windows" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-4.1.1.0" newVersion="4.1.1.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Api.Gax')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Google.Api.Gax" publicKeyToken="3ec5ea7f18953e47" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-2.10.0.0" newVersion="2.10.0.0" />
+    </dependentAssembly>
+
+    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Api.Gax.Rest')"></dependentAssembly>
+    <dependentAssembly xdt:Transform="Insert">
+      <assemblyIdentity name="Google.Api.Gax.Rest" publicKeyToken="3ec5ea7f18953e47" culture="neutral" />
+      <bindingRedirect oldVersion="0.0.0.0-2.10.0.0" newVersion="2.10.0.0" />
+    </dependentAssembly>
+
+    </assemblyBinding>
+  </runtime>
+
+  <system.diagnostics xdt:Transform="Insert">
+    <switches>
+    </switches>
+  </system.diagnostics>
+</configuration>
