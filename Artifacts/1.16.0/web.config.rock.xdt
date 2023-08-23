@@ -109,7 +109,7 @@
     </assemblyBinding>
   </runtime>
 
-  <system.diagnostics xdt:Transform="Insert">
+  <system.diagnostics xdt:Transform="InsertIfMissing">
     <switches>
     </switches>
   </system.diagnostics>
