@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+	    <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Collections.Immutable')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+		  <assemblyIdentity name="System.Collections.Immutable" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+		  <bindingRedirect oldVersion="0.0.0.0-1.2.5.0" newVersion="1.2.5.0" />
+		</dependentAssembly>
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='CacheManager.Core')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+		  <assemblyIdentity name="CacheManager.Core" publicKeyToken="5b450b4fb65c4cdb" culture="neutral" />
+		  <bindingRedirect oldVersion="0.0.0.0-1.2.0.0" newVersion="1.2.0.0" />
+		</dependentAssembly>
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Api.Gax')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+		  <assemblyIdentity name="Google.Api.Gax" publicKeyToken="3ec5ea7f18953e47" culture="neutral" />
+		  <bindingRedirect oldVersion="0.0.0.0-2.10.0.0" newVersion="2.10.0.0" />
+		</dependentAssembly>
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Api.Gax.Rest')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+		  <assemblyIdentity name="Google.Api.Gax.Rest" publicKeyToken="3ec5ea7f18953e47" culture="neutral" />
+		  <bindingRedirect oldVersion="0.0.0.0-2.10.0.0" newVersion="2.10.0.0" />
+		</dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>
