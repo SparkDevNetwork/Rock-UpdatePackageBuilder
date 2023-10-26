@@ -396,7 +396,8 @@ namespace RockPackageBuilder
 
                     if ( options.Verbose )
                     {
-                        Console.WriteLine( "{0}\t{1}", file.Path, file.Status );
+                        //Console.WriteLine( "{0}\t{1}", file.Path, file.Status );
+                        System.Diagnostics.Debug.WriteLine( $"{file.Path}    {file.Status}" );
                     }
 
                     // any changes with any other non-RockWeb projects?
