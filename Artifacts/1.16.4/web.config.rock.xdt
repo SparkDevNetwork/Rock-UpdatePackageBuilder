@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<!-- Transform to fix issue #4436 -->
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <system.web>
+    <httpRuntime relaxedUrlToFileSystemMapping="false" xdt:Transform="SetAttributes(relaxedUrlToFileSystemMapping)" />
+  </system.web>
+
+</configuration>
