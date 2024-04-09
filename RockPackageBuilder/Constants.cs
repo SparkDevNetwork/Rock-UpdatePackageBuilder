@@ -30,7 +30,12 @@ namespace RockPackageBuilder
             "rock.tests.integration",
             "rock.tests.shared",
             "rock.tests.unittests",
-            "rock.tests.performance"
+            "rock.tests.performance",
+            "testcontainers",
+            "microsoft.visualstudio.testplatform.testframework",
+            "renci.sshnet", // Used only by Tests.Shared?
+            "bouncycastle.crytpography", // Currently only used by Tests...
+            "docker.dotnet" // Used by Tests
         };
 
         public static readonly List<string> DEFAULT_PDB_TO_INCLUDE = new List<string>
