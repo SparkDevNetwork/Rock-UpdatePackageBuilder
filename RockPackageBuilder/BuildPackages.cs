@@ -540,6 +540,15 @@ namespace RockPackageBuilder
                 // Compare the old and new Bytes and move on if they are the same
                 if ( oldFileInfo.Length == newFileInfo.Length && File.ReadAllBytes( oldFileInfo.FullName ).SequenceEqual( File.ReadAllBytes( newFileInfo.FullName ) ) )
                 {
+                   continue;
+                }
+
+                var oldFileVersionInfo = FileVersionInfo.GetVersionInfo( oldFileInfo.FullName );
+                var newFileVersionInfo = FileVersionInfo.GetVersionInfo( newFileInfo.FullName );
+
+                if ( oldFile.EndsWith( ".dll" ) && oldFileVersionInfo.FileVersion == newFileVersionInfo.FileVersion)
+                {
+                    Console.WriteLine( string.Format( "Skipping .dll file due to matching version: {0} - {1}", oldFileInfo.FullName, oldFileVersionInfo.FileVersion ) );
                     continue;
                 }
 
