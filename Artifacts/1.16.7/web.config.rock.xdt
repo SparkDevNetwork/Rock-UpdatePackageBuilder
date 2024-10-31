@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+
+    <!-- Modify Google.Apis.Auth binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Apis.Auth')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Google.Apis.Auth" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-1.49.0.0" newVersion="1.49.0.0" />
+		</dependentAssembly>
+
+    <!-- Modify Google.Apis binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Apis')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Google.Apis" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-1.49.0.0" newVersion="1.49.0.0" />
+		</dependentAssembly>
+
+    <!-- Modify Google.Apis.Core binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Apis.Core')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Google.Apis.Core" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.49.0.0" newVersion="1.49.0.0" />
+		</dependentAssembly>
+
+    <!-- Modify Microsoft.Extensions.Logging.Abstractions binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Logging.Abstractions')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+		</dependentAssembly>
+
+      <!-- Modify Microsoft.Extensions.Logging binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Logging')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Logging" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Microsoft.Extensions.DependencyInjection.Abstractions binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.DependencyInjection.Abstractions')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.DependencyInjection.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Microsoft.Extensions.Primitives binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Primitives')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Primitives" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify System.Text.Encodings.Web binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Text.Encodings.Web')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Text.Encodings.Web" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Microsoft.Extensions.FileProviders.Abstraction binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.FileProviders.Abstraction')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.FileProviders.Abstraction" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify System.Text.Json binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Text.Json')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Text.Json" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.9" newVersion="6.0.0.9" />
+      </dependentAssembly>
+
+      <!-- Modify Microsoft.Extensions.Options binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Options')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Options" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Microsoft.Bcl.AsyncInterfaces binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Bcl.AsyncInterfaces')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify System.Diagnostics.DiagnosticSource binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Diagnostics.DiagnosticSource')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Diagnostics.DiagnosticSource" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Microsoft.Extensions.Configuration.Abstractions binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Configuration.Abstractions')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Configuration.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Microsoft.Extensions.DependencyInjection binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.DependencyInjection')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.DependencyInjection" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify System.Security.Principal.Windows binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Security.Principal.Windows')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Security.Principal.Windows" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.0.0.0" newVersion="5.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Google.Api.Gax binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Api.Gax')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Google.Api.Gax" publicKeyToken="3ec5ea7f18953e47" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.2.0.0" newVersion="3.2.0.0" />
+      </dependentAssembly>
+
+      <!-- Modify Google.Api.Gax.Rest binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Api.Gax.Rest')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Google.Api.Gax.Rest" publicKeyToken="3ec5ea7f18953e47" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.2.0.0" newVersion="3.2.0.0" />
+      </dependentAssembly>
+
+      <!-- Add System.Threading.Channels binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Threading.Channels')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Threading.Channels" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+
+      <!-- Add GreenPipes binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='GreenPipes')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="GreenPipes" publicKeyToken="b800c4cfcdeea87b" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.1.4.118" newVersion="2.1.4.118" />
+      </dependentAssembly>
+
+      <!-- Add Azure.Core binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Azure.Core')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Azure.Core" publicKeyToken="92742159e12e44c8" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.41.0.0" newVersion="1.41.0.0" />
+      </dependentAssembly>
+
+      <!-- Add MassTransit binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='MassTransit')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="MassTransit" publicKeyToken="b8e0e9f2f1e657fa" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.2.5.0" newVersion="8.2.5.0" />
+      </dependentAssembly>
+
+      <!-- Add System.Security.Cryptography.ProtectedData binding redirect -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Security.Cryptography.ProtectedData')"></dependentAssembly>
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Security.Cryptography.ProtectedData" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.5.0" newVersion="4.0.5.0" />
+      </dependentAssembly>
+
+    </assemblyBinding>
+  </runtime>
+</configuration>
