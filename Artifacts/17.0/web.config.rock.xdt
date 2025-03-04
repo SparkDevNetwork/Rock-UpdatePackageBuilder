@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<system.web>
+		<authentication>
+			<forms defaultUrl="/" xdt:Transform="SetAttributes(defaultUrl)" xdt:Locator="Condition(@defaultUrl='Page/12')"/>
+		</authentication>
+	</system.web>
+     <system.webServer>
+        <handlers>
+            <add xdt:Transform="RemoveAll" xdt:Locator="Condition(@name='LavaWebHook')" />
+            <add xdt:Transform="Insert" name="LavaWebHook" path="/WebHooks/Lava.ashx/*" verb="GET,HEAD,POST,PUT,DELETE,PATCH,OPTIONS" type="LavaHandler" resourceType="Unspecified" />
+        </handlers>
+     </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+  
+  <!-- Modify System.IdentityModel.Tokens.Jwt binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.IdentityModel.Tokens.Jwt')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="System.IdentityModel.Tokens.Jwt" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-5.7.0.0" newVersion="5.7.0.0" />
+		</dependentAssembly>
+
+	<!-- Modify Microsoft.IdentityModel.Tokens binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.IdentityModel.Tokens')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Microsoft.IdentityModel.Tokens" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-5.7.0.0" newVersion="5.7.0.0" />
+		</dependentAssembly>
+
+	<!-- Modify Microsoft.Owin binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Owin')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Microsoft.Owin" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-4.2.2.0" newVersion="4.2.2.0" />
+		</dependentAssembly>
+    
+	<!-- Modify Microsoft.IdentityModel.Logging binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.IdentityModel.Logging')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Microsoft.IdentityModel.Logging" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-5.7.0.0" newVersion="5.7.0.0" />
+		</dependentAssembly>
+
+	<!-- Modify System.Security.Cryptography.Xml binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Security.Cryptography.Xml')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="System.Security.Cryptography.Xml" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-4.0.3.1" newVersion="4.0.3.1" />
+		</dependentAssembly>
+
+	<!-- Modify Microsoft.Extensions.Configuration binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Configuration')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Microsoft.Extensions.Configuration" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+		</dependentAssembly>
+
+	<!-- Modify Microsoft.Data.Edm binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Data.Edm')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Microsoft.Data.Edm" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-5.8.5.0" newVersion="5.8.5.0" />
+		</dependentAssembly>
+
+	<!-- Modify Microsoft.Data.OData binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Data.OData')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Microsoft.Data.OData" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-5.8.5.0" newVersion="5.8.5.0" />
+		</dependentAssembly>
+
+	<!-- Modify System.Spatial binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Spatial')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="System.Spatial" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-5.8.5.0" newVersion="5.8.5.0" />
+		</dependentAssembly>
+
+	<!-- Modify MessagePack binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='MessagePack')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="MessagePack" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-1.9.0.0" newVersion="1.9.0.0" />
+		</dependentAssembly>
+
+	<!-- Modify Microsoft.IdentityModel.JsonWebTokens binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.IdentityModel.JsonWebTokens')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="Microsoft.IdentityModel.JsonWebTokens" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-5.7.0.0" newVersion="5.7.0.0" />
+		</dependentAssembly>
+
+	<!-- Modify System.IO.Pipelines binding redirect -->
+		<dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.IO.Pipelines')"></dependentAssembly>
+		<dependentAssembly xdt:Transform="Insert">
+			<assemblyIdentity name="System.IO.Pipelines" publicKeyToken="4b01fa6e34db77ab" culture="neutral" />
+			<bindingRedirect oldVersion="0.0.0.0-4.0.2.4" newVersion="4.0.2.4" />
+		</dependentAssembly>
+
+	</assemblyBinding>
+  </runtime>
+</configuration>

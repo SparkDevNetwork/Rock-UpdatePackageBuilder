@@ -28,6 +28,7 @@ namespace RockPackageBuilder
             "rock.specs",
             "rock.tests",
             "rock.tests.integration",
+            "rock.tests.integration.performance",
             "rock.tests.shared",
             "rock.tests.unittests",
             "rock.tests.performance",
