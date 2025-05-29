@@ -14,8 +14,11 @@ namespace RockPackageBuilder
         [Option( 'l', "lastVersionTag", Required = true, HelpText = "The last tag to compare with the current tag to build the delta for the package. (Ex: 0.1.3)" )]
         public string LastVersionTag { get; set; }
 
-        [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 0.1.4)" )]
+        [Option( 'c', "currentVersionTag", Required = true, HelpText = "The current tag to compare with the last tag to build the delta for the package. (Ex: 17.1-alpha.1 or 17.1.1)" )]
         public string CurrentVersionTag { get; set; }
+
+        [Option( 'v', "publicVersion", Required = true, HelpText = "The public version number for the package. (Ex: 17.1)" )]
+        public string PublicVersion { get; set; }
 
         [Option( 'h', "currentVersionCommitHash", Required = false, HelpText = "Use only for testing! The hash of the current commit to compare with the last tag to build the delta for the package. NOTE: Supplying this will OVERRIDE the given current tag. (Ex: afd14572e3f1529ce0007fe0b7524becee626e55)" )]
         public string CurrentVersionCommitHash { get; set; }
@@ -35,8 +38,8 @@ namespace RockPackageBuilder
         [Option( 'a', "artifactsFolder", DefaultValue = @"..\..\..\Artifacts", HelpText = "The folder for PDB and xtd files.")]
         public string ArtifactsFolder { get; set; }
 
-        [Option( 'v', "verbose", DefaultValue = false, HelpText = "Set to true to see a more verbose output of what's changed in the repo." )]
-        public bool Verbose { get; set; }
+        [Option( 'e', "expandedVerbose", DefaultValue = false, HelpText = "Set to true to see an expanded/verbose output of what's changed in the repo." )]
+        public bool ExpandedVerbose { get; set; }
 
         [Option( 't', "testing", DefaultValue = false, HelpText = "Set to true to just see the list of changed files between the two tagged releases." )]
         public bool Testing { get; set; }

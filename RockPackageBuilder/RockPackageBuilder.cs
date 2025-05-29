@@ -12,7 +12,7 @@ namespace RockPackageBuilder
         public static string BuildRockPackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, out string actionWarnings )
         {
             actionWarnings = string.Empty;
-            string version = options.CurrentVersionTag;
+            string version = options.PublicVersion;
             string updatePackageFileName = Path.Combine( options.RockPackageFolder, $"{version}.rockpkg" );
 
             if ( File.Exists( updatePackageFileName ) )
@@ -79,7 +79,7 @@ namespace RockPackageBuilder
                         string pdbAbsolutePath = Path.Combine( webRootPath, pdbPath );
                         if ( File.Exists( pdbAbsolutePath ) )
                         {
-                            var artifactsFolderForVersionPath = Path.Combine( options.ArtifactsFolder, options.CurrentVersionTag, $"{entry.Key}.pdb" );
+                            var artifactsFolderForVersionPath = Path.Combine( options.ArtifactsFolder, options.PublicVersion, $"{entry.Key}.pdb" );
                             File.Copy( pdbAbsolutePath, artifactsFolderForVersionPath );
 
                             if ( options.IncludePdb || Constants.DEFAULT_PDB_TO_INCLUDE.Contains( entry.Key.ToLower() ) )

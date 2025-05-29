@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+<!-- Update Quartz MisFireThreshold -->
+  <quartz>
+    <add key="quartz.jobStore.misfireThreshold" xdt:Locator="Match(key)" xdt:Transform="Remove" />
+    <add key="quartz.jobStore.misfireThreshold" value="50000" xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" />
+  </quartz>
+</configuration>

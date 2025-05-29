@@ -55,7 +55,7 @@ namespace RockPackageBuilder
                 }
 
                 // This is where the installer will store pdb files and where it will look for xdt files.
-                var artifactsFolderForVersion = Path.Combine( options.ArtifactsFolder, options.CurrentVersionTag );
+                var artifactsFolderForVersion = Path.Combine( options.ArtifactsFolder, options.PublicVersion );
                 if ( !Directory.Exists( artifactsFolderForVersion ) )
                 {
                     Directory.CreateDirectory( artifactsFolderForVersion );
@@ -91,11 +91,11 @@ namespace RockPackageBuilder
                 return 1;
             }
 
-            string publicVersion = options.CurrentVersionTag.Substring( 2 );
+            string publicVersion = options.PublicVersion;
 
-            _defaultDescription = $"Rock McKinley {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes?version#v{publicVersion}'>Release Notes</a> for details).";
+            _defaultDescription = $"Rock {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes#v{publicVersion}'>Release Notes</a> for details).";
 
-            string rockUpdatePackageFileName = Path.Combine( options.RockPackageFolder, $"{options.CurrentVersionTag}.rockpkg" );
+            string rockUpdatePackageFileName = Path.Combine( options.RockPackageFolder, $"{options.PublicVersion}.rockpkg" );
             if ( File.Exists( rockUpdatePackageFileName ) )
             {
                 Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", rockUpdatePackageFileName, Environment.NewLine );
@@ -175,9 +175,9 @@ namespace RockPackageBuilder
             Console.ResetColor();
             Console.Write( " to version " );
             Console.BackgroundColor = ConsoleColor.Blue;
-            Console.Write( options.CurrentVersionTag );
+            Console.Write( options.PublicVersion );
             Console.ResetColor();
-
+            Console.Write( "(from tag " + options.CurrentVersionTag + "" );
             Console.WriteLine( "" );
             Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
             Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
@@ -394,7 +394,7 @@ namespace RockPackageBuilder
 
                     string projectName = file.Path.Split( Path.DirectorySeparatorChar ).First();
 
-                    if ( options.Verbose )
+                    if ( options.ExpandedVerbose )
                     {
                         //Console.WriteLine( "{0}\t{1}", file.Path, file.Status );
                         System.Diagnostics.Debug.WriteLine( $"{file.Path}    {file.Status}" );
