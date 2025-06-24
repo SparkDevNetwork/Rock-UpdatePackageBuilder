@@ -177,7 +177,7 @@ namespace RockPackageBuilder
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Write( options.PublicVersion );
             Console.ResetColor();
-            Console.Write( "(from tag " + options.CurrentVersionTag + "" );
+            Console.Write( " (from tag " + options.CurrentVersionTag + ") " );
             Console.WriteLine( "" );
             Console.WriteLine( "Make sure you've updated the version numbers, pushed to master and have locally" );
             Console.WriteLine( "built a RELEASE build. (Those assemblies may be added to the package.)" );
@@ -524,6 +524,12 @@ namespace RockPackageBuilder
                 var relativeDirectory = Path.GetDirectoryName( oldFile ).Replace( options.PreviousVersionRockWebFolderPath, string.Empty ).TrimStart( Path.DirectorySeparatorChar );
                 var NewFileAbsoluteDirectory = Path.Combine( options.RepoPath, "RockWeb", relativeDirectory );
                 var newFileInfo = new FileInfo( Path.Combine( NewFileAbsoluteDirectory, oldFileInfo.Name ) );
+
+                // Never delete any org.mywell.MyWellGateway.dll from the bin folder.
+                if ( relativeDirectory.ToLower() == "bin" && newFileInfo.Name.ToLower().StartsWith( "org.mywell." ) )
+                {
+                    continue;
+                }
 
                 // If exists in old but not new then add to deleted list
                 if ( !newFileInfo.Exists )
