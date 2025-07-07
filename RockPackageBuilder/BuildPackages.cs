@@ -21,6 +21,9 @@ namespace RockPackageBuilder
         static string _previousVersion = string.Empty;
         static string _defaultDescription = "##TODO##";
 
+        static readonly char[] _spinnerChars = { '|', '/', '-', '\\' };
+        static int _spinnerIndex = 0;
+
         #endregion
 
         /// <summary>
@@ -98,7 +101,10 @@ namespace RockPackageBuilder
             string rockUpdatePackageFileName = Path.Combine( options.RockPackageFolder, $"{options.PublicVersion}.rockpkg" );
             if ( File.Exists( rockUpdatePackageFileName ) )
             {
-                Console.Write( "The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", rockUpdatePackageFileName, Environment.NewLine );
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write( "WARNING: The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", rockUpdatePackageFileName, Environment.NewLine );
+                Console.ResetColor();
+
                 ConsoleKeyInfo choice = Console.ReadKey( true );
                 Console.Write( "\b" );
                 Console.WriteLine( "" );
@@ -138,6 +144,12 @@ namespace RockPackageBuilder
             }
 
             Console.WriteLine( "" );
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine( "The package {0} is ready for you to deploy.{1}", rockUpdatePackageFileName, Environment.NewLine );
+            Console.ResetColor();
+
+            Console.WriteLine( "" );
+
             Console.Write( "Press any key to finish." );
             Console.ReadKey( true );
 
@@ -249,6 +261,8 @@ namespace RockPackageBuilder
         /// <returns></returns>
         private static bool VerifyVersionNumbers( string repoPath, string version, Dictionary<string, bool> modifiedProjects )
         {
+            string versionPrefix = version.Split( '-' )[0];
+
             foreach ( string projectName in modifiedProjects
                 .Where( p =>
                     p.Value &&
@@ -258,7 +272,7 @@ namespace RockPackageBuilder
                 string dll = projectName + ".dll";
                 FileVersionInfo rockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( repoPath, "RockWeb", "bin", dll ) );
                 var y = rockDLLfvi.ProductVersion;
-                if ( !rockDLLfvi.FileVersion.StartsWith( version ) )
+                if ( !rockDLLfvi.FileVersion.StartsWith( versionPrefix ) )
                 {
                     Console.Write( "{0}WARNING:  Version mismatch in {1} (v{2}).{0}Is that OK for this release? Y/N (n to quit) ", Environment.NewLine, dll, rockDLLfvi.FileVersion );
                     ConsoleKeyInfo choice = Console.ReadKey( true );
@@ -290,7 +304,7 @@ namespace RockPackageBuilder
             using ( var repo = new Repository( options.RepoPath ) )
             {
                 Tag tag = repo.Tags[options.CurrentVersionTag]; // current tag
-                if ( tag == null )
+                if ( tag == null && string.IsNullOrWhiteSpace( options.CurrentVersionCommitHash ) )
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine( $"Error: I don't see a {options.CurrentVersionTag} tag.  Did you forget to tag this release?" );
@@ -517,8 +531,11 @@ namespace RockPackageBuilder
             }
 
             // loop through the old file list and compare to new file version
+            var i = 0;
             foreach ( var oldFile in oldFileList )
             {
+                i++;
+                ShowProgress( i, oldFileList.Count );
                 FileInfo oldFileInfo = new FileInfo( oldFile );
 
                 var relativeDirectory = Path.GetDirectoryName( oldFile ).Replace( options.PreviousVersionRockWebFolderPath, string.Empty ).TrimStart( Path.DirectorySeparatorChar );
@@ -588,6 +605,26 @@ namespace RockPackageBuilder
                 {
                     modifiedPackageFiles.Add( newFile );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Shows a simple progress bar.
+        /// </summary>
+        /// <param name="currentIndex"></param>
+        /// <param name="totalCount"></param>
+        private static void ShowProgress( int currentIndex, int totalCount )
+        {
+            int percent = ( int ) ( ( currentIndex / ( double ) totalCount ) * 100 );
+            char spinner = _spinnerChars[_spinnerIndex++ % _spinnerChars.Length];
+
+            if ( percent >= 100 )
+            {
+                Console.WriteLine( $"\rDone.                 " );
+            }
+            else
+            {
+                Console.Write( $"\rProgress: {percent,3}% {spinner}" );
             }
         }
 
