@@ -12,10 +12,10 @@ namespace RockPackageBuilder
         /// <summary>
         /// The warning message for when web.config transformation is needed.
         /// </summary>
-        public const string WEBCONFIG_XDT_MESSAGE = @"--> ACTION! web.config file was changed since last build. Figure out
-            how you're going to handle that. You'll probably have to
-            create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates
-            wiki page for details on doing that.";
+        public const string WEBCONFIG_XDT_MESSAGE = @"--> ACTION NEEDED! web.config file was changed since last build. Figure out
+                   how you're going to handle that. You'll probably have to
+                   create a web.config.rock.xdt file. See the Packaging-Rock-Core-Updates
+                   wiki page for details on doing that.";
 
         /// <summary>
         /// The projects to ignore. These projects will not be used to create the package and 
