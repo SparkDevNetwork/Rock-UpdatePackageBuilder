@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <system.webServer>
+    <httpCompression xdt:Transform="InsertIfMissing">
+      <dynamicTypes xdt:Transform="InsertIfMissing">
+        <add mimeType="application/json"
+             enabled="true"
+             xdt:Locator="Match(mimeType)"
+             xdt:Transform="InsertIfMissing" />
+        <add mimeType="text/json"
+             enabled="true"
+             xdt:Locator="Match(mimeType)"
+             xdt:Transform="InsertIfMissing" />
+      </dynamicTypes>
+    </httpCompression>
+  </system.webServer>
+</configuration>
