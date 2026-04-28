@@ -145,7 +145,7 @@ namespace RockPackageBuilder
 
             Console.WriteLine( "" );
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine( "The package {0} is ready for you to deploy.{1}", rockUpdatePackageFileName, Environment.NewLine );
+            Console.WriteLine( "The package {0} is ready for you to manually edit and then deploy to the blob storage at https://rockrms.blob.core.windows.net/updates/.{1}", rockUpdatePackageFileName, Environment.NewLine );
             Console.ResetColor();
 
             Console.WriteLine( "" );
@@ -531,6 +531,7 @@ namespace RockPackageBuilder
             }
 
             // loop through the old file list and compare to new file version
+            var matchedDLlsFound = false;
             var i = 0;
             foreach ( var oldFile in oldFileList )
             {
@@ -569,8 +570,9 @@ namespace RockPackageBuilder
                 var oldFileVersionInfo = FileVersionInfo.GetVersionInfo( oldFileInfo.FullName );
                 var newFileVersionInfo = FileVersionInfo.GetVersionInfo( newFileInfo.FullName );
 
-                if ( oldFile.EndsWith( ".dll" ) && oldFileVersionInfo.FileVersion == newFileVersionInfo.FileVersion)
+                if ( oldFile.EndsWith( ".dll" ) && oldFileVersionInfo.FileVersion == newFileVersionInfo.FileVersion )
                 {
+                    matchedDLlsFound = true;
                     Console.WriteLine( string.Format( "Skipping .dll file due to matching version: {0} - {1}", oldFileInfo.FullName, oldFileVersionInfo.FileVersion ) );
                     continue;
                 }
@@ -586,6 +588,13 @@ namespace RockPackageBuilder
                 {
                     modifiedPackageFiles.Add( relativeFilePath );
                 }
+            }
+
+            if ( matchedDLlsFound )
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine( "   *Psst*... You should really double check those skipped .dll to make sure they really did not change. Why? Sometimes nuget package developers forget to update their version numbers even when they update the package. :(" );
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
 
             // If exists in new but not old then we need to add the file. Needs to compare relative paths due to different obsidian files having the same name but in different directories.
