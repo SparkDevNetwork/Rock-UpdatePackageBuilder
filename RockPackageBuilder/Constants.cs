@@ -42,6 +42,7 @@ namespace RockPackageBuilder
         public static readonly List<string> DEFAULT_PDB_TO_INCLUDE = new List<string>
         {
             "rock",
+            "rock.blocks",
             "rock.rest"
         };
     }

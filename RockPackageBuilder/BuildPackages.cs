@@ -98,6 +98,19 @@ namespace RockPackageBuilder
 
             _defaultDescription = $"Rock {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes#v{publicVersion}'>Release Notes</a> for details).";
 
+            FileVersionInfo oldRockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( options.PreviousVersionRockWebFolderPath, "bin", "Rock.Version.dll" ) );
+            if ( !oldRockDLLfvi.FileVersion.StartsWith( options.LastVersionTag ) )
+            {
+                Console.Write( "{0}WARNING: It looks like the PreviousVersionRockWebFolderPath is not version {1} (it's version {2}).{0} Do you want to continue?? Y/N (n to quit) ", Environment.NewLine, options.LastVersionTag, oldRockDLLfvi.FileVersion );
+                ConsoleKeyInfo choice = Console.ReadKey( true );
+                Console.Write( "\b" );
+                Console.WriteLine( "" );
+                if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+                {
+                    return 1;
+                }
+            }
+
             string rockUpdatePackageFileName = Path.Combine( options.RockPackageFolder, $"{options.PublicVersion}.rockpkg" );
             if ( File.Exists( rockUpdatePackageFileName ) )
             {
@@ -441,6 +454,7 @@ namespace RockPackageBuilder
                             // Deleted assemblies can be just deleted simply by adding them to the deletedPackageFiles list.
                             Console.WriteLine( "{0}\t{1} (ASSEMBLY)", file.Path, file.Status );
                             deletedPackageFiles.Add( file.Path );
+                            File.AppendAllText( $"{options.CurrentVersionTag}_package.log", $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {file.Path} assembly being removed because was deleted in git.{Environment.NewLine}" );
                         }
                     }
                     else if ( file.Path.ToLower().StartsWith( @"rockweb\" ) )
@@ -453,6 +467,7 @@ namespace RockPackageBuilder
                         else if ( file.Status == ChangeKind.Deleted )
                         {
                             deletedPackageFiles.Add( file.Path );
+                            File.AppendAllText( $"{options.CurrentVersionTag}_package.log", $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {file.Path} being removed because was deleted in git.{Environment.NewLine}" );
                         }
                     }
                 }
@@ -477,7 +492,7 @@ namespace RockPackageBuilder
             Console.ResetColor();
 
             // Ignore files with these extensions
-            List<string> ignoreFilePatterns = new List<string>() { ".pdb", ".refresh", ".js.map" };
+            List<string> ignoreFilePatterns = new List<string>() { ".pdb", ".refresh", ".js.map", ".gitignore" };
 
             // Get a list of files from the previous version directory.
             // Filter out files already identified as updated, solution files, and ignore files
@@ -494,6 +509,21 @@ namespace RockPackageBuilder
             if ( Directory.Exists( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ) ) )
             {
                 oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Obsidian" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
+            }
+
+            // Starting with version 19.1, the /Styles/styles-v2/ is not in source control, so get every file except the ones that should be ignored.
+            if ( Directory.Exists( Path.Combine( options.PreviousVersionRockWebFolderPath, "Styles", "styles-v2" ) ) )
+            {
+                oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Styles", "styles-v2" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
+            }
+
+            // Starting with version 19.1, some of the /Themes/ files are no longer in source control
+            // under RockWeb as they were moved to Rock.Frontend.Styles, so get every file except the ones that should be ignored.
+            if ( Directory.Exists( Path.Combine( options.PreviousVersionRockWebFolderPath, "Themes" ) ) )
+            {
+                oldFileList.AddRange( Directory.GetFiles( Path.Combine( options.PreviousVersionRockWebFolderPath, "Themes" ), "*", SearchOption.AllDirectories )
                     .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
             }
 
@@ -519,6 +549,20 @@ namespace RockPackageBuilder
             if ( Directory.Exists( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ) ) )
             {
                 newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Obsidian" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
+            }
+
+            // v19.1: A list of all new Styles/styles-v2 files except the ones that should be ignored.
+            if ( Directory.Exists( Path.Combine( options.RepoPath, "RockWeb", "Styles", "styles-v2" ) ) )
+            {
+                newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Styles", "styles-v2" ), "*", SearchOption.AllDirectories )
+                    .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
+            }
+
+            // v19.1: A list of all new Themes/ files except the ones that should be ignored.
+            if ( Directory.Exists( Path.Combine( options.RepoPath, "RockWeb", "Themes" ) ) )
+            {
+                newFileList.AddRange( Directory.GetFiles( Path.Combine( options.RepoPath, "RockWeb", "Themes" ), "*", SearchOption.AllDirectories )
                     .Where( f => !ignoreFilePatterns.Any( p => f.ToLower().Contains( p.ToLower() ) ) ) );
             }
 
@@ -556,6 +600,7 @@ namespace RockPackageBuilder
                     if ( !deletedPackageFiles.Where( d => d.Equals( file, StringComparison.OrdinalIgnoreCase ) ).Any() )
                     {
                         deletedPackageFiles.Add( file );
+                        File.AppendAllText( $"{options.CurrentVersionTag}_package.log", $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {file} being removed because it exists in old but not new{Environment.NewLine}" );
                     }
 
                     continue;
@@ -572,9 +617,10 @@ namespace RockPackageBuilder
 
                 if ( oldFile.EndsWith( ".dll" ) && oldFileVersionInfo.FileVersion == newFileVersionInfo.FileVersion )
                 {
-                    matchedDLlsFound = true;
-                    Console.WriteLine( string.Format( "Skipping .dll file due to matching version: {0} - {1}", oldFileInfo.FullName, oldFileVersionInfo.FileVersion ) );
-                    continue;
+                    //matchedDLlsFound = true;
+                    Console.WriteLine( string.Format( "I considered skipping .dll file due to matching version: {0} - {1} but decided against it because they are different sizes.", oldFileInfo.FullName, oldFileVersionInfo.FileVersion ) );
+                    File.AppendAllText( $"{options.CurrentVersionTag}_package.log", $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {oldFileInfo.FullName} assembly was different so it will be included.{Environment.NewLine}" );
+                    //continue;
                 }
 
                 string relativeFilePath = Path.Combine( relativeDirectory, oldFileInfo.Name );
@@ -658,6 +704,7 @@ namespace RockPackageBuilder
                 if( exists )
                 {
                     filesToKeep.Add( deletedFile );
+                    File.AppendAllText( $"{options.CurrentVersionTag}_package.log", $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] Keeping {deletedFile} because it does still exist. Therefore I'm removing it from the deletedFiles list.{Environment.NewLine}" );
                 }
             }
 
