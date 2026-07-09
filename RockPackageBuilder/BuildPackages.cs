@@ -129,6 +129,14 @@ namespace RockPackageBuilder
 
             GetRockWebChangedFilesAndProjects( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
             GetUpdatedFilesNotInSolution( options, modifiedLibs, modifiedPackageFiles, deletedPackageFiles, modifiedProjects );
+
+            // Always include Rock.Version.dll so every package carries the version DLL the installer inspects.
+            if ( !modifiedProjects.Keys.Any( k => k.Equals( "Rock.Version", StringComparison.OrdinalIgnoreCase ) ) )
+            {
+                modifiedProjects["Rock.Version"] = true;
+                modifiedLibs.RemoveAll( f => Path.GetFileName( f ).Equals( "Rock.Version.dll", StringComparison.OrdinalIgnoreCase ) );
+            }
+
             VerifyDeletedFiles( options, ref deletedPackageFiles );
 
             // Make sure the Rock.Version project's version number has been updated and commit->pushed before you build from master.
