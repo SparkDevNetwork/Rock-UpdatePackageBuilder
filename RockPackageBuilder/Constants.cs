@@ -26,6 +26,7 @@ namespace RockPackageBuilder
             "rock.codegeneration",
             "rock.mywell",
             "rock.specs",
+            "rock.ai.agent.tests",
             "rock.tests",
             "rock.tests.integration",
             "rock.tests.integration.performance",
