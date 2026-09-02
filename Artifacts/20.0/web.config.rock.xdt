@@ -14,4 +14,82 @@
       </dynamicTypes>
     </httpCompression>
   </system.webServer>
+
+  <!-- Update assembly bindings that changed between v19.4 and v20.0.
+       Each entry is removed (by assembly name) and then re-inserted so the
+       transform is idempotent and safe regardless of the version currently
+       present in the customer's web.config. -->
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+
+      <!-- Version bumps since v19.4 -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.IdentityModel.Protocols')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.IdentityModel.Protocols" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.15.0.0" newVersion="8.15.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Security.Cryptography.Xml')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Security.Cryptography.Xml" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-10.0.0.10" newVersion="10.0.0.10" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.IdentityModel.JsonWebTokens')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.IdentityModel.JsonWebTokens" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.15.0.0" newVersion="8.15.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Google.Protobuf')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Google.Protobuf" publicKeyToken="a7d26565bac4d604" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.33.1.0" newVersion="3.33.1.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Caching.Abstractions')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Caching.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-10.0.0.0" newVersion="10.0.0.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='AngleSharp')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="AngleSharp" publicKeyToken="e83494dcdc6d31ea" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.5.2.0" newVersion="1.5.2.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='System.Formats.Asn1')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="System.Formats.Asn1" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-10.0.0.10" newVersion="10.0.0.10" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Identity.Client')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Identity.Client" publicKeyToken="0a613f4dd989e8ae" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.80.0.0" newVersion="4.80.0.0" />
+      </dependentAssembly>
+
+      <!-- New in v20.0 -->
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.SemanticKernel.Abstractions')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.SemanticKernel.Abstractions" publicKeyToken="f300afd708cefcd3" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.67.1.0" newVersion="1.67.1.0" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.Extensions.Caching.Memory')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.Extensions.Caching.Memory" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.1" newVersion="8.0.0.1" />
+      </dependentAssembly>
+
+      <dependentAssembly xdt:Transform="RemoveAll" xdt:Locator="Condition(./_defaultNamespace:assemblyIdentity/@name='Microsoft.IdentityModel.Protocols.OpenIdConnect')" />
+      <dependentAssembly xdt:Transform="Insert">
+        <assemblyIdentity name="Microsoft.IdentityModel.Protocols.OpenIdConnect" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.15.0.0" newVersion="8.15.0.0" />
+      </dependentAssembly>
+
+    </assemblyBinding>
+  </runtime>
 </configuration>
