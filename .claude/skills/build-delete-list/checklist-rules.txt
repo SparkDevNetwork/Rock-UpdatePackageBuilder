@@ -1,0 +1,17 @@
+# Rules from the Asana packaging checklist, "Verify Delete File list" step.
+# The checklist changes over time: when it does, edit this file to match. The script applies these on every run.
+#
+#   never <line>         The line must never be in the list (e.g. plugins that ship with Rock). * matches anything.
+#   add <major> <line>   Add the line to every package of that major version.
+#
+# Lines are written the way deletefile.lst writes them. Case doesn't matter.
+
+never RockWeb\Bin\org.mywell.MyWellGateway.dll
+
+add 18 RockWeb\Bin\tech.triumph.Lava.Helix.dll
+add 18 RockWeb\Bin\tech.triumph.Lava.Helix.pdb
+
+add 20 RockWeb\Bin\tech.triumph.LavaTools.dll
+add 20 RockWeb\Bin\tech.triumph.LavaTools.pdb
+add 20 RockWeb\Bin\rocks.pillars.AzureStorageProvider.dll
+add 20 RockWeb\Bin\rocks.pillars.AzureStorageProvider.pdb
