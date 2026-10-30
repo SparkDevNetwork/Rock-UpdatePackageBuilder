@@ -9,9 +9,13 @@ namespace RockPackageBuilder
 {
     internal class RockPackageBuilder
     {
+        // Prevents adding the same file to the package more than once.
+        private static readonly HashSet<string> _packageEntryNames = new HashSet<string>( StringComparer.OrdinalIgnoreCase );
+
         public static string BuildRockPackage( RockPackageBuilderCommandLineOptions options, List<string> modifiedLibs, List<string> packageFiles, List<string> deletedPackageFiles, Dictionary<string, bool> modifiedProjects, out string actionWarnings )
         {
             actionWarnings = string.Empty;
+            _packageEntryNames.Clear();
             string version = options.PublicVersion;
             string updatePackageFileName = Path.Combine( options.RockPackageFolder, $"{version}.rockpkg" );
 
@@ -144,6 +148,11 @@ namespace RockPackageBuilder
 
             // \ should always be /
             target = target.Replace( "\\", "/" );
+
+            if ( !_packageEntryNames.Add( target ) )
+            {
+                return;
+            }
 
             packageFile.CreateEntryFromFile( source, target );
         }
