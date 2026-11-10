@@ -32,8 +32,8 @@ correct anything and say when to start. Ask only for answers you can't fill in.
    `git -C <checkout> tag -l '<target>.*' --sort=-v:refname`]. Every package being verified has one.
 2. **Required (minimum) version tag**, e.g. `18.2.4`.
 3. **Simulate or check a built package?** Simulate before building; check the `.rockpkg` after
-   [`D:\source\rock\_Apps\Rock-UpdatePackageBuilder\RockPackages\<target>.rockpkg` if it exists].
-4. **Rock checkout** with tags fetched [`D:\source\rock\Rock-packaging`], with the target tag's files checked out.
+   [`RockPackages\<target>.rockpkg` if it exists].
+4. **Rock checkout** with tags fetched, with the target tag's files checked out. It differs per packager, so ask.
 5. **Compiled RockWeb of the target** [`<checkout>\RockWeb`]: the Release build the package came from. It separates
    generated files from real leftovers.
 6. **Sibling release tags**: other majors' releases shipping at the same time [their newest tags, e.g.
@@ -48,8 +48,8 @@ them to `git fetch --tags`.
 
 ```bash
 bash .claude/skills/verify-rock-package/verify-package.sh \
-    -r /d/source/rock/Rock-packaging -m 18.2.4 -t 19.8.1-alpha -v 19.8 \
-    -x '^(1\.17\.|18\.0\.)' -s 18.8.1-alpha -w /d/source/rock/Rock-packaging/RockWeb \
+    -r <checkout> -m 18.2.4 -t 19.8.1-alpha -v 19.8 \
+    -x '^(1\.17\.|18\.0\.)' -s 18.8.1-alpha -w <checkout>/RockWeb \
     -p RockPackages/19.8.rockpkg -o <scratchpad>/verify-19.8
 ```
 

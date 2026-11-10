@@ -6,8 +6,8 @@
 #
 # Usage:
 #   build-delete-list.sh -r <rock repo> -m <minimum version tag> -t <target ref> -v <target version>
-#                        -p <new rockpkg> [-w <compiled target RockWeb>] [-d <packages folder>]
-#                        [-e <earlier versions>] [-a <lines to add>] [-c <rules file>] [-o <output dir>]
+#                        -p <new rockpkg> -e <earlier versions> [-w <compiled target RockWeb>] [-d <packages folder>]
+#                        [-a <lines to add>] [-c <rules file>] [-o <output dir>]
 #
 #   -r  Rock git checkout with all release tags fetched.
 #   -m  Required (minimum) version tag the package was built from, e.g. 18.2.4.
@@ -15,8 +15,9 @@
 #   -v  Target version, e.g. 19.8.
 #   -p  The new package as the builder made it.
 #   -w  Compiled RockWeb folder of the target (strongly recommended).
-#   -d  Folder holding earlier packages named <major>.<minor>.rockpkg. Defaults to the new package's folder.
-#   -e  Space-separated earlier versions to merge, overriding the automatic choice, e.g. "18.3 18.4 19.1".
+#   -d  Folder holding earlier packages named <version>.rockpkg. Defaults to the new package's folder.
+#   -e  Space-separated earlier versions to merge, e.g. "18.3 18.4 19.1". Use <version>=<rockpkg> for a package whose
+#       file isn't <version>.rockpkg in the packages folder, e.g. "20.0.9 20.0.10=RockPackages/20.0.rockpkg".
 #   -a  File of extra lines to add for this package only.
 #   -c  Checklist rules file. Defaults to checklist-rules.txt next to this script.
 #   -o  Output folder. Defaults to ./delete-list-output.
@@ -39,12 +40,12 @@ while getopts "r:m:t:v:p:w:d:e:a:c:o:" option; do
         a) additions=$OPTARG ;;
         c) rules=$OPTARG ;;
         o) output=$OPTARG ;;
-        *) sed -n '3,26p' "$0"; exit 2 ;;
+        *) sed -n '3,23p' "$0"; exit 2 ;;
     esac
 done
 
 if [[ -z $repo || -z $minimum || -z $target || -z $targetVersion || -z $package ]]; then
-    sed -n '3,26p' "$0"
+    sed -n '3,23p' "$0"
     exit 2
 fi
 
@@ -78,38 +79,28 @@ referencedIn() {
         'RockWeb/Bin/*.refresh' '*.csproj' '*packages.config' '*.sln'
 }
 
-# Prints major.minor of a version string.
-majorMinor() {
-    echo "$1" | cut -d. -f1-2
-}
-
-# Succeeds when version $1 sorts strictly below version $2.
-versionBelow() {
-    [[ $1 != "$2" && $(printf '%s\n%s\n' "$1" "$2" | sort -V | head -1) == "$1" ]]
-}
-
-minimumMajorMinor=$(majorMinor "$minimum")
-targetMajorMinor=$(majorMinor "$targetVersion")
 targetMajor=$(echo "$targetVersion" | cut -d. -f1)
 
-# Earlier packages: every <major>.<minor>.rockpkg above the minimum's release and below the target.
-if [[ -n $earlierOverride ]]; then
-    earlier=$earlierOverride
-else
-    earlier=$(ls "$packagesDir" | sed -n -E 's/^([0-9]+\.[0-9]+)\.rockpkg$/\1/p' | sort -V | while read -r version; do
-        if versionBelow "$minimumMajorMinor" "$version" && versionBelow "$version" "$targetMajorMinor"; then
-            echo "$version"
-        fi
-    done)
+# Earlier packages are listed by the packager. A file name doesn't prove a package's version (20.0.rockpkg can hold any
+# 20.0.x patch), so nothing is chosen automatically.
+if [[ -z $earlierOverride ]]; then
+    echo "List the earlier packages to merge with -e, e.g. -e \"18.3 18.4 19.1\"." >&2
+    exit 2
 fi
+earlier=""
 
 # Collect every line with its source.
 deleteList "$package" | normalize | sed 's/$/\tthis package/' > "$work/lines.tsv"
 : > "$work/precedent.txt"
 : > "$work/reshipped.txt"
 
-for version in $earlier; do
+for entry in $earlierOverride; do
+    version=${entry%%=*}
     earlierPackage="$packagesDir/$version.rockpkg"
+    if [[ $entry == *=* ]]; then
+        earlierPackage=${entry#*=}
+    fi
+    earlier="$earlier $version"
     if [[ ! -f $earlierPackage ]]; then
         echo "Missing earlier package: $earlierPackage" >&2
         exit 2
@@ -217,8 +208,9 @@ while IFS=$'\t' read -r key line source; do
     fi
 done < "$work/unique.tsv"
 
-# Results.
-cut -f1 "$work/kept.tsv" | sort -f | sed 's/$/\r/' > "$output/deletefile.lst"
+# Results. Sorted on the lowercase line, which puts "_" before letters, matching VS Code's Sort Lines Ascending.
+cut -f1 "$work/kept.tsv" | awk '{ print tolower($0) "\t" $0 }' | sort -t$'\t' -k1,1 | cut -f2 | sed 's/$/\r/' \
+    > "$output/deletefile.lst"
 
 total=$(wc -l < "$work/lines.tsv")
 distinct=$(wc -l < "$work/unique.tsv")

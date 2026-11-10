@@ -9,7 +9,7 @@
     Exits 1 when any ref fails or there is no xdt.
 
 .EXAMPLE
-    pwsh -File check-transform.ps1 -Repo D:\source\rock\Rock-packaging -Package RockPackages\19.8.rockpkg `
+    pwsh -File check-transform.ps1 -Repo <rock checkout> -Package RockPackages\19.8.rockpkg `
         -Target 19.8.1-alpha -Refs "18.2.4 19.1.8"
 #>
 param(

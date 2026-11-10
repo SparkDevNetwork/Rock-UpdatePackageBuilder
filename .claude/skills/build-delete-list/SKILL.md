@@ -18,13 +18,14 @@ correct anything and say when to start. Ask only for answers you can't fill in.
 1. **Target version and release tag**, e.g. `19.8` and `19.8.1-alpha` [the newest tag from
    `git -C <checkout> tag -l '<target>.*' --sort=-v:refname`].
 2. **Required (minimum) version tag** the package was built from, e.g. `18.2.4`.
-3. **The new package** [`D:\source\rock\_Apps\Rock-UpdatePackageBuilder\RockPackages\<target>.rockpkg`]. Its list can
-   be the builder's own or one already merged by hand; both work.
-4. **Rock checkout** with tags fetched [`D:\source\rock\Rock-packaging`].
+3. **The new package** [`RockPackages\<target>.rockpkg`]. Its list can be the builder's own or one already merged by
+   hand; both work.
+4. **Rock checkout** with tags fetched. It differs per packager, so ask.
 5. **Compiled RockWeb of the target** [`<checkout>\RockWeb`]: a fresh Release build of the target. Without it,
    generated files (theme CSS, `styles-v2`) aren't checked.
-6. **Earlier packages to merge** [every `<major>.<minor>.rockpkg` in the packages folder above the minimum's release and
-   below the target; e.g. minimum 18.2.4, target 19.8: 18.3 to 18.8 and 19.1 to 19.7]. List them by name.
+6. **Earlier packages to merge**: every shipped package above the minimum's release and below the target (e.g. minimum
+   18.2.4, target 19.8: 18.3 to 18.8 and 19.1 to 19.7), from `RockPackages`. List each one's version and file, and
+   confirm the version with the packager; a file name doesn't prove it (`20.0.rockpkg` can hold any 20.0.x patch).
 7. **Checklist rules** [`checklist-rules.txt` in this folder]. Show its `never` and `add` lines for the target's major
    and ask whether these rules are correct for the target's major version. If not, edit the file first.
 8. **Put the result into the package?** [yes, after the packager sees the report].
@@ -38,12 +39,14 @@ correct anything and say when to start. Ask only for answers you can't fill in.
 
 ```bash
 bash .claude/skills/build-delete-list/build-delete-list.sh \
-    -r /d/source/rock/Rock-packaging -m 18.2.4 -t 19.8.1-alpha -v 19.8 \
-    -p RockPackages/19.8.rockpkg -w /d/source/rock/Rock-packaging/RockWeb \
+    -r <checkout> -m 18.2.4 -t 19.8.1-alpha -v 19.8 \
+    -p RockPackages/19.8.rockpkg -w <checkout>/RockWeb \
+    -e "18.3 18.4 18.5 18.6 18.7 18.8 19.1 19.2 19.3 19.4 19.5 19.6 19.7" \
     -o <scratchpad>/delete-list-19.8
 ```
 
-Add `-e "18.3 18.4 ..."` if the packager changed the earlier packages, and `-a <file>` for one-off lines. It takes 2 to 3
+Each `-e` version reads `RockPackages/<version>.rockpkg`; write `<version>=<file>` for one named differently, e.g.
+`20.0.10=RockPackages/20.0.rockpkg`. Add `-a <file>` for one-off lines. It takes 2 to 3
 minutes, reads the packages without changing them, and writes `deletefile.lst` (CRLF, sorted) and `report.txt`.
 
 ## Step 4: Explain the result

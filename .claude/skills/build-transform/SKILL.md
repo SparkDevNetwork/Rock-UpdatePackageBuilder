@@ -26,8 +26,8 @@ anything and say when to start. Ask only for answers you can't fill in.
    for 19.8]. Sites on them can install this package too.
 4. **Pre-release tags to skip** [`^(1\.17\.|18\.0\.)`: 17.0 pre-releases and 18.0, which never shipped]. Tags ending
    in `-alpha`, `-beta` or `-pre` are skipped automatically. Ask before skipping anything else.
-5. **Rock checkout** with tags fetched [`D:\source\rock\Rock-packaging`].
-6. **The package** [`D:\source\rock\_Apps\Rock-UpdatePackageBuilder\RockPackages\<target>.rockpkg`].
+5. **Rock checkout** with tags fetched. It differs per packager, so ask.
+6. **The package** [`RockPackages\<target>.rockpkg`].
 7. **Artifacts folder** for this release [`Artifacts\<target version>`, e.g. `Artifacts\19.8`; the checklist may name it
    with the patch number].
 8. **Save the result to Artifacts and the package?** [yes, after the packager sees the result].
@@ -39,7 +39,7 @@ them to `git fetch --tags`.
 
 ```bash
 bash .claude/skills/build-transform/build-transform.sh \
-    -r /d/source/rock/Rock-packaging -m 18.2.4 -t 19.8.1-alpha -v 19.8 -s 18.8.1-alpha \
+    -r <checkout> -m 18.2.4 -t 19.8.1-alpha -v 19.8 -s 18.8.1-alpha \
     -x '^(1\.17\.|18\.0\.)' -o <scratchpad>/transform-19.8
 ```
 

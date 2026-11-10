@@ -9,7 +9,7 @@
     still differ, to be added by hand. Writes only the -Out file.
 
 .EXAMPLE
-    pwsh -File new-transform.ps1 -Repo D:\source\rock\Rock-packaging -Target 19.8.1-alpha -Refs "18.2.4 19.1.8" `
+    pwsh -File new-transform.ps1 -Repo <rock checkout> -Target 19.8.1-alpha -Refs "18.2.4 19.1.8" `
         -Out out\web.config.rock.xdt
 #>
 param(
