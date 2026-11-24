@@ -24,6 +24,8 @@ namespace RockPackageBuilder
         static readonly char[] _spinnerChars = { '|', '/', '-', '\\' };
         static int _spinnerIndex = 0;
 
+        static bool _unattended = false;
+
         #endregion
 
         /// <summary>
@@ -33,11 +35,17 @@ namespace RockPackageBuilder
         /// <returns></returns>
         static int Main( string[] args )
         {
-            Console.BufferHeight = 9999;
+            if ( !Console.IsOutputRedirected )
+            {
+                Console.BufferHeight = 9999;
+            }
+
             var options = new RockPackageBuilderCommandLineOptions();
             var parser = new CommandLine.Parser( with => with.HelpWriter = Console.Error );
             if ( parser.ParseArgumentsStrict( args, options, () => Exit() ) )
             {
+                _unattended = options.Unattended;
+
                 if ( !Directory.Exists( options.RepoPath ) )
                 {
                     Console.WriteLine( $"The given repository folder ({options.RepoPath}) does not exist." );
@@ -102,10 +110,7 @@ namespace RockPackageBuilder
             if ( !oldRockDLLfvi.FileVersion.StartsWith( options.LastVersionTag ) )
             {
                 Console.Write( "{0}WARNING: It looks like the PreviousVersionRockWebFolderPath is not version {1} (it's version {2}).{0} Do you want to continue?? Y/N (n to quit) ", Environment.NewLine, options.LastVersionTag, oldRockDLLfvi.FileVersion );
-                ConsoleKeyInfo choice = Console.ReadKey( true );
-                Console.Write( "\b" );
-                Console.WriteLine( "" );
-                if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+                if ( !Confirm( false ) )
                 {
                     return 1;
                 }
@@ -118,10 +123,7 @@ namespace RockPackageBuilder
                 Console.Write( "WARNING: The package {0} already exists.{1}Do you want to overwrite it? Y/N (n to quit) ", rockUpdatePackageFileName, Environment.NewLine );
                 Console.ResetColor();
 
-                ConsoleKeyInfo choice = Console.ReadKey( true );
-                Console.Write( "\b" );
-                Console.WriteLine( "" );
-                if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+                if ( !Confirm( false ) )
                 {
                     return 1;
                 }
@@ -171,8 +173,11 @@ namespace RockPackageBuilder
 
             Console.WriteLine( "" );
 
-            Console.Write( "Press any key to finish." );
-            Console.ReadKey( true );
+            if ( !_unattended )
+            {
+                Console.Write( "Press any key to finish." );
+                Console.ReadKey( true );
+            }
 
             return 0;
         }
@@ -261,10 +266,7 @@ namespace RockPackageBuilder
             }
 
             Console.Write( "Do you want to continue? Y/N (n to quit) ", Environment.NewLine );
-            ConsoleKeyInfo choice = Console.ReadKey( true );
-            Console.Write( "\b" );
-            Console.WriteLine( "" );
-            if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+            if ( !Confirm( true ) )
             {
                 Console.WriteLine( "" );
                 return false;
@@ -296,10 +298,7 @@ namespace RockPackageBuilder
                 if ( !rockDLLfvi.FileVersion.StartsWith( versionPrefix ) )
                 {
                     Console.Write( "{0}WARNING:  Version mismatch in {1} (v{2}).{0}Is that OK for this release? Y/N (n to quit) ", Environment.NewLine, dll, rockDLLfvi.FileVersion );
-                    ConsoleKeyInfo choice = Console.ReadKey( true );
-                    Console.Write( "\b" );
-                    Console.WriteLine( "" );
-                    if ( choice.KeyChar.ToString().ToLowerInvariant() != "y" )
+                    if ( !Confirm( false ) )
                     {
                         return false;
                     }
@@ -870,9 +869,32 @@ namespace RockPackageBuilder
 
         private static void Exit()
         {
-            Console.WriteLine( "Hit any key to quit." );
-            Console.ReadKey();
+            if ( !_unattended )
+            {
+                Console.WriteLine( "Hit any key to quit." );
+                Console.ReadKey();
+            }
+
             System.Environment.Exit( -3 );
+        }
+
+        /// <summary>
+        /// Reads the answer to a Y/N prompt.
+        /// </summary>
+        /// <param name="unattendedAnswer">The answer an unattended run gives.</param>
+        /// <returns><c>true</c> if the answer is yes.</returns>
+        private static bool Confirm( bool unattendedAnswer )
+        {
+            if ( _unattended )
+            {
+                Console.WriteLine( unattendedAnswer ? "y (unattended)" : "n (unattended)" );
+                return unattendedAnswer;
+            }
+
+            ConsoleKeyInfo choice = Console.ReadKey( true );
+            Console.Write( "\b" );
+            Console.WriteLine( "" );
+            return choice.KeyChar.ToString().ToLowerInvariant() == "y";
         }
     }
 }

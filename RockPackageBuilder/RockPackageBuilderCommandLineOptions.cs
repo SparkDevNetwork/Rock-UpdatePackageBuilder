@@ -50,6 +50,9 @@ namespace RockPackageBuilder
         [Option( 'b', "previousVersionRockWebFolderPath", Required = true, HelpText = "The path to a clean RockWeb folder of the previous version. Used to compare bin and obsidian folders and get files that are not included in the solution." )]
         public string PreviousVersionRockWebFolderPath { get; set; }
 
+        [Option( 'u', "unattended", DefaultValue = false, HelpText = "Set to true to run without key presses. The projects prompt is answered yes; every warning prompt is answered no, which stops the build." )]
+        public bool Unattended { get; set; }
+
         public List<string> ProjectsInSolution { get; set; }
 
         [ParserState]
