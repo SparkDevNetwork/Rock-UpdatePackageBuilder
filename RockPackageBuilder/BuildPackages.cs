@@ -107,7 +107,9 @@ namespace RockPackageBuilder
             _defaultDescription = $"Rock {publicVersion} fixes issues that were reported during the previous release(s) (See <a href='https://www.rockrms.com/releasenotes#v{publicVersion}'>Release Notes</a> for details).";
 
             FileVersionInfo oldRockDLLfvi = FileVersionInfo.GetVersionInfo( Path.Combine( options.PreviousVersionRockWebFolderPath, "bin", "Rock.Version.dll" ) );
-            if ( !oldRockDLLfvi.FileVersion.StartsWith( options.LastVersionTag ) )
+            // A tag's pre-release ending (19.9.0-alpha) is not part of the assembly's file version (19.9.0).
+            var lastVersion = options.LastVersionTag.Split( '-' )[0];
+            if ( !oldRockDLLfvi.FileVersion.StartsWith( lastVersion ) )
             {
                 Console.Write( "{0}WARNING: It looks like the PreviousVersionRockWebFolderPath is not version {1} (it's version {2}).{0} Do you want to continue?? Y/N (n to quit) ", Environment.NewLine, options.LastVersionTag, oldRockDLLfvi.FileVersion );
                 if ( !Confirm( false ) )
